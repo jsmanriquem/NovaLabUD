@@ -65,7 +65,7 @@ titulo_eje_x = StringVar(value="Eje Horizontal")
 titulo_eje_y = StringVar(value="Eje Vertical")
 
 
-# Función para graficar los puntos. Función ejemplo -> vincular funciones d elos otros módulos
+# Función para graficar los puntos. Función ejemplo -> vincular funciones de los otros módulos
 def graficar_datos():
     ax.clear()  # Limpiar la gráfica anterior
     ax.plot(x, y, 'bo-', label="Seno")  # Graficar los puntos
@@ -126,15 +126,46 @@ canvas.mpl_connect('button_press_event', on_double_click)
 
 # Función para ajustar el zoom (falta documentar)
 def zoom(event=None):
-    global x_limits, y_limits
-    zoom_level = scale.get()  # Obtener el valor de la barra
-    x_mid = (x_limits[1] + x_limits[0]) / 2
-    y_mid = (y_limits[1] + y_limits[0]) / 2
-    zoom_factor = 1 + zoom_level
+ """
+    Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que  se actualizarán dependiendo de la amplificación que de el usuario. 
 
+    El nivel de zoom es controlado por el valor de una barra de desplazamiento y la gráfica es
+    redibujada en función de los límites ajustados en los ejes X e Y. También se actualiza el
+    porcentaje de zoom mostrado en pantalla.
+
+    Parameters
+    ----------
+    event : tkinter.Event, optional
+        Evento que dispara la acción de zoom (por defecto es `None`, en caso de ser llamado manualmente).
+
+    Global Variables
+    ----------------
+    x_limits : list
+        Lista que contiene los límites actuales del eje X en la forma [xmin, xmax].
+    y_limits : list
+        Lista que contiene los límites actuales del eje Y en la forma [ymin, ymax].
+
+    Returns
+    -------
+    None
+        La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.
+
+    Side Effects
+    ------------
+    - Actualiza los límites de los ejes X e Y.
+    - Redibuja la gráfica llamando a `graficar_datos()`.
+    - Actualiza la etiqueta de porcentaje de zoom en la interfaz.
+
+    """
+    global x_limits, y_limits # Variables globales, límites de 'x' y 'y'
+    zoom_level = scale.get()  # Obtener el valor de la barra
+    x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
+    y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
+    zoom_factor = 1 + zoom_level
+    # Rango de los ejes de acuerdo a la escala de zoom
     x_range = (x_limits[1] - x_limits[0]) / zoom_factor
     y_range = (y_limits[1] - y_limits[0]) / zoom_factor
-
+    # Actualización de los límites acorde al zoom
     x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
     y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
