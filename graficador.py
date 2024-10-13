@@ -1,5 +1,5 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, ttk
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,20 +35,11 @@ edicionMenu.add_separator()
 edicionMenu.add_command(label="Rehacer")
 edicionMenu.add_command(label="Deshacer")
 
-edicionEspMenu = Menu(barraMenu, tearoff=0)
-edicionEspMenu.add_command(label="Cambiar Título")
-edicionEspMenu.add_command(label="Cambiar límites")
-edicionEspMenu.add_command(label="Cambiar título ejes")
-edicionEspMenu.add_separator()
-edicionEspMenu.add_command(label="Tamaño punto")
-edicionEspMenu.add_command(label="Color punto")
-
 ayudaMenu = Menu(barraMenu, tearoff=0)
 ayudaMenu.add_command(label="Revisar documentación")
 
 barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
 barraMenu.add_cascade(label="Edición", menu=edicionMenu)
-barraMenu.add_cascade(label="Edición Especial", menu=edicionEspMenu)
 barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
 
 # Frame para la gráfica a la derecha
@@ -68,17 +59,70 @@ y = np.sin(x)
 is_dragging = False
 start_x, start_y = 0, 0
 
+# Variables predeterminadas para los títulos
+titulo_grafica = StringVar(value="Título")
+titulo_eje_x = StringVar(value="Eje Horizontal")
+titulo_eje_y = StringVar(value="Eje Vertical")
+
+
 # Función para graficar los puntos. Función ejemplo -> vincular funciones d elos otros módulos
 def graficar_datos():
     ax.clear()  # Limpiar la gráfica anterior
     ax.plot(x, y, 'bo-', label="Seno")  # Graficar los puntos
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
-    ax.set_title("Gráfica del Seno")
-    ax.set_xlabel("Eje Horizontal")
-    ax.set_ylabel("Eje Vertical")
+    ax.set_title(titulo_grafica.get())  # Actualizar título
+    ax.set_xlabel(titulo_eje_x.get())  # Actualizar título eje X    
+    ax.set_ylabel(titulo_eje_y.get())  # Actualizar título eje Y
     ax.grid(True)  # Activar la grilla
     canvas.draw()  # Actualizar la gráfica
+
+# Función para capturar el doble clic y editar los títulos
+def on_double_click(event):
+    # Obtener coordenadas del clic
+    if event.dblclick:
+        # Coordenadas del clic en la ventana gráfica
+        x, y = event.x, event.y
+
+        # Obtener posiciones de los títulos actuales
+        bbox_title = ax.title.get_window_extent(canvas.get_renderer())
+        bbox_xlabel = ax.xaxis.label.get_window_extent(canvas.get_renderer())
+        bbox_ylabel = ax.yaxis.label.get_window_extent(canvas.get_renderer())
+
+        # Comprobar si el clic fue en el título de la gráfica
+        if bbox_title.contains(x, y):
+            crear_entry(titulo_grafica, 'gráfica', 300, 50)
+        # Comprobar si el clic fue en el título del eje X
+        elif bbox_xlabel.contains(x, y):
+            crear_entry(titulo_eje_x, 'eje X', 300, 500)
+        # Comprobar si el clic fue en el título del eje Y
+        elif bbox_ylabel.contains(x, y):
+            crear_entry(titulo_eje_y, 'eje Y', 100, 300)
+
+# Función para crear el campo de entrada en la posición del texto
+def crear_entry(variable_titulo, tipo_titulo, x_pos, y_pos):
+    entry = Entry(raiz, textvariable=variable_titulo)
+    entry.insert(0, variable_titulo.get())
+    
+    # Se posiciona el campo de entrada cerca del área correspondiente
+    entry.place(x=x_pos, y=y_pos)
+    
+    # Vinculamos el evento de presionar Enter para actualizar el título
+    entry.bind("<Return>", lambda event: actualizar_titulo(entry, variable_titulo))
+
+# Función para actualizar el título de la gráfica
+def actualizar_titulo(entry, variable_titulo):
+    nuevo_texto = entry.get().strip()
+    entry.destroy()  # Eliminamos el campo de entrada
+
+    # Si el campo está vacío, el título también queda vacío
+    variable_titulo.set(nuevo_texto if nuevo_texto else "")
+    
+    # Redibujar la gráfica con los nuevos títulos
+    graficar_datos()
+
+# Conectar eventos del ratón en Matplotlib (doble clic)
+canvas.mpl_connect('button_press_event', on_double_click)
 
 # Función para ajustar el zoom (falta documentar)
 def zoom(event=None):
