@@ -125,7 +125,7 @@ def actualizar_titulo(entry, variable_titulo):
 canvas.mpl_connect('button_press_event', on_double_click)
 
 def zoom(event=None):
- """
+    """
     Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
     se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es 
     controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en 
@@ -266,6 +266,34 @@ def on_motion(event):
 
         # Redibujar la gráfica con los nuevos límites
         graficar_datos()
+
+# Función para editar los puntos con un clic (REVISAR QUE FUNCIONE LA VENTANA EMERGENTE)
+def on_click(event):
+    """
+    Evento que permite seleccionar un punto en la gráfica y abrir una ventana emergente para 
+    editar sus propiedades de color, tamaño y forma. 
+
+    Parámetros
+    ----------
+    event : matplotlib.backend_bases.MouseEvent
+        Evento que contiene la información del mouse en el momento del clic en la gráfica.
+
+    Returns
+    -------
+    None
+        La función no retorna ningún valor, simplemente abre una ventana emergente de edición.
+    """
+    if event.inaxes:  # Si el clic fue en los ejes
+        # Obtener las coordenadas del clic
+        x_click = event.xdata
+        y_click = event.ydata
+
+        # Encontrar el punto más cercano
+        distances = [(point.get_data()[0] - x_click) ** 2 + (point.get_ydata()[0] - y_click) ** 2 for point in points]
+        closest_point_index = np.argmin(distances)
+
+        # Crear una ventana emergente para editar el punto
+        crear_ventana_edicion(closest_point_index)
 
 # Conectar eventos del ratón
 fig.canvas.mpl_connect('button_press_event', on_press)
