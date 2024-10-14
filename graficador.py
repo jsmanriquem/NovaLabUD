@@ -64,9 +64,38 @@ titulo_grafica = StringVar(value="Título")
 titulo_eje_x = StringVar(value="Eje Horizontal")
 titulo_eje_y = StringVar(value="Eje Vertical")
 
-
-# Función para graficar los puntos. Función ejemplo -> vincular funciones de los otros módulos
 def graficar_datos():
+    """
+    Esta función se encarga de dibujar o actualizar la gráfica de datos en el canvas de Matplotlib 
+    dentro de la interfaz gráfica. Limpia la gráfica anterior, dibuja una nueva basada en los datos actuales 
+    y actualiza los títulos y límites de los ejes.
+
+    Variables globales
+    ------------------
+    ax : matplotlib.axes.Axes
+        El objeto de los ejes en los que se dibuja la gráfica.
+    canvas : FigureCanvasTkAgg
+        El widget de Matplotlib que renderiza la gráfica en la interfaz gráfica de usuario.
+    x : numpy.ndarray
+        El arreglo de valores en el eje X que serán graficados.
+    y : numpy.ndarray
+        El arreglo de valores en el eje Y que serán graficados.
+    x_limits : list
+        Lista que contiene los límites actuales del eje 'x' en la forma [xmin, xmax].
+    y_limits : list
+        Lista que contiene los límites actuales del eje 'y' en la forma [ymin, ymax].
+    titulo_grafica : tkinter.StringVar
+        Variable que almacena el texto del título de la gráfica, el cual puede ser editado por el usuario.
+    titulo_eje_x : tkinter.StringVar
+        Variable que almacena el texto del título del eje X, editable por el usuario.
+    titulo_eje_y : tkinter.StringVar
+        Variable que almacena el texto del título del eje Y, editable por el usuario.
+
+    Returns
+    ------------
+    None
+        No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.
+    """
     ax.clear()  # Limpiar la gráfica anterior
     ax.plot(x, y, 'bo-', label="Seno")  # Graficar los puntos
     ax.set_xlim(x_limits)  # Límites del eje X
@@ -77,9 +106,36 @@ def graficar_datos():
     ax.grid(True)  # Activar la grilla
     canvas.draw()  # Actualizar la gráfica
 
-# Función para capturar el doble clic y editar los títulos
 def on_double_click(event):
-    # Obtener coordenadas del clic
+    """
+    Captura el evento de doble click en la gráfica y permite editar los títulos de la gráfica y 
+    los ejes. Dependiendo de la posición del click, se abre un campo de entrada para modificar 
+    el título correspondiente.
+
+    Parámetros
+    --------------------
+    event : matplotlib.backend_bases.MouseEvent
+        Evento que contiene la información del doble click en la gráfica.
+
+    Variables globales
+    --------------------
+    ax : matplotlib.axes.Axes
+        Objeto de ejes donde se encuentra el título de la gráfica y los ejes.
+    canvas : matplotlib.backends.backend_tkagg.FigureCanvasTkAgg
+        Canvas donde se renderiza la gráfica dentro de Tkinter.
+    titulo_grafica : StringVar
+        Variable que contiene el título de la gráfica.
+    titulo_eje_x : StringVar
+        Variable que contiene el título del eje X.
+    titulo_eje_y : StringVar
+        Variable que contiene el título del eje Y.
+
+    Returns
+    --------------------
+    None
+        La función no retorna ningún valor, abre un campo de entrada si se hace doble click
+        en un título.
+    """
     if event.dblclick:
         # Coordenadas del clic en la ventana gráfica
         x, y = event.x, event.y
@@ -91,35 +147,39 @@ def on_double_click(event):
 
         # Comprobar si el clic fue en el título de la gráfica
         if bbox_title.contains(x, y):
-            crear_entry(titulo_grafica, 'gráfica', 300, 50)
+            crear_entry(titulo_grafica, 300, 50)
         # Comprobar si el clic fue en el título del eje X
         elif bbox_xlabel.contains(x, y):
-            crear_entry(titulo_eje_x, 'eje X', 300, 500)
+            crear_entry(titulo_eje_x, 300, 500)
         # Comprobar si el clic fue en el título del eje Y
         elif bbox_ylabel.contains(x, y):
-            crear_entry(titulo_eje_y, 'eje Y', 100, 300)
+            crear_entry(titulo_eje_y, 100, 300)
 
-# Función para crear el campo de entrada en la posición del texto
-def crear_entry(variable_titulo, tipo_titulo, x_pos, y_pos):
-    entry = Entry(raiz, textvariable=variable_titulo)
-    entry.insert(0, variable_titulo.get())
-    
-    # Se posiciona el campo de entrada cerca del área correspondiente
-    entry.place(x=x_pos, y=y_pos)
-    
-    # Vinculamos el evento de presionar Enter para actualizar el título
-    entry.bind("<Return>", lambda event: actualizar_titulo(entry, variable_titulo))
+def crear_entry(variable_titulo, x_pos, y_pos):
+    """
+    Crea un campo de entrada en una posición específica para que el usuario pueda
+    modificar el título de la gráfica o de los ejes. Se destruye al presionar enter,
+    actualizando así el nuevo título.
 
-# Función para actualizar el título de la gráfica
-def actualizar_titulo(entry, variable_titulo):
-    nuevo_texto = entry.get().strip()
-    entry.destroy()  # Eliminamos el campo de entrada
+    Parámetros
+    --------------------
+    variable_titulo : tkinter.StringVar
+        Variable que contiene el valor actual del título a modificar.
+    x_pos : int
+        Coordenada X para posicionar el campo de entrada.
+    y_pos : int
+        Coordenada Y para posicionar el campo de entrada.
 
-    # Si el campo está vacío, el título también queda vacío
-    variable_titulo.set(nuevo_texto if nuevo_texto else "")
-    
-    # Redibujar la gráfica con los nuevos títulos
-    graficar_datos()
+    Returns
+    --------------------
+    None
+    """
+    # Crear el campo de entrada y asociarlo con la variable correspondiente al título
+    entry = Entry(raiz, textvariable = variable_titulo)
+    entry.place(x=x_pos, y=y_pos)  # Posicionar el campo de entrada en la interfaz
+
+    # Vincular la acción de presionar "Enter" para actualizar el título y redibujar la gráfica
+    entry.bind("<Return>", lambda event: (variable_titulo.set(entry.get()), entry.destroy(), graficar_datos()))
 
 # Conectar eventos del ratón en Matplotlib (doble clic)
 canvas.mpl_connect('button_press_event', on_double_click)
