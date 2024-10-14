@@ -1,6 +1,11 @@
+# import markdown
 import tkinter as tk
-from tkinter import ttk, StringVar, messagebox
+from tkinter import ttk, StringVar, messagebox, Text, Scrollbar
 from tkinter.ttk import Progressbar
+
+import fitz  # PyMuPDF
+from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
+import io
 
 class UIComponents:
     """Clase para crear y manejar componentes de interfaz de usuario en una aplicación Tkinter.
@@ -36,7 +41,7 @@ class UIComponents:
         self.progress = Progressbar(self.root, length=200, mode='indeterminate')
         self.progress.pack(pady=10)
 
-    def create_navbar(self, read_command, process_command, regression_command):
+    def create_navbar(self, read_command, process_command, regression_command, theory_command):
         """Crea una barra de navegación con botones para leer, procesar datos y realizar regresiones.
 
         Args:
@@ -56,7 +61,7 @@ class UIComponents:
         btn_regressions = tk.Button(navbar, text="Regresiones", command=regression_command, bg="#FF9800", fg="white", width=15)
         btn_regressions.pack(side=tk.LEFT, padx=5, pady=5)
 
-        btn_teoria = tk.Button(navbar, text="Teoria",  bg="#9C27B0", fg="white", width=15)
+        btn_teoria = tk.Button(navbar, text="Teoria", command=theory_command, bg="#9C27B0", fg="white", width=15)
         btn_teoria.pack(side=tk.LEFT, padx=5, pady=5)
 
         btn_graficadora = tk.Button(navbar, text="Graficadora",  bg="#2196F3", fg="white", width=15)
@@ -152,8 +157,83 @@ class UIComponents:
         btn_interpolation = tk.Button(window, text="Interpolación", command=lambda: regression.interpolation(self.var_x.get(), self.var_y.get()), width=25, font=("Helvetica", 12), bg="#FF9800", fg="white")
         btn_interpolation.pack(pady=5)
 
-        
+    def show_theory(self):
+        """Muestra la teoría de los experimentos a realizar."""
+        window = tk.Toplevel(self.root)
+        window.title("Teoría")
+        window.geometry("800x400")
+        window.config(bg="white")
 
+        lbl = tk.Label(window, text="Módulo: Teoría", font=("Helvetica", 16), bg="white")
+        lbl.pack(pady=20)
+
+        btn_fall = tk.Button(window, text="Caída libre", command=lambda: self.change_window(window, "Caída libre"), width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        btn_fall.pack(pady=5)
+
+        btn_hooke = tk.Button(window, text="Ley de Hooke", command=lambda: self.change_window(window, "Ley de Hooke"), width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        btn_hooke.pack(pady=5)
+
+    def change_window(self, window, theory):
+        """Cambia la ventana a la vista de teoría específica."""
+        # Limpiar la ventana
+        for widget in window.winfo_children():
+            widget.destroy()
+
+        # Establecer la ruta del PDF basado en el botón presionado
+        if theory == "Caída libre":
+            pdf_path = "caida_libre.pdf"
+        elif theory == "Ley de Hooke":
+            pdf_path = "ley_de_hooke.pdf"
+        
+        # Cargar el PDF
+        pdf_document = fitz.open(pdf_path)
+
+        # Obtener las dimensiones de la primera página
+        first_page = pdf_document.load_page(0)
+        width = first_page.rect.width  # Ancho de la página
+        height = first_page.rect.height  # Alto de la página
+
+        # Ajustar la geometría de la ventana, sumando el ancho del scrollbar
+        scrollbar_width = 20  # Ancho estimado del scrollbar
+        window.geometry(f"{int(width) + scrollbar_width}x{int(height)}")  # Cambiar tamaño de ventana
+
+        # Crear un Frame para contener las imágenes
+        frame = tk.Frame(window)
+        frame.pack(fill=tk.BOTH, expand=True)
+
+        # Crear un canvas para el scroll
+        canvas = tk.Canvas(frame)
+        scrollbar = tk.Scrollbar(frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = tk.Frame(canvas)
+
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+
+        # Configurar el canvas y el scrollbar
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        # Cargar cada página del PDF como imagen
+        for i in range(len(pdf_document)):
+            page = pdf_document.load_page(i)  # Cargar cada página
+            pix = page.get_pixmap()  # Obtener una imagen de la página
+            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+
+            img_tk = ImageTk.PhotoImage(img)
+
+            # Crear un Label para mostrar cada imagen
+            label = tk.Label(scrollable_frame, image=img_tk, bg="white")
+            label.image = img_tk  # Guardar una referencia para evitar que se recoja
+            label.pack(fill=tk.BOTH)
+
+        # Eliminar márgenes
+        for widget in scrollable_frame.winfo_children():
+            widget.pack_configure(padx=0, pady=0)  # Sin padding
 
 
     def show_data(self, data):
@@ -194,3 +274,4 @@ class UIComponents:
     def show_autores(self):
         autores = "Andres Gomez\nJulian Aros\nJorge Garzon\nLaura Triana\nSebastian Manrique"
         messagebox.showinfo("Autores", autores)
+

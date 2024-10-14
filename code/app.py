@@ -36,7 +36,7 @@ class LaboratorySoftware:
             None
         """
         self.ui.create_progress_bar()
-        self.ui.create_navbar(self.show_read_data, self.show_process_data, self.show_regressions)
+        self.ui.create_navbar(self.show_read_data, self.show_process_data, self.show_regressions, self.show_theory)
 
     def show_read_data(self) -> None:
         """Muestra la ventana para leer datos.
@@ -67,6 +67,16 @@ class LaboratorySoftware:
             None
         """
         self.ui.show_regressions_window(self.regression)
+    
+    def show_theory(self) -> None:
+        """Muestra la ventana para revisar la teoría.
+
+        Este método se llama cuando se selecciona la opción para revisar la teoría en la barra de navegación.
+        
+        Output:
+            None
+        """
+        self.ui.show_theory()
 
     def run(self) -> None:
         """Ejecuta el bucle principal de la interfaz gráfica.
