@@ -124,74 +124,143 @@ def actualizar_titulo(entry, variable_titulo):
 # Conectar eventos del ratón en Matplotlib (doble clic)
 canvas.mpl_connect('button_press_event', on_double_click)
 
-# Función para ajustar el zoom (falta documentar)
 def zoom(event=None):
  """
-    Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que  se actualizarán dependiendo de la amplificación que de el usuario. 
+    Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
+    se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es 
+    controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en 
+    función de los límites ajustados. También se actualiza el porcentaje de zoom mostrado en pantalla
+    [zoom_label].
 
-    El nivel de zoom es controlado por el valor de una barra de desplazamiento y la gráfica es
-    redibujada en función de los límites ajustados en los ejes X e Y. También se actualiza el
-    porcentaje de zoom mostrado en pantalla.
-
-    Parameters
+    Parámetros
     ----------
     event : tkinter.Event, optional
-        Evento que dispara la acción de zoom (por defecto es `None`, en caso de ser llamado manualmente).
-
-    Global Variables
-    ----------------
+        Evento que dispara la acción de zoom.
+    
+    Variables globales
+    ------------------
     x_limits : list
-        Lista que contiene los límites actuales del eje X en la forma [xmin, xmax].
+        Lista que contiene los límites actuales del eje 'x' en la forma [xmin, xmax].
     y_limits : list
-        Lista que contiene los límites actuales del eje Y en la forma [ymin, ymax].
+        Lista que contiene los límites actuales del eje 'y' en la forma [ymin, ymax].
 
     Returns
     -------
     None
         La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.
-
-    Side Effects
-    ------------
-    - Actualiza los límites de los ejes X e Y.
-    - Redibuja la gráfica llamando a `graficar_datos()`.
-    - Actualiza la etiqueta de porcentaje de zoom en la interfaz.
-
     """
     global x_limits, y_limits # Variables globales, límites de 'x' y 'y'
     zoom_level = scale.get()  # Obtener el valor de la barra
     x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
     y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
     zoom_factor = 1 + zoom_level
+
     # Rango de los ejes de acuerdo a la escala de zoom
     x_range = (x_limits[1] - x_limits[0]) / zoom_factor
     y_range = (y_limits[1] - y_limits[0]) / zoom_factor
+
     # Actualización de los límites acorde al zoom
     x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
     y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
     # Redibujar la gráfica con los nuevos límites
-    graficar_datos()
+    graficar_datos() # Modificar respecto a los módulos por agregar
 
     # Actualizar la etiqueta de porcentaje de zoom
     zoom_percentage = int((zoom_level / 6) * 100)
     zoom_label.config(text=f"Zoom: {zoom_percentage}%")
 
-# Funciones para manejar el desplazamiento (Falta documentar)
+# Funciones para manejar el desplazamiento con el mouse sobre la gráfica
+
 def on_press(event):
+    """
+    Evento que permite inicializar un evento con un clic siempre y cuando este se haya 
+    realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición
+    para matplotlib. 
+
+    Parámetros
+    ----------
+    event : matplotlib.backend_bases.MouseEvent
+        Evento que contiene la información del clic del mouse dentro de los límites de la 
+        gráfica y almacenando las coordenadas [x,y] del clic realizado.
+
+    Variables globales
+    ------------------
+    is_dragging : bool
+        Indicador que se establece en True cuando el usuario está arrastrando el mouse.
+    start_x : float
+        Coordenada 'x' donde se inició el clic en la gráfica.
+    start_y : float
+        Coordenada 'y' donde se inició el clic en la gráfica.
+
+    Returns
+    -------
+    None
+        La función no retorna ningún valor, simplemente actualiza datos.
+    """
     global is_dragging, start_x, start_y
     if event.inaxes:
-        is_dragging = True
-        start_x, start_y = event.xdata, event.ydata
+        is_dragging = True   # Interacción con la gráfica
+        start_x, start_y = event.xdata, event.ydata  # Almacenamiento de datos iniciales de clic
 
 def on_release(event):
+    """
+    Evento que permite finalizar la función anterior de interacción del usuario y la 
+    gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y 
+    cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.
+
+    Parámetros
+    ----------
+    event : matplotlib.backend_bases.MouseEvent
+        Evento que contiene la información del clic del mouse dentro de los límites de la 
+        gráfica y almacenando las coordenadas [x,y] del clic realizado.
+
+    Variables globales
+    ------------------
+    is_dragging : bool
+        Indicador que se establece en False cuando el usuario suelta el botón del mouse,
+        lo que indica que la interacción/arrastre ha finalizado.
+
+    Returns
+    -------
+    None
+        La función no retorna ningún valor, simplemente actualiza datos.
+    """
     global is_dragging
-    is_dragging = False
+    is_dragging = False # Finalizar el evento de interacción al soltar el clic.
 
 def on_motion(event):
+    """
+    Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el 
+    mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.
+
+    Parámetros
+    ----------
+    event : matplotlib.backend_bases.MouseEvent
+        Evento que contiene la información del clic del mouse dentro de los límites de la 
+        gráfica y almacenando las coordenadas [x,y] del clic realizado.
+
+    Variables globales
+    ------------------
+    x_limits : list
+        Lista que contiene los límites actuales del eje 'x' en la forma [xmin, xmax].
+    y_limits : list
+        Lista que contiene los límites actuales del eje 'y' en la forma [ymin, ymax].
+    start_x : float
+        Coordenada 'x' donde se inició el clic en la gráfica.
+    start_y : float
+        Coordenada 'y' donde se inició el clic en la gráfica.
+
+    
+    """
     global x_limits, y_limits, start_x, start_y
-    if is_dragging and event.inaxes:
+    if is_dragging and event.inaxes: # Verificación de interacción True and True
+        
+        # Calculo de diferencia entre el clic inicial y la posición actual del cursor
         dx = start_x - event.xdata
         dy = start_y - event.ydata
+        
+        # Redefinir los límites de acuerdo al desplazamiento
         x_limits = [x + dx for x in x_limits]
         y_limits = [y + dy for y in y_limits]
 
