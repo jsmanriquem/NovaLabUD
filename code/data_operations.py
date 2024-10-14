@@ -70,14 +70,23 @@ class DataOperations:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
     def normalize_data(self):
-        """Normaliza los datos numéricos del DataFrame.
-
-        Normaliza cada columna numérica en el rango [0, 1] y muestra un mensaje de éxito,
-        o un mensaje de advertencia si no se han cargado datos previamente.
-        """
+        """Normaliza los datos numéricos del DataFrame."""
         if self.data is not None:
             for col in self.data.select_dtypes(include='number').columns:
-                self.data[col] = (self.data[col] - self.data[col].min()) / (self.data[col].max() - self.data[col].min())
+                # Maneja los valores NaN
+                if self.data[col].notnull().any():  # Asegúrate de que hay datos no nulos
+                    min_val = self.data[col].min()
+                    max_val = self.data[col].max()
+
+                    # Evita la división por cero
+                    if max_val != min_val:
+                        self.data[col] = (self.data[col] - min_val) / (max_val - min_val)
+                    else:
+                        self.data[col] = 0  # Si todos los valores son iguales, asigna 0
+
+        #Opcional: Rellenar NaN resultantes con 0 o mantener NaN dado que por el momento manejamos solo dos montajes de laboratorio.
+            self.data.fillna(0, inplace=True)  # Descomentar si quieres reemplazar NaN con 0
+
             messagebox.showinfo("Éxito", "Datos normalizados correctamente")
         else:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
