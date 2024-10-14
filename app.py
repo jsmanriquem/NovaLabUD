@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from data_operations import DataOperations
-from modules.ui_components import UIComponents
+from ui_components import UIComponents
 # from modules.regression_analysis import RegressionAnalysis
 
 class LaboratorySoftware:
@@ -18,8 +18,6 @@ class LaboratorySoftware:
         self.root = tk.Tk()
         self.root.title("Software de Laboratorio - Leer y Procesar Datos")
         self.root.geometry("1000x600")
-        self.root.config(bg="white")
-
         self.data_ops = DataOperations()
         self.ui = UIComponents(self.root, self.data_ops)
         # self.regression = RegressionAnalysis(self.data_ops)
