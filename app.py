@@ -1,8 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
-from modules.data_operations import DataOperations
-from modules.ui_components import UIComponents
-from modules.regression_analysis import RegressionAnalysis
+from data_operations import DataOperations
+# from modules.ui_components import UIComponents
+# from modules.regression_analysis import RegressionAnalysis
 
 class LaboratorySoftware:
     """Clase principal del Software de Laboratorio.
