@@ -1,5 +1,5 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import matplotlib.pyplot as plt
@@ -19,9 +19,9 @@ archivoMenu.add_command(label="Nuevo")
 archivoMenu.add_command(label="Guardar")
 
 guardarComoMenu = Menu(archivoMenu, tearoff=0)
-guardarComoMenu.add_command(label="PDF")
-guardarComoMenu.add_command(label="JPG")
-guardarComoMenu.add_command(label="PNG")
+guardarComoMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
+guardarComoMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
+guardarComoMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
 archivoMenu.add_cascade(label="Guardar como ...", menu=guardarComoMenu)
 archivoMenu.add_separator()
 archivoMenu.add_command(label="Cerrar")
@@ -63,6 +63,28 @@ start_x, start_y = 0, 0
 titulo_grafica = StringVar(value="Título")
 titulo_eje_x = StringVar(value="Eje Horizontal")
 titulo_eje_y = StringVar(value="Eje Vertical")
+
+def guardar_grafica(formato):
+    """
+    Función para guardar la gráfica actual en el formato especificado por el usuario.
+    
+    Parámetros
+    -----------
+    formato : str
+        El formato en el que se desea guardar la gráfica ('pdf', 'png', 'jpg').
+    
+    Returns
+    -----------
+    None
+        La función abre un cuadro de diálogo para guardar el archivo y luego lo guarda en el formato seleccionado.
+    """
+    archivo = filedialog.asksaveasfilename(defaultextension=f".{formato}",
+                                           filetypes=[(f"{formato.upper()} files", f"*.{formato}"),
+                                                      ("All files", "*.*")])
+
+    if archivo:
+        fig.savefig(archivo, format=formato)
+        print(f"Gráfica guardada como {archivo}")
 
 def graficar_datos():
     """
