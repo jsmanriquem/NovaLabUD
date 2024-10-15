@@ -45,7 +45,7 @@ class RegressionAnalysis:
         mse = mean_squared_error(y_true, y_pred)
         return r2, mae, mse
 
-        def show_metrics(self, r2, mae, mse):
+    def show_metrics(self, r2, mae, mse):
         """Muestra las métricas de regresión en una ventana de Tkinter.
 
         Args:
@@ -64,3 +64,32 @@ class RegressionAnalysis:
 
         lbl_mse = tk.Label(metrics_window, text=f"MSE: {mse:.4f}", font=("Helvetica", 14))
         lbl_mse.pack(pady=5)
+
+    def linear_regression(self, var_x, var_y):
+        """Realiza una regresión lineal.
+
+        Args:
+            var_x (str): Nombre de la variable independiente.
+            var_y (str): Nombre de la variable dependiente.
+
+        Warnings:
+            Si `data_ops.data` es None o las variables no están seleccionadas,
+            se mostrará una advertencia.
+        """
+        if self.data_ops.data is not None and var_x and var_y:
+            x = self.data_ops.data[var_x].values.reshape(-1, 1)
+            y = self.data_ops.data[var_y].values
+            model = LinearRegression()
+            model.fit(x, y)
+            y_pred = model.predict(x)
+            plt.scatter(x, y, color='blue')
+            plt.plot(x, y_pred, color='red')
+            plt.xlabel(var_x)
+            plt.ylabel(var_y)
+            plt.title('Regresión Lineal')
+            plt.show()
+
+            r2, mae, mse = self.calculate_metrics(y, y_pred)
+            self.show_metrics(r2, mae, mse)
+        else:
+            messagebox.showwarning("Advertencia", "Selecciona las variables primero")
