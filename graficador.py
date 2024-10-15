@@ -78,6 +78,15 @@ def guardar_grafica(formato):
         fig.savefig(archivo, format=formato)
         print(f"Gráfica guardada como {archivo}")
 
+# Inicializar variables para manejo del zoom y desplazamiento
+x_limits = [-1, 12]
+y_limits = [-1, 1]
+x = np.arange(0, 10, 0.1)
+y = np.sin(x)
+is_dragging = False
+start_x, start_y = 0, 0
+points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
+
 def graficar_datos():
     """
     Esta función se encarga de dibujar o actualizar la gráfica de datos en el canvas de Matplotlib 
@@ -110,8 +119,9 @@ def graficar_datos():
     None
         No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.
     """
+    global points, color_puntos, tamano_puntos, forma_puntos
     ax.clear()  # Limpiar la gráfica anterior
-    ax.plot(x, y, 'bo-', label="Seno")  # Graficar los puntos
+    points, = ax.plot(x, y, 'bo-', label="Seno")  # Graficar los puntos
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
@@ -119,6 +129,53 @@ def graficar_datos():
     ax.set_ylabel(titulo_eje_y.get())  # Actualizar título eje Y
     ax.grid(True)  # Activar la grilla
     canvas.draw()  # Actualizar la gráfica
+
+# Función para abrir ventana emergente y editar los puntos
+def edit_points():
+    # Crear ventana emergente
+    ventana = Toplevel(raiz)
+    ventana.geometry("300x200")
+    ventana.title("Editar Puntos")
+    
+    # Cambiar color de todos los puntos
+    def change_color():
+    	global color_puntos
+    	color = colorchooser.askcolor()[1]
+    	if color:
+            color_puntos = color
+            points.set_color(color)
+            canvas.draw()
+
+    # Cambiar tamaño de todos los puntos
+    def change_size():
+    	global tamano_puntos
+    	tamano = simpledialog.askinteger("Tamaño", "Introduce el tamaño de los puntos:")
+    	if tamano:
+    	    tamano_puntos = tamano
+    	    points.set_markersize(tamano)
+    	    canvas.draw()
+
+    # Cambiar forma de todos los puntos
+    def change_shape():
+    	global forma_puntos
+    	forma = simpledialog.askstring("Forma", "Introduce el marcador (e.g., 'o', 's', 'x'):")
+    	if forma:
+    	    forma_puntos = forma
+    	    points.set_marker(forma)
+    	    canvas.draw()
+
+    # Botones en la ventana para modificar todos los puntos
+    Button(ventana, text="Cambiar Color", command=change_color).pack(pady=10)
+    Button(ventana, text="Cambiar Tamaño", command=change_size).pack(pady=10)
+    Button(ventana, text="Cambiar Forma", command=change_shape).pack(pady=10)
+
+# Evento para detectar clic derecho en la gráfica
+def on_click_right(event):
+    if event.button == 3 and event.inaxes:
+        edit_points()
+
+# Conectar el clic derecho con la función
+canvas.mpl_connect('button_press_event', on_click_right)
 
 def on_double_click(event):
     """
@@ -198,13 +255,6 @@ def crear_entry(variable_titulo, x_pos, y_pos):
 # Conectar eventos del ratón en Matplotlib (doble clic)
 canvas.mpl_connect('button_press_event', on_double_click)
 
-# Inicializar variables para manejo del zoom y desplazamiento
-x_limits = [-1, 12]
-y_limits = [-1, 1]
-x = np.arange(0, 10, 0.1)
-y = np.sin(x)
-is_dragging = False
-start_x, start_y = 0, 0
 
 # Guardar límites originales para reestablecer al tamaño original
 origx_lim = x_limits.copy()
