@@ -272,6 +272,6 @@ class UIComponents:
         table.pack(fill=tk.BOTH, expand=True)
 
     def show_autores(self):
-        autores = "Andres Gomez\nJulian Aros\nJorge Garzon\nLaura Triana\nSebastian Manrique"
+        autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastian Manrique"
         messagebox.showinfo("Autores", autores)
 
