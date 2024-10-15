@@ -161,7 +161,7 @@ class UIComponents:
         """Muestra la teoría de los experimentos a realizar."""
         window = tk.Toplevel(self.root)
         window.title("Teoría")
-        window.geometry("800x400")
+        window.geometry("600x600")
         window.config(bg="white")
 
         lbl = tk.Label(window, text="Módulo: Teoría", font=("Helvetica", 16), bg="white")
