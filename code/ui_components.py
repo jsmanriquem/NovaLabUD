@@ -218,6 +218,9 @@ class UIComponents:
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         canvas.configure(yscrollcommand=scrollbar.set)
 
+        btn_back = tk.Button(window, text='Volver a "Teoría"', command=lambda: [window.destroy(), self.show_theory()], width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        btn_back.pack(pady=5)
+
         # Cargar cada página del PDF como imagen
         for i in range(len(pdf_document)):
             page = pdf_document.load_page(i)  # Cargar cada página
