@@ -44,3 +44,23 @@ class RegressionAnalysis:
         mae = mean_absolute_error(y_true, y_pred)
         mse = mean_squared_error(y_true, y_pred)
         return r2, mae, mse
+
+        def show_metrics(self, r2, mae, mse):
+        """Muestra las métricas de regresión en una ventana de Tkinter.
+
+        Args:
+            r2 (float): Coeficiente de determinación R².
+            mae (float): Error absoluto medio.
+            mse (float): Error cuadrático medio.
+        """
+        metrics_window = tk.Toplevel()
+        metrics_window.title("Métricas de Regresión")
+
+        lbl_r2 = tk.Label(metrics_window, text=f"R²: {r2:.4f}", font=("Helvetica", 14))
+        lbl_r2.pack(pady=5)
+
+        lbl_mae = tk.Label(metrics_window, text=f"MAE: {mae:.4f}", font=("Helvetica", 14))
+        lbl_mae.pack(pady=5)
+
+        lbl_mse = tk.Label(metrics_window, text=f"MSE: {mse:.4f}", font=("Helvetica", 14))
+        lbl_mse.pack(pady=5)
