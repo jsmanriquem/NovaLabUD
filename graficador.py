@@ -1,5 +1,5 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import matplotlib.pyplot as plt
@@ -56,6 +56,22 @@ titulo_grafica = StringVar(value="Título")
 titulo_eje_x = StringVar(value="Eje Horizontal")
 titulo_eje_y = StringVar(value="Eje Vertical")
 
+# Variables de personalización
+line_color = 'blue' 
+line_width = 2       
+bg_color = '#D3D3D3' 
+marker_type = "o"
+personalizacion_ventana= None
+
+# Inicializar variables para manejo del zoom y desplazamiento
+x_limits = [-1, 12]
+y_limits = [-1, 1]
+x = np.arange(0, 10, 0.1)
+y = np.sin(x)
+is_dragging = False
+start_x, start_y = 0, 0
+points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
+
 def guardar_grafica(formato):
     """
     Función para guardar la gráfica actual en el formato especificado por el usuario.
@@ -77,15 +93,6 @@ def guardar_grafica(formato):
     if archivo:
         fig.savefig(archivo, format=formato)
         print(f"Gráfica guardada como {archivo}")
-
-# Inicializar variables para manejo del zoom y desplazamiento
-x_limits = [-1, 12]
-y_limits = [-1, 1]
-x = np.arange(0, 10, 0.1)
-y = np.sin(x)
-is_dragging = False
-start_x, start_y = 0, 0
-points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
 
 def graficar_datos():
     """
@@ -119,63 +126,90 @@ def graficar_datos():
     None
         No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.
     """
-    global points, color_puntos, tamano_puntos, forma_puntos
     ax.clear()  # Limpiar la gráfica anterior
-    points, = ax.plot(x, y, 'bo-', label="Seno")  # Graficar los puntos
+    line, = ax.plot(x, y, 'bo-', color=line_color, marker = marker_type, linewidth=line_width, label="Seno")   # Graficar los puntos
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
     ax.set_xlabel(titulo_eje_x.get())  # Actualizar título eje X    
     ax.set_ylabel(titulo_eje_y.get())  # Actualizar título eje Y
     ax.grid(True)  # Activar la grilla
+    ax.set_facecolor(bg_color)
     canvas.draw()  # Actualizar la gráfica
 
-# Función para abrir ventana emergente y editar los puntos
-def edit_points():
-    # Crear ventana emergente
-    ventana = Toplevel(raiz)
-    ventana.geometry("300x200")
-    ventana.title("Editar Puntos")
+    canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
+
+# Funciones para abrir ventana emergente y editar los puntos
+def apply_graph_changes(line_width_entry, marker_var):
+    global line_width, marker_type
+    try:
+        line_width = float(line_width_entry.get())
+        
+        marker_type = marker_var.get()
+        
+        graficar_datos()
+    except ValueError:
+        print("Error: El grosor de línea debe ser un número.")
+
+def select_line_color():
+    global line_color
+    line_color = colorchooser.askcolor()[1]
+    graficar_datos()
+
+def select_bg_color():
+    global bg_color
+    bg_color = colorchooser.askcolor()[1]
+    ax.set_facecolor(bg_color) 
+    graficar_datos()  
+
+def grafica_ventana(master):
+    global personalizacion_ventana
+
+    # Verificar si la ventana ya está abierta
+    if personalizacion_ventana is not None and personalizacion_ventana.winfo_exists():
+        personalizacion_ventana.lift()  # Lleva la ventana al frente
+        return  # No abrir otra ventana
+
+    # Crear nueva ventana
+    personalizacion_ventana = Toplevel(master)
+    personalizacion_ventana.title("Personalización de Gráfica")
+    personalizacion_ventana.geometry("300x250")
+
+    # Color de la línea
+    Button(personalizacion_ventana, text="Seleccionar Color de Línea", command=select_line_color).pack(pady=10)
+
+    # Grosor de la línea
+    Label(personalizacion_ventana, text="Grosor de Línea:").pack(pady=5)
+    line_width_entry = Entry(personalizacion_ventana)
+    line_width_entry.insert(0, str(line_width))
+    line_width_entry.pack(pady=5)
+
+    # Selección del tipo de marcador (círculo, cruz, triángulo, etc.)
+    marker_label = Label(personalizacion_ventana, text="Tipo de marcador:")
+    marker_label.pack()
+    marker_options = ['o', 'x', '^', 's', '*']  # Opciones de marcadores
+    marker_var = StringVar(value=marker_type)  # Valor actual del marcador
     
-    # Cambiar color de todos los puntos
-    def change_color():
-    	global color_puntos
-    	color = colorchooser.askcolor()[1]
-    	if color:
-            color_puntos = color
-            points.set_color(color)
-            canvas.draw()
+    marker_menu = ttk.Combobox(personalizacion_ventana, textvariable=marker_var, values=marker_options)
+    marker_menu.pack()
 
-    # Cambiar tamaño de todos los puntos
-    def change_size():
-    	global tamano_puntos
-    	tamano = simpledialog.askinteger("Tamaño", "Introduce el tamaño de los puntos:")
-    	if tamano:
-    	    tamano_puntos = tamano
-    	    points.set_markersize(tamano)
-    	    canvas.draw()
+    Button(personalizacion_ventana, text="Seleccionar Color de Fondo", command=select_bg_color).pack(pady=10)
 
-    # Cambiar forma de todos los puntos
-    def change_shape():
-    	global forma_puntos
-    	forma = simpledialog.askstring("Forma", "Introduce el marcador (e.g., 'o', 's', 'x'):")
-    	if forma:
-    	    forma_puntos = forma
-    	    points.set_marker(forma)
-    	    canvas.draw()
+    Button(personalizacion_ventana, text="Aplicar Cambios", command=lambda: apply_graph_changes(line_width_entry, marker_var)).pack(pady=20)
 
-    # Botones en la ventana para modificar todos los puntos
-    Button(ventana, text="Cambiar Color", command=change_color).pack(pady=10)
-    Button(ventana, text="Cambiar Tamaño", command=change_size).pack(pady=10)
-    Button(ventana, text="Cambiar Forma", command=change_shape).pack(pady=10)
+def on_line_click(event, line):
+    if event.inaxes and event.button == 1:  # Botón izquierdo del mouse
+        # Se obtienen las coordenadas de los puntos de la línea
+        xdata = line.get_xdata()
+        ydata = line.get_ydata()
+        
+        # Comprobar si el click fue cerca de la línea
+        for i in range(len(xdata)):
+            if abs(event.xdata - xdata[i]) < 0.1 and abs(event.ydata - ydata[i]) < 0.1:
+                grafica_ventana(raiz) 
+                break
 
-# Evento para detectar clic derecho en la gráfica
-def on_click_right(event):
-    if event.button == 3 and event.inaxes:
-        edit_points()
-
-# Conectar el clic derecho con la función
-canvas.mpl_connect('button_press_event', on_click_right)
+canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
 
 def on_double_click(event):
     """
@@ -255,7 +289,6 @@ def crear_entry(variable_titulo, x_pos, y_pos):
 # Conectar eventos del ratón en Matplotlib (doble clic)
 canvas.mpl_connect('button_press_event', on_double_click)
 
-
 # Guardar límites originales para reestablecer al tamaño original
 origx_lim = x_limits.copy()
 origy_lim = y_limits.copy()
@@ -322,7 +355,6 @@ def zoom(event=None,reset=False):
     graficar_datos() # Modificar respecto a los módulos por agregar
 
 # Funciones para manejar el desplazamiento con el mouse sobre la gráfica
-
 def on_press(event):
     """
     Evento que permite inicializar un evento con un clic siempre y cuando este se haya 
@@ -417,34 +449,6 @@ def on_motion(event):
 
         # Redibujar la gráfica con los nuevos límites
         graficar_datos()
-
-# Función para editar los puntos con un clic (REVISAR QUE FUNCIONE LA VENTANA EMERGENTE)
-def on_click(event):
-    """
-    Evento que permite seleccionar un punto en la gráfica y abrir una ventana emergente para 
-    editar sus propiedades de color, tamaño y forma. 
-
-    Parámetros
-    ----------
-    event : matplotlib.backend_bases.MouseEvent
-        Evento que contiene la información del mouse en el momento del clic en la gráfica.
-
-    Returns
-    -------
-    None
-        La función no retorna ningún valor, simplemente abre una ventana emergente de edición.
-    """
-    if event.inaxes:  # Si el clic fue en los ejes
-        # Obtener las coordenadas del clic
-        x_click = event.xdata
-        y_click = event.ydata
-
-        # Encontrar el punto más cercano
-        distances = [(point.get_data()[0] - x_click) ** 2 + (point.get_ydata()[0] - y_click) ** 2 for point in points]
-        closest_point_index = np.argmin(distances)
-
-        # Crear una ventana emergente para editar el punto
-        crear_ventana_edicion(closest_point_index)
 
 # Conectar eventos del ratón
 fig.canvas.mpl_connect('button_press_event', on_press)
