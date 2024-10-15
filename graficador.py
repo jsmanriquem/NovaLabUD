@@ -51,18 +51,6 @@ fig, ax = plt.subplots(dpi=90, figsize=(8, 6), facecolor='#D3D3D3')
 canvas = FigureCanvasTkAgg(fig, master=frame)
 canvas.get_tk_widget().grid(column=0, row=0, padx=5, pady=5)
 
-# Inicializar variables para manejo del zoom y desplazamiento
-x_limits = [-1, 12]
-y_limits = [-1, 1]
-x = np.arange(0, 10, 0.1)
-y = np.sin(x)
-is_dragging = False
-start_x, start_y = 0, 0
-
-# Guardar límites originales para reestablecer al tamaño original
-origx_lim = x_limits.copy()
-origy_lim = y_limits.copy()
-
 # Variables predeterminadas para los títulos
 titulo_grafica = StringVar(value="Título")
 titulo_eje_x = StringVar(value="Eje Horizontal")
@@ -210,6 +198,18 @@ def crear_entry(variable_titulo, x_pos, y_pos):
 # Conectar eventos del ratón en Matplotlib (doble clic)
 canvas.mpl_connect('button_press_event', on_double_click)
 
+# Inicializar variables para manejo del zoom y desplazamiento
+x_limits = [-1, 12]
+y_limits = [-1, 1]
+x = np.arange(0, 10, 0.1)
+y = np.sin(x)
+is_dragging = False
+start_x, start_y = 0, 0
+
+# Guardar límites originales para reestablecer al tamaño original
+origx_lim = x_limits.copy()
+origy_lim = y_limits.copy()
+
 def zoom(event=None,reset=False):
     """
     Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
@@ -245,26 +245,31 @@ def zoom(event=None,reset=False):
         x_limits = origx_lim.copy()
         y_limits = origy_lim.copy()
         zoom_label.config(text="Zoom: 100%")  # Restablecer la etiqueta de zoom
-    else:  
+        scale.set(0)  # Resetear la barra de zoom a su posición inicial
+    else:
         zoom_level = scale.get()  # Obtener el valor de la barra
-        x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
-        y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
-        zoom_factor = 1 + zoom_level
+        if zoom_level == 0:
+            # Si la barra está en el nivel inicial, restablecer los límites originales
+            x_limits = origx_lim.copy()
+            y_limits = origy_lim.copy()
+        else:   
+            x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
+            y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
+            zoom_factor = 1 + zoom_level
+            # Rango de los ejes de acuerdo a la escala de zoom
+            x_range = (x_limits[1] - x_limits[0]) / zoom_factor
+            y_range = (y_limits[1] - y_limits[0]) / zoom_factor
+            # Actualización de los límites acorde al zoom
+            x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
+            y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
-        # Rango de los ejes de acuerdo a la escala de zoom
-        x_range = (x_limits[1] - x_limits[0]) / zoom_factor
-        y_range = (y_limits[1] - y_limits[0]) / zoom_factor
+        # Actualizar la etiqueta de porcentaje de zoom
+        zoom_percentage = int((zoom_level / 6) * 100)
+        zoom_label.config(text=f"Zoom: {zoom_percentage}%")
 
-        # Actualización de los límites acorde al zoom
-        x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
-        y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
     # Redibujar la gráfica con los nuevos límites
     graficar_datos() # Modificar respecto a los módulos por agregar
-
-    # Actualizar la etiqueta de porcentaje de zoom
-    zoom_percentage = int((zoom_level / 6) * 100)
-    zoom_label.config(text=f"Zoom: {zoom_percentage}%")
 
 # Funciones para manejar el desplazamiento con el mouse sobre la gráfica
 
