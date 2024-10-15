@@ -59,6 +59,10 @@ y = np.sin(x)
 is_dragging = False
 start_x, start_y = 0, 0
 
+# Guardar límites originales para reestablecer al tamaño original
+origx_lim = x_limits.copy()
+origy_lim = y_limits.copy()
+
 # Variables predeterminadas para los títulos
 titulo_grafica = StringVar(value="Título")
 titulo_eje_x = StringVar(value="Eje Horizontal")
@@ -206,18 +210,22 @@ def crear_entry(variable_titulo, x_pos, y_pos):
 # Conectar eventos del ratón en Matplotlib (doble clic)
 canvas.mpl_connect('button_press_event', on_double_click)
 
-def zoom(event=None):
+def zoom(event=None,reset=False):
     """
     Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
     se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es 
     controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en 
     función de los límites ajustados. También se actualiza el porcentaje de zoom mostrado en pantalla
-    [zoom_label].
+    [zoom_label]. Si se desea volver al tamaño original de la gráfica este se reestablecera cuando 
+    [reset] sea True.
 
     Parámetros
     ----------
     event : tkinter.Event, optional
         Evento que dispara la acción de zoom.
+
+    reset : bool, optional
+        Si True, restablece los límites originales de la gráfica.
     
     Variables globales
     ------------------
@@ -232,18 +240,24 @@ def zoom(event=None):
         La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.
     """
     global x_limits, y_limits # Variables globales, límites de 'x' y 'y'
-    zoom_level = scale.get()  # Obtener el valor de la barra
-    x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
-    y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
-    zoom_factor = 1 + zoom_level
+    if reset:
+        # Restablecer límites originales
+        x_limits = origx_lim.copy()
+        y_limits = origy_lim.copy()
+        zoom_label.config(text="Zoom: 100%")  # Restablecer la etiqueta de zoom
+    else:  
+        zoom_level = scale.get()  # Obtener el valor de la barra
+        x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
+        y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
+        zoom_factor = 1 + zoom_level
 
-    # Rango de los ejes de acuerdo a la escala de zoom
-    x_range = (x_limits[1] - x_limits[0]) / zoom_factor
-    y_range = (y_limits[1] - y_limits[0]) / zoom_factor
+        # Rango de los ejes de acuerdo a la escala de zoom
+        x_range = (x_limits[1] - x_limits[0]) / zoom_factor
+        y_range = (y_limits[1] - y_limits[0]) / zoom_factor
 
-    # Actualización de los límites acorde al zoom
-    x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
-    y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
+        # Actualización de los límites acorde al zoom
+        x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
+        y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
     # Redibujar la gráfica con los nuevos límites
     graficar_datos() # Modificar respecto a los módulos por agregar
