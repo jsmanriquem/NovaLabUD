@@ -52,9 +52,18 @@ canvas = FigureCanvasTkAgg(fig, master=frame)
 canvas.get_tk_widget().grid(column=0, row=0, padx=5, pady=5)
 
 # Variables predeterminadas para los títulos
-titulo_grafica = StringVar(value="Título")
+titulo_grafica = StringVar(value="Título de la Gráfica")
+title_fuente = "DejaVu Sans"
+title_size = 12
+personal_ventana_title = None  # Inicializamos la ventana emergente como None
+
 titulo_eje_x = StringVar(value="Eje Horizontal")
+ejex_fuente = "DejaVu Sans"
+ejex_size = 8
+
 titulo_eje_y = StringVar(value="Eje Vertical")
+ejey_fuente = "DejaVu Sans"
+ejey_size = 8
 
 # Variables de personalización
 line_color = 'blue' 
@@ -142,6 +151,7 @@ def graficar_datos():
     canvas.draw()  # Actualizar la gráfica
 
     canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
+    canvas.mpl_connect('button_press_event', on_double_click)
 
 # Funciones para abrir ventana emergente y editar los puntos
 def update_graph_property(property_type=None, new_value=None):
@@ -239,82 +249,77 @@ def on_line_click(event, line):
                 grafica_ventana(raiz) 
                 break
 
+# Función para aplicar los cambios del título
+def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
+    global title_size, title_fuente, titulo_grafica
+    titulo_grafica.set(titulo_grafica_entry.get())  # Obtener el nuevo título
+    
+    # Obtener valores seleccionados
+    title_size = int(title_size_var.get())
+    title_fuente = title_fuente_var.get()
+    
+    # Actualizar el título de la gráfica
+    ax.set_title(titulo_grafica.get(), fontsize=title_size, fontname=title_fuente)
+    
+    # Redibujar la gráfica
+    canvas.draw()
+
+# Función para abrir la ventana emergente de edición del título
+def grafica_ventana_title(master):
+    global personal_ventana_title
+    
+    # Verificar si la ventana ya está abierta
+    if personal_ventana_title is not None and personal_ventana_title.winfo_exists():
+        personal_ventana_title.lift()  # Lleva la ventana al frente
+        return  # No abrir otra ventana
+
+    # Crear nueva ventana
+    personal_ventana_title = Toplevel(master)
+    personal_ventana_title.title("Personalización de Título")
+    personal_ventana_title.geometry("300x250")
+    
+    # Nombre del Título
+    Label(personal_ventana_title, text="Ingrese el Título:").pack(pady=10)
+    titulo_grafica_entry = Entry(personal_ventana_title)
+    titulo_grafica_entry.insert(0, titulo_grafica.get())  # Mostrar el título actual
+    titulo_grafica_entry.pack(pady=5)
+    
+    # Selección del tamaño de letra (8,10,12,...)
+    Label(personal_ventana_title, text="Tamaño de la letra:").pack()
+    title_size_options = [8, 10, 12, 14, 16, 18, 20]  # Tamaños de letra disponibles
+    title_size_var = StringVar(value=str(title_size))  # Valor actual del tamaño
+    
+    # Crear un Combobox para seleccionar el tamaño de letra
+    title_size_combobox = ttk.Combobox(personal_ventana_title, textvariable=title_size_var, values=title_size_options)
+    title_size_combobox.pack(pady=5)
+    
+    # Selección de la fuente
+    Label(personal_ventana_title, text="Fuente de la letra:").pack()
+    title_fuente_options = ['Liberation Serif', 'DejaVu Serif']  # Fuentes disponibles (depende del usuario)
+    title_fuente_var = StringVar(value=title_fuente)  # Valor actual de la fuente
+    
+    # Crear un Combobox para seleccionar la fuente
+    title_fuente_combobox = ttk.Combobox(personal_ventana_title, textvariable=title_fuente_var, values=title_fuente_options)
+    title_fuente_combobox.pack(pady=5)
+    
+    # Botón para aplicar los cambios
+    Button(personal_ventana_title, text="Aplicar Cambios", 
+           command=lambda: apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry)).pack(pady=10)
+
+# Función para detectar doble clic en el título y abrir la ventana de edición
 def on_double_click(event):
-    """
-    Captura el evento de doble click en la gráfica y permite editar los títulos de la gráfica y 
-    los ejes. Dependiendo de la posición del click, se abre un campo de entrada para modificar 
-    el título correspondiente.
-
-    Parámetros
-    --------------------
-    event : matplotlib.backend_bases.MouseEvent
-        Evento que contiene la información del doble click en la gráfica.
-
-    Variables globales
-    --------------------
-    ax : matplotlib.axes.Axes
-        Objeto de ejes donde se encuentra el título de la gráfica y los ejes.
-    canvas : matplotlib.backends.backend_tkagg.FigureCanvasTkAgg
-        Canvas donde se renderiza la gráfica dentro de Tkinter.
-    titulo_grafica : StringVar
-        Variable que contiene el título de la gráfica.
-    titulo_eje_x : StringVar
-        Variable que contiene el título del eje X.
-    titulo_eje_y : StringVar
-        Variable que contiene el título del eje Y.
-
-    Returns
-    --------------------
-    None
-        La función no retorna ningún valor, abre un campo de entrada si se hace doble click
-        en un título.
-    """
     if event.dblclick:
         # Coordenadas del clic en la ventana gráfica
         x, y = event.x, event.y
 
-        # Obtener posiciones de los títulos actuales
+        # Obtener la posición del título
         bbox_title = ax.title.get_window_extent(canvas.get_renderer())
-        bbox_xlabel = ax.xaxis.label.get_window_extent(canvas.get_renderer())
-        bbox_ylabel = ax.yaxis.label.get_window_extent(canvas.get_renderer())
 
         # Comprobar si el clic fue en el título de la gráfica
         if bbox_title.contains(x, y):
-            crear_entry(titulo_grafica, 300, 50)
-        # Comprobar si el clic fue en el título del eje X
-        elif bbox_xlabel.contains(x, y):
-            crear_entry(titulo_eje_x, 300, 500)
-        # Comprobar si el clic fue en el título del eje Y
-        elif bbox_ylabel.contains(x, y):
-            crear_entry(titulo_eje_y, 100, 300)
+            grafica_ventana_title(raiz)  # Usar la ventana principal 'raiz' para abrir la personalización
 
-def crear_entry(variable_titulo, x_pos, y_pos):
-    """
-    Crea un campo de entrada en una posición específica para que el usuario pueda
-    modificar el título de la gráfica o de los ejes. Se destruye al presionar enter,
-    actualizando así el nuevo título.
-
-    Parámetros
-    --------------------
-    variable_titulo : tkinter.StringVar
-        Variable que contiene el valor actual del título a modificar.
-    x_pos : int
-        Coordenada X para posicionar el campo de entrada.
-    y_pos : int
-        Coordenada Y para posicionar el campo de entrada.
-
-    Returns
-    --------------------
-    None
-    """
-    # Crear el campo de entrada y asociarlo con la variable correspondiente al título
-    entry = Entry(raiz, textvariable = variable_titulo)
-    entry.place(x=x_pos, y=y_pos)  # Posicionar el campo de entrada en la interfaz
-
-    # Vincular la acción de presionar "Enter" para actualizar el título y redibujar la gráfica
-    entry.bind("<Return>", lambda event: (variable_titulo.set(entry.get()), entry.destroy(), graficar_datos()))
-
-# Conectar eventos del ratón en Matplotlib (doble clic)
+# Conectar evento de doble clic
 canvas.mpl_connect('button_press_event', on_double_click)
 
 # Guardar límites originales para reestablecer al tamaño original
