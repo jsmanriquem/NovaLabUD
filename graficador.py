@@ -145,7 +145,7 @@ def graficar_datos():
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
-    ax.set_xlabel(titulo_eje_x.get())  # Actualizar título eje X    
+    ax.set_xlabel(ejex_titulo.get())  # Actualizar título eje X    
     ax.set_ylabel(titulo_eje_y.get())  # Actualizar título eje Y
     ax.grid(show_grid)
     ax.set_facecolor(bg_color)
