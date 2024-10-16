@@ -57,9 +57,10 @@ title_fuente = "DejaVu Sans"
 title_size = 12
 personal_ventana_title = None  # Inicializamos la ventana emergente como None
 
-titulo_eje_x = StringVar(value="Eje Horizontal")
-ejex_fuente = "DejaVu Sans"
-ejex_size = 8
+ejex_titulo = StringVar(value="Eje X")
+ejex_shape = "DejaVu Sans"
+ejex_size = 10
+ventana_ejex = None # Venta emergente edición eje x
 
 titulo_eje_y = StringVar(value="Eje Vertical")
 ejey_fuente = "DejaVu Sans"
@@ -306,6 +307,64 @@ def grafica_ventana_title(master):
     Button(personal_ventana_title, text="Aplicar Cambios", 
            command=lambda: apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry)).pack(pady=10)
 
+# Función para aplicar los cambios del título
+def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
+    global ejex_size, ejex_shape, ejex_titulo
+    ejex_titulo = ejex_titulo_entry.get()  # Obtener el nuevo título del eje X
+    
+    # Obtener valores seleccionados
+    ejex_size = int(ejex_size_var.get())
+    ejex_shape = ejex_fuente_var.get()
+    
+    # Actualizar el título del eje X de la gráfica
+    ax.set_xlabel(ejex_titulo, fontsize=ejex_size, fontname=ejex_shape)
+    
+    # Redibujar la gráfica
+    canvas.draw()
+
+# Función para abrir la ventana emergente de edición del título
+def grafica_ventana_ejex(master):
+    global ventana_ejex
+    
+    # Verificar si la ventana ya está abierta
+    if ventana_ejex is not None and ventana_ejex.winfo_exists():
+        ventana_ejex.lift()  # Lleva la ventana al frente
+        return  # No abrir otra ventana
+
+    # Crear nueva ventana
+    ventana_ejex = Toplevel(master)
+    ventana_ejex.title("Personalización Eje x")
+    ventana_ejex.geometry("300x250")
+    
+    # Nombre del Título
+    Label(ventana_ejex, text="Ingrese Eje x:").pack(pady=10)
+    titulo_ejex_var = Entry(ventana_ejex)
+    titulo_ejex_var.insert(0, ejex_titulo.get())  # Mostrar el título actual
+    titulo_ejex_var.pack(pady=5)
+    
+    # Selección del tamaño de letra (8,10,12,...)
+    Label(ventana_ejex, text="Tamaño de la letra:").pack()
+    ejex_size_options = [8, 10, 12, 14, 16, 18, 20]  # Tamaños de letra disponibles
+    ejex_size_var = StringVar(value=str(ejex_size))  # Valor actual del tamaño
+    
+    # Crear un Combobox para seleccionar el tamaño de letra
+    ejex_size_combobox = ttk.Combobox(ventana_ejex, textvariable=ejex_size_var, values=ejex_size_options)
+    ejex_size_combobox.pack(pady=5)
+    
+    # Selección de la fuente
+    Label(ventana_ejex, text="Fuente de la letra:").pack()
+    ejex_fuente_options = ['Liberation Serif', 'DejaVu Serif']  # Fuentes disponibles (depende del usuario)
+    ejex_fuente_var = StringVar(value=ejex_shape)  # Valor actual de la fuente
+    
+    # Crear un Combobox para seleccionar la fuente
+    ejex_fuente_combobox = ttk.Combobox(ventana_ejex, textvariable=ejex_fuente_var, values=ejex_fuente_options)
+    ejex_fuente_combobox.pack(pady=5)
+    
+    # Botón para aplicar los cambios
+    Button(ventana_ejex, text="Aplicar Cambios", 
+           command=lambda: apply_xaxis_changes(ejex_size_var, ejex_fuente_var,titulo_ejex_var)).pack(pady=10)
+
+
 # Función para detectar doble clic en el título y abrir la ventana de edición
 def on_double_click(event):
     if event.dblclick:
@@ -314,10 +373,15 @@ def on_double_click(event):
 
         # Obtener la posición del título
         bbox_title = ax.title.get_window_extent(canvas.get_renderer())
+        bbox_xlabel = ax.xaxis.label.get_window_extent(canvas.get_renderer())
+
 
         # Comprobar si el clic fue en el título de la gráfica
         if bbox_title.contains(x, y):
             grafica_ventana_title(raiz)  # Usar la ventana principal 'raiz' para abrir la personalización
+        # Comprobar si el clic fue en el título de la gráfica
+        elif bbox_xlabel.contains(x, y):
+            grafica_ventana_ejex(raiz)
 
 # Conectar evento de doble clic
 canvas.mpl_connect('button_press_event', on_double_click)
