@@ -93,3 +93,40 @@ class RegressionAnalysis:
             self.show_metrics(r2, mae, mse)
         else:
             messagebox.showwarning("Advertencia", "Selecciona las variables primero")
+
+    def polynomial_regression(self, var_x, var_y):
+        """Realiza una regresión polinómica.
+
+        Args:
+            var_x (str): Nombre de la variable independiente.
+            var_y (str): Nombre de la variable dependiente.
+
+        Warnings:
+            Si `data_ops.data` es None o las variables no están seleccionadas,
+            se mostrará una advertencia.
+            Si el grado del polinomio es None, no se realizará la regresión.
+        """
+        if self.data_ops.data is not None and var_x and var_y:
+            degree = simpledialog.askinteger("Grado del Polinomio", "Ingresa el grado del polinomio:", minvalue=1, maxvalue=10)
+
+            if degree is not None:
+                x = self.data_ops.data[var_x]
+                y = self.data_ops.data[var_y]
+                coef = np.polyfit(x, y, degree)
+                poly_eq = np.poly1d(coef)
+
+                x_fit = np.linspace(x.min(), x.max(), 100)
+                y_fit = poly_eq(x_fit)
+
+                plt.scatter(x, y, color='blue', label='Datos')
+                plt.plot(x_fit, y_fit, color='red', label=f'Regresión Polinómica de grado {degree}')
+                plt.xlabel(var_x)
+                plt.ylabel(var_y)
+                plt.title("Regresión Polinómica")
+                plt.legend()
+                plt.show()
+
+                r2, mae, mse = self.calculate_metrics(y, poly_eq(x))
+                self.show_metrics(r2, mae, mse)
+        else:
+            messagebox.showwarning("Advertencia", "Selecciona las variables para la regresión")
