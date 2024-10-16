@@ -1,5 +1,5 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import matplotlib.pyplot as plt
@@ -61,6 +61,10 @@ line_color = 'blue'
 line_width = 2       
 bg_color = '#D3D3D3' 
 marker_type = "o"
+marker_color = "blue"
+show_grid = False  # Variable para controlar si la grilla está activa o no
+point_size = 5  # Tamaño de los puntos
+line = None
 personalizacion_ventana= None
 
 # Inicializar variables para manejo del zoom y desplazamiento
@@ -127,75 +131,101 @@ def graficar_datos():
         No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.
     """
     ax.clear()  # Limpiar la gráfica anterior
-    line, = ax.plot(x, y, 'bo-', color=line_color, marker = marker_type, linewidth=line_width, label="Seno")   # Graficar los puntos
+    line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
     ax.set_xlabel(titulo_eje_x.get())  # Actualizar título eje X    
     ax.set_ylabel(titulo_eje_y.get())  # Actualizar título eje Y
-    ax.grid(True)  # Activar la grilla
+    ax.grid(show_grid)
     ax.set_facecolor(bg_color)
     canvas.draw()  # Actualizar la gráfica
 
     canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
 
 # Funciones para abrir ventana emergente y editar los puntos
-def apply_graph_changes(line_width_entry, marker_var):
-    global line_width, marker_type
-    try:
-        line_width = float(line_width_entry.get())
-        
-        marker_type = marker_var.get()
-        
-        graficar_datos()
-    except ValueError:
-        print("Error: El grosor de línea debe ser un número.")
+def update_graph_property(property_type=None, new_value=None):
+    global line_width, marker_type, line_color, marker_color, bg_color, point_size, show_grid
 
-def select_line_color():
-    global line_color
-    line_color = colorchooser.askcolor()[1]
-    graficar_datos()
+    if property_type == 'line_width':
+        line_width = float(new_value)
+    elif property_type == 'marker_type':
+        marker_type = new_value
+    elif property_type == 'line_color':
+        line_color = colorchooser.askcolor()[1]
+    elif property_type == 'marker_color':
+        marker_color = colorchooser.askcolor()[1]
+    elif property_type == 'bg_color':
+        bg_color = colorchooser.askcolor()[1]
+        ax.set_facecolor(bg_color)
+    elif property_type == 'point_size':
+        point_size = float(new_value)
+    elif property_type == 'grid':
+        show_grid = bool(new_value)
+        ax.grid(show_grid)
 
-def select_bg_color():
-    global bg_color
-    bg_color = colorchooser.askcolor()[1]
-    ax.set_facecolor(bg_color) 
     graficar_datos()  
+    canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
+
 
 def grafica_ventana(master):
     global personalizacion_ventana
 
-    # Verificar si la ventana ya está abierta
     if personalizacion_ventana is not None and personalizacion_ventana.winfo_exists():
-        personalizacion_ventana.lift()  # Lleva la ventana al frente
-        return  # No abrir otra ventana
+        personalizacion_ventana.lift()
+        return  
 
-    # Crear nueva ventana
     personalizacion_ventana = Toplevel(master)
     personalizacion_ventana.title("Personalización de Gráfica")
-    personalizacion_ventana.geometry("300x250")
+    personalizacion_ventana.geometry("400x400")
 
-    # Color de la línea
-    Button(personalizacion_ventana, text="Seleccionar Color de Línea", command=select_line_color).pack(pady=10)
+    # Sección del Fondo
+    Label(personalizacion_ventana, text="Fondo", font=("Arial", 12, "bold")).pack(pady=10)
+    Button(personalizacion_ventana, text="Color de Fondo", command=lambda: update_graph_property('bg_color')).pack(pady=5)
 
-    # Grosor de la línea
-    Label(personalizacion_ventana, text="Grosor de Línea:").pack(pady=5)
-    line_width_entry = Entry(personalizacion_ventana)
-    line_width_entry.insert(0, str(line_width))
-    line_width_entry.pack(pady=5)
+    # Checkbutton para activar/desactivar la grilla
+    grid_var = IntVar(value=int(show_grid))  # Inicializar con el valor actual
+    Checkbutton(personalizacion_ventana, text="Mostrar Grilla", variable=grid_var, command=lambda: update_graph_property('grid', grid_var.get())).pack(pady=5)
 
-    # Selección del tipo de marcador (círculo, cruz, triángulo, etc.)
-    marker_label = Label(personalizacion_ventana, text="Tipo de marcador:")
-    marker_label.pack()
-    marker_options = ['o', 'x', '^', 's', '*']  # Opciones de marcadores
-    marker_var = StringVar(value=marker_type)  # Valor actual del marcador
-    
-    marker_menu = ttk.Combobox(personalizacion_ventana, textvariable=marker_var, values=marker_options)
-    marker_menu.pack()
+    # Crear un frame para la disposición en dos columnas
+    frame = Frame(personalizacion_ventana)
+    frame.pack(pady=10)
 
-    Button(personalizacion_ventana, text="Seleccionar Color de Fondo", command=select_bg_color).pack(pady=10)
+    linea_frame = Frame(frame)
+    linea_frame.grid(row=0, column=0, padx=20)
 
-    Button(personalizacion_ventana, text="Aplicar Cambios", command=lambda: apply_graph_changes(line_width_entry, marker_var)).pack(pady=20)
+    Label(linea_frame, text="Línea", font=("Arial", 12, "bold")).pack(pady=10)
+
+    # Botón para seleccionar el color de la línea
+    Button(linea_frame, text="Color de Línea", command=lambda: update_graph_property('line_color')).pack(pady=5)
+
+    # Slider para ajustar el grosor de la línea
+    Label(linea_frame, text="Tamaño de Línea:").pack(pady=5)
+    line_width_slider = Scale(linea_frame, from_=0.5, to=10, resolution=0.1, orient=HORIZONTAL, command=lambda value: update_graph_property('line_width', value))
+    line_width_slider.set(line_width)
+    line_width_slider.pack(pady=5)
+
+    puntos_frame = Frame(frame)
+    puntos_frame.grid(row=0, column=1, padx=20)
+
+    Label(puntos_frame, text="Puntos", font=("Arial", 12, "bold")).pack(pady=10)
+
+    # Menú para seleccionar el tipo de marcador
+    Label(puntos_frame, text="Tipo de Marcador:").pack()
+    marker_options = ['o', 'x', '^', 's', '*']  
+    marker_var = StringVar(value=marker_type)
+    marker_menu = ttk.Combobox(puntos_frame, textvariable=marker_var, values=marker_options)
+    marker_menu.pack(pady=5)
+    marker_menu.bind("<<ComboboxSelected>>", lambda event: update_graph_property('marker_type', marker_var.get()))
+
+    # Botón para seleccionar el color de los puntos
+    Button(puntos_frame, text="Color de Puntos", command=lambda: update_graph_property('marker_color')).pack(pady=5)
+
+    # Slider para ajustar el tamaño de los puntos
+    Label(puntos_frame, text="Tamaño de Puntos:").pack(pady=5)
+    point_size_slider = Scale(puntos_frame, from_=1, to=20, resolution=1, orient=HORIZONTAL, command=lambda value: update_graph_property('point_size', value))
+    point_size_slider.set(point_size)
+    point_size_slider.pack(pady=5)
 
 def on_line_click(event, line):
     if event.inaxes and event.button == 1:  # Botón izquierdo del mouse
@@ -208,8 +238,6 @@ def on_line_click(event, line):
             if abs(event.xdata - xdata[i]) < 0.1 and abs(event.ydata - ydata[i]) < 0.1:
                 grafica_ventana(raiz) 
                 break
-
-canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
 
 def on_double_click(event):
     """
