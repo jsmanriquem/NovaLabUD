@@ -92,30 +92,95 @@ class UIComponents:
         btn_read_data.pack(pady=10)
 
     def show_process_data_window(self):
-        """Muestra la ventana para procesar datos cargados.
-
-        La ventana ofrece opciones para eliminar valores nulos, eliminar duplicados,
-        normalizar datos y rellenar nulos con la media.
-        """
+        """Muestra la ventana para procesar datos cargados."""
         window = tk.Toplevel(self.root)
         window.title("Procesar Datos")
-        window.geometry("500x400")
+        window.geometry("500x600")  # Aumentado para acomodar los nuevos botones
         window.config(bg="white")
 
-        lbl = tk.Label(window, text="Módulo: Procesar Datos", font=("Helvetica", 16), bg="white")
+        # Frame principal para organizar los elementos
+        main_frame = tk.Frame(window, bg="white")
+        main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
+
+        # Título
+        lbl = tk.Label(main_frame, 
+                      text="Módulo: Procesar Datos", 
+                      font=("Helvetica", 16, "bold"), 
+                      bg="white")
         lbl.pack(pady=20)
 
-        btn_remove_null = tk.Button(window, text="Eliminar Nulos", command=self.data_ops.remove_null_values, width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        # Frame para los botones de procesamiento
+        process_frame = tk.LabelFrame(main_frame, 
+                                    text="Operaciones de Procesamiento", 
+                                    bg="white", 
+                                    font=("Helvetica", 10))
+        process_frame.pack(fill=tk.X, pady=10)
+
+        # Botones de procesamiento
+        btn_remove_null = tk.Button(process_frame, 
+                                  text="Eliminar Nulos",
+                                  command=self.data_ops.remove_null_values,
+                                  width=25, 
+                                  font=("Helvetica", 12),
+                                  bg="#FF5722", 
+                                  fg="white")
         btn_remove_null.pack(pady=5)
 
-        btn_remove_duplicates = tk.Button(window, text="Eliminar Duplicados", command=self.data_ops.remove_duplicates, width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        btn_remove_duplicates = tk.Button(process_frame, 
+                                        text="Eliminar Duplicados",
+                                        command=self.data_ops.remove_duplicates,
+                                        width=25, 
+                                        font=("Helvetica", 12),
+                                        bg="#FF5722", 
+                                        fg="white")
         btn_remove_duplicates.pack(pady=5)
 
-        btn_normalize = tk.Button(window, text="Normalizar Datos", command=self.data_ops.normalize_data, width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        btn_normalize = tk.Button(process_frame, 
+                                text="Normalizar Datos",
+                                command=self.data_ops.normalize_data,
+                                width=25, 
+                                font=("Helvetica", 12),
+                                bg="#FF5722", 
+                                fg="white")
         btn_normalize.pack(pady=5)
 
-        btn_fill_null = tk.Button(window, text="Rellenar Nulos con Media", command=self.data_ops.fill_null_with_mean, width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+        btn_fill_null = tk.Button(process_frame, 
+                                text="Rellenar Nulos con Media",
+                                command=self.data_ops.fill_null_with_mean,
+                                width=25, 
+                                font=("Helvetica", 12),
+                                bg="#FF5722", 
+                                fg="white")
         btn_fill_null.pack(pady=5)
+
+        # Frame para los botones de resultados
+        results_frame = tk.LabelFrame(main_frame, 
+                                    text="Resultados y Exportación", 
+                                    bg="white", 
+                                    font=("Helvetica", 10))
+        results_frame.pack(fill=tk.X, pady=20)
+
+        # Botones de resultados
+        btn_export = tk.Button(results_frame, 
+                             text="Exportar Resultados",
+                             command=self.data_ops.export_results,
+                             width=25, 
+                             font=("Helvetica", 12),
+                             bg="#4CAF50", 
+                             fg="white")
+        btn_export.pack(pady=10)
+
+        btn_summary = tk.Button(results_frame, 
+                              text="Ver Resumen de Transformaciones",
+                              command=lambda: messagebox.showinfo(
+                                  "Resumen de Transformaciones",
+                                  self.data_ops.get_transformation_summary()
+                              ),
+                              width=25, 
+                              font=("Helvetica", 12),
+                              bg="#2196F3", 
+                              fg="white")
+        btn_summary.pack(pady=5)
 
         
 
