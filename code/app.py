@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu
 import webbrowser
-from data_operations import DataOperations
-# from ui_components import UIComponents
+
+# Módulos
+from data_operations import DataOperations # Módulo toma_datos
 # from modules.regression_analysis import RegressionAnalysis
 
 class LaboratorySoftware:
@@ -14,7 +15,7 @@ class LaboratorySoftware:
         Crea instancias de las clases DataOperations, UIComponents y RegressionAnalysis.
         """
         self.root = tk.Tk()
-        self.root.title("Software de Laboratorio - Leer y Procesar Datos")
+        self.root.title("Software de Laboratorio")
         
         # Ajustar el tamaño de la ventana al 80% de la resolución de la pantalla
         screen_width = self.root.winfo_screenwidth()
@@ -25,7 +26,7 @@ class LaboratorySoftware:
         y_position = int((screen_height - window_height) / 2)
         self.root.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
 
-        self.data_ops = DataOperations()
+        self.data_ops = DataOperations() # Módulo toma_datos
         # self.ui = UIComponents(self.root, self.data_ops)
         # self.regression = RegressionAnalysis(self.data_ops)
 
@@ -38,7 +39,7 @@ class LaboratorySoftware:
         # Menú Archivo
         file_menu = Menu(menubar, tearoff=0)
         file_menu.add_command(label="Importar", command=self.data_ops.load_file)
-        file_menu.add_command(label="Exportar", command=self.data_ops.load_file)
+        file_menu.add_command(label="Exportar", command=self.data_ops.export_results)
         file_menu.add_command(label="Guardar", command=self.data_ops.load_file)
         file_menu.add_separator()
         file_menu.add_command(label="Salir", command=self.root.quit)
