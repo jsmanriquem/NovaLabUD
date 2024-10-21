@@ -17,7 +17,7 @@ class RegressionAnalysis:
         data_ops (DataOperations): Objeto que contiene los datos necesarios
                                     para el análisis de regresión.
     """
-  
+
     def __init__(self, data_ops):
         """Inicializa la clase con el objeto de operaciones de datos.
 
@@ -130,3 +130,32 @@ class RegressionAnalysis:
                 self.show_metrics(r2, mae, mse)
         else:
             messagebox.showwarning("Advertencia", "Selecciona las variables para la regresión")
+
+    def interpolation(self, var_x, var_y):
+        """Realiza la interpolación lineal de los datos.
+
+        Args:
+            var_x (str): Nombre de la variable independiente.
+            var_y (str): Nombre de la variable dependiente.
+
+        Warnings:
+            Si `data_ops.data` es None o las variables no están seleccionadas,
+            se mostrará una advertencia.
+        """
+        if self.data_ops.data is not None and var_x and var_y:
+            x = self.data_ops.data[var_x]
+            y = self.data_ops.data[var_y]
+            interp_func = interp1d(x, y, kind='linear', fill_value="extrapolate")
+
+            x_new = np.linspace(x.min(), x.max(), 100)
+            y_new = interp_func(x_new)
+
+            plt.scatter(x, y, color='blue', label='Datos')
+            plt.plot(x_new, y_new, color='green', label='Interpolación Lineal')
+            plt.xlabel(var_x)
+            plt.ylabel(var_y)
+            plt.title("Interpolación de Datos")
+            plt.legend()
+            plt.show()
+        else:
+            messagebox.showwarning("Advertencia", "Selecciona las variables para la interpolación")
