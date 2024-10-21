@@ -139,7 +139,7 @@ class DataOperations:
         transformation_summary = pd.DataFrame(self.transformation_history)
     
         file_path = filedialog.asksaveasfilename(
-            defaultextension=".xlsx",
+            #defaultextension=".xlsx",
             filetypes=[
                 ("Excel files", "*.xlsx"),
                 ("CSV files", "*.csv"),
