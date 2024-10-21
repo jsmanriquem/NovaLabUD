@@ -1,4 +1,3 @@
-# import markdown
 import tkinter as tk
 from tkinter import ttk, StringVar, messagebox, Text, Scrollbar
 from tkinter.ttk import Progressbar
@@ -40,38 +39,6 @@ class UIComponents:
         """
         self.progress = Progressbar(self.root, length=200, mode='indeterminate')
         self.progress.pack(pady=10)
-
-    def create_navbar(self, read_command, process_command, regression_command, theory_command):
-        """Crea una barra de navegación con botones para leer, procesar datos y realizar regresiones.
-
-        Args:
-            read_command (callable): Función que se ejecuta al hacer clic en el botón "Leer Datos".
-            process_command (callable): Función que se ejecuta al hacer clic en el botón "Procesar Datos".
-            regression_command (callable): Función que se ejecuta al hacer clic en el botón "Regresiones".
-        """
-        navbar = tk.Frame(self.root, bg="#2196F3")
-        navbar.pack(fill=tk.X)
-
-        btn_read = tk.Button(navbar, text="Leer Datos", command=read_command, bg="#4CAF50", fg="white", width=15)
-        btn_read.pack(side=tk.LEFT, padx=5, pady=5)
-
-        btn_process = tk.Button(navbar, text="Procesar Datos", command=process_command, bg="#FF5722", fg="white", width=15)
-        btn_process.pack(side=tk.LEFT, padx=5, pady=5)
-
-        btn_regressions = tk.Button(navbar, text="Regresiones", command=regression_command, bg="#FF9800", fg="white", width=15)
-        btn_regressions.pack(side=tk.LEFT, padx=5, pady=5)
-
-        btn_teoria = tk.Button(navbar, text="Teoria", command=theory_command, bg="#9C27B0", fg="white", width=15)
-        btn_teoria.pack(side=tk.LEFT, padx=5, pady=5)
-
-        btn_graficadora = tk.Button(navbar, text="Graficadora",  bg="#2196F3", fg="white", width=15)
-        btn_graficadora.pack(side=tk.LEFT, padx=5, pady=5)
-
-        btn_materiales = tk.Button(navbar, text="Materiales de laboratorio",  bg="#607D8B", fg="white", width=20)
-        btn_materiales.pack(side=tk.LEFT, padx=5, pady=5)
-
-        btn_autores = tk.Button(navbar, text="Autores", command=self.show_autores, width=20,  bg="#FFEB3B", fg="white")
-        btn_autores.pack(side=tk.LEFT, padx=5, pady=5)
 
     def show_read_data_window(self):
         """Muestra la ventana para leer datos desde un archivo.

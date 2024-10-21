@@ -21,7 +21,7 @@ class DataOperations:
         self.original_data = None
         self.transformation_history = []
 
-    def load_file(self, ui_callback):
+    def load_file(self):
         """Carga un archivo de datos desde el sistema de archivos."""
         file = filedialog.askopenfilename(filetypes=[
             ("Archivos CSV", "*.csv"),
@@ -41,7 +41,7 @@ class DataOperations:
                 self.original_data = self.data.copy()
                 self.transformation_history = []
                 
-                ui_callback(self.data)
+                # ui_callback(self.data)
                 messagebox.showinfo("Éxito", "Archivo cargado correctamente")
                 return True
             except Exception as e:
