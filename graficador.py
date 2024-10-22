@@ -62,9 +62,10 @@ ejex_shape = "DejaVu Sans"
 ejex_size = 10
 ventana_ejex = None # Venta emergente edición eje x
 
-titulo_eje_y = StringVar(value="Eje Vertical")
-ejey_fuente = "DejaVu Sans"
-ejey_size = 8
+ejey_titulo = StringVar(value="Eje Y")
+ejey_shape = "DejaVu Sans"
+ejey_size = 10
+ventana_ejey = None # Ventana emerjente edición eje y
 
 # Variables de personalización
 line_color = 'blue' 
@@ -146,7 +147,7 @@ def graficar_datos():
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
     ax.set_xlabel(ejex_titulo.get())  # Actualizar título eje X    
-    ax.set_ylabel(titulo_eje_y.get())  # Actualizar título eje Y
+    ax.set_ylabel(ejey_titulo.get())  # Actualizar título eje Y
     ax.grid(show_grid)
     ax.set_facecolor(bg_color)
     canvas.draw()  # Actualizar la gráfica
@@ -364,6 +365,62 @@ def grafica_ventana_ejex(master):
     Button(ventana_ejex, text="Aplicar Cambios", 
            command=lambda: apply_xaxis_changes(ejex_size_var, ejex_fuente_var,titulo_ejex_var)).pack(pady=10)
 
+# Función para aplicar los cambios del eje y
+def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
+    global ejey_size, ejey_shape, ejey_titulo
+    ejey_titulo = ejey_titulo_entry.get()  # Obtener el nuevo título del eje Y
+    
+    # Obtener valores seleccionados
+    ejey_size = int(ejey_size_var.get())
+    ejey_shape = ejey_fuente_var.get()
+    
+    # Actualizar el título del eje X de la gráfica
+    ax.set_ylabel(ejey_titulo, fontsize=ejey_size, fontname=ejey_shape)
+    
+    # Redibujar la gráfica
+    canvas.draw()
+
+# Función para abrir la ventana emergente de edición del eje y
+def grafica_ventana_ejey(master):
+    global ventana_ejey
+    
+    # Verificar si la ventana ya está abierta
+    if ventana_ejey is not None and ventana_ejey.winfo_exists():
+        ventana_ejey.lift()  # Lleva la ventana al frente
+        return  # No abrir otra ventana
+
+    # Crear nueva ventana
+    ventana_ejey = Toplevel(master)
+    ventana_ejey.title("Personalización Eje y")
+    ventana_ejey.geometry("300x250")
+    
+    # Nombre del Título
+    Label(ventana_ejey, text="Ingrese Eje y:").pack(pady=10)
+    titulo_ejey_var = Entry(ventana_ejey)
+    titulo_ejey_var.insert(0, ejey_titulo.get())  # Mostrar el título actual
+    titulo_ejey_var.pack(pady=5)
+    
+    # Selección del tamaño de letra (8,10,12,...)
+    Label(ventana_ejey, text="Tamaño de la letra:").pack()
+    ejey_size_options = [8, 10, 12, 14, 16, 18, 20]  # Tamaños de letra disponibles
+    ejey_size_var = StringVar(value=str(ejey_size))  # Valor actual del tamaño
+    
+    # Crear un Combobox para seleccionar el tamaño de letra
+    ejey_size_combobox = ttk.Combobox(ventana_ejey, textvariable=ejey_size_var, values=ejey_size_options)
+    ejey_size_combobox.pack(pady=5)
+    
+    # Selección de la fuente
+    Label(ventana_ejey, text="Fuente de la letra:").pack()
+    ejey_fuente_options = ['Liberation Serif', 'DejaVu Serif']  # Fuentes disponibles (depende del usuario)
+    ejey_fuente_var = StringVar(value=ejey_shape)  # Valor actual de la fuente
+    
+    # Crear un Combobox para seleccionar la fuente
+    ejey_fuente_combobox = ttk.Combobox(ventana_ejey, textvariable=ejey_fuente_var, values=ejey_fuente_options)
+    ejey_fuente_combobox.pack(pady=5)
+    
+    # Botón para aplicar los cambios
+    Button(ventana_ejey, text="Aplicar Cambios", 
+           command=lambda: apply_yaxis_changes(ejey_size_var, ejey_fuente_var,titulo_ejey_var)).pack(pady=10)
 
 # Función para detectar doble clic en el título y abrir la ventana de edición
 def on_double_click(event):
@@ -374,7 +431,7 @@ def on_double_click(event):
         # Obtener la posición del título
         bbox_title = ax.title.get_window_extent(canvas.get_renderer())
         bbox_xlabel = ax.xaxis.label.get_window_extent(canvas.get_renderer())
-
+        bbox_ylabel = ax.yaxis.label.get_window_extent(canvas.get_renderer())
 
         # Comprobar si el clic fue en el título de la gráfica
         if bbox_title.contains(x, y):
@@ -382,6 +439,9 @@ def on_double_click(event):
         # Comprobar si el clic fue en el título de la gráfica
         elif bbox_xlabel.contains(x, y):
             grafica_ventana_ejex(raiz)
+        # Comprobar si el clic fue hecho en Eje y
+        elif bbox_ylabel.contains(x,y):
+            grafica_ventana_ejey(raiz)
 
 # Conectar evento de doble clic
 canvas.mpl_connect('button_press_event', on_double_click)
