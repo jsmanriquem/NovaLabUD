@@ -340,7 +340,7 @@ def grafica_ventana_ejex(master):
     # Nombre del Título
     Label(ventana_ejex, text="Ingrese Eje x:").pack(pady=10)
     titulo_ejex_var = Entry(ventana_ejex)
-    titulo_ejex_var.insert(0, ejex_titulo.get())  # Mostrar el título actual
+    titulo_ejex_var.insert(0, ejex_titulo)  # Mostrar el título actual
     titulo_ejex_var.pack(pady=5)
     
     # Selección del tamaño de letra (8,10,12,...)
@@ -397,7 +397,7 @@ def grafica_ventana_ejey(master):
     # Nombre del Título
     Label(ventana_ejey, text="Ingrese Eje y:").pack(pady=10)
     titulo_ejey_var = Entry(ventana_ejey)
-    titulo_ejey_var.insert(0, ejey_titulo.get())  # Mostrar el título actual
+    titulo_ejey_var.insert(0, ejey_titulo)  # Mostrar el título actual
     titulo_ejey_var.pack(pady=5)
     
     # Selección del tamaño de letra (8,10,12,...)
