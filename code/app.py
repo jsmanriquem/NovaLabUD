@@ -5,6 +5,7 @@ import webbrowser
 # Módulos
 from data_operations import DataOperations # Módulo toma_datos
 # from modules.regression_analysis import RegressionAnalysis
+# import modules.graficador
 
 class LaboratorySoftware:
     """Clase principal del Software de Laboratorio."""
@@ -64,6 +65,7 @@ class LaboratorySoftware:
         # Menú Acerca de
         about_menu = Menu(menubar, tearoff=0)
         # Falta hacer test de esta parte
+        # about_menu.add_command(label="Teoría", command=self.show_theory)
         about_menu.add_command(label="Documentación", command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
         about_menu.add_command(label="Autores", command=self.show_autores)
         menubar.add_cascade(label="Acerca de", menu=about_menu)
