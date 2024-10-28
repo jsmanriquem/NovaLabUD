@@ -619,8 +619,13 @@ fig.canvas.mpl_connect('motion_notify_event', on_motion)
 style = ttk.Style()
 style.configure("Horizontal.TScale", background='gray22')  # Configurar estilo para la barra
 
-scale = ttk.Scale(frame, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
-scale.grid(column=0, row=3)
+# Barra zoom eje x
+x_scale = ttk.Scale(frame, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
+x_scale.grid(column=0, row=3)
+
+#Barra zoom eje y
+y_scale = ttk.Scale(frame, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
+y_scale.grid(column=0, row=4)
 
 # Etiqueta para mostrar el porcentaje de zoom
 zoom_label = ttk.Label(frame, text="Zoom: 0%")
