@@ -311,8 +311,7 @@ def grafica_ventana_title(master):
 # Función para aplicar los cambios del título
 def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
     global ejex_size, ejex_shape, ejex_titulo
-    ejex_titulo = ejex_titulo_entry.get()  # Obtener el nuevo título del eje X
-    
+    ejex_titulo.set(ejex_titulo_entry.get())  # Obtener el nuevo título del eje X    
     # Obtener valores seleccionados
     ejex_size = int(ejex_size_var.get())
     ejex_shape = ejex_fuente_var.get()
@@ -368,8 +367,7 @@ def grafica_ventana_ejex(master):
 # Función para aplicar los cambios del eje y
 def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
     global ejey_size, ejey_shape, ejey_titulo
-    ejey_titulo = ejey_titulo_entry.get()  # Obtener el nuevo título del eje Y
-    
+    ejey_titulo.set(ejey_titulo_entry.get())  # Obtener el nuevo título del eje X    
     # Obtener valores seleccionados
     ejey_size = int(ejey_size_var.get())
     ejey_shape = ejey_fuente_var.get()
@@ -485,28 +483,33 @@ def zoom(event=None,reset=False):
         x_limits = origx_lim.copy()
         y_limits = origy_lim.copy()
         zoom_label.config(text="Zoom: 100%")  # Restablecer la etiqueta de zoom
-        scale.set(0)  # Resetear la barra de zoom a su posición inicial
+        x_scale.set(0)  # Resetear la barra de zoom de X
+        y_scale.set(0)  # Resetear la barra de zoom de Y
     else:
-        zoom_level = scale.get()  # Obtener el valor de la barra
-        if zoom_level == 0:
-            # Si la barra está en el nivel inicial, restablecer los límites originales
+        # Obtener los valores de las barras deslizantes para cada eje
+        x_zoom_level = x_scale.get()
+        y_zoom_level = y_scale.get()
+        # Restablecer límites originales si las barras están en nivel inicial
+        if x_zoom_level == 0:
             x_limits = origx_lim.copy()
-            y_limits = origy_lim.copy()
-        else:   
-            x_mid = (x_limits[1] + x_limits[0]) / 2 # Punto medio 'x'
-            y_mid = (y_limits[1] + y_limits[0]) / 2 # Punto medio 'y'
-            zoom_factor = 1 + zoom_level
-            # Rango de los ejes de acuerdo a la escala de zoom
-            x_range = (x_limits[1] - x_limits[0]) / zoom_factor
-            y_range = (y_limits[1] - y_limits[0]) / zoom_factor
-            # Actualización de los límites acorde al zoom
+        else:
+            x_mid = (x_limits[1] + x_limits[0]) / 2  # Punto medio 'x'
+            x_zoom_factor = 1 + x_zoom_level
+            x_range = (x_limits[1] - x_limits[0]) / x_zoom_factor
             x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
+
+        if y_zoom_level == 0:
+            y_limits = origy_lim.copy()
+        else:
+            y_mid = (y_limits[1] + y_limits[0]) / 2  # Punto medio 'y'
+            y_zoom_factor = 1 + y_zoom_level
+            y_range = (y_limits[1] - y_limits[0]) / y_zoom_factor
             y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
-        # Actualizar la etiqueta de porcentaje de zoom
-        zoom_percentage = int((zoom_level / 6) * 100)
-        zoom_label.config(text=f"Zoom: {zoom_percentage}%")
-
+        # Actualizar la etiqueta de porcentaje de zoom para cada eje
+        x_zoom_percentage = int((x_zoom_level / 6) * 100)
+        y_zoom_percentage = int((y_zoom_level / 6) * 100)
+        zoom_label.config(text=f"Zoom X: {x_zoom_percentage}% | Zoom Y: {y_zoom_percentage}%")
 
     # Redibujar la gráfica con los nuevos límites
     graficar_datos() # Modificar respecto a los módulos por agregar
