@@ -627,9 +627,9 @@ x_scale.grid(column=0, row=3)
 y_scale = ttk.Scale(frame, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
 y_scale.grid(column=0, row=4)
 
-# Etiqueta para mostrar el porcentaje de zoom
-zoom_label = ttk.Label(frame, text="Zoom: 0%")
-zoom_label.grid(column=0, row=4)
+# Etiqueta para mostrar el porcentaje de zoom de cada eje
+zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
+zoom_label.grid(column=0, row=5)
 
 # Botón para graficar
 Button(frame, text='Graficar', width=15, bg='green', fg='white', command=graficar_datos).grid(column=0, row=1, pady=5)
