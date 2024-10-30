@@ -317,7 +317,7 @@ def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
     ejex_shape = ejex_fuente_var.get()
     
     # Actualizar el título del eje X de la gráfica
-    ax.set_xlabel(ejex_titulo, fontsize=ejex_size, fontname=ejex_shape)
+    ax.set_xlabel(ejex_titulo.get(), fontsize=ejex_size, fontname=ejex_shape)
     
     # Redibujar la gráfica
     canvas.draw()
@@ -339,7 +339,7 @@ def grafica_ventana_ejex(master):
     # Nombre del Título
     Label(ventana_ejex, text="Ingrese Eje x:").pack(pady=10)
     titulo_ejex_var = Entry(ventana_ejex)
-    titulo_ejex_var.insert(0, ejex_titulo)  # Mostrar el título actual
+    titulo_ejex_var.insert(0, ejex_titulo.get())  # Mostrar el título actual
     titulo_ejex_var.pack(pady=5)
     
     # Selección del tamaño de letra (8,10,12,...)
@@ -373,7 +373,7 @@ def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
     ejey_shape = ejey_fuente_var.get()
     
     # Actualizar el título del eje X de la gráfica
-    ax.set_ylabel(ejey_titulo, fontsize=ejey_size, fontname=ejey_shape)
+    ax.set_ylabel(ejey_titulo.get(), fontsize=ejey_size, fontname=ejey_shape)
     
     # Redibujar la gráfica
     canvas.draw()
@@ -395,7 +395,7 @@ def grafica_ventana_ejey(master):
     # Nombre del Título
     Label(ventana_ejey, text="Ingrese Eje y:").pack(pady=10)
     titulo_ejey_var = Entry(ventana_ejey)
-    titulo_ejey_var.insert(0, ejey_titulo)  # Mostrar el título actual
+    titulo_ejey_var.insert(0, ejey_titulo.get())  # Mostrar el título actual
     titulo_ejey_var.pack(pady=5)
     
     # Selección del tamaño de letra (8,10,12,...)
