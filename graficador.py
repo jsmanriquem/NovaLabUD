@@ -46,9 +46,9 @@ barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
 barraMenu.add_cascade(label="Edición", menu=edicionMenu)
 barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
 
-# Frame para la gráfica a la derecha
+# Frame para la gráfica
 frame = Frame(raiz, bg='gray22', bd=3)
-frame.grid(column=1, row=0, sticky='nsew')
+frame.grid(column=0, row=0, sticky='nsew')
 
 # Crear la figura y el canvas
 fig, ax = plt.subplots(dpi=90, figsize=(8, 6), facecolor='#D3D3D3')
@@ -681,17 +681,21 @@ fig.canvas.mpl_connect('button_press_event', on_press)
 fig.canvas.mpl_connect('button_release_event', on_release)
 fig.canvas.mpl_connect('motion_notify_event', on_motion)
 
+# Crear frame para los controles de zoom
+frame_zoom = Frame(raiz, bg="gray22")
+frame_zoom.grid(row=1, column=0, padx=10, pady=10)
+
 # Barra de zoom
 style = ttk.Style()
 style.configure("Horizontal.TScale", background='gray22')  # Configurar estilo para la barra
 
 # Barra zoom eje x
-x_scale = ttk.Scale(frame, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
-x_scale.grid(column=0, row=3)
+x_scale = ttk.Scale(frame_zoom, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
+x_scale.grid(column=0, row=0, padx=5)
 
 #Barra zoom eje y
-y_scale = ttk.Scale(frame, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
-y_scale.grid(column=0, row=4)
+y_scale = ttk.Scale(frame_zoom, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
+y_scale.grid(column=1, row=0, pady=5)
 
 # Etiqueta para mostrar el porcentaje de zoom de cada eje
 zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
