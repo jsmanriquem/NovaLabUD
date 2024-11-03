@@ -5,10 +5,29 @@ import pandas as pd
 from data_operations import DataOperations
 
 class LaboratorySoftware:
-    """Clase principal del Software de Laboratorio."""
+    """
+    Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
+    Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
+    del software, incluyendo la carga de datos, visualización, procesamiento y análisis.
+    
+    Attributes:
+        root (tk.Tk): Ventana principal de la aplicación.
+        main_frame (ttk.PanedWindow): Panel principal dividido que contiene la tabla de datos y resultados.
+        data_frame (ttk.LabelFrame): Marco para la tabla de datos.
+        results_frame (ttk.LabelFrame): Marco para mostrar resultados y gráficas.
+        data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
+        data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
+        no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.
+    Clase principal del Software de Laboratorio.
+    """
     
     def __init__(self) -> None:
-        """Inicializa la clase y configura la ventana principal del software."""
+        """
+        Inicializa la aplicación del Software de Laboratorio.
+        Configura la ventana principal, establece las dimensiones basadas en la pantalla,
+        inicializa los componentes de la UI y configura los menús.
+        Inicializa la clase y configura la ventana principal del software.
+        """
         self.root = tk.Tk()
         self.root.title("Software de Laboratorio")
         
@@ -49,7 +68,11 @@ class LaboratorySoftware:
         self.no_data_label.pack(pady=20)
 
     def create_data_table(self):
-        """Crea la tabla para mostrar los datos con scrollbars."""
+        """
+        Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
+        los datos cargados de manera organizada y navegable.
+        Crea la tabla para mostrar los datos con scrollbars.
+        """
         # Frame para contener la tabla y scrollbars
         self.table_frame = ttk.Frame(self.data_frame)
         self.table_frame.pack(fill=tk.BOTH, expand=True)
@@ -77,7 +100,13 @@ class LaboratorySoftware:
         style.configure("Treeview.Heading", font=('Helvetica', 10, 'bold'))
 
     def update_data_display(self, data: pd.DataFrame):
-        """Actualiza la tabla con nuevos datos."""
+        """
+        Actualiza la tabla de datos con nueva información.
+        
+        Args:
+            data (pd.DataFrame): DataFrame con los nuevos datos a mostrar.
+                               Si es None o está vacío, se muestra el mensaje de no datos.
+        """
         # Limpiar tabla existente
         self.data_table.delete(*self.data_table.get_children())
         
@@ -104,7 +133,14 @@ class LaboratorySoftware:
             self.no_data_label.pack(pady=20)
 
     def setup_menus(self) -> None:
-        """Configura la barra de menús."""
+        """
+        Configura la barra de menús de la aplicación.
+        
+        Crea y configura los menús principales:
+        - Archivo: Para operaciones de importación/exportación
+        - Edición: Para procesamiento de datos
+        - Acerca de: Para información y documentación
+        """
         menubar = Menu(self.root)
 
         # Menú Archivo
@@ -141,48 +177,97 @@ class LaboratorySoftware:
 
     def show_autores(self):
         """Muestra los autores del software."""
-        autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastian Manrique"
+        autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastián Manrique"
         messagebox.showinfo("Autores", autores)
 
     def run(self) -> None:
-        """Ejecuta el bucle principal de la interfaz gráfica."""
+        """
+        Inicia el bucle principal de la aplicación.
+        
+        Este método debe ser llamado después de la inicialización para comenzar
+        la ejecución de la interfaz gráfica.
+        """
         self.root.mainloop()
 
 class DataOperationsWithUI(DataOperations):
-    """Extensión de DataOperations con callbacks para la UI."""
+    """
+    Extensión de DataOperations que integra callbacks para la interfaz de usuario.
+    
+    Esta clase extiende las operaciones de datos básicas para actualizar
+    automáticamente la interfaz de usuario cuando se realizan operaciones.
+    
+    Attributes:
+        ui_container: Referencia al contenedor de UI principal.
+        
+    Inherits:
+        DataOperations: Clase base con operaciones de datos fundamentales.
+    """
     
     def __init__(self, ui_container):
-        """Inicializa la clase con referencia al contenedor de UI."""
+        """
+        Inicializa la clase con una referencia al contenedor de UI.
+        
+        Args:
+            ui_container: Referencia al objeto que contiene los elementos de la UI.
+        """
         super().__init__()
         self.ui_container = ui_container
 
     def load_file(self, ui_callback=None):
-        """Sobrescribe el método load_file para actualizar la UI."""
+        """
+        Carga un archivo y actualiza la UI si es exitoso.
+        
+        Args:
+            ui_callback (callable, optional): Función a llamar para actualizar la UI con los datos cargados.
+        
+        Returns:
+            bool: True si la carga fue exitosa, False en caso contrario
+        """
         success = super().load_file()
         if success and ui_callback:
             ui_callback(self.data)
         return success
 
     def remove_null_values(self, ui_callback=None):
-        """Sobrescribe remove_null_values para actualizar la UI."""
+        """
+        Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.
+
+        Args:
+        ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.
+        """
         super().remove_null_values()
         if ui_callback:
             ui_callback(self.data)
 
     def remove_duplicates(self, ui_callback=None):
-        """Sobrescribe remove_duplicates para actualizar la UI."""
+        """
+        Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.
+
+        Args:
+        ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.
+        """
         super().remove_duplicates()
         if ui_callback:
             ui_callback(self.data)
 
     def normalize_data(self, ui_callback=None):
-        """Sobrescribe normalize_data para actualizar la UI."""
+        """
+        Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.
+
+        Args:
+        ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.
+        """
         super().normalize_data()
         if ui_callback:
             ui_callback(self.data)
 
     def fill_null_with_mean(self, ui_callback=None):
-        """Sobrescribe fill_null_with_mean para actualizar la UI."""
+        """
+        Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.
+
+        Args:
+        ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.
+        """
         super().fill_null_with_mean()
         if ui_callback:
             ui_callback(self.data)
