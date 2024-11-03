@@ -1,8 +1,13 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+from data_operations import DataOperations  
+
+
+data_ops = DataOperations()
 
 # Ventana principal
 raiz = Tk()
@@ -15,8 +20,7 @@ barraMenu = Menu(raiz)
 raiz.config(menu=barraMenu)
 
 archivoMenu = Menu(barraMenu, tearoff=0)
-archivoMenu.add_command(label="Nuevo")
-archivoMenu.add_command(label="Guardar")
+archivoMenu.add_command(label="Cargar Datos", command=lambda: cargar_datos())
 
 guardarComoMenu = Menu(archivoMenu, tearoff=0)
 guardarComoMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
@@ -81,11 +85,59 @@ personalizacion_ventana= None
 # Inicializar variables para manejo del zoom y desplazamiento
 x_limits = [-1, 12]
 y_limits = [-1, 1]
-x = np.arange(0, 10, 0.1)
-y = np.sin(x)
 is_dragging = False
 start_x, start_y = 0, 0
 points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
+
+# Variables para las columnas
+columna_x = StringVar()
+columna_y = StringVar()
+
+# Widgets de selección
+columna_x_combo = None
+columna_y_combo = None
+graficar_button = None
+
+def cargar_datos():
+    """Carga los datos usando DataOperations y permite seleccionar columnas para graficar."""
+    if data_ops.load_file(): 
+        # Verifica si se cargaron datos
+        if data_ops.data is not None and not data_ops.data.empty:
+            print(data_ops.data)  
+            actualizar_columnas()
+        else:
+            messagebox.showerror("Error", "No se pudieron cargar los datos del archivo.")
+
+def actualizar_columnas():
+    """Actualiza las listas desplegables con las columnas disponibles en el archivo de datos."""
+    global columna_x_combo, columna_y_combo, graficar_button
+
+    if columna_x_combo is not None:
+        columna_x_combo.grid_forget()
+    if columna_y_combo is not None:
+        columna_y_combo.grid_forget()
+    if graficar_button is not None:
+        graficar_button.grid_forget()
+
+    # Obtener las columnas del archivo de datos
+    columns = data_ops.data.columns.tolist()
+    print("Columnas disponibles:", columns)  # Imprimir las columnas disponibles
+
+    # Solo crear los ComboBox si hay columnas disponibles
+    if columns:
+        columna_x_combo = ttk.Combobox(raiz, textvariable=columna_x, values=columns)
+        columna_x_combo.grid(column=0, row=3, padx=5, pady=5)
+        columna_x_combo.set("Selecciona la columna X")
+        
+        columna_y_combo = ttk.Combobox(raiz, textvariable=columna_y, values=columns)
+        columna_y_combo.grid(column=1, row=3, padx=5, pady=5)
+        columna_y_combo.set("Selecciona la columna Y")
+        
+        # Botón para graficar
+        graficar_button = Button(raiz, text="Graficar", command=graficar_datos)
+        graficar_button.grid(column=2, row=3, padx=5, pady=5)
+    else:
+        messagebox.showerror("Error", "No se encontraron columnas para graficar.")
 
 def guardar_grafica(formato):
     """
@@ -141,6 +193,20 @@ def graficar_datos():
     None
         No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.
     """
+
+    x_col = columna_x.get()
+    y_col = columna_y.get()
+
+    if x_col not in data_ops.data.columns or y_col not in data_ops.data.columns:
+        messagebox.showerror("Error", "Una o ambas columnas seleccionadas no son válidas.")
+        return
+
+    if not pd.api.types.is_numeric_dtype(data_ops.data[x_col]) or not pd.api.types.is_numeric_dtype(data_ops.data[y_col]):
+        messagebox.showerror("Error", "Las columnas seleccionadas deben ser numéricas.")
+        return
+
+    x = data_ops.data[x_col]  # Usar la columna seleccionada para X
+    y = data_ops.data[y_col]  # Usar la columna seleccionada para Y
     ax.clear()  # Limpiar la gráfica anterior
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
     ax.set_xlim(x_limits)  # Límites del eje X
@@ -630,9 +696,6 @@ y_scale.grid(column=0, row=4)
 # Etiqueta para mostrar el porcentaje de zoom de cada eje
 zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
 zoom_label.grid(column=0, row=5)
-
-# Botón para graficar
-Button(frame, text='Graficar', width=15, bg='green', fg='white', command=graficar_datos).grid(column=0, row=1, pady=5)
 
 # Ejecutar la aplicación
 raiz.mainloop()
