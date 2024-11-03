@@ -3,26 +3,80 @@ from tkinter import filedialog, messagebox
 from datetime import datetime
 
 class DataOperations:
-    """Clase para realizar operaciones de manipulación de datos con pandas.
+    """
+    Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
+    Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
+    un registro de las transformaciones aplicadas y los datos originales.
+    Las operaciones a realizar en dichas transformaciones son:
+     - Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.
+     - Eliminar duplicados: Elimina las filas duplicadas del DataFrame.
+     - Normalizar datos: Normaliza los datos numéricos del DataFrame.
+     - Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.
 
-    Esta clase permite cargar archivos de datos, procesar los datos cargados, 
-    y realizar operaciones como eliminación de valores nulos, eliminación de duplicados,
-    normalización de datos y relleno de valores nulos con la media.
+     Como se mencionó, la clase también proporciona una función para obtener un resumen de las transformaciones
+     realizadas, que devuelve un string con el formato:
 
-    Attributes:
-        data (DataFrame): El DataFrame que contiene los datos cargados.
-        original_data (DataFrame): Copia de los datos originales sin procesar.
-        transformation_history (list): Historial de transformaciones aplicadas.
+     Resumen de transformaciones:
+
+     1. Eliminar valores nulos
+        Fecha: 2024-01-01 12:00:00
+        Detalles: None
+        Filas afectadas: 100
+
+     2. Normalizar datos
+        Fecha: 2024-01-01 12:00:00
+        Detalles: None
+        Filas afectadas: 100
+
+     3. Rellenar valores nulos con la media
+        Fecha: 2024-01-01 12:00:00
+        Detalles: None
+        Filas afectadas: 100
+    
+    Attributos:
+        data (pd.DataFrame): DataFrame actual con los datos procesados.
+        original_data (pd.DataFrame): Copia de los datos originales sin procesar.
+        transformation_history (list): Lista de diccionarios con el historial de transformaciones.
+                                     Cada entrada contiene:
+                                     - operation: nombre de la operación
+                                     - timestamp: momento de la ejecución
+                                     - details: detalles específicos
+                                     - rows_affected: número de filas afectadas
     """
 
     def __init__(self):
-        """Inicializa la clase DataOperations."""
+        """
+        Inicializa la clase DataOperations con un DataFrame vacío y una lista para registrar transformaciones.
+        Aquí no realiza ninguna operación en los datos iniciales, sino que almacena los datos originales
+        para poder realizar transformaciones posteriores.
+        
+        Parameters
+        ----------
+        None
+        """
         self.data = None
         self.original_data = None
         self.transformation_history = []
 
     def load_file(self):
-        """Carga un archivo de datos desde el sistema de archivos."""
+        """
+        Permite al usuario seleccionar y cargar un archivo de datos, desde un archivo CSV, TXT o Excel.
+
+        Parameters
+        ----------
+        file_path : str
+            La ruta al archivo que se desea cargar.
+
+        Returns
+        -------
+        pd.DataFrame
+            DataFrame que contiene los datos cargados.
+
+        Raises
+        ------
+        ValueError
+            Si el archivo no tiene extensión .csv  .xlsx o .txt.
+        """
         file = filedialog.askopenfilename(filetypes=[
             ("Archivos CSV", "*.csv"),
             ("Archivos TXT", "*.txt"),
@@ -50,7 +104,21 @@ class DataOperations:
         return False
 
     def _add_to_history(self, operation_name, details=None):
-        """Agrega una operación al historial de transformaciones."""
+        """
+        Registra una operación en el historial de transformaciones.
+        Se utiliza para mantener un seguimiento de las modificaciones realizadas.
+
+        Parameters
+        ----------
+        operation_name : str
+            Nombre de la operación realizada.
+        details : str, optional
+            Detalles adicionales sobre la operación.
+
+        Returns
+        -------
+        None
+        """
         self.transformation_history.append({
             'operation': operation_name,
             'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -59,7 +127,15 @@ class DataOperations:
         })
 
     def remove_null_values(self):
-        """Elimina las filas con valores nulos del DataFrame."""
+        """
+        Elimina las filas que contienen valores nulos del DataFrame.
+        
+        La operación se realiza in-place y se registra en el historial de transformaciones.
+        Muestra un mensaje con el número de filas eliminadas.
+        
+        Requires:
+            Datos cargados previamente (self.data no None).
+        """
         if self.data is not None:
             rows_before = len(self.data)
             self.data.dropna(inplace=True)
@@ -74,7 +150,26 @@ class DataOperations:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
     def remove_duplicates(self):
-        """Elimina las filas duplicadas del DataFrame."""
+        """
+        Elimina las filas duplicadas del DataFrame, manteniendo la primera ocurrencia.
+        
+        Este método:
+        - Identifica y elimina filas completamente duplicadas
+        - Mantiene la primera ocurrencia de cada fila duplicada
+        - Registra la operación en el historial
+        - Muestra un mensaje con el número de filas eliminadas
+        
+        Returns:
+            None
+        
+        Raises:
+            No lanza excepciones directamente, pero muestra un messagebox de advertencia
+            si self.data es None
+        
+        Notas:
+            - La comparación de duplicados considera todas las columnas
+            - La operación es irreversible
+        """
         if self.data is not None:
             rows_before = len(self.data)
             self.data.drop_duplicates(inplace=True)
@@ -89,7 +184,18 @@ class DataOperations:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
     def normalize_data(self):
-        """Normaliza los datos numéricos del DataFrame."""
+        """
+        Normaliza todas las columnas numéricas del DataFrame al rango [0,1].
+        
+        Para cada columna numérica, aplica la fórmula:
+        normalized = (x - min) / (max - min)
+        
+        Si max = min, todos los valores se establecen en 0.
+        Solo se normalizan columnas que contienen al menos un valor no nulo.
+        
+        Requires:
+            Datos cargados previamente (self.data no None).
+        """
         if self.data is not None:
             columns_normalized = []
             for col in self.data.select_dtypes(include='number').columns:
@@ -111,7 +217,22 @@ class DataOperations:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
     def fill_null_with_mean(self):
-        """Rellena los valores nulos con la media de cada columna."""
+        """
+        Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.
+    
+        Este método:
+        - Calcula la media de cada columna numérica del DataFrame
+        - Reemplaza todos los valores nulos con la media correspondiente
+        - Registra la operación en el historial
+        - Muestra un mensaje con el número de valores rellenados
+        
+        Returns:
+            None
+        
+        Raises:
+            No lanza excepciones directamente, pero muestra un messagebox de advertencia
+            si self.data es None
+        """
         if self.data is not None:
             nulls_before = self.data.isnull().sum().sum()
             self.data.fillna(self.data.mean(), inplace=True)
@@ -126,10 +247,20 @@ class DataOperations:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
     def export_results(self):
-        """Exporta los datos transformados a un archivo en formato XLSX, CSV o TXT.
-    
-            Returns:
-            bool: True si la exportación fue exitosa, False en caso contrario.
+        """
+        Exporta los datos procesados y el historial de transformaciones.
+        
+        Formatos soportados:
+        - Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial
+        - CSV (.csv): Crea archivos separados para cada tipo de dato
+        - TXT (.txt): Similar a CSV pero con delimitador de tabulación
+        
+        Returns:
+            bool: True si la exportación fue exitosa, False en otro caso.
+        
+        Notes:
+            Para CSV y TXT, se crean archivos adicionales con sufijos '_original' 
+            y '_transformaciones' para los datos originales y el historial.
         """
         if self.data is None:
             messagebox.showwarning("Advertencia", "No hay datos para exportar")
@@ -198,7 +329,18 @@ class DataOperations:
             return False
 
     def get_transformation_summary(self):
-        """Retorna un resumen de las transformaciones realizadas."""
+        """
+        Genera un resumen textual de todas las transformaciones aplicadas.
+        
+        Returns:
+            str: Resumen formateado del historial de transformaciones, incluyendo:
+                - Número de operación
+                - Tipo de operación
+                - Fecha y hora
+                - Detalles específicos
+                - Número de filas afectadas
+                Si no hay transformaciones, retorna un mensaje indicándolo.
+        """
         if not self.transformation_history:
             return "No se han realizado transformaciones"
         
