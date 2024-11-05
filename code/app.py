@@ -40,20 +40,24 @@ class LaboratorySoftware:
         y_position = int((screen_height - window_height) / 2)
         self.root.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
 
-        # Crear el frame principal con dos paneles
-        self.main_frame = ttk.PanedWindow(self.root, orient=tk.VERTICAL)
+        # Cambiar el frame principal a disposición horizontal
+        self.main_frame = ttk.PanedWindow(self.root, orient=tk.HORIZONTAL)
         self.main_frame.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
-        # Panel superior para la tabla de datos
+        # Panel izquierdo para la tabla de datos
         self.data_frame = ttk.LabelFrame(self.main_frame, text="Datos Cargados", padding="5 5 5 5")
-        self.main_frame.add(self.data_frame, weight=3)
+        self.main_frame.add(self.data_frame, weight=1)
 
-        # Crear el Treeview con scrollbars
+        # Crear el Treeview con scrollbars en el panel de datos
         self.create_data_table()
 
-        # Panel inferior para resultados y gráficas
+        # Panel derecho para resultados y gráficas
         self.results_frame = ttk.LabelFrame(self.main_frame, text="Resultados y Gráficas", padding="5 5 5 5")
-        self.main_frame.add(self.results_frame, weight=2)
+        self.main_frame.add(self.results_frame, weight=1)
+
+        # Crear el frame donde irá el graficador (usando ttk para consistencia)
+        self.frame_grafica = ttk.Frame(self.results_frame)
+        self.frame_grafica.pack(fill='both', expand=True)
 
         # Inicializar módulos
         self.data_ops = DataOperationsWithUI(self)
@@ -63,9 +67,10 @@ class LaboratorySoftware:
 
         # Label para mostrar cuando no hay datos
         self.no_data_label = ttk.Label(self.data_frame, 
-                                     text="No hay datos cargados. Use el menú Archivo -> Importar para cargar datos.", 
-                                     font=('Helvetica', 10))
+                                    text="No hay datos cargados. Use el menú Archivo -> Importar para cargar datos.", 
+                                    font=('Helvetica', 10))
         self.no_data_label.pack(pady=20)
+
 
     def create_data_table(self):
         """
@@ -96,7 +101,7 @@ class LaboratorySoftware:
 
         # Estilo para la tabla
         style = ttk.Style()
-        style.configure("Treeview", rowheight=25)
+        style.configure("Treeview", rowheight=20)
         style.configure("Treeview.Heading", font=('Helvetica', 10, 'bold'))
 
     def update_data_display(self, data: pd.DataFrame):
@@ -146,7 +151,7 @@ class LaboratorySoftware:
         # Menú Archivo
         file_menu = Menu(menubar, tearoff=0)
         file_menu.add_command(label="Importar", 
-                            command=lambda: self.data_ops.load_file(self.update_data_display))
+                              command=lambda: self.data_ops.load_file(self.update_data_display))
         file_menu.add_command(label="Exportar", command=self.data_ops.export_results)
         file_menu.add_separator()
         file_menu.add_command(label="Salir", command=self.root.quit)
@@ -177,7 +182,7 @@ class LaboratorySoftware:
 
     def show_autores(self):
         """Muestra los autores del software."""
-        autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastián Manrique"
+        autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastian Manrique"
         messagebox.showinfo("Autores", autores)
 
     def run(self) -> None:
