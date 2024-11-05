@@ -84,8 +84,8 @@ line = None
 personalizacion_ventana= None
 
 # Inicializar variables para manejo del zoom y desplazamiento
-x_limits = [-1, 12]
-y_limits = [-1, 1]
+x_limits = [-10, 10]
+y_limits = [-10, 10]
 is_dragging = False
 start_x, start_y = 0, 0
 points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
