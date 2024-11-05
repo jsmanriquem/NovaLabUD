@@ -647,19 +647,19 @@ def zoom(event=None,reset=False):
         x_zoom_level = x_scale.get()
         y_zoom_level = y_scale.get()
         
-        x_mid = (x_limits[1] + x_limits[0]) / 2  # Punto medio 'x'
+        x_mid = (origx_lim[1] + origx_lim[0]) / 2  # Punto medio 'x'
         x_zoom_factor = 1 + x_zoom_level
-        x_range = (x_limits[1] - x_limits[0]) / x_zoom_factor
+        x_range = (origx_lim[1] - origx_lim[0]) / x_zoom_factor
         x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
         
-        y_mid = (y_limits[1] + y_limits[0]) / 2  # Punto medio 'y'
+        y_mid = (origy_lim[1] + origy_lim[0]) / 2  # Punto medio 'y'
         y_zoom_factor = 1 + y_zoom_level
-        y_range = (y_limits[1] - y_limits[0]) / y_zoom_factor
+        y_range = (origy_lim[1] - origy_lim[0]) / y_zoom_factor
         y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
         # Actualizar la etiqueta de porcentaje de zoom para cada eje
-        x_zoom_percentage = int((x_zoom_level / 6) * 100)
-        y_zoom_percentage = int((y_zoom_level / 6) * 100)
+        x_zoom_percentage = int((x_zoom_level / 10) * 100)
+        y_zoom_percentage = int((y_zoom_level / 10) * 100)
         zoom_label.config(text=f"Zoom X: {x_zoom_percentage}% | Zoom Y: {y_zoom_percentage}%")
 
     # Redibujar la gráfica con los nuevos límites
@@ -775,11 +775,11 @@ style = ttk.Style()
 style.configure("Horizontal.TScale", background='gray22')  # Configurar estilo para la barra
 
 # Barra zoom eje x
-x_scale = ttk.Scale(frame_zoom, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
+x_scale = ttk.Scale(frame_zoom, to=10, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
 x_scale.grid(column=0, row=0, padx=5)
 
 #Barra zoom eje y
-y_scale = ttk.Scale(frame_zoom, to=6, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
+y_scale = ttk.Scale(frame_zoom, to=10, from_=0, orient='horizontal', length=200, style="Horizontal.TScale", command=zoom)
 y_scale.grid(column=1, row=0, pady=5)
 
 # Etiqueta para mostrar el porcentaje de zoom de cada eje
