@@ -28,7 +28,6 @@ guardarComoMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
 guardarComoMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
 archivoMenu.add_cascade(label="Guardar como ...", menu=guardarComoMenu)
 archivoMenu.add_separator()
-archivoMenu.add_command(label="Cerrar")
 archivoMenu.add_command(label="Salir")
 
 edicionMenu = Menu(barraMenu, tearoff=0)
@@ -65,11 +64,13 @@ ejex_titulo = StringVar(value="Eje X")
 ejex_shape = "DejaVu Sans"
 ejex_size = 10
 ventana_ejex = None # Venta emergente edición eje x
+ventana_lim_x = None # Venta emergente edición límites eje x
 
 ejey_titulo = StringVar(value="Eje Y")
 ejey_shape = "DejaVu Sans"
 ejey_size = 10
 ventana_ejey = None # Ventana emerjente edición eje y
+ventana_lim_y = None # Venta emergente edición límites eje y
 
 # Variables de personalización
 line_color = 'blue' 
@@ -220,6 +221,14 @@ def graficar_datos():
 
     canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
     canvas.mpl_connect('button_press_event', on_double_click)
+    
+    # Crear botón "+" para edición de límites eje X
+    x_plus_button = Button(raiz, text="+", command=lambda: update_x_limits(raiz))
+    x_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 + 185)
+
+    # Crear botón "+" para edición de límites eje Y
+    y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
+    y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
 
 # Funciones para abrir ventana emergente y editar los puntos
 def update_graph_property(property_type=None, new_value=None):
@@ -514,6 +523,88 @@ canvas.mpl_connect('button_press_event', on_double_click)
 origx_lim = x_limits.copy()
 origy_lim = y_limits.copy()
 
+def update_x_limits(master):
+    """Muestra una ventana emergente para actualizar los límites del eje X."""
+    global ventana_lim_x
+
+    # Crear nueva ventana
+    ventana_lim_x = Toplevel(master)
+    ventana_lim_x.title("Límites Eje X")
+    ventana_lim_x.geometry("300x250")
+
+    # Etiquetas y campos de entrada para x_min y x_max
+    Label(ventana_lim_x, text="Ingrese x_min:").pack(pady=5)
+    x_min_entry = Entry(ventana_lim_x)
+    x_min_entry.insert(0, str(x_limits[0]))  # Valor de x_min
+    x_min_entry.pack()
+
+    Label(ventana_lim_x, text="Ingrese x_max:").pack(pady=5)
+    x_max_entry = Entry(ventana_lim_x)
+    x_max_entry.insert(0, str(x_limits[1]))  # Valor de x_max
+    x_max_entry.pack()
+
+    # Botón para actualizar los límites de X
+    Button(ventana_lim_x, text="Actualizar Límites", command=lambda: set_x_limits(x_min_entry, x_max_entry)).pack(pady=10)
+
+def set_x_limits(x_min_entry, x_max_entry):
+    """Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente."""
+    global x_limits, origx_lim
+
+    try:
+        # Obtener y validar valores ingresados
+        x_min = float(x_min_entry.get())
+        x_max = float(x_max_entry.get())
+        if x_min < x_max:
+            x_limits = [x_min, x_max]
+            origx_lim = x_limits.copy()
+            print(f"Límites del eje X actualizados: {x_limits}")
+            graficar_datos()  # Redibuja la gráfica con los nuevos límites
+        else:
+            print("El valor de x_min debe ser menor que x_max.")
+    except ValueError:
+        print("Por favor, ingrese valores numéricos válidos.")
+
+def update_y_limits(master):
+    """Muestra una ventana emergente para actualizar los límites del eje Y."""
+    global ventana_lim_y
+
+    # Crear nueva ventana
+    ventana_lim_y = Toplevel(master)
+    ventana_lim_y.title("Límites Eje Y")
+    ventana_lim_y.geometry("300x250")
+
+    # Etiquetas y campos de entrada para x_min y x_max
+    Label(ventana_lim_y, text="Ingrese y_min:").pack(pady=5)
+    y_min_entry = Entry(ventana_lim_y)
+    y_min_entry.insert(0, str(y_limits[0]))  # Valor de y_min
+    y_min_entry.pack()
+
+    Label(ventana_lim_y, text="Ingrese y_max:").pack(pady=5)
+    y_max_entry = Entry(ventana_lim_y)
+    y_max_entry.insert(0, str(y_limits[1]))  # Valor de y_max
+    y_max_entry.pack()
+
+    # Botón para actualizar los límites de X
+    Button(ventana_lim_y, text="Actualizar Límites", command=lambda: set_y_limits(y_min_entry, y_max_entry)).pack(pady=10)
+
+def set_y_limits(y_min_entry, y_max_entry):
+    """Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente."""
+    global y_limits, origy_lim
+
+    try:
+        # Obtener y validar valores ingresados
+        y_min = float(y_min_entry.get())
+        y_max = float(y_max_entry.get())
+        if y_min < y_max:
+            y_limits = [y_min, y_max]
+            origy_lim = y_limits.copy()
+            print(f"Límites del eje Y actualizados: {y_limits}")
+            graficar_datos()  # Redibuja la gráfica con los nuevos límites
+        else:
+            print("El valor de y_min debe ser menor que y_max.")
+    except ValueError:
+        print("Por favor, ingrese valores numéricos válidos.")
+
 def zoom(event=None,reset=False):
     """
     Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
@@ -555,22 +646,16 @@ def zoom(event=None,reset=False):
         # Obtener los valores de las barras deslizantes para cada eje
         x_zoom_level = x_scale.get()
         y_zoom_level = y_scale.get()
-        # Restablecer límites originales si las barras están en nivel inicial
-        if x_zoom_level == 0:
-            x_limits = origx_lim.copy()
-        else:
-            x_mid = (x_limits[1] + x_limits[0]) / 2  # Punto medio 'x'
-            x_zoom_factor = 1 + x_zoom_level
-            x_range = (x_limits[1] - x_limits[0]) / x_zoom_factor
-            x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
-
-        if y_zoom_level == 0:
-            y_limits = origy_lim.copy()
-        else:
-            y_mid = (y_limits[1] + y_limits[0]) / 2  # Punto medio 'y'
-            y_zoom_factor = 1 + y_zoom_level
-            y_range = (y_limits[1] - y_limits[0]) / y_zoom_factor
-            y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
+        
+        x_mid = (x_limits[1] + x_limits[0]) / 2  # Punto medio 'x'
+        x_zoom_factor = 1 + x_zoom_level
+        x_range = (x_limits[1] - x_limits[0]) / x_zoom_factor
+        x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
+        
+        y_mid = (y_limits[1] + y_limits[0]) / 2  # Punto medio 'y'
+        y_zoom_factor = 1 + y_zoom_level
+        y_range = (y_limits[1] - y_limits[0]) / y_zoom_factor
+        y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
         # Actualizar la etiqueta de porcentaje de zoom para cada eje
         x_zoom_percentage = int((x_zoom_level / 6) * 100)
