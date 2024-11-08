@@ -6,7 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from data_operations import DataOperations  
 
-
 data_ops = DataOperations()
 
 # Ventana principal
@@ -14,6 +13,72 @@ raiz = Tk()
 raiz.geometry("1024x780")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
+
+# Función para limpiar la gráfica
+def limpiar_grafica():
+    """Limpia la gráfica y restablece los parámetros a sus valores originales."""
+    global y_limits, x_limits, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
+
+    titulo_grafica = StringVar(value="Título de la Gráfica")
+    title_fuente = "DejaVu Sans"
+    title_size = 12
+    
+    ejex_titulo = StringVar(value="Eje X")
+    ejex_shape = "DejaVu Sans"
+    ejex_size = 10
+
+    ejey_titulo = StringVar(value="Eje Y")
+    ejey_shape = "DejaVu Sans"
+    ejey_size = 10
+
+    line_color = 'blue' 
+    line_width = 2       
+    bg_color = "white"
+    marker_type = "o"
+    marker_color = "blue"
+    show_grid = False  # Variable para controlar si la grilla está activa o no
+    point_size = 5  # Tamaño de los puntos
+
+    # Restablecer límites y zoom
+    zoom(reset=True)
+
+    ax.clear()  # Borra el contenido 
+    x_limits = [-10, 10]
+    y_limits = [-10, 10]
+    ax.grid(show_grid)  
+
+    canvas.draw() #Redibujar
+
+    # Mostrar ventana de confirmación
+    limpio_si()
+
+# Función para mostrar la confirmación de limpieza
+def confirmar_limpiar_grafica():
+    # Crear ventana emergente de confirmación
+    ventana_confirmacion = Toplevel(raiz)
+    ventana_confirmacion.title("Confirmación de limpieza")
+
+    # Mensaje de confirmación
+    mensaje = Label(ventana_confirmacion, text="¿Está seguro que desea limpiar la gráfica?")
+    mensaje.pack(pady=10)
+
+    # Botón para confirmar limpieza
+    boton_si = Button(ventana_confirmacion, text="Sí, limpiar", command=lambda: [limpiar_grafica(), ventana_confirmacion.destroy()])
+    boton_si.pack(side="left", padx=10, pady=10)
+
+    # Botón para cancelar limpieza
+    boton_no = Button(ventana_confirmacion, text="No, Cancelar", command=ventana_confirmacion.destroy)
+    boton_no.pack(side="right", padx=10, pady=10)
+
+def limpio_si():
+    ventana_hecho = Toplevel(raiz)
+    ventana_hecho.title("Éxito")
+
+    # Mensaje de confirmación
+    Label(ventana_hecho, text="La gráfica ha sido limpiada.", pady=20).pack()
+
+    # Botón para cerrar la ventana
+    Button(ventana_hecho, text="Aceptar", command=ventana_hecho.destroy).pack(pady=10)
 
 # Menú de opciones para el usuario
 barraMenu = Menu(raiz)
@@ -28,7 +93,7 @@ guardarComoMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
 guardarComoMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
 archivoMenu.add_cascade(label="Guardar como ...", menu=guardarComoMenu)
 archivoMenu.add_separator()
-archivoMenu.add_command(label="Salir")
+archivoMenu.add_command(label="Limpiar", command= confirmar_limpiar_grafica)
 
 edicionMenu = Menu(barraMenu, tearoff=0)
 edicionMenu.add_command(label="Cortar")
@@ -75,7 +140,7 @@ ventana_lim_y = None # Venta emergente edición límites eje y
 # Variables de personalización
 line_color = 'blue' 
 line_width = 2       
-bg_color = '#D3D3D3' 
+bg_color = "white"
 marker_type = "o"
 marker_color = "blue"
 show_grid = False  # Variable para controlar si la grilla está activa o no
