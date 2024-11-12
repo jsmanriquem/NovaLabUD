@@ -900,4 +900,5 @@ zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
 zoom_label.grid(column=0, row=5)
 
 # Ejecutar la aplicación
-raiz.mainloop()
+if __name__ == "__main__":
+    raiz.mainloop()
