@@ -14,9 +14,51 @@ raiz.geometry("1024x780")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
 
-# Función para limpiar la gráfica
 def limpiar_grafica():
-    """Limpia la gráfica y restablece los parámetros a sus valores originales."""
+    """
+    Limpia la gráfica y restablece sus parámetros a sus valores originales predeterminados, 
+    incluyendo el título, colores, estilos, y tamaños de ejes. Se reconfigura el diseño visual 
+    de la gráfica y se redibuja con los valores predeterminados.
+
+    Variables globales
+    ------------------
+    x_limits : list
+        Lista con los límites actuales del eje 'x' en la forma [xmin, xmax].
+    y_limits : list
+        Lista con los límites actuales del eje 'y' en la forma [ymin, ymax].
+    marker_color : str
+        Color predeterminado del marcador en la gráfica.
+    marker_type : str
+        Tipo de marcador utilizado para los puntos en la gráfica.
+    show_grid : bool
+        Indicador de si la cuadrícula de la gráfica está activada.
+    point_size : int
+        Tamaño de los puntos de marcador en la gráfica.
+    titulo_grafica : tkinter.StringVar
+        Título de la gráfica como variable de texto.
+    title_fuente : str
+        Tipo de fuente para el título de la gráfica.
+    title_size : int
+        Tamaño de la fuente para el título de la gráfica.
+    ejex_shape : str
+        Tipo de fuente del título del eje 'x'.
+    ejex_size : int
+        Tamaño de la fuente del título del eje 'x'.
+    ejex_titulo : tkinter.StringVar
+        Título del eje 'x' como variable de texto.
+    ejey_shape : str
+        Tipo de fuente del título del eje 'y'.
+    ejey_size : int
+        Tamaño de la fuente del título del eje 'y'.
+    ejey_titulo : tkinter.StringVar
+        Título del eje 'y' como variable de texto.
+    line_color : str
+        Color de la línea de la gráfica.
+    line_width : int
+        Grosor de la línea de la gráfica.
+    bg_color : str
+        Color de fondo de la gráfica.
+    """
     global y_limits, x_limits, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
 
     titulo_grafica = StringVar(value="Título de la Gráfica")
@@ -36,48 +78,54 @@ def limpiar_grafica():
     bg_color = "white"
     marker_type = "o"
     marker_color = "blue"
-    show_grid = False  # Variable para controlar si la grilla está activa o no
-    point_size = 5  # Tamaño de los puntos
+    show_grid = False  
+    point_size = 5  
 
-    # Restablecer límites y zoom
     zoom(reset=True)
 
-    ax.clear()  # Borra el contenido 
+    ax.clear() 
     x_limits = [-10, 10]
     y_limits = [-10, 10]
     ax.grid(show_grid)  
 
-    canvas.draw() #Redibujar
-
-    # Mostrar ventana de confirmación
+    canvas.draw() 
     limpio_si()
 
-# Función para mostrar la confirmación de limpieza
 def confirmar_limpiar_grafica():
-    # Crear ventana emergente de confirmación
+    """
+    Muestra una ventana emergente de confirmación para limpiar la gráfica. La ventana ofrece
+    al usuario la opción de confirmar o cancelar la limpieza. Si el usuario confirma, se llama 
+    a la función 'limpiar_grafica' y se cierra la ventana de confirmación; en caso contrario, 
+    la ventana se cierra sin modificar la gráfica.
+
+    Variables globales
+    ------------------
+    raiz : tkinter.Tk
+        Ventana principal de la interfaz gráfica, sobre la cual se despliega la ventana de 
+        confirmación.
+    """
     ventana_confirmacion = Toplevel(raiz)
     ventana_confirmacion.title("Confirmación de limpieza")
 
-    # Mensaje de confirmación
     mensaje = Label(ventana_confirmacion, text="¿Está seguro que desea limpiar la gráfica?")
     mensaje.pack(pady=10)
 
-    # Botón para confirmar limpieza
     boton_si = Button(ventana_confirmacion, text="Sí, limpiar", command=lambda: [limpiar_grafica(), ventana_confirmacion.destroy()])
     boton_si.pack(side="left", padx=10, pady=10)
 
-    # Botón para cancelar limpieza
     boton_no = Button(ventana_confirmacion, text="No, Cancelar", command=ventana_confirmacion.destroy)
     boton_no.pack(side="right", padx=10, pady=10)
 
 def limpio_si():
+    """
+    Muestra una ventana emergente de confirmación para indicar al usuario que la gráfica 
+    ha sido limpiada exitosamente. La ventana incluye un mensaje de éxito y un botón para 
+    cerrarla.
+    """
     ventana_hecho = Toplevel(raiz)
     ventana_hecho.title("Éxito")
 
-    # Mensaje de confirmación
     Label(ventana_hecho, text="La gráfica ha sido limpiada.", pady=20).pack()
-
-    # Botón para cerrar la ventana
     Button(ventana_hecho, text="Aceptar", command=ventana_hecho.destroy).pack(pady=10)
 
 # Menú de opciones para el usuario
