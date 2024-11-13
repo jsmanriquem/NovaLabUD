@@ -670,8 +670,27 @@ def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
     # Redibujar la gráfica
     canvas.draw()
 
-# Función para abrir la ventana emergente de edición del título
 def grafica_ventana_ejex(master):
+    """
+    Abre una ventana emergente que permite al usuario personalizar el título del eje X de la gráfica.
+    El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la fuente del eje X.
+
+    Parámetros
+    ----------
+    master : 
+        La ventana principal desde la que se abrirá la ventana emergente de personalización.
+
+    Variables globales
+    ------------------
+    ventana_ejex : tkinter.Toplevel
+        Ventana emergente de personalización del eje X.
+    ejex_titulo : tkinter.StringVar
+        Variable de texto del título actual del eje X.
+    ejex_size : int
+        Tamaño de la fuente del título del eje X.
+    ejex_shape : str
+        Estilo de la fuente utilizada para el título del eje X.
+    """
     global ventana_ejex
     
     # Verificar si la ventana ya está abierta
@@ -712,8 +731,28 @@ def grafica_ventana_ejex(master):
     Button(ventana_ejex, text="Aplicar Cambios", 
            command=lambda: apply_xaxis_changes(ejex_size_var, ejex_fuente_var,titulo_ejex_var)).pack(pady=10)
 
-# Función para aplicar los cambios del eje y
 def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
+    """
+    Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.
+
+    Parámetros
+    ----------
+    ejey_size_var : tkinter.StringVar
+        Variable del tamaño de la fuente para el título del eje Y.
+    ejey_fuente_var : tkinter.StringVar
+        Variable de la fuente seleccionada para el título del eje Y.
+    ejey_titulo_entry : tkinter.Entry
+        Campo de texto donde se ingresa el nuevo título del eje Y.
+
+    Variables globales
+    ------------------
+    ejey_size : int
+        Tamaño de la fuente para el título del eje Y.
+    ejey_shape : str
+        Tipo de fuente para el título del eje Y.
+    ejey_titulo : tkinter.StringVar
+        Variable de texto que contiene el título del eje Y.
+    """
     global ejey_size, ejey_shape, ejey_titulo
     ejey_titulo.set(ejey_titulo_entry.get())  # Obtener el nuevo título del eje X    
     # Obtener valores seleccionados
@@ -726,8 +765,27 @@ def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
     # Redibujar la gráfica
     canvas.draw()
 
-# Función para abrir la ventana emergente de edición del eje y
 def grafica_ventana_ejey(master):
+    """
+    Abre una ventana emergente para personalizar el título del eje Y de la gráfica, 
+    permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
+
+    Parámetros
+    ----------
+    master : tkinter.Tk
+        Ventana principal de la aplicación.
+
+    Variables globales
+    ------------------
+    ventana_ejey : tkinter.Toplevel
+        La ventana emergente de personalización del eje Y.
+    ejey_titulo : tkinter.StringVar
+        Variable del título del eje Y de la gráfica.
+    ejey_size : int
+        Tamaño de la fuente para el título del eje Y.
+    ejey_shape : str
+        Tipo de fuente para el título del eje Y.
+    """
     global ventana_ejey
     
     # Verificar si la ventana ya está abierta
@@ -768,8 +826,21 @@ def grafica_ventana_ejey(master):
     Button(ventana_ejey, text="Aplicar Cambios", 
            command=lambda: apply_yaxis_changes(ejey_size_var, ejey_fuente_var,titulo_ejey_var)).pack(pady=10)
 
-# Función para detectar doble clic en el título y abrir la ventana de edición
 def on_double_click(event):
+    """
+    Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y) 
+    y abre la ventana de edición correspondiente para personalizar el título del eje o gráfico.
+
+    Parámetros
+    ----------
+    event : matplotlib.backend_bases.MouseEvent
+        El evento de clic que contiene la información sobre la posición del clic y si es un doble clic.
+    
+    Variables globales
+    ------------------
+    raiz : tkinter.Tk
+        La ventana principal de la aplicación.
+    """
     if event.dblclick:
         # Coordenadas del clic en la ventana gráfica
         x, y = event.x, event.y
