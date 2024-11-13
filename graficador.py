@@ -213,7 +213,18 @@ columna_y_combo = None
 graficar_button = None
 
 def cargar_datos():
-    """Carga los datos usando DataOperations y permite seleccionar columnas para graficar."""
+    """
+    Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método 
+    load_file() de la instancia data_ops. Si los datos están disponibles y no están vacíos, 
+    los imprime en la consola y actualiza las opciones de columnas para el usuario. Si no 
+    se cargan datos, muestra un mensaje de error.
+
+    Variables globales
+    ------------------
+    data_ops : DataOperations
+        Instancia de la clase DataOperations que contiene el archivo de datos cargado 
+        y sus operaciones asociadas.
+    """
     if data_ops.load_file(): 
         # Verifica si se cargaron datos
         if data_ops.data is not None and not data_ops.data.empty:
@@ -223,7 +234,29 @@ def cargar_datos():
             messagebox.showerror("Error", "No se pudieron cargar los datos del archivo.")
 
 def actualizar_columnas():
-    """Actualiza las listas desplegables con las columnas disponibles en el archivo de datos."""
+    """
+    Obtiene los nombres de las columnas del archivo de datos actualmente cargado en 
+    data_ops. Crea o actualiza los ComboBox de selección de columnas 'X' e 'Y', y 
+    coloca un botón para iniciar la gráfica, si no hay columnas disponibles, muestra 
+    un mensaje de error al usuario.
+
+    Variables globales
+    ------------------
+    columna_x_combo : ttk.Combobox
+        Selecciona la columna en el eje 'X'.
+    columna_y_combo : ttk.Combobox
+        Selecciona la columna en el eje 'Y'.
+    graficar_button : Button
+        Inicia la función de graficación de datos.
+    raiz : tkinter.Tk
+        Ventana principal de la aplicación.
+    columna_x : tkinter.StringVar
+        Almacena la selección de la columna 'X' en el ComboBox.
+    columna_y : tkinter.StringVar
+        Amacena la selección de la columna 'Y' en el ComboBox.
+    data_ops : DataOperations
+        Instancia que contiene el archivo de datos y permite extraer sus columnas.
+    """
     global columna_x_combo, columna_y_combo, graficar_button
 
     if columna_x_combo is not None:
@@ -253,19 +286,21 @@ def actualizar_columnas():
     else:
         messagebox.showerror("Error", "No se encontraron columnas para graficar.")
 
-def guardar_grafica(formato):
+
+def guardar_grafica(formato): 
     """
-    Función para guardar la gráfica actual en el formato especificado por el usuario.
-    
+    Muestra un cuadro de diálogo para seleccionar la ubicación y el nombre del archivo de la gráfica actual, 
+    y la guarda en el formato especificado por el usuario.
+
     Parámetros
-    -----------
+    ----------
     formato : str
-        El formato en el que se desea guardar la gráfica ('pdf', 'png', 'jpg').
-    
-    Returns
-    -----------
-    None
-        La función abre un cuadro de diálogo para guardar el archivo y luego lo guarda en el formato seleccionado.
+        El formato en el que se desea guardar la gráfica.
+
+    Variables globales
+    ------------------
+    fig : matplotlib.figure.Figure
+        La figura de matplotlib que contiene la gráfica que se va a guardar.
     """
     archivo = filedialog.asksaveasfilename(defaultextension=f".{formato}",
                                            filetypes=[(f"{formato.upper()} files", f"*.{formato}"),
@@ -274,6 +309,7 @@ def guardar_grafica(formato):
     if archivo:
         fig.savefig(archivo, format=formato)
         print(f"Gráfica guardada como {archivo}")
+
 
 def graficar_datos():
     """
