@@ -379,8 +379,44 @@ def graficar_datos():
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
 
-# Funciones para abrir ventana emergente y editar los puntos
 def update_graph_property(property_type=None, new_value=None):
+    """
+    Dependiendo de `property_type`, la función ajusta el valor de la propiedad correspondiente
+    de la gráfica y actualiza la visualización. 
+
+    Parámetros
+    ----------
+    property_type : str, opcional
+        El tipo de propiedad que se desea actualizar (por ejemplo, 'line_width', 'marker_type',
+        'line_color', 'marker_color', 'bg_color', 'point_size', 'grid'). 
+    new_value : float, str o bool, opcional
+        El nuevo valor que se asignará a la propiedad seleccionada. Puede ser un valor de 
+        grosor de línea (float), un tipo de marcador (str), un tamaño de punto (float) o 
+        un valor booleano para mostrar u ocultar la cuadrícula.
+
+    Variables globales
+    ------------------
+    line_width : float
+        Grosor de la línea de la gráfica.
+    marker_type : str
+        Tipo de marcador que se utiliza en la gráfica.
+    line_color : str
+        Color de la línea de la gráfica.
+    marker_color : str
+        Color del marcador de la gráfica.
+    bg_color : str
+        Color de fondo del área de la gráfica.
+    point_size : float
+        Tamaño de los puntos o marcadores en la gráfica.
+    show_grid : bool
+        Indica si la cuadrícula de la gráfica está visible o no.
+    ax : matplotlib.axes._axes.Axes
+        El objeto de ejes de matplotlib donde se configura el color de fondo y la cuadrícula.
+    canvas : matplotlib.backends.backend_tkagg.FigureCanvasTkAgg
+        Canvas que contiene la gráfica y permite la actualización de eventos.
+    line : matplotlib.lines.Line2D
+        Línea de la gráfica que permite asociar eventos de clic.
+    """
     global line_width, marker_type, line_color, marker_color, bg_color, point_size, show_grid
 
     if property_type == 'line_width':
@@ -403,8 +439,31 @@ def update_graph_property(property_type=None, new_value=None):
     graficar_datos()  
     canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
 
-
 def grafica_ventana(master):
+    """
+    Crea una ventana emergente para la personalización visual de la gráfica, permitiendo 
+    al usuario ajustar parámetros como el color de fondo, grosor de la línea, tipo de 
+    marcador, color y tamaño de puntos, y mostrar o ocultar la cuadrícula.
+
+    Parámetros
+    ----------
+    master: 
+        Ventana principal de la aplicación.
+
+    Variables globales
+    ------------------
+    personalizacion_ventana:
+        Referencia a la ventana emergente de personalización, para evitar crear 
+        múltiples instancias y poder acceder a sus elementos.
+    show_grid : bool
+        Valor booleano que indica si la cuadrícula de la gráfica está visible.
+    line_width : float
+        Grosor actual de la línea de la gráfica.
+    marker_type : str
+        Tipo de marcador utilizado en la gráfica.
+    point_size : float
+        Tamaño actual de los puntos en la gráfica.
+    """
     global personalizacion_ventana
 
     if personalizacion_ventana is not None and personalizacion_ventana.winfo_exists():
@@ -415,15 +474,12 @@ def grafica_ventana(master):
     personalizacion_ventana.title("Personalización de Gráfica")
     personalizacion_ventana.geometry("400x400")
 
-    # Sección del Fondo
     Label(personalizacion_ventana, text="Fondo", font=("Arial", 12, "bold")).pack(pady=10)
     Button(personalizacion_ventana, text="Color de Fondo", command=lambda: update_graph_property('bg_color')).pack(pady=5)
 
-    # Checkbutton para activar/desactivar la grilla
     grid_var = IntVar(value=int(show_grid))  # Inicializar con el valor actual
     Checkbutton(personalizacion_ventana, text="Mostrar Grilla", variable=grid_var, command=lambda: update_graph_property('grid', grid_var.get())).pack(pady=5)
 
-    # Crear un frame para la disposición en dos columnas
     frame = Frame(personalizacion_ventana)
     frame.pack(pady=10)
 
@@ -432,10 +488,8 @@ def grafica_ventana(master):
 
     Label(linea_frame, text="Línea", font=("Arial", 12, "bold")).pack(pady=10)
 
-    # Botón para seleccionar el color de la línea
     Button(linea_frame, text="Color de Línea", command=lambda: update_graph_property('line_color')).pack(pady=5)
 
-    # Slider para ajustar el grosor de la línea
     Label(linea_frame, text="Tamaño de Línea:").pack(pady=5)
     line_width_slider = Scale(linea_frame, from_=0.5, to=10, resolution=0.1, orient=HORIZONTAL, command=lambda value: update_graph_property('line_width', value))
     line_width_slider.set(line_width)
@@ -446,7 +500,6 @@ def grafica_ventana(master):
 
     Label(puntos_frame, text="Puntos", font=("Arial", 12, "bold")).pack(pady=10)
 
-    # Menú para seleccionar el tipo de marcador
     Label(puntos_frame, text="Tipo de Marcador:").pack()
     marker_options = ['o', 'x', '^', 's', '*']  
     marker_var = StringVar(value=marker_type)
@@ -454,26 +507,43 @@ def grafica_ventana(master):
     marker_menu.pack(pady=5)
     marker_menu.bind("<<ComboboxSelected>>", lambda event: update_graph_property('marker_type', marker_var.get()))
 
-    # Botón para seleccionar el color de los puntos
     Button(puntos_frame, text="Color de Puntos", command=lambda: update_graph_property('marker_color')).pack(pady=5)
 
-    # Slider para ajustar el tamaño de los puntos
     Label(puntos_frame, text="Tamaño de Puntos:").pack(pady=5)
     point_size_slider = Scale(puntos_frame, from_=1, to=20, resolution=1, orient=HORIZONTAL, command=lambda value: update_graph_property('point_size', value))
     point_size_slider.set(point_size)
     point_size_slider.pack(pady=5)
 
 def on_line_click(event, line):
+    """
+    Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
+    las propiedades de la gráfica.
+
+    Parámetros
+    ----------
+    event : matplotlib.backend_bases.MouseEvent
+        Evento que contiene información sobre el clic, incluyendo las coordenadas y el 
+        botón del mouse que fue presionado.
+    line : matplotlib.lines.Line2D
+        Objeto de línea en la gráfica, desde el cual se extraen los datos de los puntos 
+        para comparar con la posición del clic.
+
+    Variables globales
+    ------------------
+    raiz : tkinter.Tk
+        La ventana principal de la aplicación.
+    """
     if event.inaxes and event.button == 1:  # Botón izquierdo del mouse
         # Se obtienen las coordenadas de los puntos de la línea
         xdata = line.get_xdata()
         ydata = line.get_ydata()
         
-        # Comprobar si el click fue cerca de la línea
+        # Comprobar si el clic fue cerca de la línea
         for i in range(len(xdata)):
             if abs(event.xdata - xdata[i]) < 0.1 and abs(event.ydata - ydata[i]) < 0.1:
                 grafica_ventana(raiz) 
                 break
+
 
 # Función para aplicar los cambios del título
 def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
