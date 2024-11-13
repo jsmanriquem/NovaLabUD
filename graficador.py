@@ -544,11 +544,31 @@ def on_line_click(event, line):
                 grafica_ventana(raiz) 
                 break
 
-
-# Función para aplicar los cambios del título
 def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
+    """
+    Aplica los cambios en el título de la gráfica, incluyendo el texto, tamaño de fuente 
+    y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.
+
+    Parámetros
+    ----------
+    title_size_var : tkinter.IntVar
+        Variable del tamaño de la fuente del título de la gráfica.
+    title_fuente_var : tkinter.StringVar
+        Variable del estilo de fuente del título de la gráfica.
+    titulo_grafica_entry : tkinter.Entry
+        Campo de entrada del nuevo texto para el título de la gráfica.
+
+    Variables globales
+    ------------------
+    title_size : int
+        Tamaño de la fuente del título de la gráfica.
+    title_fuente : str
+        Estilo de la fuente utilizado para el título de la gráfica.
+    titulo_grafica : tkinter.StringVar
+        Variable de texto para el título de la gráfica, que almacena el valor actual y el nuevo título.
+    """
     global title_size, title_fuente, titulo_grafica
-    titulo_grafica.set(titulo_grafica_entry.get())  # Obtener el nuevo título
+    titulo_grafica.set(titulo_grafica_entry.get()) 
     
     # Obtener valores seleccionados
     title_size = int(title_size_var.get())
@@ -556,12 +576,25 @@ def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
     
     # Actualizar el título de la gráfica
     ax.set_title(titulo_grafica.get(), fontsize=title_size, fontname=title_fuente)
-    
-    # Redibujar la gráfica
     canvas.draw()
 
-# Función para abrir la ventana emergente de edición del título
 def grafica_ventana_title(master):
+    """
+    Abre una ventana emergente que permite al usuario personalizar el título de la gráfica, 
+    incluyendo el texto, tamaño de la fuente y el estilo de la fuente.
+
+    Parámetros
+    ----------
+    master : 
+        Ventana principal de la aplicación.
+    
+    Variables globales
+    ------------------
+    personal_ventana_title : tkinter.Toplevel
+        Ventana emergente de personalización del título de la gráfica.
+    titulo_grafica : tkinter.StringVar
+        Variable del título actual de la gráfica.
+    """
     global personal_ventana_title
     
     # Verificar si la ventana ya está abierta
@@ -602,8 +635,29 @@ def grafica_ventana_title(master):
     Button(personal_ventana_title, text="Aplicar Cambios", 
            command=lambda: apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry)).pack(pady=10)
 
-# Función para aplicar los cambios del título
 def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
+    """
+    Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente 
+    y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.
+
+    Parámetros
+    ----------
+    ejex_size_var : tkinter.IntVar
+        Variable vinculada al tamaño de la fuente del título del eje X.
+    ejex_fuente_var : tkinter.StringVar
+        Variable vinculada al estilo de fuente del título del eje X.
+    ejex_titulo_entry : tkinter.Entry
+        Campo de entrada que contiene el nuevo texto para el título del eje X.
+
+    Variables globales
+    ------------------
+    ejex_size : int
+        Tamaño de la fuente del título del eje X.
+    ejex_shape : str
+        Estilo de la fuente utilizado para el título del eje X.
+    ejex_titulo : tkinter.StringVar
+        Variable de texto para el título del eje X, que almacena el valor actual y el nuevo título.
+    """
     global ejex_size, ejex_shape, ejex_titulo
     ejex_titulo.set(ejex_titulo_entry.get())  # Obtener el nuevo título del eje X    
     # Obtener valores seleccionados
