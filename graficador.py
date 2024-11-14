@@ -868,7 +868,18 @@ origx_lim = x_limits.copy()
 origy_lim = y_limits.copy()
 
 def update_x_limits(master):
-    """Muestra una ventana emergente para actualizar los límites del eje X."""
+    """
+    Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.
+
+    Parámetros
+    ----------
+    master : tkinter.Tk
+        La ventana principal de la aplicación.
+    Variables globales
+    ------------------
+    ventana_lim_x : tkinter.Toplevel
+        La ventana emergente creada para la actualización de los límites del eje X.
+    """
     global ventana_lim_x
 
     # Crear nueva ventana
@@ -891,7 +902,24 @@ def update_x_limits(master):
     Button(ventana_lim_x, text="Actualizar Límites", command=lambda: set_x_limits(x_min_entry, x_max_entry)).pack(pady=10)
 
 def set_x_limits(x_min_entry, x_max_entry):
-    """Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente."""
+    """
+    Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente.
+
+    Parámetros
+    ----------
+    x_min_entry : tkinter.Entry
+        Campo de entrada dl valor para el límite inferior del eje X (x_min).
+
+    x_max_entry : tkinter.Entry
+        Campo de entrada del valor para el límite superior del eje X (x_max).
+
+    Variables globales
+    ------------------
+    x_limits : list
+        Lista que almacena los límites actuales del eje X [x_min, x_max].
+    origx_lim : list
+        Copia de los límites originales del eje X, utilizada para restaurar los valores iniciales si es necesario.
+    """
     global x_limits, origx_lim
 
     try:
@@ -909,7 +937,19 @@ def set_x_limits(x_min_entry, x_max_entry):
         print("Por favor, ingrese valores numéricos válidos.")
 
 def update_y_limits(master):
-    """Muestra una ventana emergente para actualizar los límites del eje Y."""
+    """
+    Muestra una ventana emergente para actualizar los límites del eje Y.
+
+    Parámetros
+    ----------
+    master : tkinter.Tk
+        La ventana principal de la aplicación. Es el contenedor sobre el que se crea la ventana emergente.
+
+    Variables globales
+    ------------------
+    ventana_lim_y : tkinter.Toplevel
+        Ventana emergente que permite al usuario ingresar los límites del eje Y.
+    """
     global ventana_lim_y
 
     # Crear nueva ventana
@@ -932,7 +972,25 @@ def update_y_limits(master):
     Button(ventana_lim_y, text="Actualizar Límites", command=lambda: set_y_limits(y_min_entry, y_max_entry)).pack(pady=10)
 
 def set_y_limits(y_min_entry, y_max_entry):
-    """Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente."""
+    """
+    Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente.
+
+    Parámetros
+    ----------
+    y_min_entry : tkinter.Entry
+        Campo de entrada del valor mínimo para el eje Y.
+
+    y_max_entry : tkinter.Entry
+        Campo de entrada del valor máximo para el eje Y.
+
+    Variables globales
+    ------------------
+    y_limits : list
+        Lista que almacena los valores actuales de los límites del eje Y [y_min, y_max].
+
+    origy_lim : list
+        Copia de los límites originales del eje Y, utilizada para restaurar los valores si es necesario.
+    """
     global y_limits, origy_lim
 
     try:
