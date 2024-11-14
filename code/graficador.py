@@ -875,6 +875,7 @@ def update_x_limits(master):
     ----------
     master : tkinter.Tk
         La ventana principal de la aplicación.
+
     Variables globales
     ------------------
     ventana_lim_x : tkinter.Toplevel

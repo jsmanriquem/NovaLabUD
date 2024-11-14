@@ -1,2 +1,9 @@
 code/__pycache__/
 __pycache__/
+code/data_operations.py
+build
+make.bat 
+Makefile
+source/_static/
+source/_templates/
+source/conf.py
