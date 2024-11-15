@@ -4,7 +4,7 @@ import webbrowser
 import pandas as pd
 import fitz  # PyMuPDF
 from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
-import io
+import io, sys, subprocess
 from data_operations import DataOperations
 from regression_analysis import RegressionAnalysis
 
@@ -224,13 +224,14 @@ class LaboratorySoftware:
         - Archivo: Para operaciones de importación/exportación
         - Edición: Para procesamiento de datos
         - Acerca de: Para información y documentación
+        - Ver: Para abrir el graficador en una nueva ventana
         """
         menubar = Menu(self.root)
 
         # Menú Archivo
         file_menu = Menu(menubar, tearoff=0)
         file_menu.add_command(label="Importar", 
-                              command=lambda: self.data_ops.load_file(self.update_data_display))
+                            command=lambda: self.data_ops.load_file(self.update_data_display))
         file_menu.add_command(label="Exportar", command=self.data_ops.export_results)
         file_menu.add_separator()
         file_menu.add_command(label="Salir", command=self.root.quit)
@@ -258,10 +259,13 @@ class LaboratorySoftware:
         edit_menu.add_cascade(label="Regresiones", menu=regression_menu)
         menubar.add_cascade(label="Edición", menu=edit_menu)
 
+        # Menú Ver
+        menubar.add_command(label="Ver", command=self.open_graficador)
+        
         # Menú Acerca de
         about_menu = Menu(menubar, tearoff=0)
         about_menu.add_command(label="Documentación", 
-                             command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
+                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
         about_menu.add_command(label="Autores", command=self.show_autores)
         menubar.add_cascade(label="Acerca de", menu=about_menu)
 
@@ -304,6 +308,14 @@ class LaboratorySoftware:
         var_y = simpledialog.askstring("Selecciona la variable dependiente",
                                        "Ingresa el nombre de la variable dependiente:")
         return var_x, var_y
+    
+    def open_graficador(self):
+        """Método para ejecutar graficador.py en una nueva ventana."""
+        try:
+            # Ejecutar el archivo graficador.py como un proceso independiente
+            subprocess.Popen([sys.executable, 'graficador.py'])
+        except Exception as e:
+            print(f"Error al ejecutar graficador.py: {e}")
 
     def run(self) -> None:
         """
