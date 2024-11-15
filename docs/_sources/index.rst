@@ -1,28 +1,12 @@
-.. toma_datos documentation master file, created by
-   sphinx-quickstart on Sun Oct 13 20:24:53 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-toma_datos documentation
+Documentación de ``NovaLab``
 ========================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Hola, esta es la documentación de la aplicación: ``NovaLab``. Esta es una aplicación diseñada para procesar, analizar y visualizar datos de los experimentos de *'Caída libre'* y *'Ley de Hooke'*, que junto a ello, se muestra de forma amigable la teoría de los experimentos.
 
+Nace como un software diseñado de forma amigable para su público dirigido, el cual son estudiantes de primeros semestres del Programa Académico de Física de la Facultad de Ciencias Matemáticas y Naturales de la Universidad Distrital Francisco José de Caldas.
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 3
+   :caption: Contenidos:
 
-app
-=======
-
-.. automodule:: app
-    :members:
-
-data_operations
-=======
-
-.. automodule:: data_operations
-    :members:
+   modules

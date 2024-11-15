@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>app module &#8212; documentación de Proyecto final - 1.0</title>
+    <title>Módulo: app.py &#8212; documentación de Proyecto final - 1.0</title>
   
   
   
@@ -47,6 +47,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'app';</script>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Módulo: data_operations.py" href="data_operations.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -98,8 +100,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -138,7 +138,14 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_operations.html">Módulo: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_analysis.html">Módulo: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="graficador.html">Módulo: <code class="docutils literal notranslate"><span class="pre">`graficador.py</span></code></a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -254,9 +261,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -267,42 +272,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>app module</h1>
+    <h1>Módulo: app.py</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contenido </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.ui_container"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.ui_container</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.fill_null_with_mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_duplicates()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_null_values()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.root"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.root</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.main_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.main_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.results_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.results_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_table</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_ops"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_ops</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.no_data_label"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.no_data_label</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.create_data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.create_data_table()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.setup_menus"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.setup_menus()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.show_autores"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.show_autores()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.update_data_display"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.update_data_display()</span></code></a></li>
-</ul>
-</li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -312,207 +286,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-app">
-<span id="app-module"></span><h1>app module<a class="headerlink" href="#module-app" title="Link to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_container</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="index.html#data_operations.DataOperations" title="data_operations.DataOperations"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataOperations</span></code></a></p>
-<p>Extensión de DataOperations que integra callbacks para la interfaz de usuario.</p>
-<p>Esta clase extiende las operaciones de datos básicas para actualizar
-automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.ui_container">
-<span class="sig-name descname"><span class="pre">ui_container</span></span><a class="headerlink" href="#app.DataOperationsWithUI.ui_container" title="Link to this definition">#</a></dt>
-<dd><p>Referencia al contenedor de UI principal.</p>
-</dd></dl>
-
-<dl class="simple">
-<dt>Inherits:</dt><dd><p>DataOperations: Clase base con operaciones de datos fundamentales.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.fill_null_with_mean">
-<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.fill_null_with_mean" title="Link to this definition">#</a></dt>
-<dd><p>Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.load_file" title="Link to this definition">#</a></dt>
-<dd><p>Carga un archivo y actualiza la UI si es exitoso.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ui_callback</strong> (<em>callable</em><em>, </em><em>optional</em>) – Función a llamar para actualizar la UI con los datos cargados.</p>
-</dd>
-<dt class="field-even">Devuelve<span class="colon">:</span></dt>
-<dd class="field-even"><p>True si la carga fue exitosa, False en caso contrario</p>
-</dd>
-<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.normalize_data" title="Link to this definition">#</a></dt>
-<dd><p>Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_duplicates" title="Link to this definition">#</a></dt>
-<dd><p>Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_null_values" title="Link to this definition">#</a></dt>
-<dd><p>Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="app.LaboratorySoftware">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">LaboratorySoftware</span></span><a class="headerlink" href="#app.LaboratorySoftware" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
-Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
-del software, incluyendo la carga de datos, visualización, procesamiento y análisis.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.root">
-<span class="sig-name descname"><span class="pre">root</span></span><a class="headerlink" href="#app.LaboratorySoftware.root" title="Link to this definition">#</a></dt>
-<dd><p>Ventana principal de la aplicación.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tk.Tk</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.main_frame">
-<span class="sig-name descname"><span class="pre">main_frame</span></span><a class="headerlink" href="#app.LaboratorySoftware.main_frame" title="Link to this definition">#</a></dt>
-<dd><p>Panel principal dividido que contiene la tabla de datos y resultados.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.PanedWindow</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.data_frame">
-<span class="sig-name descname"><span class="pre">data_frame</span></span><a class="headerlink" href="#app.LaboratorySoftware.data_frame" title="Link to this definition">#</a></dt>
-<dd><p>Marco para la tabla de datos.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.LabelFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.results_frame">
-<span class="sig-name descname"><span class="pre">results_frame</span></span><a class="headerlink" href="#app.LaboratorySoftware.results_frame" title="Link to this definition">#</a></dt>
-<dd><p>Marco para mostrar resultados y gráficas.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.LabelFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.data_table">
-<span class="sig-name descname"><span class="pre">data_table</span></span><a class="headerlink" href="#app.LaboratorySoftware.data_table" title="Link to this definition">#</a></dt>
-<dd><p>Tabla para visualizar los datos cargados.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.Treeview</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.data_ops">
-<span class="sig-name descname"><span class="pre">data_ops</span></span><a class="headerlink" href="#app.LaboratorySoftware.data_ops" title="Link to this definition">#</a></dt>
-<dd><p>Instancia para operaciones de datos con UI.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="index.html#app.DataOperationsWithUI" title="app.DataOperationsWithUI">DataOperationsWithUI</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.no_data_label">
-<span class="sig-name descname"><span class="pre">no_data_label</span></span><a class="headerlink" href="#app.LaboratorySoftware.no_data_label" title="Link to this definition">#</a></dt>
-<dd><p>Etiqueta mostrada cuando no hay datos cargados.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.Label</p>
-</dd>
-</dl>
-</dd></dl>
-
-<p>Clase principal del Software de Laboratorio.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.create_data_table">
-<span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">#</a></dt>
-<dd><p>Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
-los datos cargados de manera organizada y navegable.
-Crea la tabla para mostrar los datos con scrollbars.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.LaboratorySoftware.run" title="Link to this definition">#</a></dt>
-<dd><p>Inicia el bucle principal de la aplicación.</p>
-<p>Este método debe ser llamado después de la inicialización para comenzar
-la ejecución de la interfaz gráfica.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.setup_menus">
-<span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">#</a></dt>
-<dd><p>Configura la barra de menús de la aplicación.</p>
-<p>Crea y configura los menús principales:
-- Archivo: Para operaciones de importación/exportación
-- Edición: Para procesamiento de datos
-- Acerca de: Para información y documentación</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.show_autores">
-<span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
-<dd><p>Muestra los autores del software.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.update_data_display">
-<span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">#</a></dt>
-<dd><p>Actualiza la tabla de datos con nueva información.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – DataFrame con los nuevos datos a mostrar.
-Si es None o está vacío, se muestra el mensaje de no datos.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+  <section id="modulo-app-py">
+<h1>Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code><a class="headerlink" href="#modulo-app-py" title="Link to this heading">#</a></h1>
+<p>Este es el <strong>módulo principal del software</strong>, es el que se encarga de toda la interfaz gráfica de realizar las implementaciones de los demás módulos para el usuario final. Posee un extenso número de funciones que permiten el correcto funcionamiento de la aplicación.</p>
 </section>
 
 
@@ -526,51 +302,30 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="modules.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data_operations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Módulo: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contenido
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.ui_container"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.ui_container</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.fill_null_with_mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_duplicates()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_null_values()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.root"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.root</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.main_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.main_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.results_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.results_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_table</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_ops"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_ops</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.no_data_label"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.no_data_label</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.create_data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.create_data_table()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.setup_menus"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.setup_menus()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.show_autores"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.show_autores()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.update_data_display"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.update_data_display()</span></code></a></li>
-</ul>
-</li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
