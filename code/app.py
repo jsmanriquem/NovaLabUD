@@ -2,6 +2,9 @@ import tkinter as tk
 from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu
 import webbrowser
 import pandas as pd
+import fitz  # PyMuPDF
+from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
+import io
 from data_operations import DataOperations
 
 class LaboratorySoftware:
@@ -51,13 +54,26 @@ class LaboratorySoftware:
         # Crear el Treeview con scrollbars en el panel de datos
         self.create_data_table()
 
-        # Panel derecho para resultados y gráficas
-        self.results_frame = ttk.LabelFrame(self.main_frame, text="Resultados y Gráficas", padding="5 5 5 5")
-        self.main_frame.add(self.results_frame, weight=1)
+        # Panel derecho para la Teoría
+        self.frame_teoria = ttk.LabelFrame(self.main_frame, text="Teoría", padding="5 5 5 5")
+        self.main_frame.add(self.frame_teoria, weight=1)  # Asignamos más espacio a la teoría
 
-        # Crear el frame donde irá el graficador (usando ttk para consistencia)
-        self.frame_grafica = ttk.Frame(self.results_frame)
-        self.frame_grafica.pack(fill='both', expand=True)
+        # Crear el Notebook
+        self.notebook = ttk.Notebook(self.frame_teoria)
+        self.notebook.pack(fill=tk.BOTH, expand=True)
+
+        # Crear las pestañas
+        self.tab_cai_libre = ttk.Frame(self.notebook)
+        self.tab_ley_hooke = ttk.Frame(self.notebook)
+
+        self.notebook.add(self.tab_cai_libre, text="Caída libre")
+        self.notebook.add(self.tab_ley_hooke, text="Ley de Hooke")
+
+        # Cargar PDF solo cuando se seleccione la pestaña
+        self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_change)
+
+        # Cargar el PDF de Caída Libre por defecto (si la primera pestaña es la activa)
+        self.load_pdf(self.tab_cai_libre, "caida_libre.pdf")
 
         # Inicializar módulos
         self.data_ops = DataOperationsWithUI(self)
@@ -71,6 +87,67 @@ class LaboratorySoftware:
                                     font=('Helvetica', 10))
         self.no_data_label.pack(pady=20)
 
+    def load_pdf(self, tab, pdf_path):
+        """Carga el PDF en el tab especificado."""
+        # Limpiar el contenido del tab antes de cargar el nuevo PDF
+        for widget in tab.winfo_children():
+            widget.destroy()
+
+        # Cargar el documento PDF
+        pdf_document = fitz.open(pdf_path)
+        first_page = pdf_document.load_page(0)
+        width = first_page.rect.width  # Obtener el ancho del PDF
+        height = first_page.rect.height
+
+        # Crear un Frame dentro del tab para mostrar el PDF
+        frame = ttk.Frame(tab)
+        frame.pack(fill=tk.BOTH, expand=True)
+
+        # Forzar la actualización de tareas pendientes para obtener el ancho correcto del frame
+        self.root.update_idletasks()
+
+        # Obtener el ancho del frame después de su renderizado
+        frame_width = frame.winfo_width()
+
+        # Calcular el factor de escala basado en el ancho del frame
+        scale_factor = frame_width / width
+        adjusted_width = int(width * scale_factor)
+        adjusted_height = int(height * scale_factor)
+
+        # Crear un Canvas para mostrar el PDF
+        canvas = tk.Canvas(frame)
+        scrollbar = tk.Scrollbar(frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        # Cargar cada página del PDF como imagen y agregarla al Canvas
+        for i in range(len(pdf_document)):
+            page = pdf_document.load_page(i)
+            pix = page.get_pixmap(matrix=fitz.Matrix(scale_factor, scale_factor))  # Aplicar la escala
+            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+            img_tk = ImageTk.PhotoImage(img)
+
+            label = tk.Label(scrollable_frame, image=img_tk, bg="white")
+            label.image = img_tk
+            label.pack(fill=tk.BOTH)
+
+    def on_tab_change(self, event):
+        """Cuando se cambia de pestaña, se carga el PDF correspondiente"""
+        selected_tab = self.notebook.tab(self.notebook.select(), "text")
+        
+        if selected_tab == "Caída libre":
+            self.load_pdf(self.tab_cai_libre, "caida_libre.pdf")
+        elif selected_tab == "Ley de Hooke":
+            self.load_pdf(self.tab_ley_hooke, "ley_de_hooke.pdf")
 
     def create_data_table(self):
         """
@@ -193,6 +270,80 @@ class LaboratorySoftware:
         la ejecución de la interfaz gráfica.
         """
         self.root.mainloop()
+
+    def show_theory(self, theory=None):
+        """Muestra la teoría de los experimentos a realizar."""
+
+        if not theory:  # Si no se pasa un argumento, se muestra la ventana principal para elegir
+            window = tk.Toplevel(self.root)
+            window.title("Teoría")
+            window.geometry("600x600")
+            window.config(bg="white")
+
+            lbl = tk.Label(window, text="Módulo: Teoría", font=("Helvetica", 16), bg="white")
+            lbl.pack(pady=20)
+
+            btn_fall = tk.Button(window, text="Caída libre", command=lambda: self.show_theory("Caída libre"), width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+            btn_fall.pack(pady=5)
+
+            btn_hooke = tk.Button(window, text="Ley de Hooke", command=lambda: self.show_theory("Ley de Hooke"), width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+            btn_hooke.pack(pady=5)
+        else:
+            # Mostrar la teoría seleccionada
+            window = tk.Toplevel(self.root)
+            window.title("Teoría")
+            window.geometry("600x600")
+            window.config(bg="white")
+
+            lbl = tk.Label(window, text=f"Módulo: {theory}", font=("Helvetica", 16), bg="white")
+            lbl.pack(pady=20)
+
+            # Establecer la ruta del PDF basado en la teoría seleccionada
+            if theory == "Caída libre":
+                pdf_path = "caida_libre.pdf"
+            elif theory == "Ley de Hooke":
+                pdf_path = "ley_de_hooke.pdf"
+
+            # Cargar el PDF y mostrarlo como antes (sin cambios en esta parte)
+            pdf_document = fitz.open(pdf_path)
+            first_page = pdf_document.load_page(0)
+            width = first_page.rect.width
+            height = first_page.rect.height
+
+            # Ajustar la geometría de la ventana
+            scrollbar_width = 20
+            window.geometry(f"{int(width) + scrollbar_width}x{int(height)}")
+
+            frame = tk.Frame(window)
+            frame.pack(fill=tk.BOTH, expand=True)
+
+            canvas = tk.Canvas(frame)
+            scrollbar = tk.Scrollbar(frame, orient="vertical", command=canvas.yview)
+            scrollable_frame = tk.Frame(canvas)
+
+            scrollable_frame.bind(
+                "<Configure>",
+                lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+            )
+
+            canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+            canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+            scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+            canvas.configure(yscrollcommand=scrollbar.set)
+
+            btn_back = tk.Button(window, text='Volver a "Teoría"', command=lambda: [window.destroy(), self.show_theory()], width=25, font=("Helvetica", 12), bg="#FF5722", fg="white")
+            btn_back.pack(pady=5)
+
+            # Cargar las páginas del PDF como imágenes
+            for i in range(len(pdf_document)):
+                page = pdf_document.load_page(i)
+                pix = page.get_pixmap()
+                img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+
+                img_tk = ImageTk.PhotoImage(img)
+                label = tk.Label(scrollable_frame, image=img_tk, bg="white")
+                label.image = img_tk
+                label.pack(fill=tk.BOTH)
 
 class DataOperationsWithUI(DataOperations):
     """
