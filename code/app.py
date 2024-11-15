@@ -1,8 +1,12 @@
 import tkinter as tk
-from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu
+from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu, simpledialog, messagebox
 import webbrowser
 import pandas as pd
+import fitz  # PyMuPDF
+from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
+import io, sys, subprocess
 from data_operations import DataOperations
+from regression_analysis import RegressionAnalysis
 
 class LaboratorySoftware:
     """
@@ -51,16 +55,30 @@ class LaboratorySoftware:
         # Crear el Treeview con scrollbars en el panel de datos
         self.create_data_table()
 
-        # Panel derecho para resultados y gráficas
-        self.results_frame = ttk.LabelFrame(self.main_frame, text="Resultados y Gráficas", padding="5 5 5 5")
-        self.main_frame.add(self.results_frame, weight=1)
+        # Panel derecho para la Teoría
+        self.frame_teoria = ttk.LabelFrame(self.main_frame, text="Teoría", padding="5 5 5 5")
+        self.main_frame.add(self.frame_teoria, weight=1)  # Asignamos más espacio a la teoría
 
-        # Crear el frame donde irá el graficador (usando ttk para consistencia)
-        self.frame_grafica = ttk.Frame(self.results_frame)
-        self.frame_grafica.pack(fill='both', expand=True)
+        # Crear el Notebook
+        self.notebook = ttk.Notebook(self.frame_teoria)
+        self.notebook.pack(fill=tk.BOTH, expand=True)
+
+        # Crear las pestañas
+        self.tab_cai_libre = ttk.Frame(self.notebook)
+        self.tab_ley_hooke = ttk.Frame(self.notebook)
+
+        self.notebook.add(self.tab_cai_libre, text="Caída libre")
+        self.notebook.add(self.tab_ley_hooke, text="Ley de Hooke")
+
+        # Cargar PDF solo cuando se seleccione la pestaña
+        self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_change)
+
+        # Cargar el PDF de Caída Libre por defecto (si la primera pestaña es la activa)
+        self.load_pdf(self.tab_cai_libre, "caida_libre.pdf")
 
         # Inicializar módulos
         self.data_ops = DataOperationsWithUI(self)
+        self.regression_analysis = RegressionAnalysis(self.data_ops)  # Instancia de la clase RegressionAnalysis
         
         # Configurar menús
         self.setup_menus()
@@ -71,6 +89,67 @@ class LaboratorySoftware:
                                     font=('Helvetica', 10))
         self.no_data_label.pack(pady=20)
 
+    def load_pdf(self, tab, pdf_path):
+        """Carga el PDF en el tab especificado."""
+        # Limpiar el contenido del tab antes de cargar el nuevo PDF
+        for widget in tab.winfo_children():
+            widget.destroy()
+
+        # Cargar el documento PDF
+        pdf_document = fitz.open(pdf_path)
+        first_page = pdf_document.load_page(0)
+        width = first_page.rect.width  # Obtener el ancho del PDF
+        height = first_page.rect.height
+
+        # Crear un Frame dentro del tab para mostrar el PDF
+        frame = ttk.Frame(tab)
+        frame.pack(fill=tk.BOTH, expand=True)
+
+        # Forzar la actualización de tareas pendientes para obtener el ancho correcto del frame
+        self.root.update_idletasks()
+
+        # Obtener el ancho del frame después de su renderizado
+        frame_width = frame.winfo_width()
+
+        # Calcular el factor de escala basado en el ancho del frame
+        scale_factor = frame_width / width
+        adjusted_width = int(width * scale_factor)
+        adjusted_height = int(height * scale_factor)
+
+        # Crear un Canvas para mostrar el PDF
+        canvas = tk.Canvas(frame)
+        scrollbar = tk.Scrollbar(frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        # Cargar cada página del PDF como imagen y agregarla al Canvas
+        for i in range(len(pdf_document)):
+            page = pdf_document.load_page(i)
+            pix = page.get_pixmap(matrix=fitz.Matrix(scale_factor, scale_factor))  # Aplicar la escala
+            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+            img_tk = ImageTk.PhotoImage(img)
+
+            label = tk.Label(scrollable_frame, image=img_tk, bg="white")
+            label.image = img_tk
+            label.pack(fill=tk.BOTH)
+
+    def on_tab_change(self, event):
+        """Cuando se cambia de pestaña, se carga el PDF correspondiente"""
+        selected_tab = self.notebook.tab(self.notebook.select(), "text")
+        
+        if selected_tab == "Caída libre":
+            self.load_pdf(self.tab_cai_libre, "caida_libre.pdf")
+        elif selected_tab == "Ley de Hooke":
+            self.load_pdf(self.tab_ley_hooke, "ley_de_hooke.pdf")
 
     def create_data_table(self):
         """
@@ -145,13 +224,14 @@ class LaboratorySoftware:
         - Archivo: Para operaciones de importación/exportación
         - Edición: Para procesamiento de datos
         - Acerca de: Para información y documentación
+        - Ver: Para abrir el graficador en una nueva ventana
         """
         menubar = Menu(self.root)
 
         # Menú Archivo
         file_menu = Menu(menubar, tearoff=0)
         file_menu.add_command(label="Importar", 
-                              command=lambda: self.data_ops.load_file(self.update_data_display))
+                            command=lambda: self.data_ops.load_file(self.update_data_display))
         file_menu.add_command(label="Exportar", command=self.data_ops.export_results)
         file_menu.add_separator()
         file_menu.add_command(label="Salir", command=self.root.quit)
@@ -169,12 +249,23 @@ class LaboratorySoftware:
         process_data_menu.add_command(label="Rellenar nulos con media", 
                                     command=lambda: self.data_ops.fill_null_with_mean(self.update_data_display))
         edit_menu.add_cascade(label="Procesar datos", menu=process_data_menu)
+        regression_menu = Menu(edit_menu, tearoff=0)
+        regression_menu.add_command(label="Regresión lineal", 
+                                    command=lambda: self.run_regression('linear'))
+        regression_menu.add_command(label="Regresión polinómica", 
+                                    command=lambda: self.run_regression('polynomial'))
+        regression_menu.add_command(label="Interpolación", 
+                                    command=lambda: self.run_regression('interpolation'))
+        edit_menu.add_cascade(label="Regresiones", menu=regression_menu)
         menubar.add_cascade(label="Edición", menu=edit_menu)
 
+        # Menú Ver
+        menubar.add_command(label="Ver", command=self.open_graficador)
+        
         # Menú Acerca de
         about_menu = Menu(menubar, tearoff=0)
         about_menu.add_command(label="Documentación", 
-                             command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
+                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
         about_menu.add_command(label="Autores", command=self.show_autores)
         menubar.add_cascade(label="Acerca de", menu=about_menu)
 
@@ -184,6 +275,47 @@ class LaboratorySoftware:
         """Muestra los autores del software."""
         autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastian Manrique"
         messagebox.showinfo("Autores", autores)
+
+    def show_warning(self, message):
+        """Muestra una advertencia usando Tkinter."""
+        messagebox.showwarning("Advertencia", message)
+
+    def run_regression(self, regression_type: str):
+        """Ejecuta la regresión seleccionada con los datos cargados."""
+        if self.data_ops.data is None:
+            self.show_warning("No hay datos cargados. Primero importa los datos.")
+            return
+
+        # Obtener las variables a través de un cuadro de diálogo o un sistema de selección
+        var_x, var_y = self.select_variables()  # Aquí seleccionamos las variables
+
+        if regression_type == 'linear':
+            self.regression_analysis.linear_regression(var_x, var_y)
+        elif regression_type == 'polynomial':
+            self.regression_analysis.polynomial_regression(var_x, var_y)
+        elif regression_type == 'interpolation':
+            self.regression_analysis.interpolation(var_x, var_y)
+        else:
+            self.show_warning("Tipo de regresión no válido")
+
+    def select_variables(self):
+        """Permite al usuario seleccionar las variables para la regresión."""
+        # Aquí puedes cambiar esto según cómo quieras que se seleccionen las variables.
+        # Por ejemplo, podrías usar un cuadro de diálogo para pedir el nombre de las variables.
+
+        var_x = simpledialog.askstring("Selecciona la variable independiente",
+                                       "Ingresa el nombre de la variable independiente:")
+        var_y = simpledialog.askstring("Selecciona la variable dependiente",
+                                       "Ingresa el nombre de la variable dependiente:")
+        return var_x, var_y
+    
+    def open_graficador(self):
+        """Método para ejecutar graficador.py en una nueva ventana."""
+        try:
+            # Ejecutar el archivo graficador.py como un proceso independiente
+            subprocess.Popen([sys.executable, 'graficador.py'])
+        except Exception as e:
+            print(f"Error al ejecutar graficador.py: {e}")
 
     def run(self) -> None:
         """
