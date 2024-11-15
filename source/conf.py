@@ -6,18 +6,15 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import sphinx_book_theme
-
-project = 'proyecto_final'
-copyright = '2024, proyecto_final'
-author = 'Andrés Gómez, Jorge Garzón, Julián Aros, Laura Triana, Laura Oliveros, Sebastian Manrique'
-release = '1'
+project = 'Graficador'
+copyright = '2024, Laura Oliveros & Laura Triana'
+author = 'Laura Oliveros & Laura Triana'
+release = '1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-html_theme = 'sphinx_book_theme'
-extensions = []
+extensions = ['sphinx.ext.autodoc']
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -27,5 +24,9 @@ language = 'es'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_static_path = ['assets']
-html_baseurl = 'https://jsmanriquem.github.io/proyecto_final/'
+html_theme = 'furo'
+html_static_path = ['_static']
+
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../'))
