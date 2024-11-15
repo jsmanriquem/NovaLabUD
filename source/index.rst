@@ -1,9 +1,9 @@
-.. Graficador documentation master file, created by
-   sphinx-quickstart on Mon Nov 11 21:49:40 2024.
+.. toma_datos documentation master file, created by
+   sphinx-quickstart on Sun Oct 13 20:24:53 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Graficador documentation
+toma_datos documentation
 ========================
 
 Add your content using ``reStructuredText`` syntax. See the
@@ -15,4 +15,14 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
 
-   modules
+app
+=======
+
+.. automodule:: app
+    :members:
+
+data_operations
+=======
+
+.. automodule:: data_operations
+    :members:
