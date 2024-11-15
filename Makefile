@@ -1,20 +1,39 @@
-# Minimal makefile for Sphinx documentation
-#
+# Minimal makefile for Sphinx documentation with custom post-processing
 
-# You can set these variables from the command line, and also
-# from the environment for the first two.
-SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
+# Variables
 SOURCEDIR     = source
 BUILDDIR      = docs
 
-# Put it first so that "make" without argument is like "make help".
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+# Define the command to run Sphinx build using Python
+SPHINXBUILD   = python -m sphinx -b html
 
-.PHONY: help Makefile
+# Target to build the documentation
+build:
+	# 1. Ejecutar el comando Sphinx para generar la documentación
+	@$(SPHINXBUILD) $(SOURCEDIR) $(BUILDDIR)
+	@echo "Sphinx documentation built."
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	# 2. Renombrar la carpeta _static a assets dentro de docs
+	@if [ -d "$(BUILDDIR)/_static" ]; then \
+		mv "$(BUILDDIR)/_static" "$(BUILDDIR)/assets"; \
+		echo "Renamed '_static' to 'assets'"; \
+	else \
+		echo "No '_static' folder found to rename"; \
+	fi
+
+	# 3. Reemplazar '_static' por 'assets' en todos los archivos .html generados dentro de docs
+	@echo "Updating references in HTML files..."
+	@find $(BUILDDIR) -type f -name "*.html" -exec sed -i 's/_static/assets/g' {} \;
+	@echo "Replaced '_static' with 'assets' in HTML files."
+
+	# 4. Crear el archivo .nojekill en la carpeta docs si no existe
+	@echo "Creating .nojekill file..."
+	@touch "$(BUILDDIR)/.nojekill"
+	@echo ".nojekill file created."
+
+	@echo "Build and modifications completed."
+
+# Optional target to clean up the build directory
+clean:
+	rm -rf $(BUILDDIR)/*
+	@echo "Cleaned build directory."
