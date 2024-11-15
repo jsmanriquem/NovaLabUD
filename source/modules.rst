@@ -1,8 +1,7 @@
-proyecto_final
-==============
+.. toctree::
+   :maxdepth: 1
 
-.. automodule:: graficador
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+   app
+   data_operations
+   regression_analysis
+   graficador
