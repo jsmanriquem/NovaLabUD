@@ -6,7 +6,7 @@
 <link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="search.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-        <title>documentación de Graficador - 1.0</title>
+        <title>data_operations module - documentación de Graficador - 1.0</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">documentación de Graficador - 1.0</div></a>
+      <a href="index.html"><div class="brand">documentación de Graficador - 1.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -178,7 +178,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -187,7 +187,7 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
   <span class="sidebar-brand-text">documentación de Graficador - 1.0</span>
@@ -217,7 +217,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="_sources/index.rst.txt" title="View this page">
+  <a class="muted-link" href="_sources/data_operations.rst.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -231,151 +231,19 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="toma-datos-documentation">
-<h1>toma_datos documentation<a class="headerlink" href="#toma-datos-documentation" title="Link to this heading">¶</a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-<section id="module-app">
-<span id="app"></span><h1>app<a class="headerlink" href="#module-app" title="Link to this heading">¶</a></h1>
+          <section id="module-data_operations">
+<span id="data-operations-module"></span><h1>data_operations module<a class="headerlink" href="#module-data_operations" title="Link to this heading">¶</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_container</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">¶</a></dt>
-<dd><p>Extensión de DataOperations que integra callbacks para la interfaz de usuario.</p>
-<p>Esta clase extiende las operaciones de datos básicas para actualizar
-automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
-<dl class="simple">
-<dt>Attributes:</dt><dd><p>ui_container: Referencia al contenedor de UI principal.</p>
-</dd>
-<dt>Inherits:</dt><dd><p>DataOperations: Clase base con operaciones de datos fundamentales.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.fill_null_with_mean">
-<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.fill_null_with_mean" title="Link to this definition">¶</a></dt>
-<dd><p>Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.load_file" title="Link to this definition">¶</a></dt>
-<dd><p>Carga un archivo y actualiza la UI si es exitoso.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><p>ui_callback (callable, optional): Función a llamar para actualizar la UI con los datos cargados.</p>
-</dd>
-<dt>Returns:</dt><dd><p>bool: True si la carga fue exitosa, False en caso contrario</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.normalize_data" title="Link to this definition">¶</a></dt>
-<dd><p>Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_duplicates" title="Link to this definition">¶</a></dt>
-<dd><p>Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_null_values" title="Link to this definition">¶</a></dt>
-<dd><p>Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="app.LaboratorySoftware">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">LaboratorySoftware</span></span><a class="headerlink" href="#app.LaboratorySoftware" title="Link to this definition">¶</a></dt>
-<dd><p>Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
-Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
-del software, incluyendo la carga de datos, visualización, procesamiento y análisis.</p>
-<dl class="simple">
-<dt>Attributes:</dt><dd><p>root (tk.Tk): Ventana principal de la aplicación.
-main_frame (ttk.PanedWindow): Panel principal dividido que contiene la tabla de datos y resultados.
-data_frame (ttk.LabelFrame): Marco para la tabla de datos.
-results_frame (ttk.LabelFrame): Marco para mostrar resultados y gráficas.
-data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
-data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
-no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.</p>
-</dd>
-</dl>
-<p>Clase principal del Software de Laboratorio.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.create_data_table">
-<span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">¶</a></dt>
-<dd><p>Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
-los datos cargados de manera organizada y navegable.
-Crea la tabla para mostrar los datos con scrollbars.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.LaboratorySoftware.run" title="Link to this definition">¶</a></dt>
-<dd><p>Inicia el bucle principal de la aplicación.</p>
-<p>Este método debe ser llamado después de la inicialización para comenzar
-la ejecución de la interfaz gráfica.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.setup_menus">
-<span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">¶</a></dt>
-<dd><p>Configura la barra de menús de la aplicación.</p>
-<p>Crea y configura los menús principales:
-- Archivo: Para operaciones de importación/exportación
-- Edición: Para procesamiento de datos
-- Acerca de: Para información y documentación</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.show_autores">
-<span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">¶</a></dt>
-<dd><p>Muestra los autores del software.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.update_data_display">
-<span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">¶</a></dt>
-<dd><p>Actualiza la tabla de datos con nueva información.</p>
-<dl class="simple">
-<dt>Args:</dt><dd><dl class="simple">
-<dt>data (pd.DataFrame): DataFrame con los nuevos datos a mostrar.</dt><dd><p>Si es None o está vacío, se muestra el mensaje de no datos.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-</section>
-<section id="data-operations">
-<h1>data_operations<a class="headerlink" href="#data-operations" title="Link to this heading">¶</a></h1>
-<dl class="py class" id="module-data_operations">
 <dt class="sig sig-object py" id="data_operations.DataOperations">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="headerlink" href="#data_operations.DataOperations" title="Link to this definition">¶</a></dt>
-<dd><p>Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
 Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
 un registro de las transformaciones aplicadas y los datos originales.
 Las operaciones a realizar en dichas transformaciones son:</p>
@@ -577,8 +445,36 @@ Muestra un mensaje con el número de filas eliminadas.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">data_operations module</a><ul>
+<li><a class="reference internal" href="#data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul>
+<li><a class="reference internal" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
+<li><a class="reference internal" href="#data_operations.DataOperations.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_with_mean()</span></code></a></li>
+<li><a class="reference internal" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
+<li><a class="reference internal" href="#data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
+<li><a class="reference internal" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
+<li><a class="reference internal" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
+<li><a class="reference internal" href="#data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>

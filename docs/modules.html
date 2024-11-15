@@ -1,0 +1,1003 @@
+<!doctype html>
+<html class="no-js" lang="es" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="search.html" />
+
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
+        <title>proyecto_final - documentación de Graficador - 1.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">documentación de Graficador - 1.0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">documentación de Graficador - 1.0</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Búsqueda" name="q" aria-label="Búsqueda">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/modules.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-graficador">
+<span id="proyecto-final"></span><h1>proyecto_final<a class="headerlink" href="#module-graficador" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.actualizar_columnas">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">actualizar_columnas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.actualizar_columnas" title="Link to this definition">¶</a></dt>
+<dd><p>Obtiene los nombres de las columnas del archivo de datos actualmente cargado en 
+data_ops. Crea o actualiza los ComboBox de selección de columnas “X” e “Y”, y 
+coloca un botón para iniciar la gráfica, si no hay columnas disponibles, muestra 
+un mensaje de error al usuario.</p>
+<section id="variables-globales">
+<h2>Variables globales<a class="headerlink" href="#variables-globales" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>columna_x_combo<span class="classifier">ttk.Combobox</span></dt><dd><p>Selecciona la columna en el eje “X”.</p>
+</dd>
+<dt>columna_y_combo<span class="classifier">ttk.Combobox</span></dt><dd><p>Selecciona la columna en el eje “Y”.</p>
+</dd>
+<dt>graficar_button<span class="classifier">Button</span></dt><dd><p>Inicia la función de graficación de datos.</p>
+</dd>
+<dt>raiz<span class="classifier">tkinter.Tk</span></dt><dd><p>Ventana principal de la aplicación.</p>
+</dd>
+<dt>columna_x<span class="classifier">tkinter.StringVar</span></dt><dd><p>Almacena la selección de la columna “X” en el ComboBox.</p>
+</dd>
+<dt>columna_y<span class="classifier">tkinter.StringVar</span></dt><dd><p>Amacena la selección de la columna “Y” en el ComboBox.</p>
+</dd>
+<dt>data_ops<span class="classifier">DataOperations</span></dt><dd><p>Instancia que contiene el archivo de datos y permite extraer sus columnas.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.apply_title_changes">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_title_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo_grafica_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_title_changes" title="Link to this definition">¶</a></dt>
+<dd><p>Aplica los cambios en el título de la gráfica, incluyendo el texto, tamaño de fuente 
+y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
+<section id="parametros">
+<h2>Parámetros<a class="headerlink" href="#parametros" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>title_size_var<span class="classifier">tkinter.IntVar</span></dt><dd><p>Variable del tamaño de la fuente del título de la gráfica.</p>
+</dd>
+<dt>title_fuente_var<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable del estilo de fuente del título de la gráfica.</p>
+</dd>
+<dt>titulo_grafica_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del nuevo texto para el título de la gráfica.</p>
+</dd>
+</dl>
+</section>
+<section id="id1">
+<h2>Variables globales<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>title_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título de la gráfica.</p>
+</dd>
+<dt>title_fuente<span class="classifier">str</span></dt><dd><p>Estilo de la fuente utilizado para el título de la gráfica.</p>
+</dd>
+<dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto para el título de la gráfica, que almacena el valor actual y el nuevo título.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.apply_xaxis_changes">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_xaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejex_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_xaxis_changes" title="Link to this definition">¶</a></dt>
+<dd><p>Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente 
+y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
+<section id="id2">
+<h2>Parámetros<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ejex_size_var<span class="classifier">tkinter.IntVar</span></dt><dd><p>Variable vinculada al tamaño de la fuente del título del eje X.</p>
+</dd>
+<dt>ejex_fuente_var<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable vinculada al estilo de fuente del título del eje X.</p>
+</dd>
+<dt>ejex_titulo_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada que contiene el nuevo texto para el título del eje X.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h2>Variables globales<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ejex_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título del eje X.</p>
+</dd>
+<dt>ejex_shape<span class="classifier">str</span></dt><dd><p>Estilo de la fuente utilizado para el título del eje X.</p>
+</dd>
+<dt>ejex_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto para el título del eje X, que almacena el valor actual y el nuevo título.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.apply_yaxis_changes">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_yaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejey_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_yaxis_changes" title="Link to this definition">¶</a></dt>
+<dd><p>Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.</p>
+<section id="id4">
+<h2>Parámetros<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ejey_size_var<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable del tamaño de la fuente para el título del eje Y.</p>
+</dd>
+<dt>ejey_fuente_var<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de la fuente seleccionada para el título del eje Y.</p>
+</dd>
+<dt>ejey_titulo_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de texto donde se ingresa el nuevo título del eje Y.</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h2>Variables globales<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ejey_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente para el título del eje Y.</p>
+</dd>
+<dt>ejey_shape<span class="classifier">str</span></dt><dd><p>Tipo de fuente para el título del eje Y.</p>
+</dd>
+<dt>ejey_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto que contiene el título del eje Y.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.cargar_datos">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.cargar_datos" title="Link to this definition">¶</a></dt>
+<dd><p>Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método 
+load_file() de la instancia data_ops. Si los datos están disponibles y no están vacíos, 
+los imprime en la consola y actualiza las opciones de columnas para el usuario. Si no 
+se cargan datos, muestra un mensaje de error.</p>
+<section id="id6">
+<h2>Variables globales<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>data_ops<span class="classifier">DataOperations</span></dt><dd><p>Instancia de la clase DataOperations que contiene el archivo de datos cargado 
+y sus operaciones asociadas.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.confirmar_limpiar_grafica">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">confirmar_limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.confirmar_limpiar_grafica" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra una ventana emergente de confirmación para limpiar la gráfica. La ventana ofrece
+al usuario la opción de confirmar o cancelar la limpieza. Si el usuario confirma, se llama 
+a la función “limpiar_grafica” y se cierra la ventana de confirmación; en caso contrario, 
+la ventana se cierra sin modificar la gráfica.</p>
+<section id="id7">
+<h2>Variables globales<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>raiz<span class="classifier">tkinter.Tk</span></dt><dd><p>Ventana principal de la interfaz gráfica, sobre la cual se despliega la ventana de 
+confirmación.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.grafica_ventana">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana" title="Link to this definition">¶</a></dt>
+<dd><p>Crea una ventana emergente para la personalización visual de la gráfica, permitiendo 
+al usuario ajustar parámetros como el color de fondo, grosor de la línea, tipo de 
+marcador, color y tamaño de puntos, y mostrar o ocultar la cuadrícula.</p>
+<section id="id8">
+<h2>Parámetros<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>master: </dt><dd><p>Ventana principal de la aplicación.</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h2>Variables globales<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>personalizacion_ventana:</dt><dd><p>Referencia a la ventana emergente de personalización, para evitar crear 
+múltiples instancias y poder acceder a sus elementos.</p>
+</dd>
+<dt>show_grid<span class="classifier">bool</span></dt><dd><p>Valor booleano que indica si la cuadrícula de la gráfica está visible.</p>
+</dd>
+<dt>line_width<span class="classifier">float</span></dt><dd><p>Grosor actual de la línea de la gráfica.</p>
+</dd>
+<dt>marker_type<span class="classifier">str</span></dt><dd><p>Tipo de marcador utilizado en la gráfica.</p>
+</dd>
+<dt>point_size<span class="classifier">float</span></dt><dd><p>Tamaño actual de los puntos en la gráfica.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.grafica_ventana_ejex">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejex" title="Link to this definition">¶</a></dt>
+<dd><p>Abre una ventana emergente que permite al usuario personalizar el título del eje X de la gráfica.
+El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la fuente del eje X.</p>
+<section id="id10">
+<h2>Parámetros<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>master<span class="classifier"></span></dt><dd><p>La ventana principal desde la que se abrirá la ventana emergente de personalización.</p>
+</dd>
+</dl>
+</section>
+<section id="id11">
+<h2>Variables globales<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ventana_ejex<span class="classifier">tkinter.Toplevel</span></dt><dd><p>Ventana emergente de personalización del eje X.</p>
+</dd>
+<dt>ejex_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto del título actual del eje X.</p>
+</dd>
+<dt>ejex_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título del eje X.</p>
+</dd>
+<dt>ejex_shape<span class="classifier">str</span></dt><dd><p>Estilo de la fuente utilizada para el título del eje X.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.grafica_ventana_ejey">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejey" title="Link to this definition">¶</a></dt>
+<dd><p>Abre una ventana emergente para personalizar el título del eje Y de la gráfica, 
+permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.</p>
+<section id="id12">
+<h2>Parámetros<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>Ventana principal de la aplicación.</p>
+</dd>
+</dl>
+</section>
+<section id="id13">
+<h2>Variables globales<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ventana_ejey<span class="classifier">tkinter.Toplevel</span></dt><dd><p>La ventana emergente de personalización del eje Y.</p>
+</dd>
+<dt>ejey_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable del título del eje Y de la gráfica.</p>
+</dd>
+<dt>ejey_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente para el título del eje Y.</p>
+</dd>
+<dt>ejey_shape<span class="classifier">str</span></dt><dd><p>Tipo de fuente para el título del eje Y.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.grafica_ventana_title">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_title" title="Link to this definition">¶</a></dt>
+<dd><p>Abre una ventana emergente que permite al usuario personalizar el título de la gráfica, 
+incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
+<section id="id14">
+<h2>Parámetros<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>master<span class="classifier"></span></dt><dd><p>Ventana principal de la aplicación.</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h2>Variables globales<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>personal_ventana_title<span class="classifier">tkinter.Toplevel</span></dt><dd><p>Ventana emergente de personalización del título de la gráfica.</p>
+</dd>
+<dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable del título actual de la gráfica.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.graficar_datos">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.graficar_datos" title="Link to this definition">¶</a></dt>
+<dd><p>Esta función se encarga de dibujar o actualizar la gráfica de datos en el canvas de Matplotlib 
+dentro de la interfaz gráfica. Limpia la gráfica anterior, dibuja una nueva basada en los datos actuales 
+y actualiza los títulos y límites de los ejes.</p>
+<section id="id16">
+<h2>Variables globales<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ax<span class="classifier">matplotlib.axes.Axes</span></dt><dd><p>El objeto de los ejes en los que se dibuja la gráfica.</p>
+</dd>
+<dt>canvas<span class="classifier">FigureCanvasTkAgg</span></dt><dd><p>El widget de Matplotlib que renderiza la gráfica en la interfaz gráfica de usuario.</p>
+</dd>
+<dt>x<span class="classifier">numpy.ndarray</span></dt><dd><p>El arreglo de valores en el eje X que serán graficados.</p>
+</dd>
+<dt>y<span class="classifier">numpy.ndarray</span></dt><dd><p>El arreglo de valores en el eje Y que serán graficados.</p>
+</dd>
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “x” en la forma [xmin, xmax].</p>
+</dd>
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “y” en la forma [ymin, ymax].</p>
+</dd>
+<dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable que almacena el texto del título de la gráfica, el cual puede ser editado por el usuario.</p>
+</dd>
+<dt>titulo_eje_x<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable que almacena el texto del título del eje X, editable por el usuario.</p>
+</dd>
+<dt>titulo_eje_y<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable que almacena el texto del título del eje Y, editable por el usuario.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.guardar_grafica">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">guardar_grafica</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formato</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.guardar_grafica" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra un cuadro de diálogo para seleccionar la ubicación y el nombre del archivo de la gráfica actual, 
+y la guarda en el formato especificado por el usuario.</p>
+<section id="id17">
+<h2>Parámetros<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>formato<span class="classifier">str</span></dt><dd><p>El formato en el que se desea guardar la gráfica.</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h2>Variables globales<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>fig<span class="classifier">matplotlib.figure.Figure</span></dt><dd><p>La figura de matplotlib que contiene la gráfica que se va a guardar.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.limpiar_grafica">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.limpiar_grafica" title="Link to this definition">¶</a></dt>
+<dd><p>Limpia la gráfica y restablece sus parámetros a sus valores originales predeterminados, 
+incluyendo el título, colores, estilos, y tamaños de ejes. Se reconfigura el diseño visual 
+de la gráfica y se redibuja con los valores predeterminados.</p>
+<section id="id19">
+<h2>Variables globales<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista con los límites actuales del eje “x” en la forma [xmin, xmax].</p>
+</dd>
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista con los límites actuales del eje “y” en la forma [ymin, ymax].</p>
+</dd>
+<dt>marker_color<span class="classifier">str</span></dt><dd><p>Color predeterminado del marcador en la gráfica.</p>
+</dd>
+<dt>marker_type<span class="classifier">str</span></dt><dd><p>Tipo de marcador utilizado para los puntos en la gráfica.</p>
+</dd>
+<dt>show_grid<span class="classifier">bool</span></dt><dd><p>Indicador de si la cuadrícula de la gráfica está activada.</p>
+</dd>
+<dt>point_size<span class="classifier">int</span></dt><dd><p>Tamaño de los puntos de marcador en la gráfica.</p>
+</dd>
+<dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Título de la gráfica como variable de texto.</p>
+</dd>
+<dt>title_fuente<span class="classifier">str</span></dt><dd><p>Tipo de fuente para el título de la gráfica.</p>
+</dd>
+<dt>title_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente para el título de la gráfica.</p>
+</dd>
+<dt>ejex_shape<span class="classifier">str</span></dt><dd><p>Tipo de fuente del título del eje “x”.</p>
+</dd>
+<dt>ejex_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título del eje “x”.</p>
+</dd>
+<dt>ejex_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Título del eje “x” como variable de texto.</p>
+</dd>
+<dt>ejey_shape<span class="classifier">str</span></dt><dd><p>Tipo de fuente del título del eje “y”.</p>
+</dd>
+<dt>ejey_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título del eje “y”.</p>
+</dd>
+<dt>ejey_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Título del eje “y” como variable de texto.</p>
+</dd>
+<dt>line_color<span class="classifier">str</span></dt><dd><p>Color de la línea de la gráfica.</p>
+</dd>
+<dt>line_width<span class="classifier">int</span></dt><dd><p>Grosor de la línea de la gráfica.</p>
+</dd>
+<dt>bg_color<span class="classifier">str</span></dt><dd><p>Color de fondo de la gráfica.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.limpio_si">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpio_si</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.limpio_si" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra una ventana emergente de confirmación para indicar al usuario que la gráfica 
+ha sido limpiada exitosamente. La ventana incluye un mensaje de éxito y un botón para 
+cerrarla.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.on_double_click">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_double_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_double_click" title="Link to this definition">¶</a></dt>
+<dd><p>Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y) 
+y abre la ventana de edición correspondiente para personalizar el título del eje o gráfico.</p>
+<section id="id20">
+<h2>Parámetros<a class="headerlink" href="#id20" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>El evento de clic que contiene la información sobre la posición del clic y si es un doble clic.</p>
+</dd>
+</dl>
+</section>
+<section id="id21">
+<h2>Variables globales<a class="headerlink" href="#id21" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>raiz<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.on_line_click">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_line_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_line_click" title="Link to this definition">¶</a></dt>
+<dd><p>Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
+las propiedades de la gráfica.</p>
+<section id="id22">
+<h2>Parámetros<a class="headerlink" href="#id22" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene información sobre el clic, incluyendo las coordenadas y el 
+botón del mouse que fue presionado.</p>
+</dd>
+<dt>line<span class="classifier">matplotlib.lines.Line2D</span></dt><dd><p>Objeto de línea en la gráfica, desde el cual se extraen los datos de los puntos 
+para comparar con la posición del clic.</p>
+</dd>
+</dl>
+</section>
+<section id="id23">
+<h2>Variables globales<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>raiz<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.on_motion">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_motion" title="Link to this definition">¶</a></dt>
+<dd><p>Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el 
+mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.</p>
+<section id="id24">
+<h2>Parámetros<a class="headerlink" href="#id24" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene la información del clic del mouse dentro de los límites de la 
+gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
+</dd>
+</dl>
+</section>
+<section id="id25">
+<h2>Variables globales<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “x” en la forma [xmin, xmax].</p>
+</dd>
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “y” en la forma [ymin, ymax].</p>
+</dd>
+<dt>start_x<span class="classifier">float</span></dt><dd><p>Coordenada “x” donde se inició el clic en la gráfica.</p>
+</dd>
+<dt>start_y<span class="classifier">float</span></dt><dd><p>Coordenada “y” donde se inició el clic en la gráfica.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.on_press">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_press" title="Link to this definition">¶</a></dt>
+<dd><p>Evento que permite inicializar un evento con un clic siempre y cuando este se haya 
+realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición
+para matplotlib.</p>
+<section id="id26">
+<h2>Parámetros<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene la información del clic del mouse dentro de los límites de la 
+gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
+</dd>
+</dl>
+</section>
+<section id="id27">
+<h2>Variables globales<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>is_dragging<span class="classifier">bool</span></dt><dd><p>Indicador que se establece en True cuando el usuario está arrastrando el mouse.</p>
+</dd>
+<dt>start_x<span class="classifier">float</span></dt><dd><p>Coordenada “x” donde se inició el clic en la gráfica.</p>
+</dd>
+<dt>start_y<span class="classifier">float</span></dt><dd><p>Coordenada “y” donde se inició el clic en la gráfica.</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h2>Returns<a class="headerlink" href="#id28" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>La función no retorna ningún valor, simplemente actualiza datos.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.on_release">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_release" title="Link to this definition">¶</a></dt>
+<dd><p>Evento que permite finalizar la función anterior de interacción del usuario y la 
+gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y 
+cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.</p>
+<section id="id29">
+<h2>Parámetros<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene la información del clic del mouse dentro de los límites de la 
+gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
+</dd>
+</dl>
+</section>
+<section id="id30">
+<h2>Variables globales<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>is_dragging<span class="classifier">bool</span></dt><dd><p>Indicador que se establece en False cuando el usuario suelta el botón del mouse,
+lo que indica que la interacción/arrastre ha finalizado.</p>
+</dd>
+</dl>
+</section>
+<section id="id31">
+<h2>Returns<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>La función no retorna ningún valor, simplemente actualiza datos.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.set_x_limits">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_x_limits" title="Link to this definition">¶</a></dt>
+<dd><p>Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente.</p>
+<section id="id32">
+<h2>Parámetros<a class="headerlink" href="#id32" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>x_min_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada dl valor para el límite inferior del eje X (x_min).</p>
+</dd>
+<dt>x_max_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del valor para el límite superior del eje X (x_max).</p>
+</dd>
+</dl>
+</section>
+<section id="id33">
+<h2>Variables globales<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que almacena los límites actuales del eje X [x_min, x_max].</p>
+</dd>
+<dt>origx_lim<span class="classifier">list</span></dt><dd><p>Copia de los límites originales del eje X, utilizada para restaurar los valores iniciales si es necesario.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.set_y_limits">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_y_limits" title="Link to this definition">¶</a></dt>
+<dd><p>Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente.</p>
+<section id="id34">
+<h2>Parámetros<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>y_min_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del valor mínimo para el eje Y.</p>
+</dd>
+<dt>y_max_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del valor máximo para el eje Y.</p>
+</dd>
+</dl>
+</section>
+<section id="id35">
+<h2>Variables globales<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que almacena los valores actuales de los límites del eje Y [y_min, y_max].</p>
+</dd>
+<dt>origy_lim<span class="classifier">list</span></dt><dd><p>Copia de los límites originales del eje Y, utilizada para restaurar los valores si es necesario.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.update_graph_property">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_graph_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_graph_property" title="Link to this definition">¶</a></dt>
+<dd><p>Dependiendo de <cite>property_type</cite>, la función ajusta el valor de la propiedad correspondiente
+de la gráfica y actualiza la visualización.</p>
+<section id="id36">
+<h2>Parámetros<a class="headerlink" href="#id36" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>property_type<span class="classifier">str, opcional</span></dt><dd><p>El tipo de propiedad que se desea actualizar (por ejemplo, “line_width”, “marker_type”,
+“line_color”, “marker_color”, “bg_color”, “point_size”, “grid”).</p>
+</dd>
+<dt>new_value<span class="classifier">float, str o bool, opcional</span></dt><dd><p>El nuevo valor que se asignará a la propiedad seleccionada. Puede ser un valor de 
+grosor de línea (float), un tipo de marcador (str), un tamaño de punto (float) o 
+un valor booleano para mostrar u ocultar la cuadrícula.</p>
+</dd>
+</dl>
+</section>
+<section id="id37">
+<h2>Variables globales<a class="headerlink" href="#id37" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>line_width<span class="classifier">float</span></dt><dd><p>Grosor de la línea de la gráfica.</p>
+</dd>
+<dt>marker_type<span class="classifier">str</span></dt><dd><p>Tipo de marcador que se utiliza en la gráfica.</p>
+</dd>
+<dt>line_color<span class="classifier">str</span></dt><dd><p>Color de la línea de la gráfica.</p>
+</dd>
+<dt>marker_color<span class="classifier">str</span></dt><dd><p>Color del marcador de la gráfica.</p>
+</dd>
+<dt>bg_color<span class="classifier">str</span></dt><dd><p>Color de fondo del área de la gráfica.</p>
+</dd>
+<dt>point_size<span class="classifier">float</span></dt><dd><p>Tamaño de los puntos o marcadores en la gráfica.</p>
+</dd>
+<dt>show_grid<span class="classifier">bool</span></dt><dd><p>Indica si la cuadrícula de la gráfica está visible o no.</p>
+</dd>
+<dt>ax<span class="classifier">matplotlib.axes._axes.Axes</span></dt><dd><p>El objeto de ejes de matplotlib donde se configura el color de fondo y la cuadrícula.</p>
+</dd>
+<dt>canvas<span class="classifier">matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</span></dt><dd><p>Canvas que contiene la gráfica y permite la actualización de eventos.</p>
+</dd>
+<dt>line<span class="classifier">matplotlib.lines.Line2D</span></dt><dd><p>Línea de la gráfica que permite asociar eventos de clic.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.update_x_limits">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_x_limits" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.</p>
+<section id="id38">
+<h2>Parámetros<a class="headerlink" href="#id38" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación.</p>
+</dd>
+</dl>
+</section>
+<section id="id39">
+<h2>Variables globales<a class="headerlink" href="#id39" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ventana_lim_x<span class="classifier">tkinter.Toplevel</span></dt><dd><p>La ventana emergente creada para la actualización de los límites del eje X.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.update_y_limits">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_y_limits" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra una ventana emergente para actualizar los límites del eje Y.</p>
+<section id="id40">
+<h2>Parámetros<a class="headerlink" href="#id40" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación. Es el contenedor sobre el que se crea la ventana emergente.</p>
+</dd>
+</dl>
+</section>
+<section id="id41">
+<h2>Variables globales<a class="headerlink" href="#id41" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>ventana_lim_y<span class="classifier">tkinter.Toplevel</span></dt><dd><p>Ventana emergente que permite al usuario ingresar los límites del eje Y.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.zoom">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.zoom" title="Link to this definition">¶</a></dt>
+<dd><p>Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
+se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es 
+controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en 
+función de los límites ajustados. También se actualiza el porcentaje de zoom mostrado en pantalla
+[zoom_label]. Si se desea volver al tamaño original de la gráfica este se reestablecera cuando 
+[reset] sea True.</p>
+<section id="id42">
+<h2>Parámetros<a class="headerlink" href="#id42" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>event<span class="classifier">tkinter.Event, optional</span></dt><dd><p>Evento que dispara la acción de zoom.</p>
+</dd>
+<dt>reset<span class="classifier">bool, optional</span></dt><dd><p>Si True, restablece los límites originales de la gráfica.</p>
+</dd>
+</dl>
+</section>
+<section id="id43">
+<h2>Variables globales<a class="headerlink" href="#id43" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “x” en la forma [xmin, xmax].</p>
+</dd>
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “y” en la forma [ymin, ymax].</p>
+</dd>
+</dl>
+</section>
+<section id="id44">
+<h2>Returns<a class="headerlink" href="#id44" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt>None</dt><dd><p>La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Laura Oliveros &amp; Laura Triana
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">proyecto_final</a><ul>
+<li><a class="reference internal" href="#graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.apply_yaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_yaxis_changes()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.cargar_datos"><code class="docutils literal notranslate"><span class="pre">cargar_datos()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.confirmar_limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">confirmar_limpiar_grafica()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.grafica_ventana_ejex"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejex()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.grafica_ventana_ejey"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejey()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">limpiar_grafica()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.limpio_si"><code class="docutils literal notranslate"><span class="pre">limpio_si()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.on_double_click"><code class="docutils literal notranslate"><span class="pre">on_double_click()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.on_line_click"><code class="docutils literal notranslate"><span class="pre">on_line_click()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.on_motion"><code class="docutils literal notranslate"><span class="pre">on_motion()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.on_press"><code class="docutils literal notranslate"><span class="pre">on_press()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.on_release"><code class="docutils literal notranslate"><span class="pre">on_release()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.set_x_limits"><code class="docutils literal notranslate"><span class="pre">set_x_limits()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.set_y_limits"><code class="docutils literal notranslate"><span class="pre">set_y_limits()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.update_x_limits"><code class="docutils literal notranslate"><span class="pre">update_x_limits()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.update_y_limits"><code class="docutils literal notranslate"><span class="pre">update_y_limits()</span></code></a></li>
+<li><a class="reference internal" href="#graficador.zoom"><code class="docutils literal notranslate"><span class="pre">zoom()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=4936afed"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    <script src="_static/translations.js?v=f85f4cfb"></script>
+    </body>
+</html>

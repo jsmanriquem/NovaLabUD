@@ -1,13 +1,13 @@
 <!doctype html>
 <html class="no-js" lang="es" data-content_root="./">
-  <head>
-<meta charset="utf-8"/>
+  <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="color-scheme" content="light dark"><link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="#" />
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Índice" href="genindex.html" /><link rel="search" title="Búsqueda" href="search.html" />
 
     <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
-<meta name="robots" content="noindex" />
-<title>Búsqueda - documentación de Graficador - 1.0</title><link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+        <title>regression_analysis - documentación de Graficador - 1.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
     
@@ -178,7 +178,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -192,7 +192,7 @@
   
   <span class="sidebar-brand-text">documentación de Graficador - 1.0</span>
   
-</a><form class="sidebar-search-container" method="get" action="#" role="search">
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Búsqueda" name="q" aria-label="Búsqueda">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
@@ -216,7 +216,13 @@
           <span>Back to top</span>
         </a>
         <div class="content-icon-container">
-          <div class="theme-toggle-container theme-toggle-content">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/regression_analysis.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
               <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
@@ -225,23 +231,102 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          
-<noscript>
-<div class="admonition error">
-  <p class="admonition-title">Error</p>
-  <p>
-    Please activate JavaScript to enable the search functionality.
-  </p>
-</div>
-</noscript>
+          <section id="module-regression_analysis">
+<span id="regression-analysis"></span><h1>regression_analysis<a class="headerlink" href="#module-regression_analysis" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">RegressionAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ops</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Clase para realizar análisis de regresión.</p>
+<p>Esta clase proporciona métodos para realizar análisis de regresión lineal
+y polinómica, así como interpolación de datos. Las métricas de desempeño
+se pueden calcular y mostrar en una interfaz gráfica.</p>
+<dl class="simple">
+<dt>Attributes:</dt><dd><dl class="simple">
+<dt>data_ops (DataOperations): Objeto que contiene los datos necesarios</dt><dd><p>para el análisis de regresión.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.calculate_metrics">
+<span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.calculate_metrics" title="Link to this definition">¶</a></dt>
+<dd><p>Calcula las métricas de regresión.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>y_true (array-like): Valores reales.
+y_pred (array-like): Valores predichos por el modelo.</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple: (R², MAE, MSE)</p>
+</dd>
+<dt>Warnings:</dt><dd><p>Asegúrate de que las dimensiones de <cite>y_true</cite> y <cite>y_pred</cite> coincidan.</p>
+</dd>
+</dl>
+</dd></dl>
 
-<div id="search-results"></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.interpolation">
+<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">¶</a></dt>
+<dd><p>Realiza la interpolación lineal de los datos.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>var_x (str): Nombre de la variable independiente.
+var_y (str): Nombre de la variable dependiente.</p>
+</dd>
+<dt>Warnings:</dt><dd><p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
+se mostrará una advertencia.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.linear_regression">
+<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">¶</a></dt>
+<dd><p>Realiza una regresión lineal.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>var_x (str): Nombre de la variable independiente.
+var_y (str): Nombre de la variable dependiente.</p>
+</dd>
+<dt>Warnings:</dt><dd><p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
+se mostrará una advertencia.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.polynomial_regression">
+<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">¶</a></dt>
+<dd><p>Realiza una regresión polinómica.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>var_x (str): Nombre de la variable independiente.
+var_y (str): Nombre de la variable dependiente.</p>
+</dd>
+<dt>Warnings:</dt><dd><p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
+se mostrará una advertencia.
+Si el grado del polinomio es None, no se realizará la regresión.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.show_metrics">
+<span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mse</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.show_metrics" title="Link to this definition">¶</a></dt>
+<dd><p>Muestra las métricas de regresión en una ventana de Tkinter.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>r2 (float): Coeficiente de determinación R².
+mae (float): Error absoluto medio.
+mse (float): Error cuadrático medio.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 
         </article>
       </div>
@@ -268,8 +353,34 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">regression_analysis</a><ul>
+<li><a class="reference internal" href="#regression_analysis.RegressionAnalysis"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis</span></code></a><ul>
+<li><a class="reference internal" href="#regression_analysis.RegressionAnalysis.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.calculate_metrics()</span></code></a></li>
+<li><a class="reference internal" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
+<li><a class="reference internal" href="#regression_analysis.RegressionAnalysis.linear_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.linear_regression()</span></code></a></li>
+<li><a class="reference internal" href="#regression_analysis.RegressionAnalysis.polynomial_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.polynomial_regression()</span></code></a></li>
+<li><a class="reference internal" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -279,8 +390,5 @@
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="_static/translations.js?v=f85f4cfb"></script>
-    
-<script src="_static/searchtools.js"></script>
-<script src="_static/language_data.js"></script>
-<script src="searchindex.js"></script></body>
+    </body>
 </html>
