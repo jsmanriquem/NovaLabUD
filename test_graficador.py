@@ -369,35 +369,37 @@ def set_x_limits(x_min_entry, x_max_entry):
     except ValueError:
         print("Por favor, ingrese valores numéricos válidos.")
 
+# Parcheo para simular las siguientes funciones y evitar la aparición de ventanas emergentes
+@patch("graficador.Tk")
+@patch("graficador.Toplevel")
+@patch("graficador.messagebox")
 @patch("graficador.canvas.draw")
-@patch("graficador.data_ops")  # Simular data_ops directamente en el módulo del script
-def test_set_x_limits(mock_data_ops, mock_canvas_draw):
+@patch("graficador.graficar_datos")
+@patch("graficador.data_ops")
+def test_set_x_limits(mock_data_ops, mock_graficar_datos, mock_canvas_draw, mock_messagebox, mock_toplevel, mock_tk):
     global x_limits, origx_lim
 
     # Inicializar variables globales
     x_limits = [0, 10]
     origx_lim = [0, 10]
 
-    # Configurar data_ops.data con un DataFrame válido
-    mock_data_ops.data = pd.DataFrame({
-        "columna_x": [1, 2, 3],
-        "columna_y": [4, 5, 6],
-    })
+    # Configurar data_ops.data con columnas válidas
+    mock_data_ops.data = MagicMock()
+    mock_data_ops.data.columns = ["columna_x", "columna_y"]
 
-    # Crear mocks para entradas
+    # Simular entradas de usuario
     x_min_entry = MagicMock()
     x_max_entry = MagicMock()
 
-    # Entradas válidas
     x_min_entry.get.return_value = "5"
     x_max_entry.get.return_value = "15"
 
-    # Llamar a la función
+    # Ejecutar la función
     set_x_limits(x_min_entry, x_max_entry)
 
-    # Verificar resultados
-    assert x_limits == [5.0, 15.0], f"Esperado [5.0, 15.0], pero obtenido {x_limits}"
-    assert origx_lim == [5.0, 15.0], f"Esperado [5.0, 15.0], pero obtenido {origx_lim}"
+    # Verificar que los límites se actualizan
+    assert x_limits == [5.0, 15.0]
+    assert origx_lim == [5.0, 15.0]
 
 # Función a probar
 def set_y_limits(y_min_entry, y_max_entry):
@@ -417,33 +419,35 @@ def set_y_limits(y_min_entry, y_max_entry):
     except ValueError:
         print("Por favor, ingrese valores numéricos válidos.")  
 
+# Parcheo para simular las siguientes funciones y evitar la aparición de ventanas emergentes
+@patch("graficador.Tk")
+@patch("graficador.Toplevel")
+@patch("graficador.messagebox")
 @patch("graficador.canvas.draw")
-@patch("graficador.data_ops")  # Simular data_ops directamente en el módulo del script
-def test_set_y_limits(mock_data_ops, mock_canvas_draw):
+@patch("graficador.graficar_datos")
+@patch("graficador.data_ops")
+def test_set_y_limits(mock_data_ops, mock_graficar_datos, mock_canvas_draw, mock_messagebox, mock_toplevel, mock_tk):
     global y_limits, origy_lim
 
     # Inicializar variables globales
     y_limits = [0, 10]
     origy_lim = [0, 10]
 
-    # Configurar data_ops.data con un DataFrame válido
-    mock_data_ops.data = pd.DataFrame({
-        "columna_x": [1, 2, 3],
-        "columna_y": [4, 5, 6],
-    })
+    # Configurar data_ops.data con columnas válidas
+    mock_data_ops.data = MagicMock()
+    mock_data_ops.data.columns = ["columna_x", "columna_y"]
 
-    # Crear mocks para entradas
+    # Simular entradas de usuario
     y_min_entry = MagicMock()
     y_max_entry = MagicMock()
 
-    # Entradas válidas
     y_min_entry.get.return_value = "5"
     y_max_entry.get.return_value = "15"
 
-    # Llamar a la función
+    # Ejecutar la función
     set_y_limits(y_min_entry, y_max_entry)
 
-    # Verificar resultados
-    assert y_limits == [5.0, 15.0], f"Esperado [5.0, 15.0], pero obtenido {y_limits}"
-    assert origy_lim == [5.0, 15.0], f"Esperado [5.0, 15.0], pero obtenido {origy_lim}"
+    # Verificar que los límites se actualizan
+    assert y_limits == [5.0, 15.0]
+    assert origy_lim == [5.0, 15.0]
 
