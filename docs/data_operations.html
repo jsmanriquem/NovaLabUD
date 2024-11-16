@@ -349,15 +349,7 @@ para poder realizar transformaciones posteriores.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Inicializa la clase DataOperations con un DataFrame vacío y una lista para registrar transformaciones.</span>
-<span class="sd">    Aquí no realiza ninguna operación en los datos iniciales, sino que almacena los datos originales</span>
-<span class="sd">    para poder realizar transformaciones posteriores.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span> <span class="o">=</span> <span class="p">[]</span>
@@ -384,24 +376,7 @@ para poder realizar transformaciones posteriores.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Permite al usuario seleccionar y cargar un archivo de datos, desde un archivo CSV, TXT o Excel.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    file_path : str</span>
-<span class="sd">        La ruta al archivo que se desea cargar.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    pd.DataFrame</span>
-<span class="sd">        DataFrame que contiene los datos cargados.</span>
-
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-<span class="sd">    ValueError</span>
-<span class="sd">        Si el archivo no tiene extensión .csv  .xlsx o .txt.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">filetypes</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;Archivos CSV&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;Archivos TXT&quot;</span><span class="p">,</span> <span class="s2">&quot;*.txt&quot;</span><span class="p">),</span>
@@ -441,15 +416,7 @@ Muestra un mensaje con el número de filas eliminadas.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_null_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Elimina las filas que contienen valores nulos del DataFrame.</span>
 
-<span class="sd">    La operación se realiza in-place y se registra en el historial de transformaciones.</span>
-<span class="sd">    Muestra un mensaje con el número de filas eliminadas.</span>
-
-<span class="sd">    Requires:</span>
-<span class="sd">        Datos cargados previamente (self.data no None).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rows_before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -494,26 +461,7 @@ Muestra un mensaje con el número de filas eliminadas.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Elimina las filas duplicadas del DataFrame, manteniendo la primera ocurrencia.</span>
 
-<span class="sd">    Este método:</span>
-<span class="sd">    - Identifica y elimina filas completamente duplicadas</span>
-<span class="sd">    - Mantiene la primera ocurrencia de cada fila duplicada</span>
-<span class="sd">    - Registra la operación en el historial</span>
-<span class="sd">    - Muestra un mensaje con el número de filas eliminadas</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
-
-<span class="sd">    Raises:</span>
-<span class="sd">        No lanza excepciones directamente, pero muestra un messagebox de advertencia</span>
-<span class="sd">        si self.data es None</span>
-
-<span class="sd">    Notas:</span>
-<span class="sd">        - La comparación de duplicados considera todas las columnas</span>
-<span class="sd">        - La operación es irreversible</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">rows_before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -543,18 +491,7 @@ Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Normaliza todas las columnas numéricas del DataFrame al rango [0,1].</span>
 
-<span class="sd">    Para cada columna numérica, aplica la fórmula:</span>
-<span class="sd">    normalized = (x - min) / (max - min)</span>
-
-<span class="sd">    Si max = min, todos los valores se establecen en 0.</span>
-<span class="sd">    Solo se normalizan columnas que contienen al menos un valor no nulo.</span>
-
-<span class="sd">    Requires:</span>
-<span class="sd">        Datos cargados previamente (self.data no None).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">columns_normalized</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
@@ -599,22 +536,7 @@ Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fill_null_with_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.</span>
 
-<span class="sd">    Este método:</span>
-<span class="sd">    - Calcula la media de cada columna numérica del DataFrame</span>
-<span class="sd">    - Reemplaza todos los valores nulos con la media correspondiente</span>
-<span class="sd">    - Registra la operación en el historial</span>
-<span class="sd">    - Muestra un mensaje con el número de valores rellenados</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        None</span>
-
-<span class="sd">    Raises:</span>
-<span class="sd">        No lanza excepciones directamente, pero muestra un messagebox de advertencia</span>
-<span class="sd">        si self.data es None</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">nulls_before</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -651,21 +573,7 @@ Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 <p>Para CSV y TXT, se crean archivos adicionales con sufijos “_original”
 y “_transformaciones” para los datos originales y el historial.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">export_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Exporta los datos procesados y el historial de transformaciones.</span>
 
-<span class="sd">    Formatos soportados:</span>
-<span class="sd">    - Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial</span>
-<span class="sd">    - CSV (.csv): Crea archivos separados para cada tipo de dato</span>
-<span class="sd">    - TXT (.txt): Similar a CSV pero con delimitador de tabulación</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        bool: True si la exportación fue exitosa, False en otro caso.</span>
-
-<span class="sd">    Notes:</span>
-<span class="sd">        Para CSV y TXT, se crean archivos adicionales con sufijos &#39;_original&#39; </span>
-<span class="sd">        y &#39;_transformaciones&#39; para los datos originales y el historial.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos para exportar&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -759,19 +667,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_transformation_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Genera un resumen textual de todas las transformaciones aplicadas.</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        str: Resumen formateado del historial de transformaciones, incluyendo:</span>
-<span class="sd">            - Número de operación</span>
-<span class="sd">            - Tipo de operación</span>
-<span class="sd">            - Fecha y hora</span>
-<span class="sd">            - Detalles específicos</span>
-<span class="sd">            - Número de filas afectadas</span>
-
-<span class="sd">        Si no hay transformaciones, retorna un mensaje indicándolo.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;No se han realizado transformaciones&quot;</span>
 

@@ -355,50 +355,7 @@ de la gráfica y se redibuja con los valores predeterminados.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">limpiar_grafica</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Limpia la gráfica y restablece sus parámetros a sus valores originales predeterminados, </span>
-<span class="sd">    incluyendo el título, colores, estilos, y tamaños de ejes. Se reconfigura el diseño visual </span>
-<span class="sd">    de la gráfica y se redibuja con los valores predeterminados.</span>
 
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    x_limits : list</span>
-<span class="sd">        Lista con los límites actuales del eje &#39;x&#39; en la forma [xmin, xmax].</span>
-<span class="sd">    y_limits : list</span>
-<span class="sd">        Lista con los límites actuales del eje &#39;y&#39; en la forma [ymin, ymax].</span>
-<span class="sd">    marker_color : str</span>
-<span class="sd">        Color predeterminado del marcador en la gráfica.</span>
-<span class="sd">    marker_type : str</span>
-<span class="sd">        Tipo de marcador utilizado para los puntos en la gráfica.</span>
-<span class="sd">    show_grid : bool</span>
-<span class="sd">        Indicador de si la cuadrícula de la gráfica está activada.</span>
-<span class="sd">    point_size : int</span>
-<span class="sd">        Tamaño de los puntos de marcador en la gráfica.</span>
-<span class="sd">    titulo_grafica : tkinter.StringVar</span>
-<span class="sd">        Título de la gráfica como variable de texto.</span>
-<span class="sd">    title_fuente : str</span>
-<span class="sd">        Tipo de fuente para el título de la gráfica.</span>
-<span class="sd">    title_size : int</span>
-<span class="sd">        Tamaño de la fuente para el título de la gráfica.</span>
-<span class="sd">    ejex_shape : str</span>
-<span class="sd">        Tipo de fuente del título del eje &#39;x&#39;.</span>
-<span class="sd">    ejex_size : int</span>
-<span class="sd">        Tamaño de la fuente del título del eje &#39;x&#39;.</span>
-<span class="sd">    ejex_titulo : tkinter.StringVar</span>
-<span class="sd">        Título del eje &#39;x&#39; como variable de texto.</span>
-<span class="sd">    ejey_shape : str</span>
-<span class="sd">        Tipo de fuente del título del eje &#39;y&#39;.</span>
-<span class="sd">    ejey_size : int</span>
-<span class="sd">        Tamaño de la fuente del título del eje &#39;y&#39;.</span>
-<span class="sd">    ejey_titulo : tkinter.StringVar</span>
-<span class="sd">        Título del eje &#39;y&#39; como variable de texto.</span>
-<span class="sd">    line_color : str</span>
-<span class="sd">        Color de la línea de la gráfica.</span>
-<span class="sd">    line_width : int</span>
-<span class="sd">        Grosor de la línea de la gráfica.</span>
-<span class="sd">    bg_color : str</span>
-<span class="sd">        Color de fondo de la gráfica.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">marker_color</span><span class="p">,</span> <span class="n">marker_type</span><span class="p">,</span> <span class="n">show_grid</span><span class="p">,</span> <span class="n">point_size</span><span class="p">,</span> <span class="n">titulo_grafica</span><span class="p">,</span> <span class="n">title_fuente</span><span class="p">,</span> <span class="n">title_size</span><span class="p">,</span> <span class="n">ejex_shape</span><span class="p">,</span> <span class="n">ejex_size</span><span class="p">,</span> <span class="n">ejex_titulo</span><span class="p">,</span> <span class="n">ejey_shape</span><span class="p">,</span> <span class="n">ejey_size</span><span class="p">,</span> <span class="n">ejey_titulo</span><span class="p">,</span> <span class="n">line_color</span><span class="p">,</span> <span class="n">line_width</span><span class="p">,</span> <span class="n">bg_color</span>
 
     <span class="n">titulo_grafica</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Título de la Gráfica&quot;</span><span class="p">)</span>
@@ -450,18 +407,7 @@ confirmación.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">confirmar_limpiar_grafica</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Muestra una ventana emergente de confirmación para limpiar la gráfica. La ventana ofrece</span>
-<span class="sd">    al usuario la opción de confirmar o cancelar la limpieza. Si el usuario confirma, se llama </span>
-<span class="sd">    a la función &#39;limpiar_grafica&#39; y se cierra la ventana de confirmación; en caso contrario, </span>
-<span class="sd">    la ventana se cierra sin modificar la gráfica.</span>
 
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    raiz : tkinter.Tk</span>
-<span class="sd">        Ventana principal de la interfaz gráfica, sobre la cual se despliega la ventana de </span>
-<span class="sd">        confirmación.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ventana_confirmacion</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">(</span><span class="n">raiz</span><span class="p">)</span>
     <span class="n">ventana_confirmacion</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Confirmación de limpieza&quot;</span><span class="p">)</span>
 
@@ -485,11 +431,7 @@ confirmación.</p>
 ha sido limpiada exitosamente. La ventana incluye un mensaje de éxito y un botón para
 cerrarla.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">limpio_si</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Muestra una ventana emergente de confirmación para indicar al usuario que la gráfica </span>
-<span class="sd">    ha sido limpiada exitosamente. La ventana incluye un mensaje de éxito y un botón para </span>
-<span class="sd">    cerrarla.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="n">ventana_hecho</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">(</span><span class="n">raiz</span><span class="p">)</span>
     <span class="n">ventana_hecho</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">)</span>
 
@@ -514,18 +456,7 @@ y sus operaciones asociadas.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cargar_datos</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método </span>
-<span class="sd">    load_file() de la instancia data_ops. Si los datos están disponibles y no están vacíos, </span>
-<span class="sd">    los imprime en la consola y actualiza las opciones de columnas para el usuario. Si no </span>
-<span class="sd">    se cargan datos, muestra un mensaje de error.</span>
 
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    data_ops : DataOperations</span>
-<span class="sd">        Instancia de la clase DataOperations que contiene el archivo de datos cargado </span>
-<span class="sd">        y sus operaciones asociadas.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">data_ops</span><span class="o">.</span><span class="n">load_file</span><span class="p">():</span> 
         <span class="c1"># Verifica si se cargaron datos</span>
         <span class="k">if</span> <span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
@@ -564,29 +495,7 @@ un mensaje de error al usuario.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">actualizar_columnas</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Obtiene los nombres de las columnas del archivo de datos actualmente cargado en </span>
-<span class="sd">    data_ops. Crea o actualiza los ComboBox de selección de columnas &#39;X&#39; e &#39;Y&#39;, y </span>
-<span class="sd">    coloca un botón para iniciar la gráfica, si no hay columnas disponibles, muestra </span>
-<span class="sd">    un mensaje de error al usuario.</span>
 
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    columna_x_combo : ttk.Combobox</span>
-<span class="sd">        Selecciona la columna en el eje &#39;X&#39;.</span>
-<span class="sd">    columna_y_combo : ttk.Combobox</span>
-<span class="sd">        Selecciona la columna en el eje &#39;Y&#39;.</span>
-<span class="sd">    graficar_button : Button</span>
-<span class="sd">        Inicia la función de graficación de datos.</span>
-<span class="sd">    raiz : tkinter.Tk</span>
-<span class="sd">        Ventana principal de la aplicación.</span>
-<span class="sd">    columna_x : tkinter.StringVar</span>
-<span class="sd">        Almacena la selección de la columna &#39;X&#39; en el ComboBox.</span>
-<span class="sd">    columna_y : tkinter.StringVar</span>
-<span class="sd">        Amacena la selección de la columna &#39;Y&#39; en el ComboBox.</span>
-<span class="sd">    data_ops : DataOperations</span>
-<span class="sd">        Instancia que contiene el archivo de datos y permite extraer sus columnas.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">columna_x_combo</span><span class="p">,</span> <span class="n">columna_y_combo</span><span class="p">,</span> <span class="n">graficar_button</span>
 
     <span class="k">if</span> <span class="n">columna_x_combo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -639,20 +548,7 @@ y la guarda en el formato especificado por el usuario.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">guardar_grafica</span><span class="p">(</span><span class="n">formato</span><span class="p">):</span> 
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Muestra un cuadro de diálogo para seleccionar la ubicación y el nombre del archivo de la gráfica actual, </span>
-<span class="sd">    y la guarda en el formato especificado por el usuario.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    formato : str</span>
-<span class="sd">        El formato en el que se desea guardar la gráfica.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    fig : matplotlib.figure.Figure</span>
-<span class="sd">        La figura de matplotlib que contiene la gráfica que se va a guardar.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">archivo</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">asksaveasfilename</span><span class="p">(</span><span class="n">defaultextension</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;.</span><span class="si">{</span><span class="n">formato</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
                                            <span class="n">filetypes</span><span class="o">=</span><span class="p">[(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">formato</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2"> files&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;*.</span><span class="si">{</span><span class="n">formato</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span>
                                                       <span class="p">(</span><span class="s2">&quot;All files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.*&quot;</span><span class="p">)])</span>
@@ -702,37 +598,7 @@ y actualiza los títulos y límites de los ejes.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">graficar_datos</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Esta función se encarga de dibujar o actualizar la gráfica de datos en el canvas de Matplotlib </span>
-<span class="sd">    dentro de la interfaz gráfica. Limpia la gráfica anterior, dibuja una nueva basada en los datos actuales </span>
-<span class="sd">    y actualiza los títulos y límites de los ejes.</span>
 
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ax : matplotlib.axes.Axes</span>
-<span class="sd">        El objeto de los ejes en los que se dibuja la gráfica.</span>
-<span class="sd">    canvas : FigureCanvasTkAgg</span>
-<span class="sd">        El widget de Matplotlib que renderiza la gráfica en la interfaz gráfica de usuario.</span>
-<span class="sd">    x : numpy.ndarray</span>
-<span class="sd">        El arreglo de valores en el eje X que serán graficados.</span>
-<span class="sd">    y : numpy.ndarray</span>
-<span class="sd">        El arreglo de valores en el eje Y que serán graficados.</span>
-<span class="sd">    x_limits : list</span>
-<span class="sd">        Lista que contiene los límites actuales del eje &#39;x&#39; en la forma [xmin, xmax].</span>
-<span class="sd">    y_limits : list</span>
-<span class="sd">        Lista que contiene los límites actuales del eje &#39;y&#39; en la forma [ymin, ymax].</span>
-<span class="sd">    titulo_grafica : tkinter.StringVar</span>
-<span class="sd">        Variable que almacena el texto del título de la gráfica, el cual puede ser editado por el usuario.</span>
-<span class="sd">    titulo_eje_x : tkinter.StringVar</span>
-<span class="sd">        Variable que almacena el texto del título del eje X, editable por el usuario.</span>
-<span class="sd">    titulo_eje_y : tkinter.StringVar</span>
-<span class="sd">        Variable que almacena el texto del título del eje Y, editable por el usuario.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    ------------</span>
-<span class="sd">    None</span>
-<span class="sd">        No retorna ningún valor, sino que actualiza la gráfica con los nuevos datos y títulos.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">x_col</span> <span class="o">=</span> <span class="n">columna_x</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
     <span class="n">y_col</span> <span class="o">=</span> <span class="n">columna_y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
@@ -815,43 +681,7 @@ un valor booleano para mostrar u ocultar la cuadrícula.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_graph_property</span><span class="p">(</span><span class="n">property_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Dependiendo de `property_type`, la función ajusta el valor de la propiedad correspondiente</span>
-<span class="sd">    de la gráfica y actualiza la visualización. </span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    property_type : str, opcional</span>
-<span class="sd">        El tipo de propiedad que se desea actualizar (por ejemplo, &#39;line_width&#39;, &#39;marker_type&#39;,</span>
-<span class="sd">        &#39;line_color&#39;, &#39;marker_color&#39;, &#39;bg_color&#39;, &#39;point_size&#39;, &#39;grid&#39;). </span>
-<span class="sd">    new_value : float, str o bool, opcional</span>
-<span class="sd">        El nuevo valor que se asignará a la propiedad seleccionada. Puede ser un valor de </span>
-<span class="sd">        grosor de línea (float), un tipo de marcador (str), un tamaño de punto (float) o </span>
-<span class="sd">        un valor booleano para mostrar u ocultar la cuadrícula.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    line_width : float</span>
-<span class="sd">        Grosor de la línea de la gráfica.</span>
-<span class="sd">    marker_type : str</span>
-<span class="sd">        Tipo de marcador que se utiliza en la gráfica.</span>
-<span class="sd">    line_color : str</span>
-<span class="sd">        Color de la línea de la gráfica.</span>
-<span class="sd">    marker_color : str</span>
-<span class="sd">        Color del marcador de la gráfica.</span>
-<span class="sd">    bg_color : str</span>
-<span class="sd">        Color de fondo del área de la gráfica.</span>
-<span class="sd">    point_size : float</span>
-<span class="sd">        Tamaño de los puntos o marcadores en la gráfica.</span>
-<span class="sd">    show_grid : bool</span>
-<span class="sd">        Indica si la cuadrícula de la gráfica está visible o no.</span>
-<span class="sd">    ax : matplotlib.axes._axes.Axes</span>
-<span class="sd">        El objeto de ejes de matplotlib donde se configura el color de fondo y la cuadrícula.</span>
-<span class="sd">    canvas : matplotlib.backends.backend_tkagg.FigureCanvasTkAgg</span>
-<span class="sd">        Canvas que contiene la gráfica y permite la actualización de eventos.</span>
-<span class="sd">    line : matplotlib.lines.Line2D</span>
-<span class="sd">        Línea de la gráfica que permite asociar eventos de clic.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">line_width</span><span class="p">,</span> <span class="n">marker_type</span><span class="p">,</span> <span class="n">line_color</span><span class="p">,</span> <span class="n">marker_color</span><span class="p">,</span> <span class="n">bg_color</span><span class="p">,</span> <span class="n">point_size</span><span class="p">,</span> <span class="n">show_grid</span>
 
     <span class="k">if</span> <span class="n">property_type</span> <span class="o">==</span> <span class="s1">&#39;line_width&#39;</span><span class="p">:</span>
@@ -907,30 +737,7 @@ múltiples instancias y poder acceder a sus elementos.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Crea una ventana emergente para la personalización visual de la gráfica, permitiendo </span>
-<span class="sd">    al usuario ajustar parámetros como el color de fondo, grosor de la línea, tipo de </span>
-<span class="sd">    marcador, color y tamaño de puntos, y mostrar o ocultar la cuadrícula.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    master: </span>
-<span class="sd">        Ventana principal de la aplicación.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    personalizacion_ventana:</span>
-<span class="sd">        Referencia a la ventana emergente de personalización, para evitar crear </span>
-<span class="sd">        múltiples instancias y poder acceder a sus elementos.</span>
-<span class="sd">    show_grid : bool</span>
-<span class="sd">        Valor booleano que indica si la cuadrícula de la gráfica está visible.</span>
-<span class="sd">    line_width : float</span>
-<span class="sd">        Grosor actual de la línea de la gráfica.</span>
-<span class="sd">    marker_type : str</span>
-<span class="sd">        Tipo de marcador utilizado en la gráfica.</span>
-<span class="sd">    point_size : float</span>
-<span class="sd">        Tamaño actual de los puntos en la gráfica.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">personalizacion_ventana</span>
 
     <span class="k">if</span> <span class="n">personalizacion_ventana</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
@@ -1008,24 +815,7 @@ para comparar con la posición del clic.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_line_click</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar </span>
-<span class="sd">    las propiedades de la gráfica.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    event : matplotlib.backend_bases.MouseEvent</span>
-<span class="sd">        Evento que contiene información sobre el clic, incluyendo las coordenadas y el </span>
-<span class="sd">        botón del mouse que fue presionado.</span>
-<span class="sd">    line : matplotlib.lines.Line2D</span>
-<span class="sd">        Objeto de línea en la gráfica, desde el cual se extraen los datos de los puntos </span>
-<span class="sd">        para comparar con la posición del clic.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    raiz : tkinter.Tk</span>
-<span class="sd">        La ventana principal de la aplicación.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Botón izquierdo del mouse</span>
         <span class="c1"># Se obtienen las coordenadas de los puntos de la línea</span>
         <span class="n">xdata</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
@@ -1068,28 +858,7 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_title_changes</span><span class="p">(</span><span class="n">title_size_var</span><span class="p">,</span> <span class="n">title_fuente_var</span><span class="p">,</span> <span class="n">titulo_grafica_entry</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Aplica los cambios en el título de la gráfica, incluyendo el texto, tamaño de fuente </span>
-<span class="sd">    y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    title_size_var : tkinter.IntVar</span>
-<span class="sd">        Variable del tamaño de la fuente del título de la gráfica.</span>
-<span class="sd">    title_fuente_var : tkinter.StringVar</span>
-<span class="sd">        Variable del estilo de fuente del título de la gráfica.</span>
-<span class="sd">    titulo_grafica_entry : tkinter.Entry</span>
-<span class="sd">        Campo de entrada del nuevo texto para el título de la gráfica.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    title_size : int</span>
-<span class="sd">        Tamaño de la fuente del título de la gráfica.</span>
-<span class="sd">    title_fuente : str</span>
-<span class="sd">        Estilo de la fuente utilizado para el título de la gráfica.</span>
-<span class="sd">    titulo_grafica : tkinter.StringVar</span>
-<span class="sd">        Variable de texto para el título de la gráfica, que almacena el valor actual y el nuevo título.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">title_size</span><span class="p">,</span> <span class="n">title_fuente</span><span class="p">,</span> <span class="n">titulo_grafica</span>
     <span class="n">titulo_grafica</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">titulo_grafica_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span> 
 
@@ -1126,22 +895,7 @@ incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_title</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abre una ventana emergente que permite al usuario personalizar el título de la gráfica, </span>
-<span class="sd">    incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    master : </span>
-<span class="sd">        Ventana principal de la aplicación.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    personal_ventana_title : tkinter.Toplevel</span>
-<span class="sd">        Ventana emergente de personalización del título de la gráfica.</span>
-<span class="sd">    titulo_grafica : tkinter.StringVar</span>
-<span class="sd">        Variable del título actual de la gráfica.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">personal_ventana_title</span>
 
     <span class="c1"># Verificar si la ventana ya está abierta</span>
@@ -1213,28 +967,7 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_xaxis_changes</span><span class="p">(</span><span class="n">ejex_size_var</span><span class="p">,</span> <span class="n">ejex_fuente_var</span><span class="p">,</span> <span class="n">ejex_titulo_entry</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente </span>
-<span class="sd">    y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ejex_size_var : tkinter.IntVar</span>
-<span class="sd">        Variable vinculada al tamaño de la fuente del título del eje X.</span>
-<span class="sd">    ejex_fuente_var : tkinter.StringVar</span>
-<span class="sd">        Variable vinculada al estilo de fuente del título del eje X.</span>
-<span class="sd">    ejex_titulo_entry : tkinter.Entry</span>
-<span class="sd">        Campo de entrada que contiene el nuevo texto para el título del eje X.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ejex_size : int</span>
-<span class="sd">        Tamaño de la fuente del título del eje X.</span>
-<span class="sd">    ejex_shape : str</span>
-<span class="sd">        Estilo de la fuente utilizado para el título del eje X.</span>
-<span class="sd">    ejex_titulo : tkinter.StringVar</span>
-<span class="sd">        Variable de texto para el título del eje X, que almacena el valor actual y el nuevo título.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">ejex_size</span><span class="p">,</span> <span class="n">ejex_shape</span><span class="p">,</span> <span class="n">ejex_titulo</span>
     <span class="n">ejex_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ejex_titulo_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>  <span class="c1"># Obtener el nuevo título del eje X    </span>
     <span class="c1"># Obtener valores seleccionados</span>
@@ -1276,26 +1009,7 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_ejex</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abre una ventana emergente que permite al usuario personalizar el título del eje X de la gráfica.</span>
-<span class="sd">    El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la fuente del eje X.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    master : </span>
-<span class="sd">        La ventana principal desde la que se abrirá la ventana emergente de personalización.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ventana_ejex : tkinter.Toplevel</span>
-<span class="sd">        Ventana emergente de personalización del eje X.</span>
-<span class="sd">    ejex_titulo : tkinter.StringVar</span>
-<span class="sd">        Variable de texto del título actual del eje X.</span>
-<span class="sd">    ejex_size : int</span>
-<span class="sd">        Tamaño de la fuente del título del eje X.</span>
-<span class="sd">    ejex_shape : str</span>
-<span class="sd">        Estilo de la fuente utilizada para el título del eje X.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">ventana_ejex</span>
 
     <span class="c1"># Verificar si la ventana ya está abierta</span>
@@ -1366,27 +1080,7 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_yaxis_changes</span><span class="p">(</span><span class="n">ejey_size_var</span><span class="p">,</span> <span class="n">ejey_fuente_var</span><span class="p">,</span> <span class="n">ejey_titulo_entry</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    ejey_size_var : tkinter.StringVar</span>
-<span class="sd">        Variable del tamaño de la fuente para el título del eje Y.</span>
-<span class="sd">    ejey_fuente_var : tkinter.StringVar</span>
-<span class="sd">        Variable de la fuente seleccionada para el título del eje Y.</span>
-<span class="sd">    ejey_titulo_entry : tkinter.Entry</span>
-<span class="sd">        Campo de texto donde se ingresa el nuevo título del eje Y.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ejey_size : int</span>
-<span class="sd">        Tamaño de la fuente para el título del eje Y.</span>
-<span class="sd">    ejey_shape : str</span>
-<span class="sd">        Tipo de fuente para el título del eje Y.</span>
-<span class="sd">    ejey_titulo : tkinter.StringVar</span>
-<span class="sd">        Variable de texto que contiene el título del eje Y.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">ejey_size</span><span class="p">,</span> <span class="n">ejey_shape</span><span class="p">,</span> <span class="n">ejey_titulo</span>
     <span class="n">ejey_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ejey_titulo_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>  <span class="c1"># Obtener el nuevo título del eje X    </span>
     <span class="c1"># Obtener valores seleccionados</span>
@@ -1428,26 +1122,7 @@ permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_ejey</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Abre una ventana emergente para personalizar el título del eje Y de la gráfica, </span>
-<span class="sd">    permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    master : tkinter.Tk</span>
-<span class="sd">        Ventana principal de la aplicación.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ventana_ejey : tkinter.Toplevel</span>
-<span class="sd">        La ventana emergente de personalización del eje Y.</span>
-<span class="sd">    ejey_titulo : tkinter.StringVar</span>
-<span class="sd">        Variable del título del eje Y de la gráfica.</span>
-<span class="sd">    ejey_size : int</span>
-<span class="sd">        Tamaño de la fuente para el título del eje Y.</span>
-<span class="sd">    ejey_shape : str</span>
-<span class="sd">        Tipo de fuente para el título del eje Y.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">ventana_ejey</span>
 
     <span class="c1"># Verificar si la ventana ya está abierta</span>
@@ -1511,20 +1186,7 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_double_click</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y) </span>
-<span class="sd">    y abre la ventana de edición correspondiente para personalizar el título del eje o gráfico.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    event : matplotlib.backend_bases.MouseEvent</span>
-<span class="sd">        El evento de clic que contiene la información sobre la posición del clic y si es un doble clic.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    raiz : tkinter.Tk</span>
-<span class="sd">        La ventana principal de la aplicación.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">dblclick</span><span class="p">:</span>
         <span class="c1"># Coordenadas del clic en la ventana gráfica</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">y</span>
@@ -1566,19 +1228,7 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_x_limits</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    master : tkinter.Tk</span>
-<span class="sd">        La ventana principal de la aplicación.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ventana_lim_x : tkinter.Toplevel</span>
-<span class="sd">        La ventana emergente creada para la actualización de los límites del eje X.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">ventana_lim_x</span>
 
     <span class="c1"># Crear nueva ventana</span>
@@ -1626,24 +1276,7 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_x_limits</span><span class="p">(</span><span class="n">x_min_entry</span><span class="p">,</span> <span class="n">x_max_entry</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    x_min_entry : tkinter.Entry</span>
-<span class="sd">        Campo de entrada dl valor para el límite inferior del eje X (x_min).</span>
-
-<span class="sd">    x_max_entry : tkinter.Entry</span>
-<span class="sd">        Campo de entrada del valor para el límite superior del eje X (x_max).</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    x_limits : list</span>
-<span class="sd">        Lista que almacena los límites actuales del eje X [x_min, x_max].</span>
-<span class="sd">    origx_lim : list</span>
-<span class="sd">        Copia de los límites originales del eje X, utilizada para restaurar los valores iniciales si es necesario.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">origx_lim</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -1682,19 +1315,7 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_y_limits</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Muestra una ventana emergente para actualizar los límites del eje Y.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    master : tkinter.Tk</span>
-<span class="sd">        La ventana principal de la aplicación. Es el contenedor sobre el que se crea la ventana emergente.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    ventana_lim_y : tkinter.Toplevel</span>
-<span class="sd">        Ventana emergente que permite al usuario ingresar los límites del eje Y.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">ventana_lim_y</span>
 
     <span class="c1"># Crear nueva ventana</span>
@@ -1742,25 +1363,7 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_y_limits</span><span class="p">(</span><span class="n">y_min_entry</span><span class="p">,</span> <span class="n">y_max_entry</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    y_min_entry : tkinter.Entry</span>
-<span class="sd">        Campo de entrada del valor mínimo para el eje Y.</span>
-
-<span class="sd">    y_max_entry : tkinter.Entry</span>
-<span class="sd">        Campo de entrada del valor máximo para el eje Y.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    y_limits : list</span>
-<span class="sd">        Lista que almacena los valores actuales de los límites del eje Y [y_min, y_max].</span>
-
-<span class="sd">    origy_lim : list</span>
-<span class="sd">        Copia de los límites originales del eje Y, utilizada para restaurar los valores si es necesario.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">origy_lim</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -1816,34 +1419,7 @@ función de los límites ajustados. También se actualiza el porcentaje de zoom 
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zoom</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que </span>
-<span class="sd">    se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es </span>
-<span class="sd">    controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en </span>
-<span class="sd">    función de los límites ajustados. También se actualiza el porcentaje de zoom mostrado en pantalla</span>
-<span class="sd">    [zoom_label]. Si se desea volver al tamaño original de la gráfica este se reestablecera cuando </span>
-<span class="sd">    [reset] sea True.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    event : tkinter.Event, optional</span>
-<span class="sd">        Evento que dispara la acción de zoom.</span>
-
-<span class="sd">    reset : bool, optional</span>
-<span class="sd">        Si True, restablece los límites originales de la gráfica.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    x_limits : list</span>
-<span class="sd">        Lista que contiene los límites actuales del eje &#39;x&#39; en la forma [xmin, xmax].</span>
-<span class="sd">    y_limits : list</span>
-<span class="sd">        Lista que contiene los límites actuales del eje &#39;y&#39; en la forma [ymin, ymax].</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    None</span>
-<span class="sd">        La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">y_limits</span> <span class="c1"># Variables globales, límites de &#39;x&#39; y &#39;y&#39;</span>
     <span class="k">if</span> <span class="n">reset</span><span class="p">:</span>
         <span class="c1"># Restablecer límites originales</span>
@@ -1912,31 +1488,7 @@ gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_press</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Evento que permite inicializar un evento con un clic siempre y cuando este se haya </span>
-<span class="sd">    realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición</span>
-<span class="sd">    para matplotlib. </span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    event : matplotlib.backend_bases.MouseEvent</span>
-<span class="sd">        Evento que contiene la información del clic del mouse dentro de los límites de la </span>
-<span class="sd">        gráfica y almacenando las coordenadas [x,y] del clic realizado.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    is_dragging : bool</span>
-<span class="sd">        Indicador que se establece en True cuando el usuario está arrastrando el mouse.</span>
-<span class="sd">    start_x : float</span>
-<span class="sd">        Coordenada &#39;x&#39; donde se inició el clic en la gráfica.</span>
-<span class="sd">    start_y : float</span>
-<span class="sd">        Coordenada &#39;y&#39; donde se inició el clic en la gráfica.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    None</span>
-<span class="sd">        La función no retorna ningún valor, simplemente actualiza datos.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">is_dragging</span><span class="p">,</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span>
     <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span><span class="p">:</span>
         <span class="n">is_dragging</span> <span class="o">=</span> <span class="kc">True</span>   <span class="c1"># Interacción con la gráfica</span>
@@ -1976,28 +1528,7 @@ lo que indica que la interacción/arrastre ha finalizado.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_release</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Evento que permite finalizar la función anterior de interacción del usuario y la </span>
-<span class="sd">    gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y </span>
-<span class="sd">    cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    event : matplotlib.backend_bases.MouseEvent</span>
-<span class="sd">        Evento que contiene la información del clic del mouse dentro de los límites de la </span>
-<span class="sd">        gráfica y almacenando las coordenadas [x,y] del clic realizado.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    is_dragging : bool</span>
-<span class="sd">        Indicador que se establece en False cuando el usuario suelta el botón del mouse,</span>
-<span class="sd">        lo que indica que la interacción/arrastre ha finalizado.</span>
-
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">    None</span>
-<span class="sd">        La función no retorna ningún valor, simplemente actualiza datos.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">is_dragging</span>
     <span class="n">is_dragging</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Finalizar el evento de interacción al soltar el clic.</span>
 </pre></div>
@@ -2031,29 +1562,7 @@ gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_motion</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el </span>
-<span class="sd">    mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.</span>
 
-<span class="sd">    Parámetros</span>
-<span class="sd">    ----------</span>
-<span class="sd">    event : matplotlib.backend_bases.MouseEvent</span>
-<span class="sd">        Evento que contiene la información del clic del mouse dentro de los límites de la </span>
-<span class="sd">        gráfica y almacenando las coordenadas [x,y] del clic realizado.</span>
-
-<span class="sd">    Variables globales</span>
-<span class="sd">    ------------------</span>
-<span class="sd">    x_limits : list</span>
-<span class="sd">        Lista que contiene los límites actuales del eje &#39;x&#39; en la forma [xmin, xmax].</span>
-<span class="sd">    y_limits : list</span>
-<span class="sd">        Lista que contiene los límites actuales del eje &#39;y&#39; en la forma [ymin, ymax].</span>
-<span class="sd">    start_x : float</span>
-<span class="sd">        Coordenada &#39;x&#39; donde se inició el clic en la gráfica.</span>
-<span class="sd">    start_y : float</span>
-<span class="sd">        Coordenada &#39;y&#39; donde se inició el clic en la gráfica.</span>
-
-
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span>
     <span class="k">if</span> <span class="n">is_dragging</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span><span class="p">:</span> <span class="c1"># Verificación de interacción True and True</span>
 

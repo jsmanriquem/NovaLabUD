@@ -408,12 +408,7 @@ Configura la ventana principal, establece las dimensiones basadas en la pantalla
 inicializa los componentes de la UI y configura los menús.
 Inicializa la clase y configura la ventana principal del software.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Inicializa la aplicación del Software de Laboratorio.</span>
-<span class="sd">    Configura la ventana principal, establece las dimensiones basadas en la pantalla,</span>
-<span class="sd">    inicializa los componentes de la UI y configura los menús.</span>
-<span class="sd">    Inicializa la clase y configura la ventana principal del software.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Software de Laboratorio&quot;</span><span class="p">)</span>
 
@@ -484,7 +479,7 @@ Inicializa la clase y configura la ventana principal del software.</p>
 <span class="sig-name descname"><span class="pre">load_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.load_pdf" title="Link to this definition">#</a></dt>
 <dd><p>Carga el PDF en el tab especificado.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tab</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga el PDF en el tab especificado.&quot;&quot;&quot;</span>
+
     <span class="c1"># Limpiar el contenido del tab antes de cargar el nuevo PDF</span>
     <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="n">tab</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
         <span class="n">widget</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
@@ -544,7 +539,7 @@ Inicializa la clase y configura la ventana principal del software.</p>
 <span class="sig-name descname"><span class="pre">on_tab_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.on_tab_change" title="Link to this definition">#</a></dt>
 <dd><p>Cuando se cambia de pestaña, se carga el PDF correspondiente</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_tab_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cuando se cambia de pestaña, se carga el PDF correspondiente&quot;&quot;&quot;</span>
+
     <span class="n">selected_tab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">select</span><span class="p">(),</span> <span class="s2">&quot;text&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">selected_tab</span> <span class="o">==</span> <span class="s2">&quot;Caída libre&quot;</span><span class="p">:</span>
@@ -562,11 +557,7 @@ Inicializa la clase y configura la ventana principal del software.</p>
 los datos cargados de manera organizada y navegable.
 Crea la tabla para mostrar los datos con scrollbars.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_data_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Inicializa un Treeview con scrollbars vertical y horizontal para mostrar</span>
-<span class="sd">    los datos cargados de manera organizada y navegable.</span>
-<span class="sd">    Crea la tabla para mostrar los datos con scrollbars.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="c1"># Frame para contener la tabla y scrollbars</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_frame</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -607,13 +598,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_data_display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Actualiza la tabla de datos con nueva información.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        data (pd.DataFrame): DataFrame con los nuevos datos a mostrar.</span>
-<span class="sd">                           Si es None o está vacío, se muestra el mensaje de no datos.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Limpiar tabla existente</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">get_children</span><span class="p">())</span>
 
@@ -652,15 +637,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 - Acerca de: Para información y documentación
 - Ver: Para abrir el graficador en una nueva ventana</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Configura la barra de menús de la aplicación.</span>
 
-<span class="sd">    Crea y configura los menús principales:</span>
-<span class="sd">    - Archivo: Para operaciones de importación/exportación</span>
-<span class="sd">    - Edición: Para procesamiento de datos</span>
-<span class="sd">    - Acerca de: Para información y documentación</span>
-<span class="sd">    - Ver: Para abrir el graficador en una nueva ventana</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">menubar</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
 
     <span class="c1"># Menú Archivo</span>
@@ -719,7 +696,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
 <dd><p>Muestra los autores del software.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_autores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra los autores del software.&quot;&quot;&quot;</span>
+
     <span class="n">autores</span> <span class="o">=</span> <span class="s2">&quot;Andrés Gómez</span><span class="se">\n</span><span class="s2">Jorge Garzón</span><span class="se">\n</span><span class="s2">Julián Aros</span><span class="se">\n</span><span class="s2">Laura Oliveros</span><span class="se">\n</span><span class="s2">Laura Triana</span><span class="se">\n</span><span class="s2">Sebastian Manrique&quot;</span>
     <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Autores&quot;</span><span class="p">,</span> <span class="n">autores</span><span class="p">)</span>
 </pre></div>
@@ -731,7 +708,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <span class="sig-name descname"><span class="pre">show_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_warning" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una advertencia usando Tkinter.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra una advertencia usando Tkinter.&quot;&quot;&quot;</span>
+
     <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -742,7 +719,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <span class="sig-name descname"><span class="pre">run_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regression_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.run_regression" title="Link to this definition">#</a></dt>
 <dd><p>Ejecuta la regresión seleccionada con los datos cargados.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regression_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ejecuta la regresión seleccionada con los datos cargados.&quot;&quot;&quot;</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_warning</span><span class="p">(</span><span class="s2">&quot;No hay datos cargados. Primero importa los datos.&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -772,7 +749,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <span class="sig-name descname"><span class="pre">select_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.select_variables" title="Link to this definition">#</a></dt>
 <dd><p>Permite al usuario seleccionar las variables para la regresión.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Permite al usuario seleccionar las variables para la regresión.&quot;&quot;&quot;</span>
+
     <span class="c1"># Aquí puedes cambiar esto según cómo quieras que se seleccionen las variables.</span>
     <span class="c1"># Por ejemplo, podrías usar un cuadro de diálogo para pedir el nombre de las variables.</span>
 
@@ -790,7 +767,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <span class="sig-name descname"><span class="pre">open_graficador</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.open_graficador" title="Link to this definition">#</a></dt>
 <dd><p>Método para ejecutar graficador.py en una nueva ventana.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_graficador</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Método para ejecutar graficador.py en una nueva ventana.&quot;&quot;&quot;</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Ejecutar el archivo graficador.py como un proceso independiente</span>
         <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">&#39;graficador.py&#39;</span><span class="p">])</span>
@@ -807,12 +784,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <p>Este método debe ser llamado después de la inicialización para comenzar
 la ejecución de la interfaz gráfica.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Inicia el bucle principal de la aplicación.</span>
 
-<span class="sd">    Este método debe ser llamado después de la inicialización para comenzar</span>
-<span class="sd">    la ejecución de la interfaz gráfica.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -852,12 +824,7 @@ automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_container</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Inicializa la clase con una referencia al contenedor de UI.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ui_container: Referencia al objeto que contiene los elementos de la UI.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">ui_container</span> <span class="o">=</span> <span class="n">ui_container</span>
 </pre></div>
@@ -880,15 +847,7 @@ automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Carga un archivo y actualiza la UI si es exitoso.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        ui_callback (callable, optional): Función a llamar para actualizar la UI con los datos cargados.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        bool: True si la carga fue exitosa, False en caso contrario</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">success</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_file</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">success</span> <span class="ow">and</span> <span class="n">ui_callback</span><span class="p">:</span>
         <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -904,12 +863,7 @@ automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_null_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_null_values</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
         <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -924,12 +878,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
         <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -944,12 +893,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">normalize_data</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
         <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
@@ -964,12 +908,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fill_null_with_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fill_null_with_mean</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
         <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>

@@ -325,12 +325,7 @@ para el análisis.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_ops</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inicializa la clase con el objeto de operaciones de datos.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        data_ops (DataOperations): Objeto que contiene los datos necesarios</span>
-<span class="sd">                                    para el análisis.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">data_ops</span>
 </pre></div>
 </div>
@@ -359,18 +354,7 @@ para el análisis.</p>
 <p>Asegúrate de que las dimensiones de <cite>y_true</cite> y <cite>y_pred</cite> coincidan.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula las métricas de regresión.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        y_true (array-like): Valores reales.</span>
-<span class="sd">        y_pred (array-like): Valores predichos por el modelo.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        tuple: (R², MAE, MSE)</span>
-
-<span class="sd">    Warnings:</span>
-<span class="sd">        Asegúrate de que las dimensiones de `y_true` y `y_pred` coincidan.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
     <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
     <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -393,13 +377,7 @@ para el análisis.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra las métricas de regresión en una ventana de Tkinter.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        r2 (float): Coeficiente de determinación R².</span>
-<span class="sd">        mae (float): Error absoluto medio.</span>
-<span class="sd">        mse (float): Error cuadrático medio.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">metrics_window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
     <span class="n">metrics_window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Métricas de Regresión&quot;</span><span class="p">)</span>
 
@@ -433,16 +411,7 @@ para el análisis.</p>
 se mostrará una advertencia.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una regresión lineal.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        var_x (str): Nombre de la variable independiente.</span>
-<span class="sd">        var_y (str): Nombre de la variable dependiente.</span>
-
-<span class="sd">    Warnings:</span>
-<span class="sd">        Si `data_ops.data` es None o las variables no están seleccionadas,</span>
-<span class="sd">        se mostrará una advertencia.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -483,17 +452,7 @@ se mostrará una advertencia.
 Si el grado del polinomio es None, no se realizará la regresión.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una regresión polinómica.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        var_x (str): Nombre de la variable independiente.</span>
-<span class="sd">        var_y (str): Nombre de la variable dependiente.</span>
-
-<span class="sd">    Warnings:</span>
-<span class="sd">        Si `data_ops.data` es None o las variables no están seleccionadas,</span>
-<span class="sd">        se mostrará una advertencia.</span>
-<span class="sd">        Si el grado del polinomio es None, no se realizará la regresión.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
         <span class="n">degree</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askinteger</span><span class="p">(</span><span class="s2">&quot;Grado del Polinomio&quot;</span><span class="p">,</span> <span class="s2">&quot;Ingresa el grado del polinomio:&quot;</span><span class="p">,</span> <span class="n">minvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
@@ -540,16 +499,7 @@ Si el grado del polinomio es None, no se realizará la regresión.</p>
 se mostrará una advertencia.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza la interpolación lineal de los datos.</span>
 
-<span class="sd">    Args:</span>
-<span class="sd">        var_x (str): Nombre de la variable independiente.</span>
-<span class="sd">        var_y (str): Nombre de la variable dependiente.</span>
-
-<span class="sd">    Warnings:</span>
-<span class="sd">        Si `data_ops.data` es None o las variables no están seleccionadas,</span>
-<span class="sd">        se mostrará una advertencia.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span>
