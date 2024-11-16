@@ -30,7 +30,7 @@
   <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
   
   <!-- So that users can add custom icons -->
@@ -48,7 +48,7 @@
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Módulo: data_operations.py" href="data_operations.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="modules.html" />
+    <link rel="prev" title="Documentación de NovaLab" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -185,6 +185,53 @@
         <div class="header-article-item">
 
 <div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fapp.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
 
 
 
@@ -330,7 +377,7 @@
 <p>Este es el <strong>módulo principal del software</strong>, es el que se encarga de toda la interfaz gráfica de realizar las implementaciones de los demás módulos para el usuario final. Posee un extenso número de funciones que permiten el correcto funcionamiento de la aplicación.</p>
 <dl class="py class" id="module-app">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_container</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_container</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataOperations</span></code></a></p>
 <p>Extensión de DataOperations que integra callbacks para la interfaz de usuario.</p>
 <p>Esta clase extiende las operaciones de datos básicas para actualizar
@@ -347,7 +394,7 @@ automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI.fill_null_with_mean">
-<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.fill_null_with_mean" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.fill_null_with_mean"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.fill_null_with_mean" title="Link to this definition">#</a></dt>
 <dd><p>Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</p>
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
@@ -355,7 +402,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.load_file" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.load_file"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.load_file" title="Link to this definition">#</a></dt>
 <dd><p>Carga un archivo y actualiza la UI si es exitoso.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -372,7 +419,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.normalize_data" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.normalize_data"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.normalize_data" title="Link to this definition">#</a></dt>
 <dd><p>Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
@@ -380,7 +427,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_duplicates" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.remove_duplicates"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.remove_duplicates" title="Link to this definition">#</a></dt>
 <dd><p>Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
@@ -388,7 +435,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_null_values" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.remove_null_values"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.remove_null_values" title="Link to this definition">#</a></dt>
 <dd><p>Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
 <p>Args:
 ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
@@ -398,7 +445,7 @@ ui_callback (callable, optional): Función que se llama para actualizar la UI co
 
 <dl class="py class">
 <dt class="sig sig-object py" id="app.LaboratorySoftware">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">LaboratorySoftware</span></span><a class="headerlink" href="#app.LaboratorySoftware" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">LaboratorySoftware</span></span><a class="reference internal" href="_modules/app.html#LaboratorySoftware"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
 Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
@@ -483,7 +530,7 @@ del software, incluyendo la carga de datos, visualización, procesamiento y aná
 <p>Clase principal del Software de Laboratorio.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.create_data_table">
-<span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.create_data_table"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">#</a></dt>
 <dd><p>Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
 los datos cargados de manera organizada y navegable.
 Crea la tabla para mostrar los datos con scrollbars.</p>
@@ -491,25 +538,25 @@ Crea la tabla para mostrar los datos con scrollbars.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.load_pdf">
-<span class="sig-name descname"><span class="pre">load_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.load_pdf" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">load_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.load_pdf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.load_pdf" title="Link to this definition">#</a></dt>
 <dd><p>Carga el PDF en el tab especificado.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.on_tab_change">
-<span class="sig-name descname"><span class="pre">on_tab_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.on_tab_change" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">on_tab_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.on_tab_change"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.on_tab_change" title="Link to this definition">#</a></dt>
 <dd><p>Cuando se cambia de pestaña, se carga el PDF correspondiente</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.open_graficador">
-<span class="sig-name descname"><span class="pre">open_graficador</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.open_graficador" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">open_graficador</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.open_graficador"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.open_graficador" title="Link to this definition">#</a></dt>
 <dd><p>Método para ejecutar graficador.py en una nueva ventana.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.LaboratorySoftware.run" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.run"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.run" title="Link to this definition">#</a></dt>
 <dd><p>Inicia el bucle principal de la aplicación.</p>
 <p>Este método debe ser llamado después de la inicialización para comenzar
 la ejecución de la interfaz gráfica.</p>
@@ -517,19 +564,19 @@ la ejecución de la interfaz gráfica.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.run_regression">
-<span class="sig-name descname"><span class="pre">run_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regression_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.run_regression" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">run_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regression_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.run_regression"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.run_regression" title="Link to this definition">#</a></dt>
 <dd><p>Ejecuta la regresión seleccionada con los datos cargados.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.select_variables">
-<span class="sig-name descname"><span class="pre">select_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.select_variables" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">select_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.select_variables"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.select_variables" title="Link to this definition">#</a></dt>
 <dd><p>Permite al usuario seleccionar las variables para la regresión.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.setup_menus">
-<span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.setup_menus"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">#</a></dt>
 <dd><p>Configura la barra de menús de la aplicación.</p>
 <p>Crea y configura los menús principales:
 - Archivo: Para operaciones de importación/exportación
@@ -540,19 +587,19 @@ la ejecución de la interfaz gráfica.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.show_autores">
-<span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.show_autores"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
 <dd><p>Muestra los autores del software.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.show_warning">
-<span class="sig-name descname"><span class="pre">show_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_warning" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">show_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.show_warning"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.show_warning" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una advertencia usando Tkinter.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.update_data_display">
-<span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.update_data_display"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza la tabla de datos con nueva información.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -578,12 +625,12 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="modules.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Documentación de <code class="docutils literal notranslate"><span class="pre">NovaLab</span></code></p>
       </div>
     </a>
     <a class="right-next"

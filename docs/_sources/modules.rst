@@ -1,7 +1,3 @@
-.. toctree::
-   :maxdepth: 1
+Contenidos
+==========
 
-   app
-   data_operations
-   regression_analysis
-   graficador

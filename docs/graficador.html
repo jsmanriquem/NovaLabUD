@@ -30,7 +30,7 @@
   <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
   
   <!-- So that users can add custom icons -->
@@ -189,6 +189,53 @@
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fgraficador.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
     <i class="fas fa-download"></i>
@@ -324,7 +371,7 @@
 <p>Este es el módulo que se encarga de hacer la visualización de los datos, es uno de los módulos más complejos y por tanto tiene demasiados métodos incluidos en él.</p>
 <dl class="py function" id="module-graficador">
 <dt class="sig sig-object py" id="graficador.actualizar_columnas">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">actualizar_columnas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.actualizar_columnas" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">actualizar_columnas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#actualizar_columnas"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.actualizar_columnas" title="Link to this definition">#</a></dt>
 <dd><p>Obtiene los nombres de las columnas del archivo de datos actualmente cargado en
 data_ops. Crea o actualiza los ComboBox de selección de columnas “X” e “Y”, y
 coloca un botón para iniciar la gráfica, si no hay columnas disponibles, muestra
@@ -352,7 +399,7 @@ un mensaje de error al usuario.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.apply_title_changes">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_title_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo_grafica_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_title_changes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_title_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo_grafica_entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#apply_title_changes"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.apply_title_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios en el título de la gráfica, incluyendo el texto, tamaño de fuente
 y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 <section id="parametros">
@@ -381,7 +428,7 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.apply_xaxis_changes">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_xaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejex_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_xaxis_changes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_xaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejex_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#apply_xaxis_changes"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.apply_xaxis_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente
 y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 <section id="id2">
@@ -410,7 +457,7 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.apply_yaxis_changes">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_yaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejey_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_yaxis_changes" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_yaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejey_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#apply_yaxis_changes"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.apply_yaxis_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.</p>
 <section id="id4">
 <h2>Parámetros<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
@@ -438,7 +485,7 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.cargar_datos">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.cargar_datos" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#cargar_datos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.cargar_datos" title="Link to this definition">#</a></dt>
 <dd><p>Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método
 load_file() de la instancia data_ops. Si los datos están disponibles y no están vacíos,
 los imprime en la consola y actualiza las opciones de columnas para el usuario. Si no
@@ -455,7 +502,7 @@ y sus operaciones asociadas.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.confirmar_limpiar_grafica">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">confirmar_limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.confirmar_limpiar_grafica" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">confirmar_limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#confirmar_limpiar_grafica"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.confirmar_limpiar_grafica" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente de confirmación para limpiar la gráfica. La ventana ofrece
 al usuario la opción de confirmar o cancelar la limpieza. Si el usuario confirma, se llama
 a la función “limpiar_grafica” y se cierra la ventana de confirmación; en caso contrario,
@@ -472,7 +519,7 @@ confirmación.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.grafica_ventana">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#grafica_ventana"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.grafica_ventana" title="Link to this definition">#</a></dt>
 <dd><p>Crea una ventana emergente para la personalización visual de la gráfica, permitiendo
 al usuario ajustar parámetros como el color de fondo, grosor de la línea, tipo de
 marcador, color y tamaño de puntos, y mostrar o ocultar la cuadrícula.</p>
@@ -503,7 +550,7 @@ múltiples instancias y poder acceder a sus elementos.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.grafica_ventana_ejex">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejex" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#grafica_ventana_ejex"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.grafica_ventana_ejex" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente que permite al usuario personalizar el título del eje X de la gráfica.
 El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la fuente del eje X.</p>
 <section id="id10">
@@ -530,7 +577,7 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.grafica_ventana_ejey">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejey" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#grafica_ventana_ejey"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.grafica_ventana_ejey" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente para personalizar el título del eje Y de la gráfica,
 permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.</p>
 <section id="id12">
@@ -557,7 +604,7 @@ permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.grafica_ventana_title">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_title" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#grafica_ventana_title"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.grafica_ventana_title" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente que permite al usuario personalizar el título de la gráfica,
 incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
 <section id="id14">
@@ -580,7 +627,7 @@ incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.graficar_datos">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.graficar_datos" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#graficar_datos"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.graficar_datos" title="Link to this definition">#</a></dt>
 <dd><p>Esta función se encarga de dibujar o actualizar la gráfica de datos en el canvas de Matplotlib
 dentro de la interfaz gráfica. Limpia la gráfica anterior, dibuja una nueva basada en los datos actuales
 y actualiza los títulos y límites de los ejes.</p>
@@ -619,7 +666,7 @@ y actualiza los títulos y límites de los ejes.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.guardar_grafica">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">guardar_grafica</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formato</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.guardar_grafica" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">guardar_grafica</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formato</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#guardar_grafica"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.guardar_grafica" title="Link to this definition">#</a></dt>
 <dd><p>Muestra un cuadro de diálogo para seleccionar la ubicación y el nombre del archivo de la gráfica actual,
 y la guarda en el formato especificado por el usuario.</p>
 <section id="id17">
@@ -640,7 +687,7 @@ y la guarda en el formato especificado por el usuario.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.limpiar_grafica">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.limpiar_grafica" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#limpiar_grafica"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.limpiar_grafica" title="Link to this definition">#</a></dt>
 <dd><p>Limpia la gráfica y restablece sus parámetros a sus valores originales predeterminados,
 incluyendo el título, colores, estilos, y tamaños de ejes. Se reconfigura el diseño visual
 de la gráfica y se redibuja con los valores predeterminados.</p>
@@ -689,7 +736,7 @@ de la gráfica y se redibuja con los valores predeterminados.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.limpio_si">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpio_si</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.limpio_si" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpio_si</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#limpio_si"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.limpio_si" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente de confirmación para indicar al usuario que la gráfica
 ha sido limpiada exitosamente. La ventana incluye un mensaje de éxito y un botón para
 cerrarla.</p>
@@ -697,7 +744,7 @@ cerrarla.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_double_click">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_double_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_double_click" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_double_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#on_double_click"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.on_double_click" title="Link to this definition">#</a></dt>
 <dd><p>Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y)
 y abre la ventana de edición correspondiente para personalizar el título del eje o gráfico.</p>
 <section id="id20">
@@ -718,7 +765,7 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_line_click">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_line_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_line_click" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_line_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#on_line_click"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.on_line_click" title="Link to this definition">#</a></dt>
 <dd><p>Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar
 las propiedades de la gráfica.</p>
 <section id="id22">
@@ -743,7 +790,7 @@ para comparar con la posición del clic.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_motion">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_motion" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#on_motion"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.on_motion" title="Link to this definition">#</a></dt>
 <dd><p>Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el
 mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.</p>
 <section id="id24">
@@ -771,7 +818,7 @@ gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_press">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_press" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#on_press"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.on_press" title="Link to this definition">#</a></dt>
 <dd><p>Evento que permite inicializar un evento con un clic siempre y cuando este se haya
 realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición
 para matplotlib.</p>
@@ -806,7 +853,7 @@ gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_release">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_release" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#on_release"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.on_release" title="Link to this definition">#</a></dt>
 <dd><p>Evento que permite finalizar la función anterior de interacción del usuario y la
 gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y
 cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.</p>
@@ -838,7 +885,7 @@ lo que indica que la interacción/arrastre ha finalizado.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.set_x_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_x_limits" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#set_x_limits"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.set_x_limits" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente.</p>
 <section id="id30">
 <h2>Parámetros<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
@@ -862,7 +909,7 @@ lo que indica que la interacción/arrastre ha finalizado.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.set_y_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_y_limits" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_entry</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#set_y_limits"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.set_y_limits" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente.</p>
 <section id="id32">
 <h2>Parámetros<a class="headerlink" href="#id32" title="Link to this heading">#</a></h2>
@@ -886,7 +933,7 @@ lo que indica que la interacción/arrastre ha finalizado.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.update_graph_property">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_graph_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_graph_property" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_graph_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#update_graph_property"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.update_graph_property" title="Link to this definition">#</a></dt>
 <dd><p>Dependiendo de <cite>property_type</cite>, la función ajusta el valor de la propiedad correspondiente
 de la gráfica y actualiza la visualización.</p>
 <section id="id34">
@@ -930,7 +977,7 @@ un valor booleano para mostrar u ocultar la cuadrícula.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.update_x_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_x_limits" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#update_x_limits"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.update_x_limits" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.</p>
 <section id="id36">
 <h2>Parámetros<a class="headerlink" href="#id36" title="Link to this heading">#</a></h2>
@@ -950,7 +997,7 @@ un valor booleano para mostrar u ocultar la cuadrícula.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.update_y_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_y_limits" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#update_y_limits"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.update_y_limits" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente para actualizar los límites del eje Y.</p>
 <section id="id38">
 <h2>Parámetros<a class="headerlink" href="#id38" title="Link to this heading">#</a></h2>
@@ -970,7 +1017,7 @@ un valor booleano para mostrar u ocultar la cuadrícula.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.zoom">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.zoom" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/graficador.html#zoom"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#graficador.zoom" title="Link to this definition">#</a></dt>
 <dd><p>Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que
 se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es
 controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en

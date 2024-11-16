@@ -30,7 +30,7 @@
   <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
   
   <!-- So that users can add custom icons -->
@@ -190,6 +190,53 @@
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fregression_analysis.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
     <i class="fas fa-download"></i>
@@ -309,7 +356,7 @@
 <p>Este es el módulo que se encarga de hacer el análisis de los datos, para ello utiliza diferentes métodos como lo son: <strong>regresión lineal</strong>, <strong>regresión polinómica</strong> e <strong>interpolación</strong>.</p>
 <dl class="py class" id="module-regression_analysis">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">RegressionAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ops</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">RegressionAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ops</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase para realizar análisis de regresión.</p>
 <p>Esta clase proporciona métodos para realizar análisis de regresión lineal
@@ -329,7 +376,7 @@ para el análisis de regresión.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.calculate_metrics">
-<span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.calculate_metrics" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.calculate_metrics"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.calculate_metrics" title="Link to this definition">#</a></dt>
 <dd><p>Calcula las métricas de regresión.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -353,7 +400,7 @@ para el análisis de regresión.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.interpolation">
-<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.interpolation"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">#</a></dt>
 <dd><p>Realiza la interpolación lineal de los datos.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -372,7 +419,7 @@ se mostrará una advertencia.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.linear_regression">
-<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.linear_regression"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">#</a></dt>
 <dd><p>Realiza una regresión lineal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -391,7 +438,7 @@ se mostrará una advertencia.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.polynomial_regression">
-<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.polynomial_regression"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">#</a></dt>
 <dd><p>Realiza una regresión polinómica.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -411,7 +458,7 @@ Si el grado del polinomio es None, no se realizará la regresión.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.show_metrics">
-<span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mse</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.show_metrics" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.show_metrics"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.show_metrics" title="Link to this definition">#</a></dt>
 <dd><p>Muestra las métricas de regresión en una ventana de Tkinter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>

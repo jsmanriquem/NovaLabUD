@@ -30,7 +30,7 @@
   <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 <link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
   
   <!-- So that users can add custom icons -->
@@ -190,6 +190,53 @@
 
 
 
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Repositorio de origen"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fdata_operations.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Abrir un problema"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
     <i class="fas fa-download"></i>
@@ -310,7 +357,7 @@
 <p>Este es el módulo que se encarga de hacer el procesamiento de los datos, para ello utiliza diferentes métodos como lo son: <strong>eliminación de datos nulos</strong>, <strong>eliminar datos duplicados</strong>, <strong>normalizar datos</strong> y <strong>rellenar datos nulos con la media</strong>.</p>
 <dl class="py class" id="module-data_operations">
 <dt class="sig sig-object py" id="data_operations.DataOperations">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="headerlink" href="#data_operations.DataOperations" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="reference internal" href="_modules/data_operations.html#DataOperations"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
 Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
@@ -356,7 +403,7 @@ transformation_history (list): Lista de diccionarios con el historial de transfo
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.export_results">
-<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.export_results" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.export_results"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.export_results" title="Link to this definition">#</a></dt>
 <dd><p>Exporta los datos procesados y el historial de transformaciones.</p>
 <p>Formatos soportados:
 - Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial
@@ -377,7 +424,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.fill_null_with_mean">
-<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.fill_null_with_mean" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.fill_null_with_mean"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.fill_null_with_mean" title="Link to this definition">#</a></dt>
 <dd><p>Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.</p>
 <p>Este método:
 - Calcula la media de cada columna numérica del DataFrame
@@ -399,7 +446,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.get_transformation_summary">
-<span class="sig-name descname"><span class="pre">get_transformation_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.get_transformation_summary" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">get_transformation_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.get_transformation_summary"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.get_transformation_summary" title="Link to this definition">#</a></dt>
 <dd><p>Genera un resumen textual de todas las transformaciones aplicadas.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Devuelve<span class="colon">:</span></dt>
@@ -424,7 +471,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.load_file" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.load_file"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.load_file" title="Link to this definition">#</a></dt>
 <dd><p>Permite al usuario seleccionar y cargar un archivo de datos, desde un archivo CSV, TXT o Excel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -444,7 +491,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.normalize_data" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.normalize_data"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.normalize_data" title="Link to this definition">#</a></dt>
 <dd><p>Normaliza todas las columnas numéricas del DataFrame al rango [0,1].</p>
 <p>Para cada columna numérica, aplica la fórmula:
 normalized = (x - min) / (max - min)</p>
@@ -458,7 +505,7 @@ Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.remove_duplicates" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.remove_duplicates"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.remove_duplicates" title="Link to this definition">#</a></dt>
 <dd><p>Elimina las filas duplicadas del DataFrame, manteniendo la primera ocurrencia.</p>
 <p>Este método:
 - Identifica y elimina filas completamente duplicadas
@@ -487,7 +534,7 @@ Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.remove_null_values" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.remove_null_values"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.remove_null_values" title="Link to this definition">#</a></dt>
 <dd><p>Elimina las filas que contienen valores nulos del DataFrame.</p>
 <p>La operación se realiza in-place y se registra en el historial de transformaciones.
 Muestra un mensaje con el número de filas eliminadas.</p>
