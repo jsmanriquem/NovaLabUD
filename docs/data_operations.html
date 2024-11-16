@@ -32,6 +32,8 @@
 
     <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="assets/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="assets/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="assets/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -42,9 +44,12 @@
     <script src="assets/documentation_options.js?v=40e79d90"></script>
     <script src="assets/doctools.js?v=9bcbadda"></script>
     <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="assets/clipboard.min.js?v=a7894cd8"></script>
+    <script src="assets/copybutton.js?v=f281be69"></script>
     <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="assets/translations.js?v=f85f4cfb"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data_operations';</script>
+    <link rel="icon" href="assets/logo_provisional1.ico"/>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Módulo: regression_analysis.py" href="regression_analysis.html" />
@@ -125,8 +130,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="assets/logo_provisional1.svg" class="logo__image only-light" alt="documentación de Proyecto final - 1.0 - Home"/>
+    <img src="assets/logo_provisional1.svg" class="logo__image only-dark pst-js-only" alt="documentación de Proyecto final - 1.0 - Home"/>
   
-    <p class="title logo__title">documentación de Proyecto final - 1.0</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -138,6 +149,14 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Documentación de NovaLab
+                </a>
+            </li>
+        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="app.html">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
@@ -187,98 +206,18 @@
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
+<a href="https://github.com/usuario/repositorio" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
    title="Repositorio de origen"
-   data-bs-placement="left" data-bs-toggle="tooltip"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="btn__text-container">Repository</span>
+
 </a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fdata_operations.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Abrir un problema"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="_sources/data_operations.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Descargar archivo fuente"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimir en PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
 
 
 
@@ -332,13 +271,14 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_with_mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperations.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_with_mean()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -357,19 +297,16 @@
 <p>Este es el módulo que se encarga de hacer el procesamiento de los datos, para ello utiliza diferentes métodos como lo son: <strong>eliminación de datos nulos</strong>, <strong>eliminar datos duplicados</strong>, <strong>normalizar datos</strong> y <strong>rellenar datos nulos con la media</strong>.</p>
 <dl class="py class" id="module-data_operations">
 <dt class="sig sig-object py" id="data_operations.DataOperations">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="reference internal" href="_modules/data_operations.html#DataOperations"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="headerlink" href="#data_operations.DataOperations" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
 Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
-un registro de las transformaciones aplicadas y los datos originales.
-Las operaciones a realizar en dichas transformaciones son:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.</p></li>
-<li><p>Eliminar duplicados: Elimina las filas duplicadas del DataFrame.</p></li>
-<li><p>Normalizar datos: Normaliza los datos numéricos del DataFrame.</p></li>
-<li><p>Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.</p></li>
-</ul>
+un registro de las transformaciones aplicadas y los datos originales.</p>
+<p>Las operaciones a realizar en dichas transformaciones son:
+- Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.
+- Eliminar duplicados: Elimina las filas duplicadas del DataFrame.
+- Normalizar datos: Normaliza los datos numéricos del DataFrame.
+- Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.</p>
 <p>Como se mencionó, la clase también proporciona una función para obtener un resumen de las transformaciones
 realizadas, que devuelve un string con el formato:</p>
 <p>Resumen de transformaciones:</p>
@@ -387,7 +324,6 @@ Fecha: 2024-01-01 12:00:00
 Detalles: None
 Filas afectadas: 100</p></li>
 </ol>
-</div></blockquote>
 <dl>
 <dt>Attributos:</dt><dd><p>data (pd.DataFrame): DataFrame actual con los datos procesados.
 original_data (pd.DataFrame): Copia de los datos originales sin procesar.
@@ -402,76 +338,36 @@ transformation_history (list): Lista de diccionarios con el historial de transfo
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.export_results">
-<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.export_results"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.export_results" title="Link to this definition">#</a></dt>
-<dd><p>Exporta los datos procesados y el historial de transformaciones.</p>
-<p>Formatos soportados:
-- Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial
-- CSV (.csv): Crea archivos separados para cada tipo de dato
-- TXT (.txt): Similar a CSV pero con delimitador de tabulación</p>
+<dt class="sig sig-object py" id="data_operations.DataOperations.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Inicializa la clase DataOperations con un DataFrame vacío y una lista para registrar transformaciones.
+Aquí no realiza ninguna operación en los datos iniciales, sino que almacena los datos originales
+para poder realizar transformaciones posteriores.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
-<dd class="field-odd"><p>True si la exportación fue exitosa, False en otro caso.</p>
-</dd>
-<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
-<dd class="field-even"><p>bool</p>
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong></p>
 </dd>
 </dl>
-<p class="rubric">Notas</p>
-<p>Para CSV y TXT, se crean archivos adicionales con sufijos “_original”
-y “_transformaciones” para los datos originales y el historial.</p>
-</dd></dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inicializa la clase DataOperations con un DataFrame vacío y una lista para registrar transformaciones.</span>
+<span class="sd">    Aquí no realiza ninguna operación en los datos iniciales, sino que almacena los datos originales</span>
+<span class="sd">    para poder realizar transformaciones posteriores.</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.fill_null_with_mean">
-<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.fill_null_with_mean"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.fill_null_with_mean" title="Link to this definition">#</a></dt>
-<dd><p>Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.</p>
-<p>Este método:
-- Calcula la media de cada columna numérica del DataFrame
-- Reemplaza todos los valores nulos con la media correspondiente
-- Registra la operación en el historial
-- Muestra un mensaje con el número de valores rellenados</p>
-<dl class="field-list simple">
-<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
-<dd class="field-odd"><p>None</p>
-</dd>
-<dt class="field-even">Muestra<span class="colon">:</span></dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>No lanza excepciones directamente</strong><strong>, </strong><strong>pero muestra un messagebox de advertencia</strong> – </p></li>
-<li><p><strong>si self.data es None</strong> – </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.get_transformation_summary">
-<span class="sig-name descname"><span class="pre">get_transformation_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.get_transformation_summary"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.get_transformation_summary" title="Link to this definition">#</a></dt>
-<dd><p>Genera un resumen textual de todas las transformaciones aplicadas.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl>
-<dt>Resumen formateado del historial de transformaciones, incluyendo:</dt><dd><ul class="simple">
-<li><p>Número de operación</p></li>
-<li><p>Tipo de operación</p></li>
-<li><p>Fecha y hora</p></li>
-<li><p>Detalles específicos</p></li>
-<li><p>Número de filas afectadas</p></li>
-</ul>
-<p>Si no hay transformaciones, retorna un mensaje indicándolo.</p>
-</dd>
-</dl>
-</p>
-</dd>
-<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
-</dd>
-</dl>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span> <span class="o">=</span> <span class="p">[]</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.load_file"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.load_file" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.load_file" title="Link to this definition">#</a></dt>
 <dd><p>Permite al usuario seleccionar y cargar un archivo de datos, desde un archivo CSV, TXT o Excel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -487,25 +383,92 @@ y “_transformaciones” para los datos originales y el historial.</p>
 <dd class="field-even"><p><strong>ValueError</strong> – Si el archivo no tiene extensión .csv  .xlsx o .txt.</p>
 </dd>
 </dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Permite al usuario seleccionar y cargar un archivo de datos, desde un archivo CSV, TXT o Excel.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_path : str</span>
+<span class="sd">        La ruta al archivo que se desea cargar.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        DataFrame que contiene los datos cargados.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Si el archivo no tiene extensión .csv  .xlsx o .txt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askopenfilename</span><span class="p">(</span><span class="n">filetypes</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;Archivos CSV&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Archivos TXT&quot;</span><span class="p">,</span> <span class="s2">&quot;*.txt&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;Archivos Excel&quot;</span><span class="p">,</span> <span class="s2">&quot;*.xlsx *.xls&quot;</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">file</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">file</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Archivo cargado correctamente&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;No se pudo cargar el archivo. Detalles: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.normalize_data"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.normalize_data" title="Link to this definition">#</a></dt>
-<dd><p>Normaliza todas las columnas numéricas del DataFrame al rango [0,1].</p>
-<p>Para cada columna numérica, aplica la fórmula:
-normalized = (x - min) / (max - min)</p>
-<p>Si max = min, todos los valores se establecen en 0.
-Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
+<dt class="sig sig-object py" id="data_operations.DataOperations.remove_null_values">
+<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.remove_null_values" title="Link to this definition">#</a></dt>
+<dd><p>Elimina las filas que contienen valores nulos del DataFrame.</p>
+<p>La operación se realiza in-place y se registra en el historial de transformaciones.
+Muestra un mensaje con el número de filas eliminadas.</p>
 <dl class="simple">
 <dt>Requires:</dt><dd><p>Datos cargados previamente (self.data no None).</p>
 </dd>
 </dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_null_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Elimina las filas que contienen valores nulos del DataFrame.</span>
+
+<span class="sd">    La operación se realiza in-place y se registra en el historial de transformaciones.</span>
+<span class="sd">    Muestra un mensaje con el número de filas eliminadas.</span>
+
+<span class="sd">    Requires:</span>
+<span class="sd">        Datos cargados previamente (self.data no None).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rows_before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">rows_removed</span> <span class="o">=</span> <span class="n">rows_before</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_to_history</span><span class="p">(</span><span class="s1">&#39;remove_null_values&#39;</span><span class="p">,</span> 
+                           <span class="sa">f</span><span class="s1">&#39;Eliminadas </span><span class="si">{</span><span class="n">rows_removed</span><span class="si">}</span><span class="s1"> filas con valores nulos&#39;</span><span class="p">)</span>
+
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> 
+                          <span class="sa">f</span><span class="s2">&quot;Se han eliminado </span><span class="si">{</span><span class="n">rows_removed</span><span class="si">}</span><span class="s2"> filas con valores nulos&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Primero debes cargar los datos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="data_operations.DataOperations.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.remove_duplicates"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.remove_duplicates" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.remove_duplicates" title="Link to this definition">#</a></dt>
 <dd><p>Elimina las filas duplicadas del DataFrame, manteniendo la primera ocurrencia.</p>
 <p>Este método:
 - Identifica y elimina filas completamente duplicadas
@@ -530,18 +493,298 @@ Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 </ul>
 </dd>
 </dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Elimina las filas duplicadas del DataFrame, manteniendo la primera ocurrencia.</span>
+
+<span class="sd">    Este método:</span>
+<span class="sd">    - Identifica y elimina filas completamente duplicadas</span>
+<span class="sd">    - Mantiene la primera ocurrencia de cada fila duplicada</span>
+<span class="sd">    - Registra la operación en el historial</span>
+<span class="sd">    - Muestra un mensaje con el número de filas eliminadas</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        No lanza excepciones directamente, pero muestra un messagebox de advertencia</span>
+<span class="sd">        si self.data es None</span>
+
+<span class="sd">    Notas:</span>
+<span class="sd">        - La comparación de duplicados considera todas las columnas</span>
+<span class="sd">        - La operación es irreversible</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">rows_before</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">rows_removed</span> <span class="o">=</span> <span class="n">rows_before</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_to_history</span><span class="p">(</span><span class="s1">&#39;remove_duplicates&#39;</span><span class="p">,</span>
+                           <span class="sa">f</span><span class="s1">&#39;Eliminadas </span><span class="si">{</span><span class="n">rows_removed</span><span class="si">}</span><span class="s1"> filas duplicadas&#39;</span><span class="p">)</span>
+
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> 
+                          <span class="sa">f</span><span class="s2">&quot;Se han eliminado </span><span class="si">{</span><span class="n">rows_removed</span><span class="si">}</span><span class="s2"> filas duplicadas&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Primero debes cargar los datos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/data_operations.html#DataOperations.remove_null_values"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#data_operations.DataOperations.remove_null_values" title="Link to this definition">#</a></dt>
-<dd><p>Elimina las filas que contienen valores nulos del DataFrame.</p>
-<p>La operación se realiza in-place y se registra en el historial de transformaciones.
-Muestra un mensaje con el número de filas eliminadas.</p>
+<dt class="sig sig-object py" id="data_operations.DataOperations.normalize_data">
+<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.normalize_data" title="Link to this definition">#</a></dt>
+<dd><p>Normaliza todas las columnas numéricas del DataFrame al rango [0,1].</p>
+<p>Para cada columna numérica, aplica la fórmula:
+normalized = (x - min) / (max - min)</p>
+<p>Si max = min, todos los valores se establecen en 0.
+Solo se normalizan columnas que contienen al menos un valor no nulo.</p>
 <dl class="simple">
 <dt>Requires:</dt><dd><p>Datos cargados previamente (self.data no None).</p>
 </dd>
 </dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normaliza todas las columnas numéricas del DataFrame al rango [0,1].</span>
+
+<span class="sd">    Para cada columna numérica, aplica la fórmula:</span>
+<span class="sd">    normalized = (x - min) / (max - min)</span>
+
+<span class="sd">    Si max = min, todos los valores se establecen en 0.</span>
+<span class="sd">    Solo se normalizan columnas que contienen al menos un valor no nulo.</span>
+
+<span class="sd">    Requires:</span>
+<span class="sd">        Datos cargados previamente (self.data no None).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">columns_normalized</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+                <span class="n">min_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+                <span class="n">max_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">max_val</span> <span class="o">!=</span> <span class="n">min_val</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">max_val</span> <span class="o">-</span> <span class="n">min_val</span><span class="p">)</span>
+                    <span class="n">columns_normalized</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_to_history</span><span class="p">(</span><span class="s1">&#39;normalize_data&#39;</span><span class="p">,</span>
+                           <span class="sa">f</span><span class="s1">&#39;Normalizadas las columnas: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">columns_normalized</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Datos normalizados correctamente&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Primero debes cargar los datos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_operations.DataOperations.fill_null_with_mean">
+<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.fill_null_with_mean" title="Link to this definition">#</a></dt>
+<dd><p>Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.</p>
+<p>Este método:
+- Calcula la media de cada columna numérica del DataFrame
+- Reemplaza todos los valores nulos con la media correspondiente
+- Registra la operación en el historial
+- Muestra un mensaje con el número de valores rellenados</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Muestra<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>No lanza excepciones directamente</strong><strong>, </strong><strong>pero muestra un messagebox de advertencia</strong> – </p></li>
+<li><p><strong>si self.data es None</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fill_null_with_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.</span>
+
+<span class="sd">    Este método:</span>
+<span class="sd">    - Calcula la media de cada columna numérica del DataFrame</span>
+<span class="sd">    - Reemplaza todos los valores nulos con la media correspondiente</span>
+<span class="sd">    - Registra la operación en el historial</span>
+<span class="sd">    - Muestra un mensaje con el número de valores rellenados</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        No lanza excepciones directamente, pero muestra un messagebox de advertencia</span>
+<span class="sd">        si self.data es None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nulls_before</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">nulls_filled</span> <span class="o">=</span> <span class="n">nulls_before</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_add_to_history</span><span class="p">(</span><span class="s1">&#39;fill_null_with_mean&#39;</span><span class="p">,</span>
+                           <span class="sa">f</span><span class="s1">&#39;Rellenados </span><span class="si">{</span><span class="n">nulls_filled</span><span class="si">}</span><span class="s1"> valores nulos con la media&#39;</span><span class="p">)</span>
+
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> 
+                          <span class="sa">f</span><span class="s2">&quot;Se han rellenado </span><span class="si">{</span><span class="n">nulls_filled</span><span class="si">}</span><span class="s2"> valores nulos con la media&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Primero debes cargar los datos&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_operations.DataOperations.export_results">
+<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.export_results" title="Link to this definition">#</a></dt>
+<dd><p>Exporta los datos procesados y el historial de transformaciones.</p>
+<p>Formatos soportados:
+- Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial
+- CSV (.csv): Crea archivos separados para cada tipo de dato
+- TXT (.txt): Similar a CSV pero con delimitador de tabulación</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True si la exportación fue exitosa, False en otro caso.</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Notas</p>
+<p>Para CSV y TXT, se crean archivos adicionales con sufijos “_original”
+y “_transformaciones” para los datos originales y el historial.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">export_results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exporta los datos procesados y el historial de transformaciones.</span>
+
+<span class="sd">    Formatos soportados:</span>
+<span class="sd">    - Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial</span>
+<span class="sd">    - CSV (.csv): Crea archivos separados para cada tipo de dato</span>
+<span class="sd">    - TXT (.txt): Similar a CSV pero con delimitador de tabulación</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True si la exportación fue exitosa, False en otro caso.</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        Para CSV y TXT, se crean archivos adicionales con sufijos &#39;_original&#39; </span>
+<span class="sd">        y &#39;_transformaciones&#39; para los datos originales y el historial.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos para exportar&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Crear un DataFrame con el resumen de transformaciones</span>
+    <span class="n">transformation_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">)</span>
+
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">asksaveasfilename</span><span class="p">(</span>
+        <span class="n">filetypes</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;Excel files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.xlsx&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;CSV files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;Text files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.txt&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;All files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.*&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Exportar a Excel</span>
+        <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xlsx&#39;</span><span class="p">):</span>
+            <span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Datos Transformados&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Datos Originales&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
+                    <span class="n">transformation_summary</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> 
+                                                 <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Historial de Transformaciones&#39;</span><span class="p">,</span>
+                                                 <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Exportar a CSV</span>
+        <span class="k">elif</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
+            <span class="c1"># Exportar datos transformados</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="c1"># Exportar datos originales y transformaciones en archivos separados</span>
+            <span class="n">base_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Remover la extensión .csv</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_original.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
+                <span class="n">transformation_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_transformaciones.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="c1"># Exportar a TXT</span>
+        <span class="k">elif</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
+            <span class="c1"># Exportar datos transformados</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="c1"># Exportar datos originales y transformaciones en archivos separados</span>
+            <span class="n">base_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Remover la extensión .txt</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_original.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
+                <span class="n">transformation_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_transformaciones.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">mensaje</span> <span class="o">=</span> <span class="s2">&quot;Los resultados se han exportado correctamente&quot;</span>
+        <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;.txt&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">):</span>
+            <span class="n">mensaje</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Se han creado archivos adicionales para los datos originales y el historial de transformaciones&quot;</span>
+
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Error al exportar los resultados: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="data_operations.DataOperations.get_transformation_summary">
+<span class="sig-name descname"><span class="pre">get_transformation_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.get_transformation_summary" title="Link to this definition">#</a></dt>
+<dd><p>Genera un resumen textual de todas las transformaciones aplicadas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve<span class="colon">:</span></dt>
+<dd class="field-odd"><p><dl class="simple">
+<dt>Resumen formateado del historial de transformaciones, incluyendo:</dt><dd><ul class="simple">
+<li><p>Número de operación</p></li>
+<li><p>Tipo de operación</p></li>
+<li><p>Fecha y hora</p></li>
+<li><p>Detalles específicos</p></li>
+<li><p>Número de filas afectadas</p></li>
+</ul>
+</dd>
+</dl>
+<p>Si no hay transformaciones, retorna un mensaje indicándolo.</p>
+</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_transformation_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Genera un resumen textual de todas las transformaciones aplicadas.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        str: Resumen formateado del historial de transformaciones, incluyendo:</span>
+<span class="sd">            - Número de operación</span>
+<span class="sd">            - Tipo de operación</span>
+<span class="sd">            - Fecha y hora</span>
+<span class="sd">            - Detalles específicos</span>
+<span class="sd">            - Número de filas afectadas</span>
+
+<span class="sd">        Si no hay transformaciones, retorna un mensaje indicándolo.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;No se han realizado transformaciones&quot;</span>
+
+    <span class="n">summary</span> <span class="o">=</span> <span class="s2">&quot;Resumen de transformaciones:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">trans</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">trans</span><span class="p">[</span><span class="s1">&#39;operation&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;   Fecha: </span><span class="si">{</span><span class="n">trans</span><span class="p">[</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;   Detalles: </span><span class="si">{</span><span class="n">trans</span><span class="p">[</span><span class="s1">&#39;details&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">summary</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;   Filas afectadas: </span><span class="si">{</span><span class="n">trans</span><span class="p">[</span><span class="s1">&#39;rows_affected&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">summary</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -595,13 +838,14 @@ Muestra un mensaje con el número de filas eliminadas.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_with_mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperations.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_with_mean()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
 </ul>
 </li>
 </ul>

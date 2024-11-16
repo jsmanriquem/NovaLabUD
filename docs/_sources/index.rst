@@ -1,5 +1,5 @@
 Documentación de ``NovaLab``
-========================
+============================
 
 Hola, esta es la documentación de la aplicación: ``NovaLab``. Esta es una aplicación diseñada para procesar, analizar y visualizar datos de los experimentos de *'Caída libre'* y *'Ley de Hooke'*, que junto a ello, se muestra de forma amigable la teoría de los experimentos.
 

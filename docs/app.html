@@ -32,6 +32,8 @@
 
     <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="assets/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="assets/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="assets/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -42,9 +44,12 @@
     <script src="assets/documentation_options.js?v=40e79d90"></script>
     <script src="assets/doctools.js?v=9bcbadda"></script>
     <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="assets/clipboard.min.js?v=a7894cd8"></script>
+    <script src="assets/copybutton.js?v=f281be69"></script>
     <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="assets/translations.js?v=f85f4cfb"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'app';</script>
+    <link rel="icon" href="assets/logo_provisional1.ico"/>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Módulo: data_operations.py" href="data_operations.html" />
@@ -125,8 +130,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="assets/logo_provisional1.svg" class="logo__image only-light" alt="documentación de Proyecto final - 1.0 - Home"/>
+    <img src="assets/logo_provisional1.svg" class="logo__image only-dark pst-js-only" alt="documentación de Proyecto final - 1.0 - Home"/>
   
-    <p class="title logo__title">documentación de Proyecto final - 1.0</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -138,6 +149,14 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Documentación de NovaLab
+                </a>
+            </li>
+        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
@@ -187,98 +206,18 @@
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
+<a href="https://github.com/usuario/repositorio" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
    title="Repositorio de origen"
-   data-bs-placement="left" data-bs-toggle="tooltip"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="btn__text-container">Repository</span>
+
 </a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fapp.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Abrir un problema"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="_sources/app.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Descargar archivo fuente"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimir en PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
 
 
 
@@ -331,15 +270,6 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.ui_container"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.ui_container</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.fill_null_with_mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_duplicates()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_null_values()</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.root"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.root</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.main_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.main_frame</span></code></a></li>
@@ -348,17 +278,28 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_table</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_ops"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_ops</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.no_data_label"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.no_data_label</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.create_data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.create_data_table()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.__init__"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.load_pdf"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.load_pdf()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.on_tab_change"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.on_tab_change()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.open_graficador"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.open_graficador()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run_regression"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run_regression()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.select_variables"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.select_variables()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.create_data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.create_data_table()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.update_data_display"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.update_data_display()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.setup_menus"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.setup_menus()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.show_autores"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.show_autores()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.show_warning"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.show_warning()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.update_data_display"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.update_data_display()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run_regression"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run_regression()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.select_variables"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.select_variables()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.open_graficador"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.open_graficador()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.ui_container"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.ui_container</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.load_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_duplicates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.normalize_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.fill_null_with_mean()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -376,76 +317,8 @@
 <h1>Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code><a class="headerlink" href="#modulo-app-py" title="Link to this heading">#</a></h1>
 <p>Este es el <strong>módulo principal del software</strong>, es el que se encarga de toda la interfaz gráfica de realizar las implementaciones de los demás módulos para el usuario final. Posee un extenso número de funciones que permiten el correcto funcionamiento de la aplicación.</p>
 <dl class="py class" id="module-app">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_container</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataOperations</span></code></a></p>
-<p>Extensión de DataOperations que integra callbacks para la interfaz de usuario.</p>
-<p>Esta clase extiende las operaciones de datos básicas para actualizar
-automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.ui_container">
-<span class="sig-name descname"><span class="pre">ui_container</span></span><a class="headerlink" href="#app.DataOperationsWithUI.ui_container" title="Link to this definition">#</a></dt>
-<dd><p>Referencia al contenedor de UI principal.</p>
-</dd></dl>
-
-<dl class="simple">
-<dt>Inherits:</dt><dd><p>DataOperations: Clase base con operaciones de datos fundamentales.</p>
-</dd>
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.fill_null_with_mean">
-<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.fill_null_with_mean"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.fill_null_with_mean" title="Link to this definition">#</a></dt>
-<dd><p>Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.load_file"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.load_file" title="Link to this definition">#</a></dt>
-<dd><p>Carga un archivo y actualiza la UI si es exitoso.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>ui_callback</strong> (<em>callable</em><em>, </em><em>optional</em>) – Función a llamar para actualizar la UI con los datos cargados.</p>
-</dd>
-<dt class="field-even">Devuelve<span class="colon">:</span></dt>
-<dd class="field-even"><p>True si la carga fue exitosa, False en caso contrario</p>
-</dd>
-<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.normalize_data"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.normalize_data" title="Link to this definition">#</a></dt>
-<dd><p>Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.remove_duplicates"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.remove_duplicates" title="Link to this definition">#</a></dt>
-<dd><p>Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#DataOperationsWithUI.remove_null_values"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.DataOperationsWithUI.remove_null_values" title="Link to this definition">#</a></dt>
-<dd><p>Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
-<p>Args:
-ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt class="sig sig-object py" id="app.LaboratorySoftware">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">LaboratorySoftware</span></span><a class="reference internal" href="_modules/app.html#LaboratorySoftware"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">LaboratorySoftware</span></span><a class="headerlink" href="#app.LaboratorySoftware" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
 Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
@@ -527,79 +400,205 @@ del software, incluyendo la carga de datos, visualización, procesamiento y aná
 </dl>
 </dd></dl>
 
-<p>Clase principal del Software de Laboratorio.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.create_data_table">
-<span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.create_data_table"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">#</a></dt>
-<dd><p>Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
-los datos cargados de manera organizada y navegable.
-Crea la tabla para mostrar los datos con scrollbars.</p>
+<dt class="sig sig-object py" id="app.LaboratorySoftware.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Inicializa la aplicación del Software de Laboratorio.
+Configura la ventana principal, establece las dimensiones basadas en la pantalla,
+inicializa los componentes de la UI y configura los menús.
+Inicializa la clase y configura la ventana principal del software.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inicializa la aplicación del Software de Laboratorio.</span>
+<span class="sd">    Configura la ventana principal, establece las dimensiones basadas en la pantalla,</span>
+<span class="sd">    inicializa los componentes de la UI y configura los menús.</span>
+<span class="sd">    Inicializa la clase y configura la ventana principal del software.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Software de Laboratorio&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Configuración de la ventana</span>
+    <span class="n">screen_width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">winfo_screenwidth</span><span class="p">()</span>
+    <span class="n">screen_height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">winfo_screenheight</span><span class="p">()</span>
+    <span class="n">window_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screen_width</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">window_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">screen_height</span> <span class="o">*</span> <span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">x_position</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">screen_width</span> <span class="o">-</span> <span class="n">window_width</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">y_position</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">screen_height</span> <span class="o">-</span> <span class="n">window_height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">window_width</span><span class="si">}</span><span class="s2">x</span><span class="si">{</span><span class="n">window_height</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">x_position</span><span class="si">}</span><span class="s2">+</span><span class="si">{</span><span class="n">y_position</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Cambiar el frame principal a disposición horizontal</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">PanedWindow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># Panel izquierdo para la tabla de datos</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Datos Cargados&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;5 5 5 5&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_frame</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Crear el Treeview con scrollbars en el panel de datos</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">create_data_table</span><span class="p">()</span>
+
+    <span class="c1"># Panel derecho para la Teoría</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">frame_teoria</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Teoría&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;5 5 5 5&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">main_frame</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_teoria</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Asignamos más espacio a la teoría</span>
+
+    <span class="c1"># Crear el Notebook</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Notebook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame_teoria</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Crear las pestañas</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tab_ley_hooke</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Caída libre&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_ley_hooke</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ley de Hooke&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Cargar PDF solo cuando se seleccione la pestaña</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;NotebookTabChanged&gt;&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_tab_change</span><span class="p">)</span>
+
+    <span class="c1"># Cargar el PDF de Caída Libre por defecto (si la primera pestaña es la activa)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="s2">&quot;caida_libre.pdf&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Inicializar módulos</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">DataOperationsWithUI</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">regression_analysis</span> <span class="o">=</span> <span class="n">RegressionAnalysis</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="p">)</span>  <span class="c1"># Instancia de la clase RegressionAnalysis</span>
+
+    <span class="c1"># Configurar menús</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">setup_menus</span><span class="p">()</span>
+
+    <span class="c1"># Label para mostrar cuando no hay datos</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">no_data_label</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_frame</span><span class="p">,</span> 
+                                <span class="n">text</span><span class="o">=</span><span class="s2">&quot;No hay datos cargados. Use el menú Archivo -&gt; Importar para cargar datos.&quot;</span><span class="p">,</span> 
+                                <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">no_data_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.load_pdf">
-<span class="sig-name descname"><span class="pre">load_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.load_pdf"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.load_pdf" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">load_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.load_pdf" title="Link to this definition">#</a></dt>
 <dd><p>Carga el PDF en el tab especificado.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tab</span><span class="p">,</span> <span class="n">pdf_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Carga el PDF en el tab especificado.&quot;&quot;&quot;</span>
+    <span class="c1"># Limpiar el contenido del tab antes de cargar el nuevo PDF</span>
+    <span class="k">for</span> <span class="n">widget</span> <span class="ow">in</span> <span class="n">tab</span><span class="o">.</span><span class="n">winfo_children</span><span class="p">():</span>
+        <span class="n">widget</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+
+    <span class="c1"># Cargar el documento PDF</span>
+    <span class="n">pdf_document</span> <span class="o">=</span> <span class="n">fitz</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">pdf_path</span><span class="p">)</span>
+    <span class="n">first_page</span> <span class="o">=</span> <span class="n">pdf_document</span><span class="o">.</span><span class="n">load_page</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">first_page</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">width</span>  <span class="c1"># Obtener el ancho del PDF</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">first_page</span><span class="o">.</span><span class="n">rect</span><span class="o">.</span><span class="n">height</span>
+
+    <span class="c1"># Crear un Frame dentro del tab para mostrar el PDF</span>
+    <span class="n">frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span>
+    <span class="n">frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Forzar la actualización de tareas pendientes para obtener el ancho correcto del frame</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>
+
+    <span class="c1"># Obtener el ancho del frame después de su renderizado</span>
+    <span class="n">frame_width</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">winfo_width</span><span class="p">()</span>
+
+    <span class="c1"># Calcular el factor de escala basado en el ancho del frame</span>
+    <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">frame_width</span> <span class="o">/</span> <span class="n">width</span>
+    <span class="n">adjusted_width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">)</span>
+    <span class="n">adjusted_height</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">height</span> <span class="o">*</span> <span class="n">scale_factor</span><span class="p">)</span>
+
+    <span class="c1"># Crear un Canvas para mostrar el PDF</span>
+    <span class="n">canvas</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+    <span class="n">scrollbar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Scrollbar</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;vertical&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">canvas</span><span class="o">.</span><span class="n">yview</span><span class="p">)</span>
+    <span class="n">scrollable_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="n">canvas</span><span class="p">)</span>
+
+    <span class="n">scrollable_frame</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span>
+        <span class="s2">&quot;&lt;Configure&gt;&quot;</span><span class="p">,</span>
+        <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">canvas</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">scrollregion</span><span class="o">=</span><span class="n">canvas</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="s2">&quot;all&quot;</span><span class="p">))</span>
+    <span class="p">)</span>
+
+    <span class="n">canvas</span><span class="o">.</span><span class="n">create_window</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">window</span><span class="o">=</span><span class="n">scrollable_frame</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="s2">&quot;nw&quot;</span><span class="p">)</span>
+    <span class="n">canvas</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">scrollbar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">canvas</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">yscrollcommand</span><span class="o">=</span><span class="n">scrollbar</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+
+    <span class="c1"># Cargar cada página del PDF como imagen y agregarla al Canvas</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf_document</span><span class="p">)):</span>
+        <span class="n">page</span> <span class="o">=</span> <span class="n">pdf_document</span><span class="o">.</span><span class="n">load_page</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">pix</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_pixmap</span><span class="p">(</span><span class="n">matrix</span><span class="o">=</span><span class="n">fitz</span><span class="o">.</span><span class="n">Matrix</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">))</span>  <span class="c1"># Aplicar la escala</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">pix</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">pix</span><span class="o">.</span><span class="n">height</span><span class="p">],</span> <span class="n">pix</span><span class="o">.</span><span class="n">samples</span><span class="p">)</span>
+        <span class="n">img_tk</span> <span class="o">=</span> <span class="n">ImageTk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+        <span class="n">label</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">scrollable_frame</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">img_tk</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">img_tk</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.on_tab_change">
-<span class="sig-name descname"><span class="pre">on_tab_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.on_tab_change"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.on_tab_change" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">on_tab_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.on_tab_change" title="Link to this definition">#</a></dt>
 <dd><p>Cuando se cambia de pestaña, se carga el PDF correspondiente</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_tab_change</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cuando se cambia de pestaña, se carga el PDF correspondiente&quot;&quot;&quot;</span>
+    <span class="n">selected_tab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">select</span><span class="p">(),</span> <span class="s2">&quot;text&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">selected_tab</span> <span class="o">==</span> <span class="s2">&quot;Caída libre&quot;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="s2">&quot;caida_libre.pdf&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">selected_tab</span> <span class="o">==</span> <span class="s2">&quot;Ley de Hooke&quot;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_ley_hooke</span><span class="p">,</span> <span class="s2">&quot;ley_de_hooke.pdf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.open_graficador">
-<span class="sig-name descname"><span class="pre">open_graficador</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.open_graficador"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.open_graficador" title="Link to this definition">#</a></dt>
-<dd><p>Método para ejecutar graficador.py en una nueva ventana.</p>
-</dd></dl>
+<dt class="sig sig-object py" id="app.LaboratorySoftware.create_data_table">
+<span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">#</a></dt>
+<dd><p>Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
+los datos cargados de manera organizada y navegable.
+Crea la tabla para mostrar los datos con scrollbars.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_data_table</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inicializa un Treeview con scrollbars vertical y horizontal para mostrar</span>
+<span class="sd">    los datos cargados de manera organizada y navegable.</span>
+<span class="sd">    Crea la tabla para mostrar los datos con scrollbars.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Frame para contener la tabla y scrollbars</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_frame</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.run"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.run" title="Link to this definition">#</a></dt>
-<dd><p>Inicia el bucle principal de la aplicación.</p>
-<p>Este método debe ser llamado después de la inicialización para comenzar
-la ejecución de la interfaz gráfica.</p>
-</dd></dl>
+    <span class="c1"># Crear scrollbars</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_y</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_y</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.run_regression">
-<span class="sig-name descname"><span class="pre">run_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regression_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.run_regression"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.run_regression" title="Link to this definition">#</a></dt>
-<dd><p>Ejecuta la regresión seleccionada con los datos cargados.</p>
-</dd></dl>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_x</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">HORIZONTAL</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_x</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.select_variables">
-<span class="sig-name descname"><span class="pre">select_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.select_variables"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.select_variables" title="Link to this definition">#</a></dt>
-<dd><p>Permite al usuario seleccionar las variables para la regresión.</p>
-</dd></dl>
+    <span class="c1"># Crear Treeview</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Treeview</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">table_frame</span><span class="p">,</span> 
+                                 <span class="n">yscrollcommand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_y</span><span class="o">.</span><span class="n">set</span><span class="p">,</span>
+                                 <span class="n">xscrollcommand</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_x</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">BOTH</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.setup_menus">
-<span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.setup_menus"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">#</a></dt>
-<dd><p>Configura la barra de menús de la aplicación.</p>
-<p>Crea y configura los menús principales:
-- Archivo: Para operaciones de importación/exportación
-- Edición: Para procesamiento de datos
-- Acerca de: Para información y documentación
-- Ver: Para abrir el graficador en una nueva ventana</p>
-</dd></dl>
+    <span class="c1"># Configurar scrollbars</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_y</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">yview</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">scrollbar_x</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">xview</span><span class="p">)</span>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.show_autores">
-<span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.show_autores"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
-<dd><p>Muestra los autores del software.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.show_warning">
-<span class="sig-name descname"><span class="pre">show_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.show_warning"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.show_warning" title="Link to this definition">#</a></dt>
-<dd><p>Muestra una advertencia usando Tkinter.</p>
+    <span class="c1"># Estilo para la tabla</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Style</span><span class="p">()</span>
+    <span class="n">style</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;Treeview&quot;</span><span class="p">,</span> <span class="n">rowheight</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">style</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="s2">&quot;Treeview.Heading&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;Helvetica&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;bold&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.update_data_display">
-<span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app.html#LaboratorySoftware.update_data_display"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza la tabla de datos con nueva información.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -607,6 +606,375 @@ la ejecución de la interfaz gráfica.</p>
 Si es None o está vacío, se muestra el mensaje de no datos.</p>
 </dd>
 </dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_data_display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Actualiza la tabla de datos con nueva información.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data (pd.DataFrame): DataFrame con los nuevos datos a mostrar.</span>
+<span class="sd">                           Si es None o está vacío, se muestra el mensaje de no datos.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Limpiar tabla existente</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">get_children</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="c1"># Ocultar el label de no datos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_data_label</span><span class="o">.</span><span class="n">pack_forget</span><span class="p">()</span>
+
+        <span class="c1"># Configurar columnas</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">columns</span>
+
+        <span class="c1"># Formatear columnas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="p">[</span><span class="s1">&#39;show&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;headings&#39;</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">heading</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">column</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># Ancho inicial</span>
+
+        <span class="c1"># Insertar datos</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_table</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Mostrar el label de no datos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">no_data_label</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.setup_menus">
+<span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">#</a></dt>
+<dd><p>Configura la barra de menús de la aplicación.</p>
+<p>Crea y configura los menús principales:
+- Archivo: Para operaciones de importación/exportación
+- Edición: Para procesamiento de datos
+- Acerca de: Para información y documentación
+- Ver: Para abrir el graficador en una nueva ventana</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configura la barra de menús de la aplicación.</span>
+
+<span class="sd">    Crea y configura los menús principales:</span>
+<span class="sd">    - Archivo: Para operaciones de importación/exportación</span>
+<span class="sd">    - Edición: Para procesamiento de datos</span>
+<span class="sd">    - Acerca de: Para información y documentación</span>
+<span class="sd">    - Ver: Para abrir el graficador en una nueva ventana</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">menubar</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="c1"># Menú Archivo</span>
+    <span class="n">file_menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">file_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Importar&quot;</span><span class="p">,</span> 
+                        <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_data_display</span><span class="p">))</span>
+    <span class="n">file_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exportar&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">export_results</span><span class="p">)</span>
+    <span class="n">file_menu</span><span class="o">.</span><span class="n">add_separator</span><span class="p">()</span>
+    <span class="n">file_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Salir&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">quit</span><span class="p">)</span>
+    <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Archivo&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">file_menu</span><span class="p">)</span>
+
+    <span class="c1"># Menú Edición</span>
+    <span class="n">edit_menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">process_data_menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">edit_menu</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">process_data_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Eliminar nulos&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">remove_null_values</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_data_display</span><span class="p">))</span>
+    <span class="n">process_data_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Eliminar duplicados&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_data_display</span><span class="p">))</span>
+    <span class="n">process_data_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Normalizar datos&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">normalize_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_data_display</span><span class="p">))</span>
+    <span class="n">process_data_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Rellenar nulos con media&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">fill_null_with_mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_data_display</span><span class="p">))</span>
+    <span class="n">edit_menu</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Procesar datos&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">process_data_menu</span><span class="p">)</span>
+    <span class="n">regression_menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">edit_menu</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">regression_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regresión lineal&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_regression</span><span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">))</span>
+    <span class="n">regression_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regresión polinómica&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_regression</span><span class="p">(</span><span class="s1">&#39;polynomial&#39;</span><span class="p">))</span>
+    <span class="n">regression_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Interpolación&quot;</span><span class="p">,</span> 
+                                <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_regression</span><span class="p">(</span><span class="s1">&#39;interpolation&#39;</span><span class="p">))</span>
+    <span class="n">edit_menu</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regresiones&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">regression_menu</span><span class="p">)</span>
+    <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Edición&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">edit_menu</span><span class="p">)</span>
+
+    <span class="c1"># Menú Ver</span>
+    <span class="n">menubar</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Ver&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">open_graficador</span><span class="p">)</span>
+
+    <span class="c1"># Menú Acerca de</span>
+    <span class="n">about_menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">about_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Documentación&quot;</span><span class="p">,</span> 
+                        <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;https://jsmanriquem.github.io/proyecto_final/&quot;</span><span class="p">))</span>
+    <span class="n">about_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Autores&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">show_autores</span><span class="p">)</span>
+    <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Acerca de&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">about_menu</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">menu</span><span class="o">=</span><span class="n">menubar</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.show_autores">
+<span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
+<dd><p>Muestra los autores del software.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_autores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra los autores del software.&quot;&quot;&quot;</span>
+    <span class="n">autores</span> <span class="o">=</span> <span class="s2">&quot;Andrés Gómez</span><span class="se">\n</span><span class="s2">Jorge Garzón</span><span class="se">\n</span><span class="s2">Julián Aros</span><span class="se">\n</span><span class="s2">Laura Oliveros</span><span class="se">\n</span><span class="s2">Laura Triana</span><span class="se">\n</span><span class="s2">Sebastian Manrique&quot;</span>
+    <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Autores&quot;</span><span class="p">,</span> <span class="n">autores</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.show_warning">
+<span class="sig-name descname"><span class="pre">show_warning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_warning" title="Link to this definition">#</a></dt>
+<dd><p>Muestra una advertencia usando Tkinter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra una advertencia usando Tkinter.&quot;&quot;&quot;</span>
+    <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.run_regression">
+<span class="sig-name descname"><span class="pre">run_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regression_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.run_regression" title="Link to this definition">#</a></dt>
+<dd><p>Ejecuta la regresión seleccionada con los datos cargados.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regression_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ejecuta la regresión seleccionada con los datos cargados.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_warning</span><span class="p">(</span><span class="s2">&quot;No hay datos cargados. Primero importa los datos.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Obtener las variables a través de un cuadro de diálogo o un sistema de selección</span>
+    <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">select_variables</span><span class="p">()</span>  <span class="c1"># Aquí seleccionamos las variables</span>
+
+    <span class="k">if</span> <span class="n">regression_type</span> <span class="o">==</span> <span class="s1">&#39;linear&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regression_analysis</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">regression_type</span> <span class="o">==</span> <span class="s1">&#39;polynomial&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regression_analysis</span><span class="o">.</span><span class="n">polynomial_regression</span><span class="p">(</span><span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">regression_type</span> <span class="o">==</span> <span class="s1">&#39;interpolation&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regression_analysis</span><span class="o">.</span><span class="n">interpolation</span><span class="p">(</span><span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_warning</span><span class="p">(</span><span class="s2">&quot;Tipo de regresión no válido&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>regression_type</strong> (<em>str</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.select_variables">
+<span class="sig-name descname"><span class="pre">select_variables</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.select_variables" title="Link to this definition">#</a></dt>
+<dd><p>Permite al usuario seleccionar las variables para la regresión.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">select_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Permite al usuario seleccionar las variables para la regresión.&quot;&quot;&quot;</span>
+    <span class="c1"># Aquí puedes cambiar esto según cómo quieras que se seleccionen las variables.</span>
+    <span class="c1"># Por ejemplo, podrías usar un cuadro de diálogo para pedir el nombre de las variables.</span>
+
+    <span class="n">var_x</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askstring</span><span class="p">(</span><span class="s2">&quot;Selecciona la variable independiente&quot;</span><span class="p">,</span>
+                                   <span class="s2">&quot;Ingresa el nombre de la variable independiente:&quot;</span><span class="p">)</span>
+    <span class="n">var_y</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askstring</span><span class="p">(</span><span class="s2">&quot;Selecciona la variable dependiente&quot;</span><span class="p">,</span>
+                                   <span class="s2">&quot;Ingresa el nombre de la variable dependiente:&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.open_graficador">
+<span class="sig-name descname"><span class="pre">open_graficador</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.open_graficador" title="Link to this definition">#</a></dt>
+<dd><p>Método para ejecutar graficador.py en una nueva ventana.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_graficador</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Método para ejecutar graficador.py en una nueva ventana.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Ejecutar el archivo graficador.py como un proceso independiente</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">&#39;graficador.py&#39;</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error al ejecutar graficador.py: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.LaboratorySoftware.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.run" title="Link to this definition">#</a></dt>
+<dd><p>Inicia el bucle principal de la aplicación.</p>
+<p>Este método debe ser llamado después de la inicialización para comenzar
+la ejecución de la interfaz gráfica.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inicia el bucle principal de la aplicación.</span>
+
+<span class="sd">    Este método debe ser llamado después de la inicialización para comenzar</span>
+<span class="sd">    la ejecución de la interfaz gráfica.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataOperations</span></code></a></p>
+<p>Extensión de DataOperations que integra callbacks para la interfaz de usuario.</p>
+<p>Esta clase extiende las operaciones de datos básicas para actualizar
+automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.ui_container">
+<span class="sig-name descname"><span class="pre">ui_container</span></span><a class="headerlink" href="#app.DataOperationsWithUI.ui_container" title="Link to this definition">#</a></dt>
+<dd><p>Referencia al contenedor de UI principal.</p>
+</dd></dl>
+
+<dl class="simple">
+<dt>Inherits:</dt><dd><p>DataOperations: Clase base con operaciones de datos fundamentales.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_container</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Inicializa la clase con una referencia al contenedor de UI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ui_container</strong> – Referencia al objeto que contiene los elementos de la UI.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_container</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Inicializa la clase con una referencia al contenedor de UI.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ui_container: Referencia al objeto que contiene los elementos de la UI.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">ui_container</span> <span class="o">=</span> <span class="n">ui_container</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.load_file">
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.load_file" title="Link to this definition">#</a></dt>
+<dd><p>Carga un archivo y actualiza la UI si es exitoso.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ui_callback</strong> (<em>callable</em><em>, </em><em>optional</em>) – Función a llamar para actualizar la UI con los datos cargados.</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>True si la carga fue exitosa, False en caso contrario</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Carga un archivo y actualiza la UI si es exitoso.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ui_callback (callable, optional): Función a llamar para actualizar la UI con los datos cargados.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        bool: True si la carga fue exitosa, False en caso contrario</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">load_file</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">success</span> <span class="ow">and</span> <span class="n">ui_callback</span><span class="p">:</span>
+        <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">success</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_null_values">
+<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_null_values" title="Link to this definition">#</a></dt>
+<dd><p>Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
+<p>Args:
+ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_null_values</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Elimina los valores nulos del conjunto de datos y actualiza la UI si se proporciona un callback.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_null_values</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
+        <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.remove_duplicates">
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.remove_duplicates" title="Link to this definition">#</a></dt>
+<dd><p>Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
+<p>Args:
+ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">remove_duplicates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Elimina las filas duplicadas del conjunto de datos y actualiza la UI si se proporciona un callback.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">remove_duplicates</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
+        <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.normalize_data">
+<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.normalize_data" title="Link to this definition">#</a></dt>
+<dd><p>Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</p>
+<p>Args:
+ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalize_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">normalize_data</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
+        <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.DataOperationsWithUI.fill_null_with_mean">
+<span class="sig-name descname"><span class="pre">fill_null_with_mean</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui_callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.DataOperationsWithUI.fill_null_with_mean" title="Link to this definition">#</a></dt>
+<dd><p>Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</p>
+<p>Args:
+ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fill_null_with_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ui_callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">    ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fill_null_with_mean</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">ui_callback</span><span class="p">:</span>
+        <span class="n">ui_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -659,15 +1027,6 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.ui_container"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.ui_container</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.fill_null_with_mean()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_duplicates()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_null_values()</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.root"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.root</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.main_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.main_frame</span></code></a></li>
@@ -676,17 +1035,28 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_table</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_ops"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_ops</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.no_data_label"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.no_data_label</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.create_data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.create_data_table()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.__init__"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.load_pdf"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.load_pdf()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.on_tab_change"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.on_tab_change()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.open_graficador"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.open_graficador()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run_regression"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run_regression()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.select_variables"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.select_variables()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.create_data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.create_data_table()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.update_data_display"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.update_data_display()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.setup_menus"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.setup_menus()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.show_autores"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.show_autores()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.show_warning"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.show_warning()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.update_data_display"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.update_data_display()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run_regression"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run_regression()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.select_variables"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.select_variables()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.open_graficador"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.open_graficador()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.run"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.ui_container"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.ui_container</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.load_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.remove_duplicates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.normalize_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.DataOperationsWithUI.fill_null_with_mean"><code class="docutils literal notranslate"><span class="pre">DataOperationsWithUI.fill_null_with_mean()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -32,6 +32,8 @@
 
     <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="assets/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="assets/custom.css" />
   
   <!-- So that users can add custom icons -->
   <script src="assets/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
@@ -42,9 +44,12 @@
     <script src="assets/documentation_options.js?v=40e79d90"></script>
     <script src="assets/doctools.js?v=9bcbadda"></script>
     <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="assets/clipboard.min.js?v=a7894cd8"></script>
+    <script src="assets/copybutton.js?v=f281be69"></script>
     <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="assets/translations.js?v=f85f4cfb"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'regression_analysis';</script>
+    <link rel="icon" href="assets/logo_provisional1.ico"/>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Módulo: graficador.py" href="graficador.html" />
@@ -125,8 +130,14 @@
   
   
   
+    
+    
+      
+    
+    
+    <img src="assets/logo_provisional1.svg" class="logo__image only-light" alt="documentación de Proyecto final - 1.0 - Home"/>
+    <img src="assets/logo_provisional1.svg" class="logo__image only-dark pst-js-only" alt="documentación de Proyecto final - 1.0 - Home"/>
   
-    <p class="title logo__title">documentación de Proyecto final - 1.0</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -138,6 +149,14 @@
 </button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Documentación de NovaLab
+                </a>
+            </li>
+        </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos:</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="app.html">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
@@ -187,98 +206,18 @@
 <div class="article-header-buttons">
 
 
-
-
-
-<div class="dropdown dropdown-source-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
-    <i class="fab fa-github"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://github.com/jsmanriquem/proyecto_final" target="_blank"
-   class="btn btn-sm btn-source-repository-button dropdown-item"
+<a href="https://github.com/usuario/repositorio" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
    title="Repositorio de origen"
-   data-bs-placement="left" data-bs-toggle="tooltip"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   <i class="fab fa-github"></i>
   </span>
-<span class="btn__text-container">Repository</span>
+
 </a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://github.com/jsmanriquem/proyecto_final/issues/new?title=Issue%20on%20page%20%2Fregression_analysis.html&body=Your%20issue%20content%20here." target="_blank"
-   class="btn btn-sm btn-source-issues-button dropdown-item"
-   title="Abrir un problema"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="btn__text-container">Open issue</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
-<div class="dropdown dropdown-download-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
-    <i class="fas fa-download"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="_sources/regression_analysis.rst" target="_blank"
-   class="btn btn-sm btn-download-source-button dropdown-item"
-   title="Descargar archivo fuente"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="btn__text-container">.rst</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li>
-<button onclick="window.print()"
-  class="btn btn-sm btn-download-pdf-button dropdown-item"
-  title="Imprimir en PDF"
-  data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="btn__text-container">.pdf</span>
-</button>
-</li>
-      
-  </ul>
-</div>
 
 
 
@@ -333,11 +272,12 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.data_ops"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.data_ops</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.__init__"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.calculate_metrics()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.linear_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.linear_regression()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.polynomial_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.polynomial_regression()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -356,7 +296,7 @@
 <p>Este es el módulo que se encarga de hacer el análisis de los datos, para ello utiliza diferentes métodos como lo son: <strong>regresión lineal</strong>, <strong>regresión polinómica</strong> e <strong>interpolación</strong>.</p>
 <dl class="py class" id="module-regression_analysis">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">RegressionAnalysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ops</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">RegressionAnalysis</span></span><a class="headerlink" href="#regression_analysis.RegressionAnalysis" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase para realizar análisis de regresión.</p>
 <p>Esta clase proporciona métodos para realizar análisis de regresión lineal
@@ -375,8 +315,30 @@ para el análisis de regresión.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ops</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Inicializa la clase con el objeto de operaciones de datos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_ops</strong> (<a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations"><em>DataOperations</em></a>) – Objeto que contiene los datos necesarios
+para el análisis.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_ops</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Inicializa la clase con el objeto de operaciones de datos.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        data_ops (DataOperations): Objeto que contiene los datos necesarios</span>
+<span class="sd">                                    para el análisis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">data_ops</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.calculate_metrics">
-<span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.calculate_metrics"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.calculate_metrics" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.calculate_metrics" title="Link to this definition">#</a></dt>
 <dd><p>Calcula las métricas de regresión.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -396,30 +358,66 @@ para el análisis de regresión.</p>
 <p class="admonition-title">Advertencia</p>
 <p>Asegúrate de que las dimensiones de <cite>y_true</cite> y <cite>y_pred</cite> coincidan.</p>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calcula las métricas de regresión.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        y_true (array-like): Valores reales.</span>
+<span class="sd">        y_pred (array-like): Valores predichos por el modelo.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: (R², MAE, MSE)</span>
+
+<span class="sd">    Warnings:</span>
+<span class="sd">        Asegúrate de que las dimensiones de `y_true` y `y_pred` coincidan.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.interpolation">
-<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.interpolation"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">#</a></dt>
-<dd><p>Realiza la interpolación lineal de los datos.</p>
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.show_metrics">
+<span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mse</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.show_metrics" title="Link to this definition">#</a></dt>
+<dd><p>Muestra las métricas de regresión en una ventana de Tkinter.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la variable independiente.</p></li>
-<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la variable dependiente.</p></li>
+<li><p><strong>r2</strong> (<em>float</em>) – Coeficiente de determinación R².</p></li>
+<li><p><strong>mae</strong> (<em>float</em>) – Error absoluto medio.</p></li>
+<li><p><strong>mse</strong> (<em>float</em>) – Error cuadrático medio.</p></li>
 </ul>
 </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Advertencia</p>
-<p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
-se mostrará una advertencia.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Muestra las métricas de regresión en una ventana de Tkinter.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        r2 (float): Coeficiente de determinación R².</span>
+<span class="sd">        mae (float): Error absoluto medio.</span>
+<span class="sd">        mse (float): Error cuadrático medio.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">metrics_window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
+    <span class="n">metrics_window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Métricas de Regresión&quot;</span><span class="p">)</span>
+
+    <span class="n">lbl_r2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">metrics_window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+    <span class="n">lbl_r2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">lbl_mae</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">metrics_window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+    <span class="n">lbl_mae</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">lbl_mse</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">metrics_window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+    <span class="n">lbl_mse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.linear_regression">
-<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.linear_regression"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">#</a></dt>
 <dd><p>Realiza una regresión lineal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -434,11 +432,41 @@ se mostrará una advertencia.</p>
 <p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
 se mostrará una advertencia.</p>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una regresión lineal.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        var_x (str): Nombre de la variable independiente.</span>
+<span class="sd">        var_y (str): Nombre de la variable dependiente.</span>
+
+<span class="sd">    Warnings:</span>
+<span class="sd">        Si `data_ops.data` es None o las variables no están seleccionadas,</span>
+<span class="sd">        se mostrará una advertencia.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Regresión Lineal&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">show_metrics</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables primero&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.polynomial_regression">
-<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.polynomial_regression"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">#</a></dt>
 <dd><p>Realiza una regresión polinómica.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -454,21 +482,93 @@ se mostrará una advertencia.</p>
 se mostrará una advertencia.
 Si el grado del polinomio es None, no se realizará la regresión.</p>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza una regresión polinómica.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        var_x (str): Nombre de la variable independiente.</span>
+<span class="sd">        var_y (str): Nombre de la variable dependiente.</span>
+
+<span class="sd">    Warnings:</span>
+<span class="sd">        Si `data_ops.data` es None o las variables no están seleccionadas,</span>
+<span class="sd">        se mostrará una advertencia.</span>
+<span class="sd">        Si el grado del polinomio es None, no se realizará la regresión.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
+        <span class="n">degree</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askinteger</span><span class="p">(</span><span class="s2">&quot;Grado del Polinomio&quot;</span><span class="p">,</span> <span class="s2">&quot;Ingresa el grado del polinomio:&quot;</span><span class="p">,</span> <span class="n">minvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">degree</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span>
+            <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+            <span class="n">poly_eq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+
+            <span class="n">x_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+            <span class="n">y_fit</span> <span class="o">=</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x_fit</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Regresión Polinómica de grado </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Regresión Polinómica&quot;</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+            <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">show_metrics</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables para la regresión&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.show_metrics">
-<span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mse</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/regression_analysis.html#RegressionAnalysis.show_metrics"><span class="viewcode-link"><span class="pre">[fuente]</span></span></a><a class="headerlink" href="#regression_analysis.RegressionAnalysis.show_metrics" title="Link to this definition">#</a></dt>
-<dd><p>Muestra las métricas de regresión en una ventana de Tkinter.</p>
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.interpolation">
+<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">#</a></dt>
+<dd><p>Realiza la interpolación lineal de los datos.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>r2</strong> (<em>float</em>) – Coeficiente de determinación R².</p></li>
-<li><p><strong>mae</strong> (<em>float</em>) – Error absoluto medio.</p></li>
-<li><p><strong>mse</strong> (<em>float</em>) – Error cuadrático medio.</p></li>
+<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la variable independiente.</p></li>
+<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la variable dependiente.</p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition warning">
+<p class="admonition-title">Advertencia</p>
+<p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
+se mostrará una advertencia.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Realiza la interpolación lineal de los datos.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        var_x (str): Nombre de la variable independiente.</span>
+<span class="sd">        var_y (str): Nombre de la variable dependiente.</span>
+
+<span class="sd">    Warnings:</span>
+<span class="sd">        Si `data_ops.data` es None o las variables no están seleccionadas,</span>
+<span class="sd">        se mostrará una advertencia.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span>
+        <span class="n">interp_func</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+
+        <span class="n">x_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="n">y_new</span> <span class="o">=</span> <span class="n">interp_func</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolación Lineal&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Interpolación de Datos&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables para la interpolación&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </dd></dl>
@@ -523,11 +623,12 @@ Si el grado del polinomio es None, no se realizará la regresión.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.data_ops"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.data_ops</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.__init__"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.calculate_metrics()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.linear_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.linear_regression()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.polynomial_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.polynomial_regression()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
 </ul>
 </li>
 </ul>
