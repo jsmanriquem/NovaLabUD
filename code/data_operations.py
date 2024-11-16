@@ -7,31 +7,32 @@ class DataOperations:
     Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
     Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
     un registro de las transformaciones aplicadas y los datos originales.
+    
     Las operaciones a realizar en dichas transformaciones son:
-     - Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.
-     - Eliminar duplicados: Elimina las filas duplicadas del DataFrame.
-     - Normalizar datos: Normaliza los datos numéricos del DataFrame.
-     - Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.
+    - Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.
+    - Eliminar duplicados: Elimina las filas duplicadas del DataFrame.
+    - Normalizar datos: Normaliza los datos numéricos del DataFrame.
+    - Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.
 
-     Como se mencionó, la clase también proporciona una función para obtener un resumen de las transformaciones
-     realizadas, que devuelve un string con el formato:
+    Como se mencionó, la clase también proporciona una función para obtener un resumen de las transformaciones
+    realizadas, que devuelve un string con el formato:
 
-     Resumen de transformaciones:
+    Resumen de transformaciones:
 
-     1. Eliminar valores nulos
-        Fecha: 2024-01-01 12:00:00
-        Detalles: None
-        Filas afectadas: 100
+    1. Eliminar valores nulos
+       Fecha: 2024-01-01 12:00:00
+       Detalles: None
+       Filas afectadas: 100
 
-     2. Normalizar datos
-        Fecha: 2024-01-01 12:00:00
-        Detalles: None
-        Filas afectadas: 100
+    2. Normalizar datos
+       Fecha: 2024-01-01 12:00:00
+       Detalles: None
+       Filas afectadas: 100
 
-     3. Rellenar valores nulos con la media
-        Fecha: 2024-01-01 12:00:00
-        Detalles: None
-        Filas afectadas: 100
+    3. Rellenar valores nulos con la media
+       Fecha: 2024-01-01 12:00:00
+       Detalles: None
+       Filas afectadas: 100
     
     Attributos:
         data (pd.DataFrame): DataFrame actual con los datos procesados.
@@ -95,7 +96,6 @@ class DataOperations:
                 self.original_data = self.data.copy()
                 self.transformation_history = []
                 
-                # ui_callback(self.data)
                 messagebox.showinfo("Éxito", "Archivo cargado correctamente")
                 return True
             except Exception as e:
@@ -266,23 +266,23 @@ class DataOperations:
             messagebox.showwarning("Advertencia", "No hay datos para exportar")
             return False
 
-    # Crear un DataFrame con el resumen de transformaciones
+        # Crear un DataFrame con el resumen de transformaciones
         transformation_summary = pd.DataFrame(self.transformation_history)
-    
+        
         file_path = filedialog.asksaveasfilename(
             filetypes=[
                 ("Excel files", "*.xlsx"),
                 ("CSV files", "*.csv"),
                 ("Text files", "*.txt"),
                 ("All files", "*.*")
-        ]
-    )
-    
+            ]
+        )
+        
         if not file_path:
             return False
 
         try:
-        # Exportar a Excel
+            # Exportar a Excel
             if file_path.endswith('.xlsx'):
                 with pd.ExcelWriter(file_path, engine='openpyxl') as writer:
                     self.data.to_excel(writer, sheet_name='Datos Transformados', index=False)
@@ -290,37 +290,37 @@ class DataOperations:
                         self.original_data.to_excel(writer, sheet_name='Datos Originales', index=False)
                     if self.transformation_history:
                         transformation_summary.to_excel(writer, 
-                                                 sheet_name='Historial de Transformaciones',
-                                                 index=False)
-        
-        # Exportar a CSV
-            elif file_path.endswith('.csv'):
-            # Exportar datos transformados
-                self.data.to_csv(file_path, index=False)
+                                                     sheet_name='Historial de Transformaciones',
+                                                     index=False)
             
-            # Exportar datos originales y transformaciones en archivos separados
+            # Exportar a CSV
+            elif file_path.endswith('.csv'):
+                # Exportar datos transformados
+                self.data.to_csv(file_path, index=False)
+                
+                # Exportar datos originales y transformaciones en archivos separados
                 base_path = file_path[:-4]  # Remover la extensión .csv
                 if self.original_data is not None:
                     self.original_data.to_csv(f"{base_path}_original.csv", index=False)
                 if self.transformation_history:
                     transformation_summary.to_csv(f"{base_path}_transformaciones.csv", index=False)
-        
-        # Exportar a TXT
-            elif file_path.endswith('.txt'):
-            # Exportar datos transformados
-                self.data.to_csv(file_path, sep='\t', index=False)
             
-            # Exportar datos originales y transformaciones en archivos separados
+            # Exportar a TXT
+            elif file_path.endswith('.txt'):
+                # Exportar datos transformados
+                self.data.to_csv(file_path, sep='\t', index=False)
+                
+                # Exportar datos originales y transformaciones en archivos separados
                 base_path = file_path[:-4]  # Remover la extensión .txt
                 if self.original_data is not None:
                     self.original_data.to_csv(f"{base_path}_original.txt", sep='\t', index=False)
                 if self.transformation_history:
                     transformation_summary.to_csv(f"{base_path}_transformaciones.txt", sep='\t', index=False)
-        
+            
             mensaje = "Los resultados se han exportado correctamente"
             if file_path.endswith(('.csv', '.txt')) and (self.original_data is not None or self.transformation_history):
                 mensaje += "\nSe han creado archivos adicionales para los datos originales y el historial de transformaciones"
-        
+            
             messagebox.showinfo("Éxito", mensaje)
             return True
             
@@ -339,7 +339,8 @@ class DataOperations:
                 - Fecha y hora
                 - Detalles específicos
                 - Número de filas afectadas
-                Si no hay transformaciones, retorna un mensaje indicándolo.
+            
+            Si no hay transformaciones, retorna un mensaje indicándolo.
         """
         if not self.transformation_history:
             return "No se han realizado transformaciones"

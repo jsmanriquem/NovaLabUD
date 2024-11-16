@@ -22,7 +22,6 @@ class LaboratorySoftware:
         data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
         data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
         no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.
-    Clase principal del Software de Laboratorio.
     """
     
     def __init__(self) -> None:
