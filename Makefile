@@ -1,13 +1,11 @@
-# Minimal makefile for Sphinx documentation with custom post-processing
-
 # Variables
 SOURCEDIR     = source
 BUILDDIR      = docs
 
-# Define the command to run Sphinx build using Python
+# Definición del comando que construye la documentación
 SPHINXBUILD   = python -m sphinx -b html
 
-# Target to build the documentation
+# Comando para generar la documentación y exportarla a GitHub Pages
 build:
 	# 1. Ejecutar el comando Sphinx para generar la documentación
 	@$(SPHINXBUILD) $(SOURCEDIR) $(BUILDDIR)
@@ -26,14 +24,9 @@ build:
 	@find $(BUILDDIR) -type f -name "*.html" -exec sed -i 's/_static/assets/g' {} \;
 	@echo "Replaced '_static' with 'assets' in HTML files."
 
-	# 4. Crear el archivo .nojekill en la carpeta docs si no existe
-	@echo "Creating .nojekill file..."
-	@touch "$(BUILDDIR)/.nojekill"
-	@echo ".nojekill file created."
-
 	@echo "Build and modifications completed."
 
-# Optional target to clean up the build directory
+# Comando para eliminar la documentación generada y volver a crear una nueva
 clean:
-	rm -rf $(BUILDDIR)/*
+	rm -rf $(BUILDDIR)
 	@echo "Cleaned build directory."
