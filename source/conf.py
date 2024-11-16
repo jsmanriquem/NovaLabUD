@@ -57,15 +57,28 @@ autodoc_class_signature = 'separated'
 autodoc_preserve_defaults = True
 
 def setup(app):
-    app.add_css_file('custom.css')
-    app.connect('autodoc-process-docstring', add_source_code)
+    app.add_css_file('custom.css')  # Agregar CSS personalizado
+    app.connect('autodoc-process-docstring', add_source_code)  # Conectar la función para añadir el código fuente
 
 def add_source_code(app, what, name, obj, options, lines):
     import inspect
+    
     # Solo mostrar código para funciones (no para clases)
     if inspect.isfunction(obj):
         try:
+            # Obtener el código fuente de la función
             source = inspect.getsource(obj)
+            
+            # Eliminar el docstring del código fuente (eliminamos la parte entre """ """)
+            # Primero identificamos la parte del docstring en la función
+            docstring_start = source.find('"""')
+            docstring_end = source.rfind('"""')
+            
+            if docstring_start != -1 and docstring_end != -1:
+                # Eliminar el docstring (cortar la parte que está entre las comillas triples)
+                source = source[:docstring_start] + source[docstring_end + 3:]
+            
+            # Agregar el código al final de la documentación
             lines.extend(['', '.. code-block:: python', ''])
             lines.extend(['    ' + line for line in source.splitlines()])
         except Exception:
