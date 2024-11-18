@@ -400,6 +400,7 @@ del software, incluyendo la carga de datos, visualización, procesamiento y aná
 </dl>
 </dd></dl>
 
+<p>Clase principal del Software de Laboratorio.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.__init__" title="Link to this definition">#</a></dt>
@@ -677,7 +678,7 @@ Si es None o está vacío, se muestra el mensaje de no datos.</p>
     <span class="c1"># Menú Acerca de</span>
     <span class="n">about_menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">menubar</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">about_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Documentación&quot;</span><span class="p">,</span> 
-                        <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;https://jsmanriquem.github.io/proyecto_final/&quot;</span><span class="p">))</span>
+                        <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;https://jsmanriquem.github.io/NovaLabUD/&quot;</span><span class="p">))</span>
     <span class="n">about_menu</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Autores&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">show_autores</span><span class="p">)</span>
     <span class="n">menubar</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Acerca de&quot;</span><span class="p">,</span> <span class="n">menu</span><span class="o">=</span><span class="n">about_menu</span><span class="p">)</span>
 

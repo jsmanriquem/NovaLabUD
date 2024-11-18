@@ -301,12 +301,15 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
 Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
-un registro de las transformaciones aplicadas y los datos originales.</p>
-<p>Las operaciones a realizar en dichas transformaciones son:
-- Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.
-- Eliminar duplicados: Elimina las filas duplicadas del DataFrame.
-- Normalizar datos: Normaliza los datos numéricos del DataFrame.
-- Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.</p>
+un registro de las transformaciones aplicadas y los datos originales.
+Las operaciones a realizar en dichas transformaciones son:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Eliminar valores nulos: Elimina las filas con valores nulos del DataFrame.</p></li>
+<li><p>Eliminar duplicados: Elimina las filas duplicadas del DataFrame.</p></li>
+<li><p>Normalizar datos: Normaliza los datos numéricos del DataFrame.</p></li>
+<li><p>Rellenar valores nulos con la media: Rellena los valores nulos con la media de cada columna.</p></li>
+</ul>
 <p>Como se mencionó, la clase también proporciona una función para obtener un resumen de las transformaciones
 realizadas, que devuelve un string con el formato:</p>
 <p>Resumen de transformaciones:</p>
@@ -324,6 +327,7 @@ Fecha: 2024-01-01 12:00:00
 Detalles: None
 Filas afectadas: 100</p></li>
 </ol>
+</div></blockquote>
 <dl>
 <dt>Attributos:</dt><dd><p>data (pd.DataFrame): DataFrame actual con los datos procesados.
 original_data (pd.DataFrame): Copia de los datos originales sin procesar.
@@ -395,6 +399,7 @@ para poder realizar transformaciones posteriores.</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span> <span class="o">=</span> <span class="p">[]</span>
 
+            <span class="c1"># ui_callback(self.data)</span>
             <span class="n">messagebox</span><span class="o">.</span><span class="n">showinfo</span><span class="p">(</span><span class="s2">&quot;Éxito&quot;</span><span class="p">,</span> <span class="s2">&quot;Archivo cargado correctamente&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -578,7 +583,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos para exportar&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="c1"># Crear un DataFrame con el resumen de transformaciones</span>
+<span class="c1"># Crear un DataFrame con el resumen de transformaciones</span>
     <span class="n">transformation_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">)</span>
 
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">asksaveasfilename</span><span class="p">(</span>
@@ -587,14 +592,14 @@ y “_transformaciones” para los datos originales y el historial.</p>
             <span class="p">(</span><span class="s2">&quot;CSV files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.csv&quot;</span><span class="p">),</span>
             <span class="p">(</span><span class="s2">&quot;Text files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.txt&quot;</span><span class="p">),</span>
             <span class="p">(</span><span class="s2">&quot;All files&quot;</span><span class="p">,</span> <span class="s2">&quot;*.*&quot;</span><span class="p">)</span>
-        <span class="p">]</span>
-    <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">file_path</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Exportar a Excel</span>
+    <span class="c1"># Exportar a Excel</span>
         <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.xlsx&#39;</span><span class="p">):</span>
             <span class="k">with</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelWriter</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;openpyxl&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Datos Transformados&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -602,27 +607,27 @@ y “_transformaciones” para los datos originales y el historial.</p>
                     <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Datos Originales&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
                     <span class="n">transformation_summary</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="n">writer</span><span class="p">,</span> 
-                                                 <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Historial de Transformaciones&#39;</span><span class="p">,</span>
-                                                 <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                             <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Historial de Transformaciones&#39;</span><span class="p">,</span>
+                                             <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="c1"># Exportar a CSV</span>
+    <span class="c1"># Exportar a CSV</span>
         <span class="k">elif</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.csv&#39;</span><span class="p">):</span>
-            <span class="c1"># Exportar datos transformados</span>
+        <span class="c1"># Exportar datos transformados</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-            <span class="c1"># Exportar datos originales y transformaciones en archivos separados</span>
+        <span class="c1"># Exportar datos originales y transformaciones en archivos separados</span>
             <span class="n">base_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Remover la extensión .csv</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_original.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformation_history</span><span class="p">:</span>
                 <span class="n">transformation_summary</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_transformaciones.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-        <span class="c1"># Exportar a TXT</span>
+    <span class="c1"># Exportar a TXT</span>
         <span class="k">elif</span> <span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">):</span>
-            <span class="c1"># Exportar datos transformados</span>
+        <span class="c1"># Exportar datos transformados</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-            <span class="c1"># Exportar datos originales y transformaciones en archivos separados</span>
+        <span class="c1"># Exportar datos originales y transformaciones en archivos separados</span>
             <span class="n">base_path</span> <span class="o">=</span> <span class="n">file_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># Remover la extensión .txt</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">original_data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2">_original.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -649,7 +654,7 @@ y “_transformaciones” para los datos originales y el historial.</p>
 <dd><p>Genera un resumen textual de todas las transformaciones aplicadas.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Devuelve<span class="colon">:</span></dt>
-<dd class="field-odd"><p><dl class="simple">
+<dd class="field-odd"><p><dl>
 <dt>Resumen formateado del historial de transformaciones, incluyendo:</dt><dd><ul class="simple">
 <li><p>Número de operación</p></li>
 <li><p>Tipo de operación</p></li>
@@ -657,9 +662,9 @@ y “_transformaciones” para los datos originales y el historial.</p>
 <li><p>Detalles específicos</p></li>
 <li><p>Número de filas afectadas</p></li>
 </ul>
+<p>Si no hay transformaciones, retorna un mensaje indicándolo.</p>
 </dd>
 </dl>
-<p>Si no hay transformaciones, retorna un mensaje indicándolo.</p>
 </p>
 </dd>
 <dt class="field-even">Tipo del valor devuelto<span class="colon">:</span></dt>
