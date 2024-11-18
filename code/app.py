@@ -22,6 +22,7 @@ class LaboratorySoftware:
         data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
         data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
         no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.
+    Clase principal del Software de Laboratorio.
     """
     
     def __init__(self) -> None:
@@ -264,7 +265,7 @@ class LaboratorySoftware:
         # Menú Acerca de
         about_menu = Menu(menubar, tearoff=0)
         about_menu.add_command(label="Documentación", 
-                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
+                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/NovaLabUD/"))
         about_menu.add_command(label="Autores", command=self.show_autores)
         menubar.add_cascade(label="Acerca de", menu=about_menu)
 
