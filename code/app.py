@@ -265,7 +265,7 @@ class LaboratorySoftware:
         # Menú Acerca de
         about_menu = Menu(menubar, tearoff=0)
         about_menu.add_command(label="Documentación", 
-                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/proyecto_final/"))
+                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/NovaLabUD/"))
         about_menu.add_command(label="Autores", command=self.show_autores)
         menubar.add_cascade(label="Acerca de", menu=about_menu)
 
