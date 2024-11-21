@@ -933,9 +933,9 @@ def set_x_limits(x_min_entry, x_max_entry):
             print(f"Límites del eje X actualizados: {x_limits}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
         else:
-            print("El valor de x_min debe ser menor que x_max.")
+            messagebox.showerror("El valor de x_min debe ser menor que x_max.")
     except ValueError:
-        print("Por favor, ingrese valores numéricos válidos.")
+        messagebox.showerror("Por favor, ingrese valores numéricos válidos.")
 
 def update_y_limits(master):
     """
