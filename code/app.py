@@ -5,6 +5,9 @@ import pandas as pd
 import fitz  # PyMuPDF
 from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
 import io
+#Para cuadro de diálogo
+from tkinter.simpledialog import askstring
+from tkinter import Toplevel, Listbox, Button, END
 from data_operations import DataOperations
 
 class LaboratorySoftware:
