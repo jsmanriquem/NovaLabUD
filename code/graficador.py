@@ -944,7 +944,6 @@ def set_x_limits(x_min_entry, x_max_entry):
     global x_limits, origx_lim
 
     try:
-        try:
     	# Obtener las columnas seleccionadas
         columna_x_seleccionada = columna_x.get()
         
