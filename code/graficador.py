@@ -212,6 +212,10 @@ columna_x_combo = None
 columna_y_combo = None
 graficar_button = None
 
+# VAriables para manipulación y actualización de límites
+origx_lim = None
+origy_lim = None
+
 def cargar_datos():
     """
     Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método 
@@ -347,6 +351,8 @@ def graficar_datos():
     x_col = columna_x.get()
     y_col = columna_y.get()
 
+    global origx_lim, origy_lim
+
     if x_col not in data_ops.data.columns or y_col not in data_ops.data.columns:
         messagebox.showerror("Error", "Una o ambas columnas seleccionadas no son válidas.")
         return
@@ -354,13 +360,21 @@ def graficar_datos():
     if not pd.api.types.is_numeric_dtype(data_ops.data[x_col]) or not pd.api.types.is_numeric_dtype(data_ops.data[y_col]):
         messagebox.showerror("Error", "Las columnas seleccionadas deben ser numéricas.")
         return
+        
+    datos_x = data_ops.data[x_col]
+    datos_y = data_ops.data[y_col]
+
+    if origx_lim is None:
+        origx_lim = [datos_x.min(), datos_x.max()]
+    if origy_lim is None:
+        origy_lim = [datos_y.min(), datos_y.max()]
 
     x = data_ops.data[x_col]  # Usar la columna seleccionada para X
     y = data_ops.data[y_col]  # Usar la columna seleccionada para Y
     ax.clear()  # Limpiar la gráfica anterior
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
-    ax.set_xlim(x_limits)  # Límites del eje X
-    ax.set_ylim(y_limits)  # Límites del eje Y
+    ax.set_xlim(origx_lim)  # Límites del eje X
+    ax.set_ylim(origy_lim)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
     ax.set_xlabel(ejex_titulo.get())  # Actualizar título eje X    
     ax.set_ylabel(ejey_titulo.get())  # Actualizar título eje Y
@@ -863,10 +877,6 @@ def on_double_click(event):
 # Conectar evento de doble clic
 canvas.mpl_connect('button_press_event', on_double_click)
 
-# Guardar límites originales para reestablecer al tamaño original
-origx_lim = x_limits.copy()
-origy_lim = y_limits.copy()
-
 def update_x_limits(master):
     """
     Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.
@@ -883,6 +893,16 @@ def update_x_limits(master):
     """
     global ventana_lim_x
 
+    # Obtener las columnas seleccionadas
+    columna_x_seleccionada = columna_x.get()
+        
+    # Obtener los datos de la columna seleccionada
+    datos_x = data_ops.data[columna_x_seleccionada]
+    
+    # Valores predeterminados 
+    x_min_datos = datos_x.min()
+    x_max_datos = datos_x.max()
+
     # Crear nueva ventana
     ventana_lim_x = Toplevel(master)
     ventana_lim_x.title("Límites Eje X")
@@ -891,12 +911,12 @@ def update_x_limits(master):
     # Etiquetas y campos de entrada para x_min y x_max
     Label(ventana_lim_x, text="Ingrese x_min:").pack(pady=5)
     x_min_entry = Entry(ventana_lim_x)
-    x_min_entry.insert(0, str(x_limits[0]))  # Valor de x_min
+    x_min_entry.insert(0, str(x_min_datos))  # Valor de x_min
     x_min_entry.pack()
 
     Label(ventana_lim_x, text="Ingrese x_max:").pack(pady=5)
     x_max_entry = Entry(ventana_lim_x)
-    x_max_entry.insert(0, str(x_limits[1]))  # Valor de x_max
+    x_max_entry.insert(0, str(x_max_datos))  # Valor de x_max
     x_max_entry.pack()
 
     # Botón para actualizar los límites de X
@@ -924,18 +944,28 @@ def set_x_limits(x_min_entry, x_max_entry):
     global x_limits, origx_lim
 
     try:
-        # Obtener y validar valores ingresados
-        x_min = float(x_min_entry.get())
-        x_max = float(x_max_entry.get())
+        try:
+    	# Obtener las columnas seleccionadas
+        columna_x_seleccionada = columna_x.get()
+        
+        # Obtener los datos de la columna seleccionada
+        datos_x = data_ops.data[columna_x_seleccionada]
+
+        # Valores predeterminados 
+        x_min_datos = datos_x.min()
+        x_max_datos = datos_x.max()
+        
+        # Validar y asignar los límites ingresados por el usuario
+        x_min = float(x_min_entry.get()) if x_min_entry.get() else x_min_datos
+        x_max = float(x_max_entry.get()) if x_max_entry.get() else x_max_datos
         if x_min < x_max:
-            x_limits = [x_min, x_max]
-            origx_lim = x_limits.copy()
-            print(f"Límites del eje X actualizados: {x_limits}")
+            origx_lim = [x_min, x_max]
+            print(f"Límites del eje X actualizados: {origy_lim}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
         else:
-            messagebox.showerror("El valor de x_min debe ser menor que x_max.")
+            messagebox.showerror("Error","El valor de x_min debe ser menor que x_max.")
     except ValueError:
-        messagebox.showerror("Por favor, ingrese valores numéricos válidos.")
+        messagebox.showerror("Error","Por favor, ingrese valores numéricos válidos.")
 
 def update_y_limits(master):
     """
@@ -953,6 +983,17 @@ def update_y_limits(master):
     """
     global ventana_lim_y
 
+    # Obtener las columnas seleccionadas
+    columna_y_seleccionada = columna_y.get()
+        
+    # Obtener los datos de la columna seleccionada
+    datos_y = data_ops.data[columna_y_seleccionada]
+    
+    # Valores predeterminados 
+    y_min_datos = datos_y.min()
+    y_max_datos = datos_y.max()
+
+
     # Crear nueva ventana
     ventana_lim_y = Toplevel(master)
     ventana_lim_y.title("Límites Eje Y")
@@ -961,12 +1002,12 @@ def update_y_limits(master):
     # Etiquetas y campos de entrada para x_min y x_max
     Label(ventana_lim_y, text="Ingrese y_min:").pack(pady=5)
     y_min_entry = Entry(ventana_lim_y)
-    y_min_entry.insert(0, str(y_limits[0]))  # Valor de y_min
+    y_min_entry.insert(0, str(y_min_datos))  # Valor de y_min
     y_min_entry.pack()
 
     Label(ventana_lim_y, text="Ingrese y_max:").pack(pady=5)
     y_max_entry = Entry(ventana_lim_y)
-    y_max_entry.insert(0, str(y_limits[1]))  # Valor de y_max
+    y_max_entry.insert(0, str(y_max_datos))  # Valor de y_max
     y_max_entry.pack()
 
     # Botón para actualizar los límites de X
@@ -995,18 +1036,28 @@ def set_y_limits(y_min_entry, y_max_entry):
     global y_limits, origy_lim
 
     try:
-        # Obtener y validar valores ingresados
-        y_min = float(y_min_entry.get())
-        y_max = float(y_max_entry.get())
+        # Obtener las columnas seleccionadas
+        columna_y_seleccionada = columna_y.get()
+        
+        # Obtener los datos de la columna seleccionada
+        datos_y = data_ops.data[columna_y_seleccionada]
+
+        # Valores predeterminados 
+        y_min_datos = datos_y.min()
+        y_max_datos = datos_y.max()
+        
+        # Validar y asignar los límites ingresados por el usuario
+        y_min = float(y_min_entry.get()) if y_min_entry.get() else y_min_datos
+        y_max = float(y_max_entry.get()) if y_max_entry.get() else y_max_datos
+        
         if y_min < y_max:
-            y_limits = [y_min, y_max]
-            origy_lim = y_limits.copy()
-            print(f"Límites del eje Y actualizados: {y_limits}")
+            origy_lim = [y_min, y_max]
+            print(f"Límites del eje Y actualizados: {origy_lim}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
         else:
-            print("El valor de y_min debe ser menor que y_max.")
+            messagebox.showerror("Error","El valor de y_min debe ser menor que y_max.")
     except ValueError:
-        print("Por favor, ingrese valores numéricos válidos.")
+        messagebox.showerror("Error","Por favor, ingrese valores numéricos válidos.")
 
 def zoom(event=None,reset=False):
     """
