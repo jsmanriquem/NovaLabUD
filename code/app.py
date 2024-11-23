@@ -409,27 +409,79 @@ class DataOperationsWithUI(DataOperations):
         if ui_callback:
             ui_callback(self.data)
 
-    def normalize_data(self, ui_callback=None):
+    def select_columns(self):
         """
-        Normaliza las columnas numéricas del conjunto de datos y actualiza la UI si se proporciona un callback.
+        Crea una ventana emergente para que el usuario seleccione columnas.
+        Devuelve una lista con las columnas seleccionadas.
+        """
+        if self.data is None:
+            messagebox.showwarning("Advertencia", "Primero debes cargar los datos.")
+            return None
 
-        Args:
-        ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.
-        """
-        super().normalize_data()
+        columns = list(self.data.columns)
+        if not columns:
+            messagebox.showwarning("Advertencia", "No hay columnas disponibles.")
+            return None
+
+        selected_columns = []
+
+        def confirm_selection():
+            for idx in listbox.curselection():
+                selected_columns.append(columns[idx])
+            popup.destroy()
+
+        popup = Toplevel()
+        popup.title("Seleccionar columnas")
+        popup.geometry("300x400")
+        
+        listbox = Listbox(popup, selectmode="multiple", exportselection=False)
+        listbox.pack(fill="both", expand=True, padx=10, pady=10)
+        
+        for col in columns:
+            listbox.insert(END, col)
+        
+        btn_confirm = Button(popup, text="Confirmar", command=confirm_selection)
+        btn_confirm.pack(pady=10)
+
+        popup.wait_window()
+        return selected_columns
+
+    def normalize_data(self, ui_callback=None):
+        selected_columns = self.select_columns()
+        if not selected_columns:
+            return
+
+        for col in selected_columns:
+            if self.data[col].notnull().any():
+                min_val = self.data[col].min()
+                max_val = self.data[col].max()
+                if max_val != min_val:
+                    self.data[col] = (self.data[col] - min_val) / (max_val - min_val)
+                else:
+                    self.data[col] = 0
+        
+        self._add_to_history('normalize_data',
+                             f'Normalizadas las columnas: {", ".join(selected_columns)}')
+
         if ui_callback:
             ui_callback(self.data)
+        messagebox.showinfo("Éxito", "Datos normalizados correctamente")
 
     def fill_null_with_mean(self, ui_callback=None):
-        """
-        Rellena los valores nulos en columnas numéricas con la media de cada columna y actualiza la UI si se proporciona un callback.
+        selected_columns = self.select_columns()
+        if not selected_columns:
+            return
 
-        Args:
-        ui_callback (callable, optional): Función que se llama para actualizar la UI con los datos modificados, si se proporciona.
-        """
-        super().fill_null_with_mean()
+        for col in selected_columns:
+            if self.data[col].isnull().any():
+                self.data[col].fillna(self.data[col].mean(), inplace=True)
+
+        self._add_to_history('fill_null_with_mean',
+                             f'Rellenados valores nulos en columnas: {", ".join(selected_columns)}')
+
         if ui_callback:
             ui_callback(self.data)
+        messagebox.showinfo("Éxito", "Valores nulos rellenados con la media.")
 
 if __name__ == "__main__":
     app = LaboratorySoftware()
