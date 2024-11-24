@@ -8,6 +8,7 @@ import io
 #Para cuadro de diálogo
 from tkinter.simpledialog import askstring
 from tkinter import Toplevel, Listbox, Button, END
+import numpy as np
 from data_operations import DataOperations
 
 class LaboratorySoftware:
@@ -411,8 +412,10 @@ class DataOperationsWithUI(DataOperations):
 
     def select_columns(self):
         """
-        Crea una ventana emergente para que el usuario seleccione columnas.
-        Devuelve una lista con las columnas seleccionadas.
+        Muestra una ventana emergente con checkboxes para seleccionar columnas.
+        
+        Returns:
+            list: Lista de columnas seleccionadas por el usuario.
         """
         if self.data is None:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos.")
@@ -425,47 +428,91 @@ class DataOperationsWithUI(DataOperations):
 
         selected_columns = []
 
-        def confirm_selection():
-            for idx in listbox.curselection():
-                selected_columns.append(columns[idx])
-            popup.destroy()
-
         popup = Toplevel()
         popup.title("Seleccionar columnas")
         popup.geometry("300x400")
-        
-        listbox = Listbox(popup, selectmode="multiple", exportselection=False)
-        listbox.pack(fill="both", expand=True, padx=10, pady=10)
-        
-        for col in columns:
-            listbox.insert(END, col)
-        
-        btn_confirm = Button(popup, text="Confirmar", command=confirm_selection)
-        btn_confirm.pack(pady=10)
 
-        popup.wait_window()
+        label = ttk.Label(popup, text="Seleccione las columnas:", font=("Helvetica", 12))
+        label.pack(pady=10)
+
+        # Crear checkboxes para cada columna
+        column_vars = {}  # Diccionario para almacenar el estado de cada checkbox
+        for col in columns:
+            var = StringVar(value="")
+            checkbox = ttk.Checkbutton(
+                popup, 
+                text=col, 
+                variable=var, 
+                onvalue=col, 
+                offvalue=""
+            )
+            checkbox.pack(anchor="w", padx=20, pady=5)
+            column_vars[col] = var
+
+        def confirm_selection():
+            # Guardar las columnas seleccionadas
+            for col, var in column_vars.items():
+                if var.get():
+                    selected_columns.append(var.get())
+            popup.destroy()
+
+        btn_confirm = ttk.Button(popup, text="Confirmar", command=confirm_selection)
+        btn_confirm.pack(pady=20)
+
+        popup.wait_window()  # Espera hasta que el usuario cierre la ventana
         return selected_columns
 
     def normalize_data(self, ui_callback=None):
+        """
+        Normaliza las columnas seleccionadas según el método elegido por el usuario.
+        
+        Args:
+            ui_callback (callable, optional): Función para actualizar la interfaz con los datos procesados.
+        """
+        # Seleccionar columnas
         selected_columns = self.select_columns()
         if not selected_columns:
             return
 
-        for col in selected_columns:
-            if self.data[col].notnull().any():
-                min_val = self.data[col].min()
-                max_val = self.data[col].max()
-                if max_val != min_val:
-                    self.data[col] = (self.data[col] - min_val) / (max_val - min_val)
-                else:
-                    self.data[col] = 0
-        
-        self._add_to_history('normalize_data',
-                             f'Normalizadas las columnas: {", ".join(selected_columns)}')
+        # Mostrar opciones de normalización
+        methods = ["Min-Max Scaling", "Z-Score Scaling", "Max Abs Scaling", "Log Scaling"]
+        selected_method = self.select_option("Método de Normalización", methods)
 
+        # Aplicar normalización según el método seleccionado
+        for col in selected_columns:
+            if self.data[col].notnull().any():  # Solo aplica si la columna no está completamente vacía
+                if selected_method == "Min-Max Scaling":
+                    min_val = self.data[col].min()
+                    max_val = self.data[col].max()
+                    if max_val != min_val:
+                        self.data[col] = (self.data[col] - min_val) / (max_val - min_val)
+                    else:
+                        self.data[col] = 0  # Caso especial: todos los valores son iguales
+                elif selected_method == "Z-Score Scaling":
+                    mean_val = self.data[col].mean()
+                    std_val = self.data[col].std()
+                    if std_val != 0:
+                        self.data[col] = (self.data[col] - mean_val) / std_val
+                    else:
+                        self.data[col] = 0  # Caso especial: desviación estándar es 0
+                elif selected_method == "Max Abs Scaling":
+                    max_abs_val = self.data[col].abs().max()
+                    if max_abs_val != 0:
+                        self.data[col] = self.data[col] / max_abs_val
+                    else:
+                        self.data[col] = 0  # Caso especial: todos los valores son 0
+                elif selected_method == "Log Scaling":
+                    self.data[col] = self.data[col].apply(lambda x: np.log(x) if x > 0 else 0)  # Log solo para valores positivos
+
+
+        # Registrar en el historial y actualizar UI
+        self._add_to_history(
+            'normalize_data',
+            f'Normalizadas las columnas {", ".join(selected_columns)} usando {selected_method}'
+        )
         if ui_callback:
             ui_callback(self.data)
-        messagebox.showinfo("Éxito", "Datos normalizados correctamente")
+        messagebox.showinfo("Éxito", f"Datos normalizados usando {selected_method}.")
 
     def fill_null_with_mean(self, ui_callback=None):
         selected_columns = self.select_columns()
@@ -482,6 +529,59 @@ class DataOperationsWithUI(DataOperations):
         if ui_callback:
             ui_callback(self.data)
         messagebox.showinfo("Éxito", "Valores nulos rellenados con la media.")
+
+    def select_option(self, title, options):
+        """
+        Muestra un cuadro de diálogo con botones de radio para seleccionar una opción.
+
+        Args:
+            title (str): Título del cuadro de diálogo.
+            options (list): Opciones para mostrar en los botones de radio.
+
+        Returns:
+            str: La opción seleccionada por el usuario, o None si la ventana se cierra.
+        """
+        popup = Toplevel()
+        popup.title(title)
+        popup.geometry("300x250")
+
+        selected_option = StringVar()
+        selected_option.set(None)  # Ninguna selección inicial
+
+        label = ttk.Label(popup, text="Seleccione un método:", font=("Helvetica", 12))
+        label.pack(pady=10)
+
+        # Crear botones de radio para cada opción
+        for option in options:
+            ttk.Radiobutton(
+                popup,
+                text=option,
+                variable=selected_option,
+                value=option
+            ).pack(anchor="w", padx=20, pady=5)
+
+        def confirm_selection():
+            popup.destroy()
+
+        def cancel_selection():
+            # Si el usuario cierra sin confirmar, reinicia la selección
+            selected_option.set(None)
+            popup.destroy()
+
+        # Botón para confirmar
+        btn_confirm = ttk.Button(popup, text="Confirmar", command=confirm_selection)
+        btn_confirm.pack(side="left", padx=20, pady=20)
+
+        # Botón para cancelar (opcional, como alternativa a cerrar con "X")
+        btn_cancel = ttk.Button(popup, text="Salir", command=cancel_selection)
+        btn_cancel.pack(side="right", padx=20, pady=20)
+
+        popup.protocol("WM_DELETE_WINDOW", cancel_selection)  # Manejar cierre con "X"
+
+        popup.wait_window()  # Espera hasta que el usuario cierre la ventana
+
+        # Retorna la opción seleccionada (o None si se cerró sin confirmar)
+        return selected_option.get() if selected_option.get() else None
 
 if __name__ == "__main__":
     app = LaboratorySoftware()
