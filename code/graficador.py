@@ -84,8 +84,8 @@ def limpiar_grafica():
     zoom(reset=True)
 
     ax.clear() 
-    x_limits = [-10, 10]
-    y_limits = [-10, 10]
+    x_limits = None
+    y_limits = None
     ax.grid(show_grid)  
 
     canvas.draw() 
@@ -197,8 +197,8 @@ line = None
 personalizacion_ventana= None
 
 # Inicializar variables para manejo del zoom y desplazamiento
-x_limits = [-10, 10]
-y_limits = [-10, 10]
+x_limits = None
+y_limits = None
 is_dragging = False
 start_x, start_y = 0, 0
 points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
@@ -212,7 +212,7 @@ columna_x_combo = None
 columna_y_combo = None
 graficar_button = None
 
-# VAriables para manipulación y actualización de límites
+# Guardar límites originales para reestablecer al tamaño original
 origx_lim = None
 origy_lim = None
 
@@ -351,7 +351,7 @@ def graficar_datos():
     x_col = columna_x.get()
     y_col = columna_y.get()
 
-    global origx_lim, origy_lim
+    global origx_lim, origy_lim, x_limits, y_limits
 
     if x_col not in data_ops.data.columns or y_col not in data_ops.data.columns:
         messagebox.showerror("Error", "Una o ambas columnas seleccionadas no son válidas.")
@@ -364,17 +364,20 @@ def graficar_datos():
     datos_x = data_ops.data[x_col]
     datos_y = data_ops.data[y_col]
 
-    if origx_lim is None:
+    if origx_lim is None or origy_lim is None:
         origx_lim = [datos_x.min(), datos_x.max()]
-    if origy_lim is None:
         origy_lim = [datos_y.min(), datos_y.max()]
+        x_limits = origx_lim.copy()
+        y_limits = origy_lim.copy()
+    
+    ax.clear()
 
     x = data_ops.data[x_col]  # Usar la columna seleccionada para X
     y = data_ops.data[y_col]  # Usar la columna seleccionada para Y
     ax.clear()  # Limpiar la gráfica anterior
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
-    ax.set_xlim(origx_lim)  # Límites del eje X
-    ax.set_ylim(origy_lim)  # Límites del eje Y
+    ax.set_xlim(x_limits)  # Límites del eje X
+    ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get())  # Actualizar título
     ax.set_xlabel(ejex_titulo.get())  # Actualizar título eje X    
     ax.set_ylabel(ejey_titulo.get())  # Actualizar título eje Y
@@ -944,7 +947,7 @@ def set_x_limits(x_min_entry, x_max_entry):
     global x_limits, origx_lim
 
     try:
-    	# Obtener las columnas seleccionadas
+        # Obtener las columnas seleccionadas
         columna_x_seleccionada = columna_x.get()
         
         # Obtener los datos de la columna seleccionada
@@ -958,9 +961,14 @@ def set_x_limits(x_min_entry, x_max_entry):
         x_min = float(x_min_entry.get()) if x_min_entry.get() else x_min_datos
         x_max = float(x_max_entry.get()) if x_max_entry.get() else x_max_datos
         if x_min < x_max:
-            origx_lim = [x_min, x_max]
+            x_limits = [x_min, x_max]  # Límite actual se actualiza
+            if origx_lim is None:  # Solo actualiza los límites originales si no se han definido
+                origx_lim = [x_min_datos, x_max_datos]
+            else:
+                origx_lim = [x_min, x_max]
             print(f"Límites del eje X actualizados: {origy_lim}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
+            ventana_lim_x.destroy() # Cerrar la ventana emergente
         else:
             messagebox.showerror("Error","El valor de x_min debe ser menor que x_max.")
     except ValueError:
@@ -1050,9 +1058,14 @@ def set_y_limits(y_min_entry, y_max_entry):
         y_max = float(y_max_entry.get()) if y_max_entry.get() else y_max_datos
         
         if y_min < y_max:
-            origy_lim = [y_min, y_max]
+            y_limits = [y_min, y_max]  # Límite actual se actualiza
+            if origy_lim is None:  # Solo actualiza los límites originales si no se han definido
+                origy_lim = [y_min_datos, y_max_datos]
+            else:
+                origy_lim = [y_min, y_max]
             print(f"Límites del eje Y actualizados: {origy_lim}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
+            ventana_lim_y.destroy() # Cerrar la ventana emergente
         else:
             messagebox.showerror("Error","El valor de y_min debe ser menor que y_max.")
     except ValueError:
@@ -1087,7 +1100,7 @@ def zoom(event=None,reset=False):
     None
         La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.
     """
-    global x_limits, y_limits # Variables globales, límites de 'x' y 'y'
+    global x_limits, y_limits, origx_lim, origy_lim # Variables globales, límites de 'x' y 'y'
     if reset:
         # Restablecer límites originales
         x_limits = origx_lim.copy()
@@ -1100,14 +1113,14 @@ def zoom(event=None,reset=False):
         x_zoom_level = x_scale.get()
         y_zoom_level = y_scale.get()
         
-        x_mid = (origx_lim[1] + origx_lim[0]) / 2  # Punto medio 'x'
+        x_mid = (x_limits[1] + x_limits[0]) / 2  # Punto medio 'x'
         x_zoom_factor = 1 + x_zoom_level
-        x_range = (origx_lim[1] - origx_lim[0]) / x_zoom_factor
+        x_range = (x_limits[1] - x_limits[0]) / x_zoom_factor
         x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
         
-        y_mid = (origy_lim[1] + origy_lim[0]) / 2  # Punto medio 'y'
+        y_mid = (y_limits[1] + y_limits[0]) / 2  # Punto medio 'y'
         y_zoom_factor = 1 + y_zoom_level
-        y_range = (origy_lim[1] - origy_lim[0]) / y_zoom_factor
+        y_range = (y_limits[1] - y_limits[0]) / y_zoom_factor
         y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
         # Actualizar la etiqueta de porcentaje de zoom para cada eje
@@ -1115,8 +1128,14 @@ def zoom(event=None,reset=False):
         y_zoom_percentage = int((y_zoom_level / 10) * 100)
         zoom_label.config(text=f"Zoom X: {x_zoom_percentage}% | Zoom Y: {y_zoom_percentage}%")
 
-    # Redibujar la gráfica con los nuevos límites
-    graficar_datos() # Modificar respecto a los módulos por agregar
+    # Actualizar límites originales
+    origx_lim = x_limits.copy()
+    origy_lim = y_limits.copy()
+    
+    # Actualizar los límites de la gráfica
+    ax.set_xlim(x_limits)
+    ax.set_ylim(y_limits)
+    canvas.draw()
 
 # Funciones para manejar el desplazamiento con el mouse sobre la gráfica
 def on_press(event):
@@ -1200,7 +1219,7 @@ def on_motion(event):
 
     
     """
-    global x_limits, y_limits, start_x, start_y
+    global x_limits, y_limits, start_x, start_y, origx_lim, origy_lim
     if is_dragging and event.inaxes: # Verificación de interacción True and True
         
         # Calculo de diferencia entre el clic inicial y la posición actual del cursor
@@ -1211,8 +1230,14 @@ def on_motion(event):
         x_limits = [x + dx for x in x_limits]
         y_limits = [y + dy for y in y_limits]
 
-        # Redibujar la gráfica con los nuevos límites
-        graficar_datos()
+        # Sincronizar con los límites originales
+        origx_lim = x_limits.copy()
+        origy_lim = y_limits.copy()
+
+        # Actualizar la gráfica dinámicamente
+        ax.set_xlim(x_limits)
+        ax.set_ylim(y_limits)
+        canvas.draw()
 
 # Conectar eventos del ratón
 fig.canvas.mpl_connect('button_press_event', on_press)
