@@ -1113,24 +1113,20 @@ def zoom(event=None,reset=False):
         x_zoom_level = x_scale.get()
         y_zoom_level = y_scale.get()
         
-        x_mid = (x_limits[1] + x_limits[0]) / 2  # Punto medio 'x'
+        x_mid = (origx_lim[1] + origx_lim[0]) / 2  # Punto medio 'x'
         x_zoom_factor = 1 + x_zoom_level
-        x_range = (x_limits[1] - x_limits[0]) / x_zoom_factor
+        x_range = (origx_lim[1] - origx_lim[0]) / x_zoom_factor
         x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
         
-        y_mid = (y_limits[1] + y_limits[0]) / 2  # Punto medio 'y'
+        y_mid = (origy_lim[1] + origy_lim[0]) / 2  # Punto medio 'y'
         y_zoom_factor = 1 + y_zoom_level
-        y_range = (y_limits[1] - y_limits[0]) / y_zoom_factor
+        y_range = (origy_lim[1] - origy_lim[0]) / y_zoom_factor
         y_limits = [y_mid - y_range / 2, y_mid + y_range / 2]
 
         # Actualizar la etiqueta de porcentaje de zoom para cada eje
         x_zoom_percentage = int((x_zoom_level / 10) * 100)
         y_zoom_percentage = int((y_zoom_level / 10) * 100)
         zoom_label.config(text=f"Zoom X: {x_zoom_percentage}% | Zoom Y: {y_zoom_percentage}%")
-
-    # Actualizar límites originales
-    origx_lim = x_limits.copy()
-    origy_lim = y_limits.copy()
     
     # Actualizar los límites de la gráfica
     ax.set_xlim(x_limits)
