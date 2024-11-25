@@ -1,6 +1,12 @@
 import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.model_selection import train_test_split
 from tkinter import filedialog, messagebox
 from datetime import datetime
+
+
 
 class DataOperations:
     """
@@ -216,35 +222,128 @@ class DataOperations:
         else:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
-    def fill_null_with_mean(self):
+
+    def fill_null_values(self, method='mean', degree=None, columns=None, n_neighbors=5):
         """
-        Rellena los valores nulos (NaN) en el DataFrame con la media de cada columna.
-    
-        Este método:
-        - Calcula la media de cada columna numérica del DataFrame
-        - Reemplaza todos los valores nulos con la media correspondiente
-        - Registra la operación en el historial
-        - Muestra un mensaje con el número de valores rellenados
+        Rellena los valores nulos de las columnas seleccionadas usando diferentes métodos.
         
-        Returns:
-            None
-        
-        Raises:
-            No lanza excepciones directamente, pero muestra un messagebox de advertencia
-            si self.data es None
+        Args:
+            method (str): Método de rellenado ('mean', 'linear', 'polynomial', 'time', 'knn').
+            degree (int, optional): Grado de interpolación polinomial (solo para 'polynomial').
+            columns (list, optional): Lista de columnas a procesar.
+            n_neighbors (int, optional): Número de vecinos a usar en KNN (solo para 'knn'). Default = 5.
         """
-        if self.data is not None:
-            nulls_before = self.data.isnull().sum().sum()
-            self.data.fillna(self.data.mean(), inplace=True)
-            nulls_filled = nulls_before - self.data.isnull().sum().sum()
-            
-            self._add_to_history('fill_null_with_mean',
-                               f'Rellenados {nulls_filled} valores nulos con la media')
-            
-            messagebox.showinfo("Éxito", 
-                              f"Se han rellenado {nulls_filled} valores nulos con la media")
-        else:
+        if self.data is None:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
+            return
+
+        if columns is None:
+            columns = self.data.columns  # Si no se pasan columnas, usar todas las columnas
+
+        affected_rows = 0  # Contador de filas afectadas
+
+        for column in columns:
+            if column not in self.data.columns:
+                continue  # Si la columna no existe en los datos, continuar con la siguiente
+
+            if self.data[column].isnull().any():
+                initial_null_count = self.data[column].isnull().sum()  # Contar los valores nulos antes
+
+                if method == 'mean':
+                    self.data[column].fillna(self.data[column].mean(), inplace=True)
+                    nulls_filled = initial_null_count - self.data[column].isnull().sum()  # Calcular los nulos rellenados
+                    affected_rows += nulls_filled  # Sumar al total de filas afectadas
+                    detail = f"rellenados con la media en {column}"
+
+                elif method == 'linear':
+                    # Realizar la interpolación lineal y asignar el resultado a la columna
+                    self.data[column] = self.data[column].interpolate(method='linear')
+
+                    nulls_filled = initial_null_count - self.data[column].isnull().sum()
+                    affected_rows += nulls_filled
+                    detail = f"rellenados con interpolación lineal en {column}"
+
+                    # Registrar el detalle y mostrar mensaje
+                    self._add_to_history('fill_null_values', detail)
+                    messagebox.showinfo("Éxito", f"{detail}. Se imputaron {nulls_filled} valores nulos.")
+
+                elif method == 'polynomial' and degree is not None:
+                    # Realizar la interpolación polinomial y asignar el resultado a la columna
+                    self.data[column] = self.data[column].interpolate(method='polynomial', order=degree)
+
+                    nulls_filled = initial_null_count - self.data[column].isnull().sum()
+                    affected_rows += nulls_filled
+                    detail = f"rellenados con interpolación polinomial en {column} de grado {degree}"
+
+                    # Registrar el detalle y mostrar mensaje
+                    self._add_to_history('fill_null_values', detail)
+                    messagebox.showinfo("Éxito", f"{detail}. Se imputaron {nulls_filled} valores nulos.")
+
+                elif method == 'knn':
+                    from sklearn.impute import KNNImputer
+                    import pandas as pd
+                    from tkinter.simpledialog import askstring
+
+                    # Pedir al usuario el número de vecinos cercanos
+                    neighbors_input = askstring("Número de Vecinos", "Ingrese el número de vecinos cercanos (default: 5):")
+
+                    # Validar entrada del usuario
+                    try:
+                        n_neighbors = int(neighbors_input) if neighbors_input else 5
+                        if n_neighbors <= 0:
+                            raise ValueError("El número de vecinos debe ser mayor a 0.")
+                    except ValueError:
+                        messagebox.showerror("Error", "Entrada inválida. Usando el valor predeterminado de 5 vecinos.")
+                        n_neighbors = 5
+
+                    # Selección de columnas relevantes para KNN
+                    numeric_cols = [col for col in columns if pd.api.types.is_numeric_dtype(self.data[col])]
+                    if len(numeric_cols) < 2:
+                        messagebox.showerror(
+                            "Error", "KNN requiere al menos 2 columnas numéricas correlacionadas para funcionar."
+                        )
+                        return
+
+                    # Normalizar datos para evitar problemas de escala
+                    normalized_data = self.data[numeric_cols].copy()
+                    min_vals = normalized_data.min()
+                    max_vals = normalized_data.max()
+
+                    normalized_data = (normalized_data - min_vals) / (max_vals - min_vals)
+
+                    # Contar valores nulos antes
+                    nulls_before = self.data[numeric_cols].isnull().sum().sum()
+
+                    # Aplicar KNNImputer
+                    imputer = KNNImputer(n_neighbors=n_neighbors)
+                    imputed_normalized_data = imputer.fit_transform(normalized_data)
+
+                    # Desnormalizar los datos imputados
+                    imputed_data = pd.DataFrame(
+                        imputed_normalized_data, columns=numeric_cols
+                    )
+                    imputed_data = imputed_data * (max_vals - min_vals) + min_vals
+
+                    # Actualizar el DataFrame con los valores imputados
+                    for col in numeric_cols:
+                        self.data[col] = imputed_data[col]
+
+                    # Contar valores nulos después
+                    nulls_after = self.data[numeric_cols].isnull().sum().sum()
+                    nulls_filled = nulls_before - nulls_after
+                    affected_rows += nulls_filled  # Sumar al total de filas afectadas
+
+                    # Registrar el detalle y mostrar mensaje
+                    detail = f"KNN aplicado en columnas: {', '.join(numeric_cols)} con {n_neighbors} vecinos"
+                    self._add_to_history('fill_null_with_knn', detail)
+
+                    messagebox.showinfo("Éxito", f"{detail}. Se imputaron {nulls_filled} valores nulos.")
+
+        # Mostrar el número total de filas afectadas
+        messagebox.showinfo("Éxito", f"Se afectaron {affected_rows} valores nulos en total.")
+
+
+
 
     def export_results(self):
         """

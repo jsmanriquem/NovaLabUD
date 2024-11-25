@@ -5,7 +5,6 @@ import pandas as pd
 import fitz  # PyMuPDF
 from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
 import io
-#Para cuadro de diálogo
 from tkinter.simpledialog import askstring
 from tkinter import Toplevel, Listbox, Button, END
 import numpy as np
@@ -247,8 +246,9 @@ class LaboratorySoftware:
                                     command=lambda: self.data_ops.remove_duplicates(self.update_data_display))
         process_data_menu.add_command(label="Normalizar datos", 
                                     command=lambda: self.data_ops.normalize_data(self.update_data_display))
-        process_data_menu.add_command(label="Rellenar nulos con media", 
-                                    command=lambda: self.data_ops.fill_null_with_mean(self.update_data_display))
+        process_data_menu.add_command(label="Rellenar nulos",
+                                    command=lambda: self.data_ops.fill_null_values_with_dialog(self.update_data_display))
+
         edit_menu.add_cascade(label="Procesar datos", menu=process_data_menu)
         menubar.add_cascade(label="Edición", menu=edit_menu)
 
@@ -462,21 +462,24 @@ class DataOperationsWithUI(DataOperations):
         popup.wait_window()  # Espera hasta que el usuario cierre la ventana
         return selected_columns
 
+
     def normalize_data(self, ui_callback=None):
         """
         Normaliza las columnas seleccionadas según el método elegido por el usuario.
-        
-        Args:
-            ui_callback (callable, optional): Función para actualizar la interfaz con los datos procesados.
         """
         # Seleccionar columnas
         selected_columns = self.select_columns()
         if not selected_columns:
             return
 
-        # Mostrar opciones de normalización
-        methods = ["Min-Max Scaling", "Z-Score Scaling", "Max Abs Scaling", "Log Scaling"]
+        methods = ["Min-Max Scaling", "Z-Score Scaling", "Max Abs Scaling"]
         selected_method = self.select_option("Método de Normalización", methods)
+
+        if not selected_method:
+            return
+
+        # Copia de los datos originales para comparar al final
+        original_data = self.data[selected_columns].copy()
 
         # Aplicar normalización según el método seleccionado
         for col in selected_columns:
@@ -488,6 +491,7 @@ class DataOperationsWithUI(DataOperations):
                         self.data[col] = (self.data[col] - min_val) / (max_val - min_val)
                     else:
                         self.data[col] = 0  # Caso especial: todos los valores son iguales
+
                 elif selected_method == "Z-Score Scaling":
                     mean_val = self.data[col].mean()
                     std_val = self.data[col].std()
@@ -495,24 +499,23 @@ class DataOperationsWithUI(DataOperations):
                         self.data[col] = (self.data[col] - mean_val) / std_val
                     else:
                         self.data[col] = 0  # Caso especial: desviación estándar es 0
+
                 elif selected_method == "Max Abs Scaling":
                     max_abs_val = self.data[col].abs().max()
                     if max_abs_val != 0:
                         self.data[col] = self.data[col] / max_abs_val
                     else:
                         self.data[col] = 0  # Caso especial: todos los valores son 0
-                elif selected_method == "Log Scaling":
-                    self.data[col] = self.data[col].apply(lambda x: np.log(x) if x > 0 else 0)  # Log solo para valores positivos
 
+        # Comparar filas afectadas
+        affected_rows = (self.data[selected_columns] != original_data).any(axis=1).sum()
 
-        # Registrar en el historial y actualizar UI
-        self._add_to_history(
-            'normalize_data',
-            f'Normalizadas las columnas {", ".join(selected_columns)} usando {selected_method}'
-        )
+        # Registrar y mostrar el mensaje
+        self._add_to_history('normalize_data', f'Normalizadas las columnas {", ".join(selected_columns)} usando {selected_method}')
+        messagebox.showinfo("Éxito", f"Datos normalizados. Se afectaron {affected_rows} filas.")
         if ui_callback:
             ui_callback(self.data)
-        messagebox.showinfo("Éxito", f"Datos normalizados usando {selected_method}.")
+
 
     def fill_null_with_mean(self, ui_callback=None):
         selected_columns = self.select_columns()
@@ -530,6 +533,52 @@ class DataOperationsWithUI(DataOperations):
             ui_callback(self.data)
         messagebox.showinfo("Éxito", "Valores nulos rellenados con la media.")
 
+    def fill_null_values_with_dialog(self, ui_callback=None):
+        """
+        Abre una ventana de diálogo para seleccionar columnas y un método de rellenado.
+        """
+        # Seleccionar columnas
+        selected_columns = self.select_columns()
+        if not selected_columns:
+            return
+
+        # Opciones de métodos de rellenado
+        methods = [
+            "Media",
+            "Interpolación Lineal",
+            "Interpolación Polinomial",
+            "KNN"
+        ]
+        selected_method = self.select_option("Método de Rellenado", methods)
+
+        if not selected_method:
+            return
+
+        # Si se selecciona interpolación polinomial, pedir grado
+        degree = None
+        if selected_method == "Interpolación Polinomial":
+            degree = askstring("Grado Polinomial", "Ingrese el grado para la interpolación polinomial:")
+            if not degree or not degree.isdigit():
+                messagebox.showerror("Error", "Grado no válido.")
+                return
+            degree = int(degree)
+
+        # Mapear el método seleccionado al argumento para fill_null_values
+        method_mapping = {
+            "Media": "mean",
+            "Interpolación Lineal": "linear",
+            "Interpolación Polinomial": "polynomial",
+            "KNN": "knn",
+        }
+        selected_method_key = method_mapping.get(selected_method)
+
+        # Aplicar el método seleccionado solo a las columnas seleccionadas
+        self.fill_null_values(method=selected_method_key, degree=degree, columns=selected_columns)
+        if ui_callback:
+            ui_callback(self.data)
+
+
+
     def select_option(self, title, options):
         """
         Muestra un cuadro de diálogo con botones de radio para seleccionar una opción.
@@ -543,7 +592,7 @@ class DataOperationsWithUI(DataOperations):
         """
         popup = Toplevel()
         popup.title(title)
-        popup.geometry("300x250")
+        popup.geometry("300x300")
 
         selected_option = StringVar()
         selected_option.set(None)  # Ninguna selección inicial
@@ -560,28 +609,30 @@ class DataOperationsWithUI(DataOperations):
                 value=option
             ).pack(anchor="w", padx=20, pady=5)
 
-        def confirm_selection():
-            popup.destroy()
-
-        def cancel_selection():
-            # Si el usuario cierra sin confirmar, reinicia la selección
-            selected_option.set(None)
-            popup.destroy()
+        # Crear un Frame para alinear los botones
+        button_frame = ttk.Frame(popup)
+        button_frame.pack(pady=20)
 
         # Botón para confirmar
-        btn_confirm = ttk.Button(popup, text="Confirmar", command=confirm_selection)
-        btn_confirm.pack(side="left", padx=20, pady=20)
+        btn_confirm = ttk.Button(button_frame, text="Confirmar", command=popup.destroy)
+        btn_confirm.pack(side="left", padx=10)
 
-        # Botón para cancelar (opcional, como alternativa a cerrar con "X")
-        btn_cancel = ttk.Button(popup, text="Salir", command=cancel_selection)
-        btn_cancel.pack(side="right", padx=20, pady=20)
+        # Botón para cancelar
+        btn_cancel = ttk.Button(button_frame, text="Salir", command=lambda: [selected_option.set(None), popup.destroy()])
+        btn_cancel.pack(side="left", padx=10)
 
-        popup.protocol("WM_DELETE_WINDOW", cancel_selection)  # Manejar cierre con "X"
+        # Manejar cierre con "X"
+        popup.protocol("WM_DELETE_WINDOW", lambda: [selected_option.set(None), popup.destroy()])
 
         popup.wait_window()  # Espera hasta que el usuario cierre la ventana
 
-        # Retorna la opción seleccionada (o None si se cerró sin confirmar)
+        # Retorna la opción seleccionada (o None si se cierra sin confirmar)
         return selected_option.get() if selected_option.get() else None
+
+
+
+
+
 
 if __name__ == "__main__":
     app = LaboratorySoftware()
