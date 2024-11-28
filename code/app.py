@@ -24,15 +24,22 @@ class LaboratorySoftware:
         data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
         data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
         no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.
-    Clase principal del Software de Laboratorio.
     """
     
     def __init__(self) -> None:
         """
         Inicializa la aplicación del Software de Laboratorio.
-        Configura la ventana principal, establece las dimensiones basadas en la pantalla,
-        inicializa los componentes de la UI y configura los menús.
-        Inicializa la clase y configura la ventana principal del software.
+    
+        Este método configura la ventana principal de la aplicación, establece las dimensiones
+        basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz gráfica
+        (como los paneles y menús), y configura las pestañas para mostrar los contenidos de los experimentos.
+
+        - Configura la ventana con un tamaño proporcional a la pantalla del usuario.
+        - Establece un diseño de ventana con un panel horizontal que contiene dos áreas: 
+            1. Un panel para mostrar los datos cargados.
+            2. Un panel para mostrar la teoría con pestañas.
+        - Inicializa y organiza los componentes para cargar y mostrar datos en la tabla, así como para mostrar la teoría.
+        - Configura los menús y las interacciones de la interfaz gráfica.
         """
         self.root = tk.Tk()
         self.root.title("Software de Laboratorio")
@@ -91,7 +98,33 @@ class LaboratorySoftware:
         self.no_data_label.pack(pady=20)
 
     def load_pdf(self, tab, pdf_path):
-        """Carga el PDF en el tab especificado."""
+        """
+        Carga un archivo PDF y lo muestra en un tab especificado en la interfaz gráfica.
+
+        Args:
+            tab (tk.Widget): El contenedor donde se mostrará el contenido del PDF.
+            pdf_path (str): La ruta al archivo PDF que se desea cargar.
+
+        Detalles:
+            - Limpia el contenido existente del `tab` antes de cargar el nuevo PDF.
+            - Calcula la escala del PDF basada en el ancho disponible del frame dentro del `tab`.
+            - Renderiza cada página del PDF como una imagen y la agrega a un Canvas con barra de desplazamiento.
+
+        Ejemplo:
+            ```python
+            # Supongamos que `tab` es un ttk.Frame y `pdf_path` es una ruta válida.
+            my_app.load_pdf(tab, "documento.pdf")
+            ```
+
+        Notas:
+            - Se utiliza el módulo `fitz` de PyMuPDF para cargar y procesar el PDF.
+            - La visualización del PDF es responsiva y se adapta al ancho disponible del contenedor.
+            - Cada página se renderiza como una imagen y se agrega a un Canvas dentro de un Frame desplazable.
+
+        Requiere:
+            - PyMuPDF (fitz)
+            - PIL (Pillow)
+        """
         # Limpiar el contenido del tab antes de cargar el nuevo PDF
         for widget in tab.winfo_children():
             widget.destroy()
@@ -144,7 +177,33 @@ class LaboratorySoftware:
             label.pack(fill=tk.BOTH)
 
     def on_tab_change(self, event):
-        """Cuando se cambia de pestaña, se carga el PDF correspondiente"""
+        """
+        Maneja el evento de cambio de pestaña en el notebook y carga el PDF correspondiente.
+
+        Args:
+            event (tk.Event): El evento generado al cambiar de pestaña.
+
+        Detalles:
+            - Identifica la pestaña seleccionada por su etiqueta de texto.
+            - Llama al método `load_pdf` para cargar el archivo PDF asociado a la pestaña seleccionada.
+
+        Pestañas y PDFs asociados:
+            - "Caída libre": Carga el archivo `caida_libre.pdf`.
+            - "Ley de Hooke": Carga el archivo `ley_de_hooke.pdf`.
+
+        Ejemplo:
+            ```python
+            notebook.bind("<<NotebookTabChanged>>", app.on_tab_change)
+            ```
+
+        Notas:
+            - Se asume que `self.notebook` es un widget `ttk.Notebook` y que 
+            las pestañas están configuradas correctamente con los nombres indicados.
+            - Los archivos PDF deben estar disponibles en las rutas especificadas.
+
+        Requiere:
+            - El método `load_pdf` debe estar definido en la misma clase.
+        """
         selected_tab = self.notebook.tab(self.notebook.select(), "text")
         
         if selected_tab == "Caída libre":
@@ -154,9 +213,30 @@ class LaboratorySoftware:
 
     def create_data_table(self):
         """
-        Inicializa un Treeview con scrollbars vertical y horizontal para mostrar
-        los datos cargados de manera organizada y navegable.
-        Crea la tabla para mostrar los datos con scrollbars.
+        Crea y configura una tabla (`Treeview`) para mostrar datos con scrollbars vertical y horizontal.
+
+        Este método inicializa un `Treeview` dentro de un contenedor (`Frame`), agrega barras de desplazamiento
+        para navegación vertical y horizontal, y aplica estilos básicos a la tabla para mejorar su apariencia.
+
+        Detalles:
+            - La tabla se coloca dentro de un `Frame` en `self.data_frame`.
+            - Las barras de desplazamiento se asocian con el desplazamiento horizontal y vertical del `Treeview`.
+            - Se aplica un estilo personalizado para ajustar la altura de las filas y el formato de los encabezados.
+
+        Notas:
+            - Este método no incluye la carga de datos en la tabla, solo configura su estructura.
+            - El `Treeview` se ajusta automáticamente al tamaño del contenedor.
+
+        Requiere:
+            - `self.data_frame`: Un contenedor existente en la interfaz donde se colocará la tabla.
+
+        Ejemplo:
+            ```python
+            app.create_data_table()
+            # Cargar datos en la tabla después de su creación:
+            for row in data:
+                app.data_table.insert('', 'end', values=row)
+            ```
         """
         # Frame para contener la tabla y scrollbars
         self.table_frame = ttk.Frame(self.data_frame)
@@ -186,11 +266,31 @@ class LaboratorySoftware:
 
     def update_data_display(self, data: pd.DataFrame):
         """
-        Actualiza la tabla de datos con nueva información.
-        
+         Actualiza la tabla (`Treeview`) con nuevos datos proporcionados en un DataFrame.
+
         Args:
-            data (pd.DataFrame): DataFrame con los nuevos datos a mostrar.
-                               Si es None o está vacío, se muestra el mensaje de no datos.
+            data (pd.DataFrame): Un DataFrame con los datos a mostrar. 
+                - Si el DataFrame es `None` o está vacío, se muestra un mensaje indicando la ausencia de datos.
+
+        Detalles:
+            - Limpia el contenido actual de la tabla antes de insertar nuevos datos.
+            - Configura dinámicamente las columnas de la tabla basándose en los nombres de las columnas del DataFrame.
+            - Inserta las filas del DataFrame en la tabla, formateando los valores como cadenas.
+
+        Notas:
+            - Si no hay datos disponibles, se muestra un label (`self.no_data_label`) indicando "No hay datos disponibles".
+            - El ancho inicial de las columnas se establece en 100 unidades, pero puede ser ajustado por el usuario.
+
+        Ejemplo:
+            ```python
+            # Actualizar la tabla con un nuevo DataFrame
+            df = pd.DataFrame({'Columna1': [1, 2, 3], 'Columna2': ['A', 'B', 'C']})
+            app.update_data_display(df)
+            ```
+
+        Requiere:
+            - `self.data_table`: Un widget `Treeview` previamente inicializado para mostrar datos.
+            - `self.no_data_label`: Un label para mostrar el mensaje de ausencia de datos.
         """
         # Limpiar tabla existente
         self.data_table.delete(*self.data_table.get_children())
@@ -220,11 +320,42 @@ class LaboratorySoftware:
     def setup_menus(self) -> None:
         """
         Configura la barra de menús de la aplicación.
-        
-        Crea y configura los menús principales:
-        - Archivo: Para operaciones de importación/exportación
-        - Edición: Para procesamiento de datos
-        - Acerca de: Para información y documentación
+
+        Este método crea y organiza los menús principales para la aplicación, 
+        incluyendo opciones de archivo, edición y ayuda sobre la aplicación.
+
+        Menús principales:
+            - Archivo:
+                - Importar: Permite cargar datos desde un archivo.
+                - Exportar: Guarda los resultados procesados.
+                - Salir: Cierra la aplicación.
+            - Edición:
+                - Procesar datos:
+                    - Eliminar nulos: Remueve valores nulos del conjunto de datos.
+                    - Eliminar duplicados: Remueve filas duplicadas.
+                    - Normalizar datos: Escala los datos entre 0 y 1.
+                    - Rellenar nulos: Llena valores nulos usando distintos métodos.
+            - Acerca de:
+                - Documentación: Abre la documentación del proyecto en el navegador.
+                - Autores: Muestra información sobre los desarrolladores.
+
+        Detalles:
+            - Los comandos de los menús están vinculados a funciones específicas, 
+            como la carga de datos o la visualización de documentación.
+            - El menú se configura como la barra de menús principal de la ventana raíz (`self.root`).
+
+        Requiere:
+            - `self.data_ops`: Un objeto que maneja las operaciones de datos, con métodos como 
+            `load_file`, `export_results`, `remove_null_values`, `remove_duplicates`, `normalize_data` y 
+            `fill_null_values_with_dialog`.
+            - `self.show_autores`: Método que muestra una ventana o diálogo con los autores del proyecto.
+
+        Ejemplo:
+            ```python
+            app = MyApp()
+            app.setup_menus()
+            app.root.mainloop()
+            ```
         """
         menubar = Menu(self.root)
 
@@ -268,15 +399,57 @@ class LaboratorySoftware:
 
     def run(self) -> None:
         """
-        Inicia el bucle principal de la aplicación.
-        
-        Este método debe ser llamado después de la inicialización para comenzar
-        la ejecución de la interfaz gráfica.
+        Inicia el bucle principal de la aplicación gráfica.
+
+        Este método lanza el bucle de eventos de Tkinter, manteniendo activa la ventana
+        de la aplicación hasta que el usuario la cierre manualmente. 
+
+        Detalles:
+            - Debe ser llamado después de haber configurado todos los elementos 
+            de la interfaz y la lógica de la aplicación.
+            - Es el punto de entrada principal para iniciar la ejecución de la interfaz gráfica.
+
+        Ejemplo:
+            ```python
+            app = MyApp()
+            app.setup_menus()
+            app.run()
+            ```
         """
         self.root.mainloop()
 
     def show_theory(self, theory=None):
-        """Muestra la teoría de los experimentos a realizar."""
+        """
+        Muestra la teoría de los experimentos en una nueva ventana.
+
+        Si no se pasa un argumento, muestra una ventana principal donde el usuario puede 
+        elegir entre los módulos disponibles. Al seleccionar un módulo, se muestra la teoría 
+        correspondiente en una nueva ventana con el contenido del PDF.
+
+        Args:
+            theory (str, optional): Nombre del módulo de teoría a mostrar. 
+                                    Si es None, se muestra una ventana para elegir el módulo.
+
+        Detalles:
+            - Los módulos disponibles son:
+                - "Caída libre": Muestra el contenido del PDF `caida_libre.pdf`.
+                - "Ley de Hooke": Muestra el contenido del PDF `ley_de_hooke.pdf`.
+            - Cada PDF se renderiza como imágenes dentro de una ventana desplazable.
+
+        Ejemplo:
+            ```python
+            app.show_theory()  # Muestra la ventana para elegir teoría.
+            app.show_theory("Caída libre")  # Muestra directamente el módulo "Caída libre".
+            ```
+
+        Interfaz gráfica:
+            - Ventana de selección de módulos:
+                - Botón "Caída libre".
+                - Botón "Ley de Hooke".
+            - Ventana del módulo seleccionado:
+                - Contenido del PDF renderizado.
+                - Botón "Volver a 'Teoría'" para regresar a la ventana principal.
+        """
 
         if not theory:  # Si no se pasa un argumento, se muestra la ventana principal para elegir
             window = tk.Toplevel(self.root)
@@ -628,10 +801,6 @@ class DataOperationsWithUI(DataOperations):
 
         # Retorna la opción seleccionada (o None si se cierra sin confirmar)
         return selected_option.get() if selected_option.get() else None
-
-
-
-
 
 
 if __name__ == "__main__":

@@ -225,14 +225,55 @@ class DataOperations:
 
     def fill_null_values(self, method='mean', degree=None, columns=None, n_neighbors=5):
         """
-        Rellena los valores nulos de las columnas seleccionadas usando diferentes métodos.
-        
+        Llena valores nulos en columnas seleccionadas utilizando diferentes métodos de imputación.
+
+        Este método permite rellenar valores faltantes en un DataFrame utilizando diversas técnicas, 
+        como imputación por media, interpolación lineal, interpolación polinómica, interpolación basada 
+        en tiempo o imputación mediante K-Nearest Neighbors (KNN).
+
         Args:
-            method (str): Método de rellenado ('mean', 'linear', 'polynomial', 'time', 'knn').
-            degree (int, optional): Grado de interpolación polinomial (solo para 'polynomial').
-            columns (list, optional): Lista de columnas a procesar.
-            n_neighbors (int, optional): Número de vecinos a usar en KNN (solo para 'knn'). Default = 5.
+            method (str, opcional): El método de imputación a utilizar. Por defecto es 'mean'.
+                Métodos compatibles:
+                - 'mean': Reemplaza valores nulos con la media de la columna.
+                - 'linear': Usa interpolación lineal para llenar valores faltantes.
+                - 'polynomial': Usa interpolación polinómica para llenar valores faltantes.
+                - 'time': Usa interpolación basada en tiempo (como indica el nombre).
+                - 'knn': Usa imputación por K-Nearest Neighbors para columnas numéricas.
+
+            degree (int, opcional): El grado de la interpolación polinómica.
+                Requerido cuando el método es 'polynomial'. Por defecto es None.
+
+            columns (list, opcional): Lista de nombres de columnas a procesar.
+                Si es None, se procesarán todas las columnas del DataFrame. Por defecto es None.
+
+            n_neighbors (int, opcional): Número de vecinos a usar para la imputación KNN.
+                Relevante solo cuando el método es 'knn'. Por defecto es 5.
+
+        Raises:
+            tkinter.messagebox.showwarning: Si no se cargan datos.
+            tkinter.messagebox.showerror: Si no se cumplen los requisitos para la imputación KNN.
+
+        Efectos secundarios:
+            - Modifica el DataFrame subyacente in-place.
+            - Muestra cuadros de mensaje con detalles de la imputación y éxito/error.
+            - Registra el historial de imputación utilizando el método self._add_to_history.
+
+        Notas:
+            - Para la imputación KNN, solo se consideran columnas numéricas.
+            - El método KNN normaliza los datos antes de la imputación para manejar diferentes escalas.
+            - El método proporciona interacción con el usuario para seleccionar la cantidad de vecinos en KNN.
+
+        Ejemplos:
+            # Llenar valores nulos con la media
+            df.fill_null_values(method='mean')
+
+            # Llenar valores nulos con interpolación polinómica de grado 2
+            df.fill_null_values(method='polynomial', degree=2)
+
+            # Llenar valores nulos en columnas específicas usando KNN
+            df.fill_null_values(method='knn', columns=['column1', 'column2'])
         """
+   
         if self.data is None:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
             return
