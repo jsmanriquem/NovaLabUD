@@ -14,6 +14,13 @@ raiz.geometry("1024x780")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
 
+# Obtenemos el largo y  ancho de la ventana principal
+wtotal = raiz.winfo_screenwidth()
+htotal = raiz.winfo_screenheight()
+
+pos_x_raiz = raiz.winfo_x()
+pos_y_raiz = raiz.winfo_y()
+
 def limpiar_grafica():
     """
     Limpia la gráfica y restablece sus parámetros a sus valores originales predeterminados, 
@@ -116,6 +123,24 @@ def confirmar_limpiar_grafica():
     boton_no = Button(ventana_confirmacion, text="No, Cancelar", command=ventana_confirmacion.destroy)
     boton_no.pack(side="right", padx=10, pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_confirmacion.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana = ventana_confirmacion.winfo_width()
+    alto_ventana = ventana_confirmacion.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado = pos_x_raiz + (wtotal - ancho_ventana) // 2
+    y_centrado = pos_y_raiz + (htotal - alto_ventana) // 2
+
+    # Establecer la posición centrada
+    ventana_confirmacion.geometry(f"+{x_centrado}+{y_centrado}")
+
+    # Hacer que la ventana emergente sea modal
+    ventana_confirmacion.transient(raiz)
+    ventana_confirmacion.grab_set()
+
 def limpio_si():
     """
     Muestra una ventana emergente de confirmación para indicar al usuario que la gráfica 
@@ -127,6 +152,24 @@ def limpio_si():
 
     Label(ventana_hecho, text="La gráfica ha sido limpiada.", pady=20).pack()
     Button(ventana_hecho, text="Aceptar", command=ventana_hecho.destroy).pack(pady=10)
+
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_hecho.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_h = ventana_hecho.winfo_width()
+    alto_ventana_h = ventana_hecho.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_h = pos_x_raiz + (wtotal - ancho_ventana_h) // 2
+    y_centrado_h = pos_y_raiz + (htotal - alto_ventana_h) // 2
+
+    # Establecer la posición centrada
+    ventana_hecho.geometry(f"+{x_centrado_h}+{y_centrado_h}")
+
+    # Hacer que la ventana emergente sea modal
+    ventana_hecho.transient(raiz)
+    ventana_hecho.grab_set()
 
 # Menú de opciones para el usuario
 barraMenu = Menu(raiz)
@@ -531,6 +574,25 @@ def grafica_ventana(master):
     point_size_slider.set(point_size)
     point_size_slider.pack(pady=5)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    personalizacion_ventana.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_pv = personalizacion_ventana.winfo_width()
+    alto_ventana_pv = personalizacion_ventana.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_pv = pos_x_raiz + (wtotal - ancho_ventana_pv) // 2
+    y_centrado_pv = pos_y_raiz + (htotal - alto_ventana_pv) // 2
+
+    # Establecer la posición centrada
+    personalizacion_ventana.geometry(f"+{x_centrado_pv}+{y_centrado_pv}")
+
+    # Hacer que la ventana emergente sea modal
+    personalizacion_ventana.transient(raiz)
+    personalizacion_ventana.grab_set()
+    personalizacion_ventana.grab_release()
+
 def on_line_click(event, line):
     """
     Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
@@ -652,6 +714,25 @@ def grafica_ventana_title(master):
     Button(personal_ventana_title, text="Aplicar Cambios", 
            command=lambda: apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry)).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    personal_ventana_title.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_pt = personal_ventana_title.winfo_width()
+    alto_ventana_pt = personal_ventana_title.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_pt = pos_x_raiz + (wtotal - ancho_ventana_pt) // 2
+    y_centrado_pt = pos_y_raiz + (htotal - alto_ventana_pt) // 2
+
+    # Establecer la posición centrada
+    personal_ventana_title.geometry(f"+{x_centrado_pt}+{y_centrado_pt}")
+
+    # Hacer que la ventana emergente sea modal
+    personal_ventana_title.transient(raiz)
+    personal_ventana_title.grab_set()
+    raiz.wait_window(personal_ventana_title)
+
 def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
     """
     Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente 
@@ -748,6 +829,25 @@ def grafica_ventana_ejex(master):
     Button(ventana_ejex, text="Aplicar Cambios", 
            command=lambda: apply_xaxis_changes(ejex_size_var, ejex_fuente_var,titulo_ejex_var)).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_ejex.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_ejex = ventana_ejex.winfo_width()
+    alto_ventana_ejex = ventana_ejex.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_ejex = pos_x_raiz + (wtotal - ancho_ventana_ejex) // 2
+    y_centrado_ejex = pos_y_raiz + (htotal - alto_ventana_ejex) // 2
+
+    # Establecer la posición centrada
+    ventana_ejex.geometry(f"+{x_centrado_ejex}+{y_centrado_ejex}")
+
+    # Hacer que la ventana emergente sea modal
+    ventana_ejex.transient(raiz)
+    ventana_ejex.grab_set()
+    raiz.wait_window(ventana_ejex)
+
 def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
     """
     Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.
@@ -843,6 +943,25 @@ def grafica_ventana_ejey(master):
     Button(ventana_ejey, text="Aplicar Cambios", 
            command=lambda: apply_yaxis_changes(ejey_size_var, ejey_fuente_var,titulo_ejey_var)).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_ejey.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_ejey = ventana_ejey.winfo_width()
+    alto_ventana_ejey = ventana_ejey.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_ejey = pos_x_raiz + (wtotal - ancho_ventana_ejey) // 2
+    y_centrado_ejey = pos_y_raiz + (htotal - alto_ventana_ejey) // 2
+
+    # Establecer la posición centrada
+    ventana_ejey.geometry(f"+{x_centrado_ejey}+{y_centrado_ejey}")
+
+    # Hacer que la ventana emergente sea modal
+    ventana_ejey.transient(raiz)
+    ventana_ejey.grab_set()
+    raiz.wait_window(ventana_ejey)
+    
 def on_double_click(event):
     """
     Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y) 
@@ -924,6 +1043,25 @@ def update_x_limits(master):
 
     # Botón para actualizar los límites de X
     Button(ventana_lim_x, text="Actualizar Límites", command=lambda: set_x_limits(x_min_entry, x_max_entry)).pack(pady=10)
+
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_lim_x.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_limx = ventana_lim_x.winfo_width()
+    alto_ventana_limx = ventana_lim_x.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_limx = pos_x_raiz + (wtotal - ancho_ventana_limx) // 2
+    y_centrado_limx = pos_y_raiz + (htotal - alto_ventana_limx) // 2
+
+    # Establecer la posición centrada
+    ventana_lim_x.geometry(f"+{x_centrado_limx}+{y_centrado_limx}")
+
+    # Hacer que la ventana emergente sea modal
+    ventana_lim_x.transient(raiz)
+    ventana_lim_x.grab_set()
+    raiz.wait_window(ventana_lim_x)
 
 def set_x_limits(x_min_entry, x_max_entry):
     """
@@ -1019,6 +1157,25 @@ def update_y_limits(master):
 
     # Botón para actualizar los límites de X
     Button(ventana_lim_y, text="Actualizar Límites", command=lambda: set_y_limits(y_min_entry, y_max_entry)).pack(pady=10)
+
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_lim_y.update_idletasks()
+
+    # Obtener dimensiones de la ventana principal y la ventana emergente
+    ancho_ventana_limy = ventana_lim_y.winfo_width()
+    alto_ventana_limy = ventana_lim_y.winfo_height()
+
+    # Calcular posición centrada
+    x_centrado_limy = pos_x_raiz + (wtotal - ancho_ventana_limy) // 2
+    y_centrado_limy = pos_y_raiz + (htotal - alto_ventana_limy) // 2
+
+    # Establecer la posición centrada
+    ventana_lim_y.geometry(f"+{x_centrado_limy}+{y_centrado_limy}")
+
+    # Hacer que la ventana emergente sea modal
+    ventana_lim_y.transient(raiz)
+    ventana_lim_y.grab_set()
+    raiz.wait_window(ventana_lim_y)
 
 def set_y_limits(y_min_entry, y_max_entry):
     """
