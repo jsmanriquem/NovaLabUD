@@ -573,7 +573,7 @@ def grafica_ventana(master):
     point_size_slider = Scale(puntos_frame, from_=1, to=20, resolution=1, orient=HORIZONTAL, command=lambda value: update_graph_property('point_size', value))
     point_size_slider.set(point_size)
     point_size_slider.pack(pady=5)
-
+    
     # Actualizar para obtener las dimensiones de la ventana emergente
     personalizacion_ventana.update_idletasks()
 
@@ -592,7 +592,7 @@ def grafica_ventana(master):
     personalizacion_ventana.transient(raiz)
     personalizacion_ventana.grab_set()
     personalizacion_ventana.grab_release()
-
+    
 def on_line_click(event, line):
     """
     Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
