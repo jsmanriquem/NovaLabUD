@@ -189,38 +189,51 @@ class DataOperations:
         else:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
 
-    def normalize_data(self):
+    def normalize_data(self, selected_columns, method="Min-Max Scaling"):
         """
-        Normaliza todas las columnas numéricas del DataFrame al rango [0,1].
-        
-        Para cada columna numérica, aplica la fórmula:
-        normalized = (x - min) / (max - min)
-        
-        Si max = min, todos los valores se establecen en 0.
-        Solo se normalizan columnas que contienen al menos un valor no nulo.
-        
-        Requires:
-            Datos cargados previamente (self.data no None).
+        Normaliza las columnas seleccionadas según el método elegido.
+
+        Args:
+            selected_columns (list): Lista de columnas a normalizar.
+            method (str): Método de normalización. Opciones: "Min-Max Scaling", "Z-Score Scaling", "Max Abs Scaling".
         """
-        if self.data is not None:
-            columns_normalized = []
-            for col in self.data.select_dtypes(include='number').columns:
-                if self.data[col].notnull().any():
+        if not selected_columns:
+            raise ValueError("Debe seleccionar al menos una columna para normalizar.")
+
+        if self.data is None:
+            raise ValueError("No hay datos cargados para normalizar.")
+
+        original_data = self.data[selected_columns].copy()
+
+        for col in selected_columns:
+            if self.data[col].notnull().any():  # Solo aplica si la columna no está completamente vacía
+                if method == "Min-Max Scaling":
                     min_val = self.data[col].min()
                     max_val = self.data[col].max()
-                    
                     if max_val != min_val:
                         self.data[col] = (self.data[col] - min_val) / (max_val - min_val)
-                        columns_normalized.append(col)
                     else:
                         self.data[col] = 0
-            
-            self._add_to_history('normalize_data',
-                               f'Normalizadas las columnas: {", ".join(columns_normalized)}')
-            
-            messagebox.showinfo("Éxito", "Datos normalizados correctamente")
-        else:
-            messagebox.showwarning("Advertencia", "Primero debes cargar los datos")
+
+                elif method == "Z-Score Scaling":
+                    mean_val = self.data[col].mean()
+                    std_val = self.data[col].std()
+                    if std_val != 0:
+                        self.data[col] = (self.data[col] - mean_val) / std_val
+                    else:
+                        self.data[col] = 0
+
+                elif method == "Max Abs Scaling":
+                    max_abs_val = self.data[col].abs().max()
+                    if max_abs_val != 0:
+                        self.data[col] = self.data[col] / max_abs_val
+                    else:
+                        self.data[col] = 0
+
+        affected_rows = (self.data[selected_columns] != original_data).any(axis=1).sum()
+        self._add_to_history('normalize_data', f'Normalizadas las columnas {", ".join(selected_columns)} usando {method}')
+
+        return affected_rows
 
 
     def fill_null_values(self, method='mean', degree=None, columns=None, n_neighbors=5):
