@@ -191,11 +191,24 @@ class DataOperations:
 
     def normalize_data(self, selected_columns, method="Min-Max Scaling"):
         """
-        Normaliza las columnas seleccionadas según el método elegido.
+        Normaliza las columnas seleccionadas en el conjunto de datos utilizando el método especificado.
 
         Args:
-            selected_columns (list): Lista de columnas a normalizar.
-            method (str): Método de normalización. Opciones: "Min-Max Scaling", "Z-Score Scaling", "Max Abs Scaling".
+            selected_columns (list): Lista de nombres de columnas a normalizar.
+            method (str): Método de normalización a utilizar. Opciones:
+                - "Min-Max Scaling": Escala los valores al rango [0, 1].
+                - "Z-Score Scaling": Centraliza los datos eliminando la media y escalando a varianza unitaria.
+                - "Max Abs Scaling": Escala los valores al rango [-1, 1] dividiendo por el valor absoluto máximo.
+
+        Raises:
+            ValueError: Si no se seleccionan columnas o si no hay datos cargados.
+
+        Returns:
+            int: Número de filas afectadas por la normalización.
+
+        Efectos secundarios:
+            - Actualiza el atributo `data` con los valores normalizados.
+            - Registra la transformación en el historial de operaciones.
         """
         if not selected_columns:
             raise ValueError("Debe seleccionar al menos una columna para normalizar.")

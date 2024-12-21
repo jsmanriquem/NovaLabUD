@@ -585,10 +585,11 @@ class DataOperationsWithUI(DataOperations):
 
     def select_columns(self):
         """
-        Muestra una ventana emergente con checkboxes para seleccionar columnas.
-        
+        Muestra una ventana emergente con checkboxes para que el usuario seleccione columnas.
+
         Returns:
-            list: Lista de columnas seleccionadas por el usuario.
+            list: Una lista de las columnas seleccionadas por el usuario. Si no se seleccionan columnas 
+            o no hay datos cargados, retorna None.
         """
         if self.data is None:
             messagebox.showwarning("Advertencia", "Primero debes cargar los datos.")
@@ -639,6 +640,17 @@ class DataOperationsWithUI(DataOperations):
     def normalize_data(self, ui_callback=None):
         """
         Normaliza las columnas seleccionadas según el método elegido por el usuario.
+
+        Este método permite al usuario seleccionar las columnas que desea normalizar y luego elegir uno de los 
+        tres métodos de normalización disponibles: Min-Max Scaling, Z-Score Scaling o Max Abs Scaling. Los valores 
+        de las columnas seleccionadas serán transformados según el método seleccionado.
+
+        Args:
+            ui_callback (function, optional): Función de devolución de llamada que se ejecuta después de 
+            completar la operación. Recibe los datos actualizados como argumento. Por defecto es None.
+
+        Returns:
+            None: Este método no retorna ningún valor, pero modifica los datos de la clase y muestra un mensaje de éxito.
         """
         # Seleccionar columnas
         selected_columns = self.select_columns()
@@ -691,6 +703,20 @@ class DataOperationsWithUI(DataOperations):
 
 
     def fill_null_with_mean(self, ui_callback=None):
+        """
+        Rellena los valores nulos de las columnas seleccionadas con la media de cada columna.
+
+        Este método permite al usuario seleccionar las columnas en las que desea reemplazar los valores nulos 
+        por la media de cada columna. Si se seleccionan columnas y hay valores nulos, estos serán rellenados 
+        automáticamente con la media correspondiente.
+
+        Args:
+            ui_callback (function, optional): Función de devolución de llamada que se ejecuta después de 
+            completar la operación. Recibe los datos actualizados como argumento. Por defecto es None.
+
+        Returns:
+            None: Este método no retorna ningún valor, pero modifica los datos de la clase y muestra un mensaje de éxito.
+        """
         selected_columns = self.select_columns()
         if not selected_columns:
             return
@@ -708,7 +734,19 @@ class DataOperationsWithUI(DataOperations):
 
     def fill_null_values_with_dialog(self, ui_callback=None):
         """
-        Abre una ventana de diálogo para seleccionar columnas y un método de rellenado.
+        Abre una ventana de diálogo para seleccionar columnas y un método de rellenado de valores nulos.
+
+        Este método permite al usuario seleccionar las columnas que desea procesar y elegir uno de los métodos disponibles 
+        para rellenar los valores nulos en esas columnas. Los métodos disponibles incluyen: Media, Interpolación Lineal, 
+        Interpolación Polinomial y KNN. Si se selecciona la interpolación polinomial, también se solicita el grado del polinomio.
+
+        Args:
+            ui_callback (function, optional): Función de devolución de llamada que se ejecuta después de 
+            completar la operación. Recibe los datos actualizados como argumento. Por defecto es None.
+
+        Returns:
+            None: Este método no retorna ningún valor, pero modifica los datos de la clase y puede ejecutar una función
+            adicional definida por el usuario a través de `ui_callback`.
         """
         # Seleccionar columnas
         selected_columns = self.select_columns()
