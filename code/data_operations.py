@@ -317,7 +317,7 @@ class DataOperations:
                 initial_null_count = self.data[column].isnull().sum()  # Contar los valores nulos antes
 
                 if method == 'mean':
-                    self.data[column].fillna(self.data[column].mean(), inplace=True)
+                    self.data[column] = self.data[column].fillna(self.data[column].mean())
                     nulls_filled = initial_null_count - self.data[column].isnull().sum()  # Calcular los nulos rellenados
                     affected_rows += nulls_filled  # Sumar al total de filas afectadas
                     detail = f"rellenados con la media en {column}"
