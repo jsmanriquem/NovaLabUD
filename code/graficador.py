@@ -590,7 +590,6 @@ def grafica_ventana(master):
 
     # Hacer que la ventana emergente sea modal
     personalizacion_ventana.transient(raiz)
-    personalizacion_ventana.grab_set()
     personalizacion_ventana.grab_release()
     
 def on_line_click(event, line):
