@@ -203,7 +203,7 @@ barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
 
 # Crear el frame para las columnas
 frame_columnas = Frame(raiz)
-frame_columnas.grid(column=0, row=2, padx=10, pady=3, columnspan=3)
+frame_columnas.grid(column=0, row=2, padx=10, pady=5, columnspan=3)
 
 # Frame para la gráfica
 frame = Frame(raiz, bg='gray22', bd=3)
