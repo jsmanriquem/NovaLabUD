@@ -316,29 +316,24 @@ def actualizar_columnas():
     for widget in frame_columnas.winfo_children():
         widget.destroy()
 
-    if columna_x_combo is not None:
-        columna_x_combo.grid_forget()
-    if columna_y_combo is not None:
-        columna_y_combo.grid_forget()
-    if graficar_button is not None:
-        graficar_button.grid_forget()
-
     # Obtener las columnas del archivo de datos
     columns = data_ops.data.columns.tolist()
     print("Columnas disponibles:", columns)  # Imprimir las columnas disponibles
 
     # Solo crear los ComboBox si hay columnas disponibles
     if columns:
+        # ComboBox para columna X
         columna_x_combo = ttk.Combobox(frame_columnas, textvariable=columna_x, values=columns)
         columna_x_combo.grid(column=0, row=0, padx=5, pady=5)
         columna_x_combo.set("Selecciona la columna X")
         
+        # ComboBox para columna Y
         columna_y_combo = ttk.Combobox(frame_columnas, textvariable=columna_y, values=columns)
         columna_y_combo.grid(column=1, row=0, padx=5, pady=5)
         columna_y_combo.set("Selecciona la columna Y")
         
         # Botón para graficar
-        graficar_button = Button(raiz, text="Graficar", command=graficar_datos)
+        graficar_button = Button(frame_columnas, text="Graficar", command=graficar_datos)
         graficar_button.grid(column=3, row=0, columnspan=2, pady=10)
     else:
         messagebox.showerror("Error", "No se encontraron columnas para graficar.")
