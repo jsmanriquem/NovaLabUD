@@ -339,7 +339,7 @@ def actualizar_columnas():
         
         # Botón para graficar
         graficar_button = Button(raiz, text="Graficar", command=graficar_datos)
-        graficar_button.grid(column=2, row=0, padx=5, pady=5)
+        graficar_button.grid(column=3, row=0, columnspan=2, pady=10)
     else:
         messagebox.showerror("Error", "No se encontraron columnas para graficar.")
 
