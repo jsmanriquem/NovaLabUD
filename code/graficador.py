@@ -10,7 +10,7 @@ data_ops = DataOperations()
 
 # Ventana principal
 raiz = Tk()
-raiz.geometry("1024x780")  # Tamaño de la pantalla
+raiz.geometry("735x800")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
 
@@ -72,11 +72,11 @@ def limpiar_grafica():
     title_fuente = "DejaVu Sans"
     title_size = 12
     
-    ejex_titulo = StringVar(value="Eje X")
+    ejex_titulo = StringVar(value="")
     ejex_shape = "DejaVu Sans"
     ejex_size = 10
 
-    ejey_titulo = StringVar(value="Eje Y")
+    ejey_titulo = StringVar(value="")
     ejey_shape = "DejaVu Sans"
     ejey_size = 10
 
@@ -201,6 +201,10 @@ barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
 barraMenu.add_cascade(label="Edición", menu=edicionMenu)
 barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
 
+# Crear el frame para las columnas
+frame_columnas = Frame(raiz)
+frame_columnas.grid(column=0, row=2, padx=10, pady=3, columnspan=3)
+
 # Frame para la gráfica
 frame = Frame(raiz, bg='gray22', bd=3)
 frame.grid(column=0, row=0, sticky='nsew')
@@ -216,13 +220,13 @@ title_fuente = "DejaVu Sans"
 title_size = 12
 personal_ventana_title = None  # Inicializamos la ventana emergente como None
 
-ejex_titulo = StringVar(value="Eje X")
+ejex_titulo = StringVar(value="")
 ejex_shape = "DejaVu Sans"
 ejex_size = 10
 ventana_ejex = None # Venta emergente edición eje x
 ventana_lim_x = None # Venta emergente edición límites eje x
 
-ejey_titulo = StringVar(value="Eje Y")
+ejey_titulo = StringVar(value="")
 ejey_shape = "DejaVu Sans"
 ejey_size = 10
 ventana_ejey = None # Ventana emerjente edición eje y
@@ -303,8 +307,14 @@ def actualizar_columnas():
         Amacena la selección de la columna 'Y' en el ComboBox.
     data_ops : DataOperations
         Instancia que contiene el archivo de datos y permite extraer sus columnas.
+    frame_columnas : tkinter.Frame
+        Frame donde se colocarán los ComboBox de selección de columnas.
     """
-    global columna_x_combo, columna_y_combo, graficar_button
+    global columna_x_combo, columna_y_combo, graficar_button, frame_columnas
+
+    # Eliminar widgets previos del frame
+    for widget in frame_columnas.winfo_children():
+        widget.destroy()
 
     if columna_x_combo is not None:
         columna_x_combo.grid_forget()
@@ -319,20 +329,19 @@ def actualizar_columnas():
 
     # Solo crear los ComboBox si hay columnas disponibles
     if columns:
-        columna_x_combo = ttk.Combobox(raiz, textvariable=columna_x, values=columns)
-        columna_x_combo.grid(column=0, row=3, padx=5, pady=5)
+        columna_x_combo = ttk.Combobox(frame_columnas, textvariable=columna_x, values=columns)
+        columna_x_combo.grid(column=0, row=0, padx=5, pady=5)
         columna_x_combo.set("Selecciona la columna X")
         
-        columna_y_combo = ttk.Combobox(raiz, textvariable=columna_y, values=columns)
-        columna_y_combo.grid(column=1, row=3, padx=5, pady=5)
+        columna_y_combo = ttk.Combobox(frame_columnas, textvariable=columna_y, values=columns)
+        columna_y_combo.grid(column=1, row=0, padx=5, pady=5)
         columna_y_combo.set("Selecciona la columna Y")
         
         # Botón para graficar
         graficar_button = Button(raiz, text="Graficar", command=graficar_datos)
-        graficar_button.grid(column=2, row=3, padx=5, pady=5)
+        graficar_button.grid(column=2, row=0, padx=5, pady=5)
     else:
         messagebox.showerror("Error", "No se encontraron columnas para graficar.")
-
 
 def guardar_grafica(formato): 
     """
@@ -412,6 +421,10 @@ def graficar_datos():
         origy_lim = [datos_y.min(), datos_y.max()]
         x_limits = origx_lim.copy()
         y_limits = origy_lim.copy()
+
+    # Actualizar títulos de los ejes con los nombres de las columnas seleccionadas
+    ejex_titulo.set(x_col)
+    ejey_titulo.set(y_col)
     
     ax.clear()
 
@@ -421,9 +434,9 @@ def graficar_datos():
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
-    ax.set_title(titulo_grafica.get())  # Actualizar título
-    ax.set_xlabel(ejex_titulo.get())  # Actualizar título eje X    
-    ax.set_ylabel(ejey_titulo.get())  # Actualizar título eje Y
+    ax.set_title(titulo_grafica.get(), fontname=title_fuente, fontsize=title_size)  # Actualizar título
+    ax.set_xlabel(ejex_titulo.get(), fontname=ejex_shape, fontsize=ejex_size)  # Actualizar título eje X    
+    ax.set_ylabel(ejey_titulo.get(), fontname=ejey_shape, fontsize=ejey_size)  # Actualizar título eje Y
     ax.grid(show_grid)
     ax.set_facecolor(bg_color)
     canvas.draw()  # Actualizar la gráfica
