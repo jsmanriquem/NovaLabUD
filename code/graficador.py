@@ -79,7 +79,7 @@ def limpiar_grafica():
     bg_color : str
         Color de fondo de la gráfica.
     """
-    global y_limits, x_limits, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
+    global y_limits, x_limits, origx_lim, origy_lim, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
 
     titulo_grafica = StringVar(value="Título de la Gráfica")
     title_fuente = "DejaVu Sans"
@@ -106,6 +106,8 @@ def limpiar_grafica():
     ax.clear() 
     x_limits = None
     y_limits = None
+    origx_lim = None
+    origy_lim = None
     ax.grid(show_grid)  
 
     canvas.draw() 
