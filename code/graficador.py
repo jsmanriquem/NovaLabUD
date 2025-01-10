@@ -108,7 +108,9 @@ def limpiar_grafica():
     y_limits = None
     origx_lim = None
     origy_lim = None
+    
     ax.grid(show_grid)  
+    ax.set_facecolor(bg_color)
 
     canvas.draw() 
     limpio_si()
