@@ -5,5 +5,5 @@
 # puedes hacer lo siguiente:
 
 from .data_operations import DataOperations
-from .ui_components import UIComponents
+#from .ui_components import UIComponents
 # from .regression_analysis import RegressionAnalysis
