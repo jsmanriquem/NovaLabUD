@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu, simpledialog
+from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu, simpledialog, Toplevel
 import webbrowser
 import pandas as pd
 import fitz  # PyMuPDF
