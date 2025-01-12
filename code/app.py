@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu, simpledialog, Toplevel
-import webbrowser
+import webbrowser, pickle
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import fitz  # PyMuPDF
 from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
 import io, sys, subprocess
@@ -27,7 +29,7 @@ class LaboratorySoftware:
     def __init__(self) -> None:
         """
         Inicializa la aplicación del Software de Laboratorio.
-    
+
         Este método configura la ventana principal de la aplicación, establece las dimensiones
         basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz gráfica
         (como los paneles y menús), y configura las pestañas para mostrar los contenidos de los experimentos.
@@ -59,8 +61,23 @@ class LaboratorySoftware:
         self.data_frame = ttk.LabelFrame(self.main_frame, text="Datos Cargados", padding="5 5 5 5")
         self.main_frame.add(self.data_frame, weight=3)  # Mayor peso para el panel izquierdo
 
-        # Crear el Treeview con scrollbars en el panel de datos
-        self.create_data_table()
+        # Crear el Notebook en el panel de datos
+        self.data_notebook = ttk.Notebook(self.data_frame)
+        self.data_notebook.pack(fill=tk.BOTH, expand=True)
+
+        # Crear las pestañas dentro del Notebook de datos
+        self.tab_datos = ttk.Frame(self.data_notebook)
+        self.tab_regresion = ttk.Frame(self.data_notebook)
+
+        self.data_notebook.add(self.tab_datos, text="Tabla")
+        self.data_notebook.add(self.tab_regresion, text="Regresión")
+
+        # Crear la tabla de datos en la pestaña "Tabla"
+        self.create_data_table(self.tab_datos)  # Puedes modificar el método create_data_table para aceptar un marco como argumento
+
+        # Crear un Canvas para mostrar las gráficas en la pestaña de Regresión
+        self.regression_canvas = ttk.Frame(self.tab_regresion)
+        self.regression_canvas.pack(fill=tk.BOTH, expand=True)
 
         # Panel derecho para la Teoría
         fixed_width = 700  # Ancho fijo deseado
@@ -82,11 +99,11 @@ class LaboratorySoftware:
         self.main_frame.bind("<Configure>", configure_sash)
         self.main_frame.bind("<B1-Motion>", lambda e: "break")  # Prevenir movimiento del sash
 
-        # Crear el Notebook
+        # Crear el Notebook para la teoría
         self.notebook = ttk.Notebook(self.frame_teoria)
         self.notebook.pack(fill=tk.BOTH, expand=True)
 
-        # Crear las pestañas
+        # Crear las pestañas en el Notebook de teoría
         self.tab_cai_libre = ttk.Frame(self.notebook)
         self.tab_ley_hooke = ttk.Frame(self.notebook)
 
@@ -108,9 +125,16 @@ class LaboratorySoftware:
 
         # Label para mostrar cuando no hay datos
         self.no_data_label = ttk.Label(self.data_frame, 
-                                    text="No hay datos cargados. Use el menú Archivo -> Importar para cargar datos.", 
-                                    font=('Helvetica', 10))
+                                        text="No hay datos cargados. Use el menú Archivo -> Importar para cargar datos.", 
+                                        font=('Helvetica', 10))
         self.no_data_label.pack(pady=20)
+
+        self.root.protocol("WM_DELETE_WINDOW", self.on_close)
+
+    def on_close(self):
+        # Aquí puedes realizar cualquier acción de limpieza antes de cerrar
+        self.root.quit()  # Termina el bucle de eventos de Tkinter
+        self.root.destroy()  # Cierra la ventana
 
     def load_pdf(self, tab, pdf_path):
         """
@@ -226,7 +250,7 @@ class LaboratorySoftware:
         elif selected_tab == "Ley de Hooke":
             self.load_pdf(self.tab_ley_hooke, "ley_de_hooke.pdf")
 
-    def create_data_table(self):
+    def create_data_table(self, parent=None):
         """
         Crea y configura una tabla (`Treeview`) para mostrar datos con scrollbars vertical y horizontal.
 
@@ -234,7 +258,7 @@ class LaboratorySoftware:
         para navegación vertical y horizontal, y aplica estilos básicos a la tabla para mejorar su apariencia.
 
         Detalles:
-            - La tabla se coloca dentro de un `Frame` en `self.data_frame`.
+            - La tabla se coloca dentro de un `Frame` en el contenedor proporcionado.
             - Las barras de desplazamiento se asocian con el desplazamiento horizontal y vertical del `Treeview`.
             - Se aplica un estilo personalizado para ajustar la altura de las filas y el formato de los encabezados.
 
@@ -243,18 +267,21 @@ class LaboratorySoftware:
             - El `Treeview` se ajusta automáticamente al tamaño del contenedor.
 
         Requiere:
-            - `self.data_frame`: Un contenedor existente en la interfaz donde se colocará la tabla.
-
+            - `parent`: Un contenedor existente en la interfaz donde se colocará la tabla.
+        
         Ejemplo:
             ```python
-            app.create_data_table()
+            app.create_data_table(tab_datos)
             # Cargar datos en la tabla después de su creación:
             for row in data:
                 app.data_table.insert('', 'end', values=row)
             ```
         """
+        if parent is None:
+            parent = self.data_frame  # Usar el panel por defecto si no se pasa uno
+
         # Frame para contener la tabla y scrollbars
-        self.table_frame = ttk.Frame(self.data_frame)
+        self.table_frame = ttk.Frame(parent)
         self.table_frame.pack(fill=tk.BOTH, expand=True)
 
         # Crear scrollbars
@@ -266,8 +293,8 @@ class LaboratorySoftware:
 
         # Crear Treeview
         self.data_table = ttk.Treeview(self.table_frame, 
-                                     yscrollcommand=self.scrollbar_y.set,
-                                     xscrollcommand=self.scrollbar_x.set)
+                                    yscrollcommand=self.scrollbar_y.set,
+                                    xscrollcommand=self.scrollbar_x.set)
         self.data_table.pack(fill=tk.BOTH, expand=True)
 
         # Configurar scrollbars
@@ -281,7 +308,7 @@ class LaboratorySoftware:
 
     def update_data_display(self, data: pd.DataFrame):
         """
-         Actualiza la tabla (`Treeview`) con nuevos datos proporcionados en un DataFrame.
+        Actualiza la tabla (`Treeview`) con nuevos datos proporcionados en un DataFrame.
 
         Args:
             data (pd.DataFrame): Un DataFrame con los datos a mostrar. 
@@ -338,7 +365,7 @@ class LaboratorySoftware:
         # Menú Archivo
         file_menu = Menu(menubar, tearoff=0)
         file_menu.add_command(label="Importar", 
-                              command=lambda: self.data_ops.load_file(self.update_data_display))
+                            command=lambda: self.data_ops.load_file(self.update_data_display))
         file_menu.add_command(label="Exportar", command=self.data_ops.export_results)
         file_menu.add_separator()
         file_menu.add_command(label="Salir", command=self.root.quit)
@@ -365,20 +392,18 @@ class LaboratorySoftware:
         edit_menu.add_cascade(label="Regresiones", menu=regression_submenu)
         
         regression_submenu.add_command(label="Regresión Lineal", 
-                                     command=self.linear_regression)
+                                    command=self.linear_regression)
         regression_submenu.add_command(label="Regresión Polinómica", 
-                                     command=self.polynomial_regression)
+                                    command=self.polynomial_regression)
         regression_submenu.add_command(label="Interpolación de Lagrange", 
-                                     command=self.interpolation)
-        regression_submenu.add_command(label="Análisis de Errores", 
-                                     command=self.error_analysis)
+                                    command=self.interpolation)
         # Menú Ver
         menubar.add_command(label="Ver", command=self.open_graficador)
 
         # Menú Acerca de
         about_menu = Menu(menubar, tearoff=0)
         about_menu.add_command(label="Documentación", 
-                             command=lambda: webbrowser.open("https://jsmanriquem.github.io/NovaLabUD/"))
+                            command=lambda: webbrowser.open("https://jsmanriquem.github.io/NovaLabUD/"))
         about_menu.add_command(label="Autores", command=self.show_autores)
         menubar.add_cascade(label="Acerca de", menu=about_menu)
 
@@ -390,12 +415,23 @@ class LaboratorySoftware:
         messagebox.showinfo("Autores", autores)
 
     def open_graficador(self):
-        """Método para ejecutar graficador.py en una nueva ventana."""
+        """Método para ejecutar graficador.py en una nueva ventana y exportar a tmp_graph.pkl."""
         try:
+            # Exportar a tmp_graph.pkl
+            if self.data_ops.data is None:
+                messagebox.showerror("Error", "No hay datos para exportar")
+                return False
+            
+            # Guardar el DataFrame en un archivo .pkl
+            with open('tmp_graph.pkl', 'wb') as f:
+                pickle.dump(self.data_ops.data, f)
+
             # Ejecutar el archivo graficador.py como un proceso independiente
             subprocess.Popen([sys.executable, 'graficador.py'])
+            return True
         except Exception as e:
-            print(f"Error al ejecutar graficador.py: {e}")
+            messagebox.showerror("Error", f"Error al ejecutar graficador.py o exportar los datos: {str(e)}")
+            return False
 
     def run(self) -> None:
         """
@@ -439,7 +475,7 @@ class LaboratorySoftware:
     def linear_regression(self):
         if not self.check_data():
             return
-            
+
         # Obtener columnas disponibles
         columns = list(self.data_ops.data.columns)
         
@@ -448,36 +484,74 @@ class LaboratorySoftware:
         if dialog.result:
             var_x, var_y = dialog.result
             try:
-                self.regression.linear_regression(var_x, var_y)
+                # Llamar al método de regresión lineal desde RegressionAnalysis y obtener la figura
+                fig = self.regression.linear_regression(var_x, var_y, ax1=None, return_metrics=True)
+
+                # Mostrar la gráfica en el Canvas de la pestaña de Regresión
+                self.show_plot_in_canvas(fig)
+
             except Exception as e:
                 messagebox.showerror("Error", f"Error en la regresión: {str(e)}")
 
     def polynomial_regression(self):
-        if self.check_data():
-            degree = simpledialog.askinteger("Grado", 
-                                           "Ingrese el grado del polinomio:", 
-                                           minvalue=1, maxvalue=10)
-            if degree:
-                self.regression.polynomial_regression(degree=degree)
+        if not self.check_data():
+            return
+
+        # Obtener columnas disponibles
+        columns = list(self.data_ops.data.columns)
+        
+        # Diálogo para seleccionar variables
+        dialog = VariableSelectionDialog(self.root, columns)
+        if dialog.result:
+            var_x, var_y = dialog.result
+            try:
+                # Llamar al método de regresión polinómica desde RegressionAnalysis y obtener la figura
+                fig = self.regression.polynomial_regression(var_x, var_y, ax1=None, return_metrics=True)
+
+                # Mostrar la gráfica en el Canvas de la pestaña de Regresión
+                self.show_plot_in_canvas(fig)
+
+            except Exception as e:
+                messagebox.showerror("Error", f"Error en la regresión polinómica: {str(e)}")
 
     def interpolation(self):
-        if self.check_data():
-            self.regression.interpolation()
+        if not self.check_data():
+            return
 
-    def error_analysis(self):
-        if self.check_data():
-            self.regression.calculate_error_metrics()
+        # Obtener columnas disponibles
+        columns = list(self.data_ops.data.columns)
+        
+        # Diálogo para seleccionar variables
+        dialog = VariableSelectionDialog(self.root, columns)
+        if dialog.result:
+            var_x, var_y = dialog.result
+            try:
+                # Llamar al método de interpolación desde RegressionAnalysis y obtener la figura
+                fig = self.regression.interpolation(var_x, var_y, ax1=None, return_metrics=True)
 
-    def export_regression_results(self):
-        if self.check_data():
-            self.regression.export_results()
+                # Mostrar la gráfica en el Canvas de la pestaña de Regresión
+                self.show_plot_in_canvas(fig)
+
+            except Exception as e:
+                messagebox.showerror("Error", f"Error en la interpolación: {str(e)}")
 
     def check_data(self):
         if self.data_ops.data is None:
             messagebox.showwarning("Advertencia", 
-                                 "No hay datos cargados para realizar el análisis")
+                                "No hay datos cargados para realizar el análisis")
             return False
         return True
+    
+    def show_plot_in_canvas(self, fig):
+        """Muestra la gráfica en el Canvas de la pestaña de Regresión."""
+        # Limpiar cualquier gráfico anterior en la pestaña
+        for widget in self.regression_canvas.winfo_children():
+            widget.destroy()
+
+        # Mostrar la nueva gráfica en el Canvas de la pestaña de Regresión
+        canvas = FigureCanvasTkAgg(fig, master=self.regression_canvas)  # Crear canvas con la figura
+        canvas.draw()  # Dibujar la figura en el canvas
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)  # Empacar el widget canvas en el frame
 
 class VariableSelectionDialog:
     def __init__(self, parent, columns):
@@ -749,7 +823,7 @@ class DataOperationsWithUI(DataOperations):
         # Si se selecciona interpolación polinomial, pedir grado
         degree = None
         if selected_method == "Interpolación Polinomial":
-            degree = askstring("Grado Polinomial", "Ingrese el grado para la interpolación polinomial:")
+            degree = simpledialog.askstring("Grado Polinomial", "Ingrese el grado para la interpolación polinomial:")
             if not degree or not degree.isdigit():
                 messagebox.showerror("Error", "Grado no válido.")
                 return
