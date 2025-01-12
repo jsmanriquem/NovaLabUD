@@ -1,12 +1,11 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox, colorchooser, simpledialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from data_operations import DataOperations  
-
-data_ops = DataOperations()
+from regression_analysis import RegressionAnalysis
+import os, pickle, webbrowser
 
 # Ventana principal
 raiz = Tk()
@@ -174,31 +173,25 @@ def limpio_si():
 barraMenu = Menu(raiz)
 raiz.config(menu=barraMenu)
 
-archivoMenu = Menu(barraMenu, tearoff=0)
-archivoMenu.add_command(label="Cargar Datos", command=lambda: cargar_datos())
+# Menú Exportar
+exportarMenu = Menu(barraMenu, tearoff=0)
+exportarMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
+exportarMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
+exportarMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
+barraMenu.add_cascade(label="Exportar", menu=exportarMenu)
 
-guardarComoMenu = Menu(archivoMenu, tearoff=0)
-guardarComoMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
-guardarComoMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
-guardarComoMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
-archivoMenu.add_cascade(label="Guardar como ...", menu=guardarComoMenu)
-archivoMenu.add_separator()
-archivoMenu.add_command(label="Limpiar", command= confirmar_limpiar_grafica)
+# Opción Limpiar
+barraMenu.add_command(label="Limpiar", command=confirmar_limpiar_grafica)
 
-edicionMenu = Menu(barraMenu, tearoff=0)
-edicionMenu.add_command(label="Cortar")
-edicionMenu.add_command(label="Copiar")
-edicionMenu.add_command(label="Pegar")
-edicionMenu.add_separator()
-edicionMenu.add_command(label="Rehacer")
-edicionMenu.add_command(label="Deshacer")
+# Menú Regresiones
+regresionMenu = Menu(barraMenu, tearoff=0)
+regresionMenu.add_command(label="R. Lineal", command=lambda: graficar_regresion('lineal'))
+regresionMenu.add_command(label="R. Polinomial", command=lambda: graficar_regresion('polinomial'))
+regresionMenu.add_command(label="Interpolación", command=lambda: graficar_regresion('interpolacion'))
+barraMenu.add_cascade(label="Regresiones", menu=regresionMenu)
 
-ayudaMenu = Menu(barraMenu, tearoff=0)
-ayudaMenu.add_command(label="Revisar documentación")
-
-barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
-barraMenu.add_cascade(label="Edición", menu=edicionMenu)
-barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
+# Menú Ayuda (abre un enlace en el navegador)
+barraMenu.add_command(label="Ayuda", command=lambda: webbrowser.open("http://tulink.com"))
 
 # Crear el frame para las columnas
 frame_columnas = Frame(raiz)
@@ -262,52 +255,42 @@ graficar_button = None
 origx_lim = None
 origy_lim = None
 
+# Variable global para almacenar los datos cargados
+data = pd.DataFrame()  # Inicializar como DataFrame vacío
+
 def cargar_datos():
     """
-    Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método 
-    load_file() de la instancia data_ops. Si los datos están disponibles y no están vacíos, 
-    los imprime en la consola y actualiza las opciones de columnas para el usuario. Si no 
-    se cargan datos, muestra un mensaje de error.
+    Carga los datos desde un archivo temporal llamado 'tmp_graph.pkl' al iniciar la aplicación.
+    Si el archivo existe, los datos se cargan en la variable global `data`. Si no existe,
+    muestra un mensaje de advertencia.
 
-    Variables globales
-    ------------------
-    data_ops : DataOperations
-        Instancia de la clase DataOperations que contiene el archivo de datos cargado 
-        y sus operaciones asociadas.
+    Almacena los datos en la variable global `data` para ser utilizados en toda la aplicación.
     """
-    if data_ops.load_file(): 
-        # Verifica si se cargaron datos
-        if data_ops.data is not None and not data_ops.data.empty:
-            # print(data_ops.data)
-            actualizar_columnas()
-        else:
-            messagebox.showerror("Error", "No se pudieron cargar los datos del archivo.")
+    global data
+
+    if os.path.exists("tmp_graph.pkl"):
+        try:
+            # Cargar archivo temporal .pkl en un DataFrame
+            with open("tmp_graph.pkl", 'rb') as f:
+                data = pickle.load(f)
+
+            if not data.empty:
+                actualizar_columnas()  # Actualizar opciones de columnas
+            else:
+                messagebox.showerror("Error", "El archivo 'tmp_graph.pkl' está vacío.")
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudieron cargar los datos: {e}")
+    else:
+        messagebox.showwarning("Advertencia", "No se encontró el archivo 'tmp_graph.pkl'.")
+
+reg_analysis = RegressionAnalysis(data)
 
 def actualizar_columnas():
     """
     Obtiene los nombres de las columnas del archivo de datos actualmente cargado en 
-    data_ops. Crea o actualiza los ComboBox de selección de columnas 'X' e 'Y', y 
-    coloca un botón para iniciar la gráfica, si no hay columnas disponibles, muestra 
+    `data`. Crea o actualiza los ComboBox de selección de columnas 'X' e 'Y', y 
+    coloca un botón para iniciar la gráfica. Si no hay columnas disponibles, muestra 
     un mensaje de error al usuario.
-
-    Variables globales
-    ------------------
-    columna_x_combo : ttk.Combobox
-        Selecciona la columna en el eje 'X'.
-    columna_y_combo : ttk.Combobox
-        Selecciona la columna en el eje 'Y'.
-    graficar_button : Button
-        Inicia la función de graficación de datos.
-    raiz : tkinter.Tk
-        Ventana principal de la aplicación.
-    columna_x : tkinter.StringVar
-        Almacena la selección de la columna 'X' en el ComboBox.
-    columna_y : tkinter.StringVar
-        Amacena la selección de la columna 'Y' en el ComboBox.
-    data_ops : DataOperations
-        Instancia que contiene el archivo de datos y permite extraer sus columnas.
-    frame_columnas : tkinter.Frame
-        Frame donde se colocarán los ComboBox de selección de columnas.
     """
     global columna_x_combo, columna_y_combo, graficar_button, frame_columnas
 
@@ -316,8 +299,7 @@ def actualizar_columnas():
         widget.destroy()
 
     # Obtener las columnas del archivo de datos
-    columns = data_ops.data.columns.tolist()
-    print("Columnas disponibles:", columns)  # Imprimir las columnas disponibles
+    columns = data.columns.tolist()
 
     # Solo crear los ComboBox si hay columnas disponibles
     if columns:
@@ -398,16 +380,16 @@ def graficar_datos():
 
     global origx_lim, origy_lim, x_limits, y_limits
 
-    if x_col not in data_ops.data.columns or y_col not in data_ops.data.columns:
+    if x_col not in data.columns or y_col not in data.columns:
         messagebox.showerror("Error", "Una o ambas columnas seleccionadas no son válidas.")
         return
 
-    if not pd.api.types.is_numeric_dtype(data_ops.data[x_col]) or not pd.api.types.is_numeric_dtype(data_ops.data[y_col]):
+    if not pd.api.types.is_numeric_dtype(data[x_col]) or not pd.api.types.is_numeric_dtype(data[y_col]):
         messagebox.showerror("Error", "Las columnas seleccionadas deben ser numéricas.")
         return
         
-    datos_x = data_ops.data[x_col]
-    datos_y = data_ops.data[y_col]
+    datos_x = data[x_col]
+    datos_y = data[y_col]
 
     if origx_lim is None or origy_lim is None:
         origx_lim = [datos_x.min(), datos_x.max()]
@@ -421,8 +403,8 @@ def graficar_datos():
     
     ax.clear()
 
-    x = data_ops.data[x_col]  # Usar la columna seleccionada para X
-    y = data_ops.data[y_col]  # Usar la columna seleccionada para Y
+    x = data[x_col]  # Usar la columna seleccionada para X
+    y = data[y_col]  # Usar la columna seleccionada para Y
     ax.clear()  # Limpiar la gráfica anterior
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
     ax.set_xlim(x_limits)  # Límites del eje X
@@ -444,6 +426,33 @@ def graficar_datos():
     # Crear botón "+" para edición de límites eje Y
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
+
+def graficar_regresion(tipo):
+    global x_col, y_col
+    
+    x_col = columna_x.get()
+    y_col = columna_y.get()
+
+    if x_col is None or y_col is None:
+        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
+        return
+
+    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
+    reg_analysis = RegressionAnalysis(data)
+
+    if tipo == 'lineal':
+        # Llamar a la función linear_regression con return_metrics=False
+        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'polinomial':
+        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'interpolacion':
+        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
+
+    # Graficar la regresión
+    ax.plot(x_vals, y_vals, label=ecuacion, color='red')
+    ax.scatter(x_vals, y_vals, color='blue', label='Datos')  # Puntos de la regresión
+    ax.legend()
+    canvas.draw()
 
 def update_graph_property(property_type=None, new_value=None):
     """
@@ -988,7 +997,7 @@ def update_x_limits(master):
     columna_x_seleccionada = columna_x.get()
         
     # Obtener los datos de la columna seleccionada
-    datos_x = data_ops.data[columna_x_seleccionada]
+    datos_x = data[columna_x_seleccionada]
     
     # Valores predeterminados 
     x_min_datos = datos_x.min()
@@ -1049,7 +1058,7 @@ def set_x_limits(x_min_entry, x_max_entry):
         columna_x_seleccionada = columna_x.get()
         
         # Obtener los datos de la columna seleccionada
-        datos_x = data_ops.data[columna_x_seleccionada]
+        datos_x = data[columna_x_seleccionada]
 
         # Valores predeterminados 
         x_min_datos = datos_x.min()
@@ -1092,7 +1101,7 @@ def update_y_limits(master):
     columna_y_seleccionada = columna_y.get()
         
     # Obtener los datos de la columna seleccionada
-    datos_y = data_ops.data[columna_y_seleccionada]
+    datos_y = data[columna_y_seleccionada]
     
     # Valores predeterminados 
     y_min_datos = datos_y.min()
@@ -1155,7 +1164,7 @@ def set_y_limits(y_min_entry, y_max_entry):
         columna_y_seleccionada = columna_y.get()
         
         # Obtener los datos de la columna seleccionada
-        datos_y = data_ops.data[columna_y_seleccionada]
+        datos_y = data[columna_y_seleccionada]
 
         # Valores predeterminados 
         y_min_datos = datos_y.min()
@@ -1368,6 +1377,17 @@ y_scale.grid(column=1, row=0, pady=5)
 zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
 zoom_label.grid(column=0, row=5)
 
+def cerrar_ventana():
+    """Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl"""
+    archivo_tmp = "tmp_graph.pkl"
+    if os.path.exists(archivo_tmp):
+        os.remove(archivo_tmp)
+    raiz.quit()  # Esto cierra el mainloop de Tkinter
+
+# Añadir un manejador de evento para cerrar la ventana
+raiz.protocol("WM_DELETE_WINDOW", cerrar_ventana)
+
 # Ejecutar la aplicación
 if __name__ == "__main__":
+    cargar_datos()
     raiz.mainloop()
