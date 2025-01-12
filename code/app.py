@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, StringVar, messagebox, Text, Scrollbar, Menu, simpledialog, Toplevel
-import webbrowser
+import webbrowser, pickle
 import pandas as pd
 import fitz  # PyMuPDF
 from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
@@ -390,12 +390,23 @@ class LaboratorySoftware:
         messagebox.showinfo("Autores", autores)
 
     def open_graficador(self):
-        """Método para ejecutar graficador.py en una nueva ventana."""
+        """Método para ejecutar graficador.py en una nueva ventana y exportar a tmp_graph.pkl."""
         try:
+            # Exportar a tmp_graph.pkl
+            if self.data_ops.data is None:
+                messagebox.showerror("Error", "No hay datos para exportar")
+                return False
+            
+            # Guardar el DataFrame en un archivo .pkl
+            with open('tmp_graph.pkl', 'wb') as f:
+                pickle.dump(self.data_ops.data, f)
+
             # Ejecutar el archivo graficador.py como un proceso independiente
             subprocess.Popen([sys.executable, 'graficador.py'])
+            return True
         except Exception as e:
-            print(f"Error al ejecutar graficador.py: {e}")
+            messagebox.showerror("Error", f"Error al ejecutar graficador.py o exportar los datos: {str(e)}")
+            return False
 
     def run(self) -> None:
         """
