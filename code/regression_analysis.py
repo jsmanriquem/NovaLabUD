@@ -109,14 +109,33 @@ class RegressionAnalysis:
                     ax1.legend()
 
             # Calcular métricas y formatear la ecuación
-            r2 = model.score(x, y)
-            mae = mean_absolute_error(y, y_pred)
-            mse = mean_squared_error(y, y_pred)
+            r2, mae, mse = self.calculate_metrics(y, y_pred)
+            metrics_text = f'R² = {r2:.4f}\nMAE = {mae:.4f}\nMSE = {mse:.4f}'
             equation = self.format_equation([model.coef_[0], model.intercept_])
 
             # Si se indican métricas, devolver la ecuación y las métricas
             if return_metrics:
-                return equation, r2, mae, mse
+                # Crear figura con dos subplots
+                fig, (ax1, ax2) = plt.subplots(2, 1, height_ratios=[3, 1], figsize=(10, 8))
+                fig.suptitle('Análisis de Regresión Lineal', fontsize=14)
+
+                # Graficar regresión
+                ax1.scatter(x, y, color='blue', label='Datos')
+                ax1.plot(x, y_pred, color='red', label='Regresión')
+                ax1.set_xlabel(var_x)
+                ax1.set_ylabel(var_y)
+                ax1.legend()
+
+                # Mostrar métricas y ecuación
+                ax2.text(0.5, 0.5, f'{equation}\n\n{metrics_text}',
+                        horizontalalignment='center',
+                        verticalalignment='center',
+                        transform=ax2.transAxes,
+                        bbox=dict(facecolor='white', alpha=0.8))
+                ax2.axis('off')
+
+                plt.tight_layout()
+                return fig
             else:
                 # Devolver los datos de la regresión para ser graficados
                 return x, y_pred, equation
@@ -169,7 +188,36 @@ class RegressionAnalysis:
                 equation = self.format_equation(coef)
 
                 if return_metrics:
-                    return equation, r2, mae, mse
+                    x_fit = np.linspace(x.min(), x.max(), 100)
+                    y_fit = poly_eq(x_fit)
+
+                    # Crear figura con dos subplots
+                    fig, (ax1, ax2) = plt.subplots(2, 1, height_ratios=[3, 1], figsize=(10, 8))
+                    fig.suptitle(f'Análisis de Regresión Polinómica (Grado {degree})', fontsize=14)
+
+                    # Graficar regresión
+                    ax1.scatter(x, y, color='blue', label='Datos')
+                    ax1.plot(x_fit, y_fit, color='red', 
+                            label=f'Regresión Polinómica')
+                    ax1.set_xlabel(var_x)
+                    ax1.set_ylabel(var_y)
+                    ax1.legend()
+
+                    # Calcular y mostrar métricas
+                    r2, mae, mse = self.calculate_metrics(y, poly_eq(x))
+                    metrics_text = f'R² = {r2:.4f}\nMAE = {mae:.4f}\nMSE = {mse:.4f}'
+                    equation = self.format_equation(coef)
+
+                    # Mostrar métricas y ecuación
+                    ax2.text(0.5, 0.5, f'{equation}\n\n{metrics_text}',
+                            horizontalalignment='center',
+                            verticalalignment='center',
+                            transform=ax2.transAxes,
+                            bbox=dict(facecolor='white', alpha=0.8))
+                    ax2.axis('off')
+
+                    plt.tight_layout()
+                    return fig
                 else:
                     return x, y_fit, equation
 
@@ -261,7 +309,27 @@ class RegressionAnalysis:
 
                 # Si se indican métricas, devolver la ecuación y las métricas
                 if return_metrics:
-                    return expression, r2, mae, mse
+                    # Crear figura con dos subplots
+                    fig, (ax1, ax2) = plt.subplots(2, 1, height_ratios=[3, 1], figsize=(10, 8))
+                    fig.suptitle(f'Interpolación de Lagrange (Grado {degree})', fontsize=14)
+
+                    # Graficar interpolación
+                    ax1.scatter(x, y, color='blue', label='Datos originales')
+                    ax1.plot(x, y_interpolated, color='red', label='Interpolación')
+                    ax1.set_xlabel(var_x)
+                    ax1.set_ylabel(var_y)
+                    ax1.legend()
+
+                    # Mostrar métricas y ecuación
+                    ax2.text(0.5, 0.5, f'{expression}\n\n{metrics_text}',
+                            horizontalalignment='center',
+                            verticalalignment='center',
+                            transform=ax2.transAxes,
+                            bbox=dict(facecolor='white', alpha=0.8), fontsize=8, wrap=True)
+                    ax2.axis('off')
+
+                    plt.tight_layout()
+                    return fig
                 else:
                     return x, y_interpolated, expression
 
