@@ -190,6 +190,11 @@ regresionMenu.add_command(label="R. Polinomial", command=lambda: graficar_regres
 regresionMenu.add_command(label="Interpolación", command=lambda: graficar_regresion('interpolacion'))
 barraMenu.add_cascade(label="Regresiones", menu=regresionMenu)
 
+# Menú Personalización
+personalizarMenu = Menu(barraMenu, tearoff=0)
+personalizarMenu.add_command(label="Editar Gráfica 1", command=lambda: grafica_ventana(raiz))
+barraMenu.add_cascade(label="Personalizar", menu=personalizarMenu)
+
 # Menú Ayuda (abre un enlace en el navegador)
 barraMenu.add_command(label="Ayuda", command=lambda: webbrowser.open("http://tulink.com"))
 
@@ -406,7 +411,7 @@ def graficar_datos():
     x = data[x_col]  # Usar la columna seleccionada para X
     y = data[y_col]  # Usar la columna seleccionada para Y
     ax.clear()  # Limpiar la gráfica anterior
-    line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
+    line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Datos")
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get(), fontname=title_fuente, fontsize=title_size)  # Actualizar título
@@ -416,7 +421,6 @@ def graficar_datos():
     ax.set_facecolor(bg_color)
     canvas.draw()  # Actualizar la gráfica
 
-    canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
     canvas.mpl_connect('button_press_event', on_double_click)
     
     # Crear botón "+" para edición de límites eje X
@@ -450,7 +454,7 @@ def graficar_regresion(tipo):
 
     # Graficar la regresión
     ax.plot(x_vals, y_vals, label=ecuacion, color='red')
-    ax.scatter(x_vals, y_vals, color='blue', label='Datos')  # Puntos de la regresión
+    ax.scatter(x_vals, y_vals, color='red', label='Datos')  # Puntos de la regresión
     ax.legend()
     canvas.draw()
 
@@ -512,7 +516,6 @@ def update_graph_property(property_type=None, new_value=None):
         ax.grid(show_grid)
 
     graficar_datos()  
-    canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
 
 def grafica_ventana(master):
     """
@@ -597,36 +600,6 @@ def grafica_ventana(master):
     # Hacer que la ventana emergente sea modal
     personalizacion_ventana.transient(raiz)
     personalizacion_ventana.grab_release()
-    
-def on_line_click(event, line):
-    """
-    Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
-    las propiedades de la gráfica.
-
-    Parámetros
-    ----------
-    event : matplotlib.backend_bases.MouseEvent
-        Evento que contiene información sobre el clic, incluyendo las coordenadas y el 
-        botón del mouse que fue presionado.
-    line : matplotlib.lines.Line2D
-        Objeto de línea en la gráfica, desde el cual se extraen los datos de los puntos 
-        para comparar con la posición del clic.
-
-    Variables globales
-    ------------------
-    raiz : tkinter.Tk
-        La ventana principal de la aplicación.
-    """
-    if event.inaxes and event.button == 1:  # Botón izquierdo del mouse
-        # Se obtienen las coordenadas de los puntos de la línea
-        xdata = line.get_xdata()
-        ydata = line.get_ydata()
-        
-        # Comprobar si el clic fue cerca de la línea
-        for i in range(len(xdata)):
-            if abs(event.xdata - xdata[i]) < 0.1 and abs(event.ydata - ydata[i]) < 0.1:
-                grafica_ventana(raiz) 
-                break
 
 def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
     """
