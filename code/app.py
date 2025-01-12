@@ -760,7 +760,7 @@ class DataOperationsWithUI(DataOperations):
         # Si se selecciona interpolación polinomial, pedir grado
         degree = None
         if selected_method == "Interpolación Polinomial":
-            degree = askstring("Grado Polinomial", "Ingrese el grado para la interpolación polinomial:")
+            degree = simpledialog.askstring("Grado Polinomial", "Ingrese el grado para la interpolación polinomial:")
             if not degree or not degree.isdigit():
                 messagebox.showerror("Error", "Grado no válido.")
                 return

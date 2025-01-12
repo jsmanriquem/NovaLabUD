@@ -1,13 +1,11 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox, colorchooser, simpledialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from data_operations import DataOperations  
-import os, pickle
-
-data_ops = DataOperations()
+from regression_analysis import RegressionAnalysis
+import os, pickle, webbrowser
 
 # Ventana principal
 raiz = Tk()
@@ -171,6 +169,30 @@ def limpio_si():
     ventana_hecho.transient(raiz)
     ventana_hecho.grab_set()
 
+# Menú de opciones para el usuario
+barraMenu = Menu(raiz)
+raiz.config(menu=barraMenu)
+
+# Menú Exportar
+exportarMenu = Menu(barraMenu, tearoff=0)
+exportarMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
+exportarMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
+exportarMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
+barraMenu.add_cascade(label="Exportar", menu=exportarMenu)
+
+# Opción Limpiar
+barraMenu.add_command(label="Limpiar", command=confirmar_limpiar_grafica)
+
+# Menú Regresiones
+regresionMenu = Menu(barraMenu, tearoff=0)
+regresionMenu.add_command(label="R. Lineal", command=lambda: graficar_regresion('lineal'))
+regresionMenu.add_command(label="R. Polinomial", command=lambda: graficar_regresion('polinomial'))
+regresionMenu.add_command(label="Interpolación", command=lambda: graficar_regresion('interpolacion'))
+barraMenu.add_cascade(label="Regresiones", menu=regresionMenu)
+
+# Menú Ayuda (abre un enlace en el navegador)
+barraMenu.add_command(label="Ayuda", command=lambda: webbrowser.open("http://tulink.com"))
+
 # Crear el frame para las columnas
 frame_columnas = Frame(raiz)
 frame_columnas.grid(column=0, row=2, padx=10, pady=5, columnspan=3)
@@ -260,6 +282,8 @@ def cargar_datos():
             messagebox.showerror("Error", f"No se pudieron cargar los datos: {e}")
     else:
         messagebox.showwarning("Advertencia", "No se encontró el archivo 'tmp_graph.pkl'.")
+
+reg_analysis = RegressionAnalysis(data)
 
 def actualizar_columnas():
     """
@@ -402,6 +426,33 @@ def graficar_datos():
     # Crear botón "+" para edición de límites eje Y
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
+
+def graficar_regresion(tipo):
+    global x_col, y_col
+    
+    x_col = columna_x.get()
+    y_col = columna_y.get()
+
+    if x_col is None or y_col is None:
+        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
+        return
+
+    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
+    reg_analysis = RegressionAnalysis(data)
+
+    if tipo == 'lineal':
+        # Llamar a la función linear_regression con return_metrics=False
+        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'polinomial':
+        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'interpolacion':
+        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
+
+    # Graficar la regresión
+    ax.plot(x_vals, y_vals, label=ecuacion, color='red')
+    ax.scatter(x_vals, y_vals, color='blue', label='Datos')  # Puntos de la regresión
+    ax.legend()
+    canvas.draw()
 
 def update_graph_property(property_type=None, new_value=None):
     """
