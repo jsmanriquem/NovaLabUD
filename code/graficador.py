@@ -1326,14 +1326,11 @@ y_scale.grid(column=1, row=0, pady=5)
 zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
 zoom_label.grid(column=0, row=5)
 
-def eliminar_archivo_tmp():
+def cerrar_ventana():
+    """Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl"""
     archivo_tmp = "tmp_graph.pkl"
     if os.path.exists(archivo_tmp):
         os.remove(archivo_tmp)
-
-def cerrar_ventana():
-    """Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl"""
-    eliminar_archivo_tmp()
     raiz.quit()  # Esto cierra el mainloop de Tkinter
 
 # Añadir un manejador de evento para cerrar la ventana
