@@ -291,6 +291,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
  | <a href="#Z"><strong>Z</strong></a>
  
 </div>
@@ -302,7 +303,11 @@
       <ul>
         <li><a href="app.html#app.LaboratorySoftware.__init__">(método de app.LaboratorySoftware)</a>
 </li>
+        <li><a href="app.html#app.VariableSelectionDialog.__init__">(método de app.VariableSelectionDialog)</a>
+</li>
         <li><a href="data_operations.html#data_operations.DataOperations.__init__">(método de data_operations.DataOperations)</a>
+</li>
+        <li><a href="regression_analysis.html#regression_analysis.DataOps.__init__">(método de regression_analysis.DataOps)</a>
 </li>
         <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.__init__">(método de regression_analysis.RegressionAnalysis)</a>
 </li>
@@ -340,8 +345,14 @@
 </li>
       <li><a href="graficador.html#graficador.cargar_datos">cargar_datos() (en el módulo graficador)</a>
 </li>
+      <li><a href="graficador.html#graficador.centrar_ventana">centrar_ventana() (en el módulo graficador)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="graficador.html#graficador.cerrar_ventana">cerrar_ventana() (en el módulo graficador)</a>
+</li>
+      <li><a href="app.html#app.LaboratorySoftware.check_data">check_data() (método de app.LaboratorySoftware)</a>
+</li>
       <li><a href="graficador.html#graficador.confirmar_limpiar_grafica">confirmar_limpiar_grafica() (en el módulo graficador)</a>
 </li>
       <li><a href="app.html#app.LaboratorySoftware.create_data_table">create_data_table() (método de app.LaboratorySoftware)</a>
@@ -362,11 +373,7 @@
 </li>
       </ul></li>
       <li><a href="app.html#app.LaboratorySoftware.data_ops">data_ops (atributo de app.LaboratorySoftware)</a>
-
-      <ul>
-        <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.data_ops">(atributo de regression_analysis.RegressionAnalysis)</a>
 </li>
-      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="app.html#app.LaboratorySoftware.data_table">data_table (atributo de app.LaboratorySoftware)</a>
@@ -374,6 +381,8 @@
       <li><a href="data_operations.html#data_operations.DataOperations">DataOperations (clase en data_operations)</a>
 </li>
       <li><a href="app.html#app.DataOperationsWithUI">DataOperationsWithUI (clase en app)</a>
+</li>
+      <li><a href="regression_analysis.html#regression_analysis.DataOps">DataOps (clase en regression_analysis)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -389,12 +398,16 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="app.html#app.DataOperationsWithUI.fill_null_with_mean">fill_null_with_mean() (método de app.DataOperationsWithUI)</a>
-
-      <ul>
-        <li><a href="data_operations.html#data_operations.DataOperations.fill_null_with_mean">(método de data_operations.DataOperations)</a>
+      <li><a href="data_operations.html#data_operations.DataOperations.fill_null_values">fill_null_values() (método de data_operations.DataOperations)</a>
 </li>
-      </ul></li>
+      <li><a href="app.html#app.DataOperationsWithUI.fill_null_values_with_dialog">fill_null_values_with_dialog() (método de app.DataOperationsWithUI)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.html#app.DataOperationsWithUI.fill_null_with_mean">fill_null_with_mean() (método de app.DataOperationsWithUI)</a>
+</li>
+      <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.format_equation">format_equation() (método de regression_analysis.RegressionAnalysis)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -409,10 +422,10 @@
 </li>
       <li><a href="graficador.html#graficador.grafica_ventana_ejey">grafica_ventana_ejey() (en el módulo graficador)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="graficador.html#graficador.grafica_ventana_title">grafica_ventana_title() (en el módulo graficador)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     graficador
 
@@ -422,6 +435,8 @@
       </ul></li>
       <li><a href="graficador.html#graficador.graficar_datos">graficar_datos() (en el módulo graficador)</a>
 </li>
+      <li><a href="graficador.html#graficador.graficar_regresion">graficar_regresion() (en el módulo graficador)</a>
+</li>
       <li><a href="graficador.html#graficador.guardar_grafica">guardar_grafica() (en el módulo graficador)</a>
 </li>
   </ul></td>
@@ -430,8 +445,12 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.interpolation">interpolation() (método de regression_analysis.RegressionAnalysis)</a>
+      <li><a href="app.html#app.LaboratorySoftware.interpolation">interpolation() (método de app.LaboratorySoftware)</a>
+
+      <ul>
+        <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.interpolation">(método de regression_analysis.RegressionAnalysis)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -444,10 +463,14 @@
 </li>
       <li><a href="graficador.html#graficador.limpio_si">limpio_si() (en el módulo graficador)</a>
 </li>
+      <li><a href="app.html#app.LaboratorySoftware.linear_regression">linear_regression() (método de app.LaboratorySoftware)</a>
+
+      <ul>
+        <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.linear_regression">(método de regression_analysis.RegressionAnalysis)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.linear_regression">linear_regression() (método de regression_analysis.RegressionAnalysis)</a>
-</li>
       <li><a href="app.html#app.DataOperationsWithUI.load_file">load_file() (método de app.DataOperationsWithUI)</a>
 
       <ul>
@@ -499,14 +522,18 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.html#app.VariableSelectionDialog.on_accept">on_accept() (método de app.VariableSelectionDialog)</a>
+</li>
+      <li><a href="app.html#app.LaboratorySoftware.on_close">on_close() (método de app.LaboratorySoftware)</a>
+</li>
       <li><a href="graficador.html#graficador.on_double_click">on_double_click() (en el módulo graficador)</a>
 </li>
       <li><a href="graficador.html#graficador.on_line_click">on_line_click() (en el módulo graficador)</a>
 </li>
-      <li><a href="graficador.html#graficador.on_motion">on_motion() (en el módulo graficador)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="graficador.html#graficador.on_motion">on_motion() (en el módulo graficador)</a>
+</li>
       <li><a href="graficador.html#graficador.on_press">on_press() (en el módulo graficador)</a>
 </li>
       <li><a href="graficador.html#graficador.on_release">on_release() (en el módulo graficador)</a>
@@ -521,8 +548,20 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.polynomial_regression">polynomial_regression() (método de regression_analysis.RegressionAnalysis)</a>
+      <li><a href="app.html#app.LaboratorySoftware.perform_lagrange_interpolation">perform_lagrange_interpolation() (método de app.LaboratorySoftware)</a>
 </li>
+      <li><a href="app.html#app.LaboratorySoftware.perform_linear_regression">perform_linear_regression() (método de app.LaboratorySoftware)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.html#app.LaboratorySoftware.perform_polynomial_regression">perform_polynomial_regression() (método de app.LaboratorySoftware)</a>
+</li>
+      <li><a href="app.html#app.LaboratorySoftware.polynomial_regression">polynomial_regression() (método de app.LaboratorySoftware)</a>
+
+      <ul>
+        <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.polynomial_regression">(método de regression_analysis.RegressionAnalysis)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -558,29 +597,27 @@
 </li>
       <li><a href="app.html#app.LaboratorySoftware.run">run() (método de app.LaboratorySoftware)</a>
 </li>
-      <li><a href="app.html#app.LaboratorySoftware.run_regression">run_regression() (método de app.LaboratorySoftware)</a>
-</li>
   </ul></td>
 </tr></table>
 
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="app.html#app.LaboratorySoftware.select_variables">select_variables() (método de app.LaboratorySoftware)</a>
+      <li><a href="app.html#app.DataOperationsWithUI.select_columns">select_columns() (método de app.DataOperationsWithUI)</a>
+</li>
+      <li><a href="app.html#app.DataOperationsWithUI.select_option">select_option() (método de app.DataOperationsWithUI)</a>
 </li>
       <li><a href="graficador.html#graficador.set_x_limits">set_x_limits() (en el módulo graficador)</a>
 </li>
-      <li><a href="graficador.html#graficador.set_y_limits">set_y_limits() (en el módulo graficador)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="graficador.html#graficador.set_y_limits">set_y_limits() (en el módulo graficador)</a>
+</li>
       <li><a href="app.html#app.LaboratorySoftware.setup_menus">setup_menus() (método de app.LaboratorySoftware)</a>
 </li>
       <li><a href="app.html#app.LaboratorySoftware.show_autores">show_autores() (método de app.LaboratorySoftware)</a>
 </li>
-      <li><a href="regression_analysis.html#regression_analysis.RegressionAnalysis.show_metrics">show_metrics() (método de regression_analysis.RegressionAnalysis)</a>
-</li>
-      <li><a href="app.html#app.LaboratorySoftware.show_warning">show_warning() (método de app.LaboratorySoftware)</a>
+      <li><a href="app.html#app.LaboratorySoftware.show_plot_in_canvas">show_plot_in_canvas() (método de app.LaboratorySoftware)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -599,6 +636,14 @@
       <li><a href="graficador.html#graficador.update_x_limits">update_x_limits() (en el módulo graficador)</a>
 </li>
       <li><a href="graficador.html#graficador.update_y_limits">update_y_limits() (en el módulo graficador)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.html#app.VariableSelectionDialog">VariableSelectionDialog (clase en app)</a>
 </li>
   </ul></td>
 </tr></table>

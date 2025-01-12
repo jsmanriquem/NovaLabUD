@@ -270,11 +270,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.DataOps"><code class="docutils literal notranslate"><span class="pre">DataOps</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.DataOps.__init__"><code class="docutils literal notranslate"><span class="pre">DataOps.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.data_ops"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.data_ops</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.__init__"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.calculate_metrics()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.format_equation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.format_equation()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.linear_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.linear_regression()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.polynomial_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.polynomial_regression()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
@@ -295,38 +298,58 @@
 <h1>Módulo: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code><a class="headerlink" href="#modulo-regression-analysis-py" title="Link to this heading">#</a></h1>
 <p>Este es el módulo que se encarga de hacer el análisis de los datos, para ello utiliza diferentes métodos como lo son: <strong>regresión lineal</strong>, <strong>regresión polinómica</strong> e <strong>interpolación</strong>.</p>
 <dl class="py class" id="module-regression_analysis">
+<dt class="sig sig-object py" id="regression_analysis.DataOps">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">DataOps</span></span><a class="headerlink" href="#regression_analysis.DataOps" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Clase auxiliar que contiene el atributo “data”.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="regression_analysis.DataOps.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.DataOps.__init__" title="Link to this definition">#</a></dt>
+<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">regression_analysis.</span></span><span class="sig-name descname"><span class="pre">RegressionAnalysis</span></span><a class="headerlink" href="#regression_analysis.RegressionAnalysis" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Clase para realizar análisis de regresión.</p>
-<p>Esta clase proporciona métodos para realizar análisis de regresión lineal
-y polinómica, así como interpolación de datos. Las métricas de desempeño
-se pueden calcular y mostrar en una interfaz gráfica.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.data_ops">
-<span class="sig-name descname"><span class="pre">data_ops</span></span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.data_ops" title="Link to this definition">#</a></dt>
-<dd><p>Objeto que contiene los datos necesarios
-para el análisis de regresión.</p>
+<p>Clase para realizar diferentes tipos de análisis de regresión e interpolación.</p>
+<p>Esta clase proporciona métodos para regresión lineal, regresión polinómica e interpolación
+de Lagrange, junto con visualización de resultados y cálculo de métricas.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations">DataOperations</a></p>
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_ops</strong> – Objeto de operaciones de datos que contiene el conjunto de datos a analizar</p>
 </dd>
 </dl>
-</dd></dl>
-
+<dl class="simple">
+<dt>Atributos:</dt><dd><p>data_ops: Objeto de operaciones de datos que contiene el conjunto de datos</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_ops</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Inicializa la clase con el objeto de operaciones de datos.</p>
+<dd><p>Inicializa la clase con operaciones de datos.</p>
+<p>Si el argumento es un DataFrame, crea un objeto <cite>data_ops</cite> y asigna el DataFrame a su atributo <cite>data</cite>.
+Si no, no hace nada.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>data_ops</strong> (<a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations"><em>DataOperations</em></a>) – Objeto que contiene los datos necesarios
-para el análisis.</p>
+<dd class="field-odd"><p><strong>data_ops</strong> – Un objeto que puede ser un DataFrame o una clase con atributo <cite>data</cite>.</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_ops</span><span class="p">):</span>
 
-    <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">data_ops</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data_ops</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="c1"># Si el argumento es un DataFrame, crea un objeto &#39;data_ops&#39; con el DataFrame</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">DataOps</span><span class="p">(</span><span class="n">data_ops</span><span class="p">)</span>  <span class="c1"># Crea el objeto &#39;data_ops&#39; y asigna el DataFrame a su atributo &#39;data&#39;</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data_ops</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">):</span>
+        <span class="c1"># Si el argumento ya es un objeto con el atributo &#39;data&#39;, simplemente lo asigna</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">data_ops</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># No hace nada si no es un DataFrame ni un objeto con el atributo &#39;data&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -334,25 +357,21 @@ para el análisis.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.calculate_metrics">
 <span class="sig-name descname"><span class="pre">calculate_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.calculate_metrics" title="Link to this definition">#</a></dt>
-<dd><p>Calcula las métricas de regresión.</p>
+<dd><p>Calcula métricas de regresión entre valores reales y predichos.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>y_true</strong> (<em>array-like</em>) – Valores reales.</p></li>
-<li><p><strong>y_pred</strong> (<em>array-like</em>) – Valores predichos por el modelo.</p></li>
+<li><p><strong>y_true</strong> (<em>array-like</em>) – Valores reales</p></li>
+<li><p><strong>y_pred</strong> (<em>array-like</em>) – Valores predichos</p></li>
 </ul>
 </dd>
 <dt class="field-even">Devuelve<span class="colon">:</span></dt>
-<dd class="field-even"><p>(R², MAE, MSE)</p>
+<dd class="field-even"><p>Métricas R-cuadrado, Error Absoluto Medio y Error Cuadrático Medio</p>
 </dd>
 <dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
 <dd class="field-odd"><p>tuple</p>
 </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Advertencia</p>
-<p>Asegúrate de que las dimensiones de <cite>y_true</cite> y <cite>y_pred</cite> coincidan.</p>
-</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
 
     <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
@@ -364,69 +383,106 @@ para el análisis.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.show_metrics">
-<span class="sig-name descname"><span class="pre">show_metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mae</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mse</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.show_metrics" title="Link to this definition">#</a></dt>
-<dd><p>Muestra las métricas de regresión en una ventana de Tkinter.</p>
+<dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.format_equation">
+<span class="sig-name descname"><span class="pre">format_equation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coefficients</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.format_equation" title="Link to this definition">#</a></dt>
+<dd><p>Formatea los coeficientes de regresión en una ecuación legible.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>r2</strong> (<em>float</em>) – Coeficiente de determinación R².</p></li>
-<li><p><strong>mae</strong> (<em>float</em>) – Error absoluto medio.</p></li>
-<li><p><strong>mse</strong> (<em>float</em>) – Error cuadrático medio.</p></li>
-</ul>
+<dd class="field-odd"><p><strong>coefficients</strong> (<em>array-like</em>) – Coeficientes de regresión</p>
+</dd>
+<dt class="field-even">Devuelve<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cadena de texto con la ecuación formateada</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
 </dd>
 </dl>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">format_equation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coefficients</span><span class="p">):</span>
 
-    <span class="n">metrics_window</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">()</span>
-    <span class="n">metrics_window</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Métricas de Regresión&quot;</span><span class="p">)</span>
-
-    <span class="n">lbl_r2</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">metrics_window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;R²: </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
-    <span class="n">lbl_r2</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-
-    <span class="n">lbl_mae</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">metrics_window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;MAE: </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
-    <span class="n">lbl_mae</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-
-    <span class="n">lbl_mse</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">metrics_window</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;MSE: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;Helvetica&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
-    <span class="n">lbl_mse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Regresión lineal</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;y = </span><span class="si">{</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">x + </span><span class="si">{</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Regresión polinómica</span>
+        <span class="n">eq</span> <span class="o">=</span> <span class="s1">&#39;y = &#39;</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">coef</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coefficients</span><span class="p">):</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">power</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">eq</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">coef</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">x^</span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s1"> + &#39;</span>
+            <span class="k">elif</span> <span class="n">power</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">eq</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">coef</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">x + &#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">eq</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">coef</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="n">eq</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.linear_regression">
-<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">#</a></dt>
-<dd><p>Realiza una regresión lineal.</p>
+<span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.linear_regression" title="Link to this definition">#</a></dt>
+<dd><p>Realiza análisis de regresión lineal y visualización.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la variable independiente.</p></li>
-<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la variable dependiente.</p></li>
+<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la columna de variable independiente</p></li>
+<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la columna de variable dependiente</p></li>
+<li><p><strong>ax1</strong> (<em>matplotlib.axes.Axes</em><em>, </em><em>optional</em>) – Eje de la gráfica donde se va a dibujar la regresión</p></li>
+<li><p><strong>return_metrics</strong> (<em>bool</em><em>, </em><em>optional</em>) – Si es True, devuelve solo la ecuación y métricas,
+si es False, dibuja la regresión sobre el gráfico.</p></li>
 </ul>
 </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Advertencia</p>
-<p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
-se mostrará una advertencia.</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
+<dl class="simple">
+<dt>Advertencias:</dt><dd><p>Muestra diálogo de advertencia si no se seleccionan variables o no hay datos cargados.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="ow">and</span> <span class="n">var_y</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Regresión Lineal&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
+        <span class="c1"># Si se indica que no se devuelvan solo métricas, graficar la regresión</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">return_metrics</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">ax1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># Graficar los puntos y la línea de regresión en el gráfico existente</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regresión&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+        <span class="c1"># Calcular métricas y formatear la ecuación</span>
         <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">show_metrics</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+        <span class="n">metrics_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;R² = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MAE = </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="n">equation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_equation</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">])</span>
+
+        <span class="c1"># Si se indican métricas, devolver la ecuación y las métricas</span>
+        <span class="k">if</span> <span class="n">return_metrics</span><span class="p">:</span>
+            <span class="c1"># Crear figura con dos subplots</span>
+            <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Análisis de Regresión Lineal&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+            <span class="c1"># Graficar regresión</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Regresión&#39;</span><span class="p">)</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+            <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+            <span class="c1"># Mostrar métricas y ecuación</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">equation</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">metrics_text</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="n">transform</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                    <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
+            <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+            <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">fig</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Devolver los datos de la regresión para ser graficados</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">equation</span>
+
     <span class="k">else</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables primero&quot;</span><span class="p">)</span>
 </pre></div>
@@ -435,26 +491,37 @@ se mostrará una advertencia.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.polynomial_regression">
-<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">#</a></dt>
-<dd><p>Realiza una regresión polinómica.</p>
+<span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.polynomial_regression" title="Link to this definition">#</a></dt>
+<dd><p>Realiza análisis de regresión polinómica y visualización.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la variable independiente.</p></li>
-<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la variable dependiente.</p></li>
+<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la columna de variable independiente</p></li>
+<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la columna de variable dependiente</p></li>
+<li><p><strong>ax1</strong> (<em>matplotlib.axes.Axes</em><em>, </em><em>optional</em>) – Eje de la gráfica donde se va a dibujar la regresión</p></li>
+<li><p><strong>return_metrics</strong> (<em>bool</em><em>, </em><em>optional</em>) – Si es True, devuelve solo la ecuación y métricas,
+si es False, dibuja la regresión sobre el gráfico.</p></li>
 </ul>
 </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Advertencia</p>
-<p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
-se mostrará una advertencia.
-Si el grado del polinomio es None, no se realizará la regresión.</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
+<dl class="simple">
+<dt>Advertencias:</dt><dd><ul class="simple">
+<li><p>Muestra diálogo de advertencia si no se seleccionan variables o no hay datos cargados</p></li>
+<li><p>Diálogo para ingresar el grado del polinomio (1-10)</p></li>
+</ul>
+</dd>
+<dt>Salida:</dt><dd><ul class="simple">
+<li><p>Gráfico de dispersión con curva de regresión polinómica</p></li>
+<li><p>Cuadro de texto con ecuación polinómica y métricas</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
-        <span class="n">degree</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askinteger</span><span class="p">(</span><span class="s2">&quot;Grado del Polinomio&quot;</span><span class="p">,</span> <span class="s2">&quot;Ingresa el grado del polinomio:&quot;</span><span class="p">,</span> <span class="n">minvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">degree</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askinteger</span><span class="p">(</span><span class="s2">&quot;Grado del Polinomio&quot;</span><span class="p">,</span> 
+                                    <span class="s2">&quot;Ingresa el grado del polinomio:&quot;</span><span class="p">,</span> 
+                                    <span class="n">minvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">degree</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span>
@@ -462,19 +529,55 @@ Si el grado del polinomio es None, no se realizará la regresión.</p>
             <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
             <span class="n">poly_eq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
 
-            <span class="n">x_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
-            <span class="n">y_fit</span> <span class="o">=</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x_fit</span><span class="p">)</span>
+            <span class="c1"># Solo generar los puntos ajustados para el rango de datos original</span>
+            <span class="n">y_fit</span> <span class="o">=</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Regresión Polinómica de grado </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Regresión Polinómica&quot;</span><span class="p">)</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="c1"># Si se indica que no se devuelvan solo métricas, graficar la regresión</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">return_metrics</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ax1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="c1"># Graficar los puntos y la línea de regresión en el gráfico existente</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Regresión Polinómica (Grado </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
-            <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">show_metrics</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+            <span class="c1"># Calcular y devolver las métricas si se solicitan</span>
+            <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">)</span>
+            <span class="n">equation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_equation</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">return_metrics</span><span class="p">:</span>
+                <span class="n">x_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+                <span class="n">y_fit</span> <span class="o">=</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x_fit</span><span class="p">)</span>
+
+                <span class="c1"># Crear figura con dos subplots</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Análisis de Regresión Polinómica (Grado </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+                <span class="c1"># Graficar regresión</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_fit</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> 
+                        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Regresión Polinómica&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+                <span class="c1"># Calcular y mostrar métricas</span>
+                <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">poly_eq</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+                <span class="n">metrics_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;R² = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MAE = </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="n">equation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_equation</span><span class="p">(</span><span class="n">coef</span><span class="p">)</span>
+
+                <span class="c1"># Mostrar métricas y ecuación</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">equation</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">metrics_text</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                        <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                        <span class="n">transform</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">fig</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_fit</span><span class="p">,</span> <span class="n">equation</span>
+
     <span class="k">else</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables para la regresión&quot;</span><span class="p">)</span>
 </pre></div>
@@ -483,40 +586,124 @@ Si el grado del polinomio es None, no se realizará la regresión.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="regression_analysis.RegressionAnalysis.interpolation">
-<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">#</a></dt>
-<dd><p>Realiza la interpolación lineal de los datos.</p>
+<span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#regression_analysis.RegressionAnalysis.interpolation" title="Link to this definition">#</a></dt>
+<dd><p>Realiza interpolación de Lagrange y visualización.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la variable independiente.</p></li>
-<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la variable dependiente.</p></li>
+<li><p><strong>var_x</strong> (<em>str</em>) – Nombre de la columna de variable independiente</p></li>
+<li><p><strong>var_y</strong> (<em>str</em>) – Nombre de la columna de variable dependiente</p></li>
+<li><p><strong>ax1</strong> (<em>matplotlib.axes.Axes</em><em>, </em><em>optional</em>) – Eje de la gráfica donde se va a dibujar la interpolación</p></li>
+<li><p><strong>return_metrics</strong> (<em>bool</em><em>, </em><em>optional</em>) – Si es True, devuelve solo el polinomio de interpolación y métricas,
+si es False, dibuja la interpolación sobre el gráfico.</p></li>
 </ul>
 </dd>
 </dl>
-<div class="admonition warning">
-<p class="admonition-title">Advertencia</p>
-<p>Si <cite>data_ops.data</cite> es None o las variables no están seleccionadas,
-se mostrará una advertencia.</p>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">):</span>
+<dl class="simple">
+<dt>Advertencias:</dt><dd><p>Muestra diálogo de advertencia si no se seleccionan variables o no hay datos cargados.
+Diálogo para ingresar el grado de interpolación (1-10).
+Advertencia si no hay suficientes puntos para el grado seleccionado.</p>
+</dd>
+<dt>Salida:</dt><dd><ul class="simple">
+<li><p>Gráfico de dispersión con curva de interpolación (si return_metrics es False)</p></li>
+<li><p>Cuadro de texto con polinomio de Lagrange y métricas</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var_x</span><span class="p">,</span> <span class="n">var_y</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">var_x</span> <span class="ow">and</span> <span class="n">var_y</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span>
-        <span class="n">interp_func</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s2">&quot;extrapolate&quot;</span><span class="p">)</span>
+        <span class="n">degree</span> <span class="o">=</span> <span class="n">simpledialog</span><span class="o">.</span><span class="n">askinteger</span><span class="p">(</span><span class="s2">&quot;Grado del Polinomio&quot;</span><span class="p">,</span> 
+                                        <span class="s2">&quot;Ingresa el grado del polinomio:&quot;</span><span class="p">,</span> 
+                                        <span class="n">minvalue</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxvalue</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-        <span class="n">x_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
-        <span class="n">y_new</span> <span class="o">=</span> <span class="n">interp_func</span><span class="p">(</span><span class="n">x_new</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">degree</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_x</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">var_y</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
-        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span> <span class="n">y_new</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolación Lineal&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Interpolación de Datos&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> 
+                                    <span class="s2">&quot;No hay suficientes puntos para el grado seleccionado&quot;</span><span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="c1"># Selección de puntos: primer, intermedio(s) y último</span>
+            <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">degree</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="n">x_points</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+            <span class="n">y_points</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+
+            <span class="c1"># Generación de la función de interpolación de Lagrange</span>
+            <span class="k">def</span> <span class="nf">lagrange_interpolation_expression</span><span class="p">(</span><span class="n">x_points</span><span class="p">,</span> <span class="n">y_points</span><span class="p">):</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_points</span><span class="p">)</span>
+                <span class="n">terms</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                    <span class="n">numerator</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="n">denominator</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+                            <span class="n">numerator</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(x - </span><span class="si">{</span><span class="n">x_points</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+                            <span class="n">denominator</span> <span class="o">*=</span> <span class="p">(</span><span class="n">x_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_points</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                    <span class="n">term</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">y_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> / </span><span class="si">{</span><span class="n">denominator</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">) * &quot;</span> <span class="o">+</span> <span class="s2">&quot; * &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">numerator</span><span class="p">)</span>
+                    <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+                <span class="k">return</span> <span class="s2">&quot;P(x) = &quot;</span> <span class="o">+</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">lagrange_interpolation</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">x_points</span><span class="p">,</span> <span class="n">y_points</span><span class="p">):</span>
+                <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_points</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                    <span class="n">term</span> <span class="o">=</span> <span class="n">y_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+                            <span class="n">term</span> <span class="o">*=</span> <span class="p">(</span><span class="n">x_eval</span> <span class="o">-</span> <span class="n">x_points</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">x_points</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+                    <span class="n">result</span> <span class="o">+=</span> <span class="n">term</span>
+                <span class="k">return</span> <span class="n">result</span>
+
+            <span class="c1"># Generar los datos interpolados</span>
+            <span class="n">y_interpolated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lagrange_interpolation</span><span class="p">(</span><span class="n">x_val</span><span class="p">,</span> <span class="n">x_points</span><span class="p">,</span> <span class="n">y_points</span><span class="p">)</span> <span class="k">for</span> <span class="n">x_val</span> <span class="ow">in</span> <span class="n">x</span><span class="p">])</span>
+
+            <span class="c1"># Generar expresión algebraica</span>
+            <span class="n">expression</span> <span class="o">=</span> <span class="n">lagrange_interpolation_expression</span><span class="p">(</span><span class="n">x_points</span><span class="p">,</span> <span class="n">y_points</span><span class="p">)</span>
+
+            <span class="c1"># Si no se requieren solo métricas, graficar la interpolación</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">return_metrics</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ax1</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos originales&#39;</span><span class="p">)</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_interpolated</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolación&#39;</span><span class="p">)</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+                    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+            <span class="c1"># Calcular métricas</span>
+            <span class="n">r2</span><span class="p">,</span> <span class="n">mae</span><span class="p">,</span> <span class="n">mse</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_metrics</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_interpolated</span><span class="p">)</span>
+            <span class="n">metrics_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;R² = </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MAE = </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">MSE = </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span>
+
+            <span class="c1"># Si se indican métricas, devolver la ecuación y las métricas</span>
+            <span class="k">if</span> <span class="n">return_metrics</span><span class="p">:</span>
+                <span class="c1"># Crear figura con dos subplots</span>
+                <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Interpolación de Lagrange (Grado </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+                <span class="c1"># Graficar interpolación</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos originales&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_interpolated</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolación&#39;</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">var_x</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">var_y</span><span class="p">)</span>
+                <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+                <span class="c1"># Mostrar métricas y ecuación</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">expression</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">metrics_text</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                        <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                        <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                        <span class="n">transform</span><span class="o">=</span><span class="n">ax2</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span>
+                        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">ax2</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+                <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">fig</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y_interpolated</span><span class="p">,</span> <span class="n">expression</span>
+
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables para la interpolación&quot;</span><span class="p">)</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;Selecciona las variables primero&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -571,11 +758,14 @@ se mostrará una advertencia.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.DataOps"><code class="docutils literal notranslate"><span class="pre">DataOps</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.DataOps.__init__"><code class="docutils literal notranslate"><span class="pre">DataOps.__init__()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.data_ops"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.data_ops</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.__init__"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.calculate_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.calculate_metrics()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.show_metrics"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.show_metrics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.format_equation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.format_equation()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.linear_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.linear_regression()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.polynomial_regression"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.polynomial_regression()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression_analysis.RegressionAnalysis.interpolation"><code class="docutils literal notranslate"><span class="pre">RegressionAnalysis.interpolation()</span></code></a></li>
