@@ -1,18 +1,37 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox, colorchooser, simpledialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from data_operations import DataOperations  
-
-data_ops = DataOperations()
+from regression_analysis import RegressionAnalysis
+import os, pickle, webbrowser
 
 # Ventana principal
 raiz = Tk()
-raiz.geometry("1024x780")  # Tamaño de la pantalla
+raiz.geometry("735x800")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
+
+def centrar_ventana(ventana_principal, ventana_emergente):
+    raiz.update_idletasks()
+
+    # Obtener dimensiones y posición de la ventana principal
+    ancho_principal = raiz.winfo_width()
+    alto_principal = raiz.winfo_height()
+    pos_x_principal = raiz.winfo_x()
+    pos_y_principal = raiz.winfo_y()
+
+    # Obtener dimensiones de la ventana emergente
+    ancho_emergente = ventana_emergente.winfo_width()
+    alto_emergente = ventana_emergente.winfo_height()
+
+    # Calcular posición centrada con respecto a la ventana principal
+    x_centrado = pos_x_principal + (ancho_principal - ancho_emergente) // 2
+    y_centrado = pos_y_principal + (alto_principal - alto_emergente) // 2
+
+    # Establecer geometría centrada
+    ventana_emergente.geometry(f"{ancho_emergente}x{alto_emergente}+{x_centrado}+{y_centrado}")
 
 def limpiar_grafica():
     """
@@ -59,17 +78,17 @@ def limpiar_grafica():
     bg_color : str
         Color de fondo de la gráfica.
     """
-    global y_limits, x_limits, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
+    global y_limits, x_limits, origx_lim, origy_lim, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
 
     titulo_grafica = StringVar(value="Título de la Gráfica")
     title_fuente = "DejaVu Sans"
     title_size = 12
     
-    ejex_titulo = StringVar(value="Eje X")
+    ejex_titulo = StringVar(value="")
     ejex_shape = "DejaVu Sans"
     ejex_size = 10
 
-    ejey_titulo = StringVar(value="Eje Y")
+    ejey_titulo = StringVar(value="")
     ejey_shape = "DejaVu Sans"
     ejey_size = 10
 
@@ -84,9 +103,13 @@ def limpiar_grafica():
     zoom(reset=True)
 
     ax.clear() 
-    x_limits = [-10, 10]
-    y_limits = [-10, 10]
+    x_limits = None
+    y_limits = None
+    origx_lim = None
+    origy_lim = None
+    
     ax.grid(show_grid)  
+    ax.set_facecolor(bg_color)
 
     canvas.draw() 
     limpio_si()
@@ -116,6 +139,15 @@ def confirmar_limpiar_grafica():
     boton_no = Button(ventana_confirmacion, text="No, Cancelar", command=ventana_confirmacion.destroy)
     boton_no.pack(side="right", padx=10, pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_confirmacion.update_idletasks()
+
+    centrar_ventana(raiz, ventana_confirmacion)
+
+    # Hacer que la ventana emergente sea modal
+    ventana_confirmacion.transient(raiz)
+    ventana_confirmacion.grab_set()
+
 def limpio_si():
     """
     Muestra una ventana emergente de confirmación para indicar al usuario que la gráfica 
@@ -128,35 +160,42 @@ def limpio_si():
     Label(ventana_hecho, text="La gráfica ha sido limpiada.", pady=20).pack()
     Button(ventana_hecho, text="Aceptar", command=ventana_hecho.destroy).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_hecho.update_idletasks()
+
+    centrar_ventana(raiz, ventana_hecho)
+
+    # Hacer que la ventana emergente sea modal
+    ventana_hecho.transient(raiz)
+    ventana_hecho.grab_set()
+
 # Menú de opciones para el usuario
 barraMenu = Menu(raiz)
 raiz.config(menu=barraMenu)
 
-archivoMenu = Menu(barraMenu, tearoff=0)
-archivoMenu.add_command(label="Cargar Datos", command=lambda: cargar_datos())
+# Menú Exportar
+exportarMenu = Menu(barraMenu, tearoff=0)
+exportarMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
+exportarMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
+exportarMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
+barraMenu.add_cascade(label="Exportar", menu=exportarMenu)
 
-guardarComoMenu = Menu(archivoMenu, tearoff=0)
-guardarComoMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
-guardarComoMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
-guardarComoMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
-archivoMenu.add_cascade(label="Guardar como ...", menu=guardarComoMenu)
-archivoMenu.add_separator()
-archivoMenu.add_command(label="Limpiar", command= confirmar_limpiar_grafica)
+# Opción Limpiar
+barraMenu.add_command(label="Limpiar", command=confirmar_limpiar_grafica)
 
-edicionMenu = Menu(barraMenu, tearoff=0)
-edicionMenu.add_command(label="Cortar")
-edicionMenu.add_command(label="Copiar")
-edicionMenu.add_command(label="Pegar")
-edicionMenu.add_separator()
-edicionMenu.add_command(label="Rehacer")
-edicionMenu.add_command(label="Deshacer")
+# Menú Regresiones
+regresionMenu = Menu(barraMenu, tearoff=0)
+regresionMenu.add_command(label="R. Lineal", command=lambda: graficar_regresion('lineal'))
+regresionMenu.add_command(label="R. Polinomial", command=lambda: graficar_regresion('polinomial'))
+regresionMenu.add_command(label="Interpolación", command=lambda: graficar_regresion('interpolacion'))
+barraMenu.add_cascade(label="Regresiones", menu=regresionMenu)
 
-ayudaMenu = Menu(barraMenu, tearoff=0)
-ayudaMenu.add_command(label="Revisar documentación")
+# Menú Ayuda (abre un enlace en el navegador)
+barraMenu.add_command(label="Ayuda", command=lambda: webbrowser.open("http://tulink.com"))
 
-barraMenu.add_cascade(label="Archivo", menu=archivoMenu)
-barraMenu.add_cascade(label="Edición", menu=edicionMenu)
-barraMenu.add_cascade(label="Ayuda", menu=ayudaMenu)
+# Crear el frame para las columnas
+frame_columnas = Frame(raiz)
+frame_columnas.grid(column=0, row=2, padx=10, pady=5, columnspan=3)
 
 # Frame para la gráfica
 frame = Frame(raiz, bg='gray22', bd=3)
@@ -173,13 +212,13 @@ title_fuente = "DejaVu Sans"
 title_size = 12
 personal_ventana_title = None  # Inicializamos la ventana emergente como None
 
-ejex_titulo = StringVar(value="Eje X")
+ejex_titulo = StringVar(value="")
 ejex_shape = "DejaVu Sans"
 ejex_size = 10
 ventana_ejex = None # Venta emergente edición eje x
 ventana_lim_x = None # Venta emergente edición límites eje x
 
-ejey_titulo = StringVar(value="Eje Y")
+ejey_titulo = StringVar(value="")
 ejey_shape = "DejaVu Sans"
 ejey_size = 10
 ventana_ejey = None # Ventana emerjente edición eje y
@@ -197,8 +236,8 @@ line = None
 personalizacion_ventana= None
 
 # Inicializar variables para manejo del zoom y desplazamiento
-x_limits = [-10, 10]
-y_limits = [-10, 10]
+x_limits = None
+y_limits = None
 is_dragging = False
 start_x, start_y = 0, 0
 points = None  # Objeto necesario para almacenamiento de puntos y posterior edición
@@ -212,80 +251,73 @@ columna_x_combo = None
 columna_y_combo = None
 graficar_button = None
 
+# Guardar límites originales para reestablecer al tamaño original
+origx_lim = None
+origy_lim = None
+
+# Variable global para almacenar los datos cargados
+data = pd.DataFrame()  # Inicializar como DataFrame vacío
+
 def cargar_datos():
     """
-    Verifica si el archivo de datos ha sido cargado exitosamente utilizando el método 
-    load_file() de la instancia data_ops. Si los datos están disponibles y no están vacíos, 
-    los imprime en la consola y actualiza las opciones de columnas para el usuario. Si no 
-    se cargan datos, muestra un mensaje de error.
+    Carga los datos desde un archivo temporal llamado 'tmp_graph.pkl' al iniciar la aplicación.
+    Si el archivo existe, los datos se cargan en la variable global `data`. Si no existe,
+    muestra un mensaje de advertencia.
 
-    Variables globales
-    ------------------
-    data_ops : DataOperations
-        Instancia de la clase DataOperations que contiene el archivo de datos cargado 
-        y sus operaciones asociadas.
+    Almacena los datos en la variable global `data` para ser utilizados en toda la aplicación.
     """
-    if data_ops.load_file(): 
-        # Verifica si se cargaron datos
-        if data_ops.data is not None and not data_ops.data.empty:
-            print(data_ops.data)  
-            actualizar_columnas()
-        else:
-            messagebox.showerror("Error", "No se pudieron cargar los datos del archivo.")
+    global data
+
+    if os.path.exists("tmp_graph.pkl"):
+        try:
+            # Cargar archivo temporal .pkl en un DataFrame
+            with open("tmp_graph.pkl", 'rb') as f:
+                data = pickle.load(f)
+
+            if not data.empty:
+                actualizar_columnas()  # Actualizar opciones de columnas
+            else:
+                messagebox.showerror("Error", "El archivo 'tmp_graph.pkl' está vacío.")
+        except Exception as e:
+            messagebox.showerror("Error", f"No se pudieron cargar los datos: {e}")
+    else:
+        messagebox.showwarning("Advertencia", "No se encontró el archivo 'tmp_graph.pkl'.")
+
+reg_analysis = RegressionAnalysis(data)
 
 def actualizar_columnas():
     """
     Obtiene los nombres de las columnas del archivo de datos actualmente cargado en 
-    data_ops. Crea o actualiza los ComboBox de selección de columnas 'X' e 'Y', y 
-    coloca un botón para iniciar la gráfica, si no hay columnas disponibles, muestra 
+    `data`. Crea o actualiza los ComboBox de selección de columnas 'X' e 'Y', y 
+    coloca un botón para iniciar la gráfica. Si no hay columnas disponibles, muestra 
     un mensaje de error al usuario.
-
-    Variables globales
-    ------------------
-    columna_x_combo : ttk.Combobox
-        Selecciona la columna en el eje 'X'.
-    columna_y_combo : ttk.Combobox
-        Selecciona la columna en el eje 'Y'.
-    graficar_button : Button
-        Inicia la función de graficación de datos.
-    raiz : tkinter.Tk
-        Ventana principal de la aplicación.
-    columna_x : tkinter.StringVar
-        Almacena la selección de la columna 'X' en el ComboBox.
-    columna_y : tkinter.StringVar
-        Amacena la selección de la columna 'Y' en el ComboBox.
-    data_ops : DataOperations
-        Instancia que contiene el archivo de datos y permite extraer sus columnas.
     """
-    global columna_x_combo, columna_y_combo, graficar_button
+    global columna_x_combo, columna_y_combo, graficar_button, frame_columnas
 
-    if columna_x_combo is not None:
-        columna_x_combo.grid_forget()
-    if columna_y_combo is not None:
-        columna_y_combo.grid_forget()
-    if graficar_button is not None:
-        graficar_button.grid_forget()
+    # Eliminar widgets previos del frame
+    for widget in frame_columnas.winfo_children():
+        widget.destroy()
 
     # Obtener las columnas del archivo de datos
-    columns = data_ops.data.columns.tolist()
-    print("Columnas disponibles:", columns)  # Imprimir las columnas disponibles
+    columns = data.columns.tolist()
 
     # Solo crear los ComboBox si hay columnas disponibles
     if columns:
-        columna_x_combo = ttk.Combobox(raiz, textvariable=columna_x, values=columns)
-        columna_x_combo.grid(column=0, row=3, padx=5, pady=5)
+        # ComboBox para columna X
+        columna_x_combo = ttk.Combobox(frame_columnas, textvariable=columna_x, values=columns)
+        columna_x_combo.grid(column=0, row=0, padx=5, pady=5)
         columna_x_combo.set("Selecciona la columna X")
         
-        columna_y_combo = ttk.Combobox(raiz, textvariable=columna_y, values=columns)
-        columna_y_combo.grid(column=1, row=3, padx=5, pady=5)
+        # ComboBox para columna Y
+        columna_y_combo = ttk.Combobox(frame_columnas, textvariable=columna_y, values=columns)
+        columna_y_combo.grid(column=1, row=0, padx=5, pady=5)
         columna_y_combo.set("Selecciona la columna Y")
         
         # Botón para graficar
-        graficar_button = Button(raiz, text="Graficar", command=graficar_datos)
-        graficar_button.grid(column=2, row=3, padx=5, pady=5)
+        graficar_button = Button(frame_columnas, text="Graficar", command=graficar_datos)
+        graficar_button.grid(column=3, row=0, columnspan=2, pady=10)
     else:
         messagebox.showerror("Error", "No se encontraron columnas para graficar.")
-
 
 def guardar_grafica(formato): 
     """
@@ -309,7 +341,6 @@ def guardar_grafica(formato):
     if archivo:
         fig.savefig(archivo, format=formato)
         print(f"Gráfica guardada como {archivo}")
-
 
 def graficar_datos():
     """
@@ -347,23 +378,40 @@ def graficar_datos():
     x_col = columna_x.get()
     y_col = columna_y.get()
 
-    if x_col not in data_ops.data.columns or y_col not in data_ops.data.columns:
+    global origx_lim, origy_lim, x_limits, y_limits
+
+    if x_col not in data.columns or y_col not in data.columns:
         messagebox.showerror("Error", "Una o ambas columnas seleccionadas no son válidas.")
         return
 
-    if not pd.api.types.is_numeric_dtype(data_ops.data[x_col]) or not pd.api.types.is_numeric_dtype(data_ops.data[y_col]):
+    if not pd.api.types.is_numeric_dtype(data[x_col]) or not pd.api.types.is_numeric_dtype(data[y_col]):
         messagebox.showerror("Error", "Las columnas seleccionadas deben ser numéricas.")
         return
+        
+    datos_x = data[x_col]
+    datos_y = data[y_col]
 
-    x = data_ops.data[x_col]  # Usar la columna seleccionada para X
-    y = data_ops.data[y_col]  # Usar la columna seleccionada para Y
+    if origx_lim is None or origy_lim is None:
+        origx_lim = [datos_x.min(), datos_x.max()]
+        origy_lim = [datos_y.min(), datos_y.max()]
+        x_limits = origx_lim.copy()
+        y_limits = origy_lim.copy()
+
+    # Actualizar títulos de los ejes con los nombres de las columnas seleccionadas
+    ejex_titulo.set(x_col)
+    ejey_titulo.set(y_col)
+    
+    ax.clear()
+
+    x = data[x_col]  # Usar la columna seleccionada para X
+    y = data[y_col]  # Usar la columna seleccionada para Y
     ax.clear()  # Limpiar la gráfica anterior
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
-    ax.set_title(titulo_grafica.get())  # Actualizar título
-    ax.set_xlabel(ejex_titulo.get())  # Actualizar título eje X    
-    ax.set_ylabel(ejey_titulo.get())  # Actualizar título eje Y
+    ax.set_title(titulo_grafica.get(), fontname=title_fuente, fontsize=title_size)  # Actualizar título
+    ax.set_xlabel(ejex_titulo.get(), fontname=ejex_shape, fontsize=ejex_size)  # Actualizar título eje X    
+    ax.set_ylabel(ejey_titulo.get(), fontname=ejey_shape, fontsize=ejey_size)  # Actualizar título eje Y
     ax.grid(show_grid)
     ax.set_facecolor(bg_color)
     canvas.draw()  # Actualizar la gráfica
@@ -378,6 +426,33 @@ def graficar_datos():
     # Crear botón "+" para edición de límites eje Y
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
+
+def graficar_regresion(tipo):
+    global x_col, y_col
+    
+    x_col = columna_x.get()
+    y_col = columna_y.get()
+
+    if x_col is None or y_col is None:
+        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
+        return
+
+    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
+    reg_analysis = RegressionAnalysis(data)
+
+    if tipo == 'lineal':
+        # Llamar a la función linear_regression con return_metrics=False
+        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'polinomial':
+        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'interpolacion':
+        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
+
+    # Graficar la regresión
+    ax.plot(x_vals, y_vals, label=ecuacion, color='red')
+    ax.scatter(x_vals, y_vals, color='blue', label='Datos')  # Puntos de la regresión
+    ax.legend()
+    canvas.draw()
 
 def update_graph_property(property_type=None, new_value=None):
     """
@@ -513,7 +588,16 @@ def grafica_ventana(master):
     point_size_slider = Scale(puntos_frame, from_=1, to=20, resolution=1, orient=HORIZONTAL, command=lambda value: update_graph_property('point_size', value))
     point_size_slider.set(point_size)
     point_size_slider.pack(pady=5)
+    
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    personalizacion_ventana.update_idletasks()
 
+    centrar_ventana(raiz, personalizacion_ventana)
+
+    # Hacer que la ventana emergente sea modal
+    personalizacion_ventana.transient(raiz)
+    personalizacion_ventana.grab_release()
+    
 def on_line_click(event, line):
     """
     Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
@@ -635,6 +719,16 @@ def grafica_ventana_title(master):
     Button(personal_ventana_title, text="Aplicar Cambios", 
            command=lambda: apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry)).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    personal_ventana_title.update_idletasks()
+
+    centrar_ventana(raiz, personal_ventana_title)
+
+    # Hacer que la ventana emergente sea modal
+    personal_ventana_title.transient(raiz)
+    personal_ventana_title.grab_set()
+    raiz.wait_window(personal_ventana_title)
+
 def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
     """
     Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente 
@@ -731,6 +825,16 @@ def grafica_ventana_ejex(master):
     Button(ventana_ejex, text="Aplicar Cambios", 
            command=lambda: apply_xaxis_changes(ejex_size_var, ejex_fuente_var,titulo_ejex_var)).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_ejex.update_idletasks()
+
+    centrar_ventana(raiz, ventana_ejex)
+
+    # Hacer que la ventana emergente sea modal
+    ventana_ejex.transient(raiz)
+    ventana_ejex.grab_set()
+    raiz.wait_window(ventana_ejex)
+
 def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
     """
     Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.
@@ -826,6 +930,16 @@ def grafica_ventana_ejey(master):
     Button(ventana_ejey, text="Aplicar Cambios", 
            command=lambda: apply_yaxis_changes(ejey_size_var, ejey_fuente_var,titulo_ejey_var)).pack(pady=10)
 
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_ejey.update_idletasks()
+
+    centrar_ventana(raiz, ventana_ejey)
+
+    # Hacer que la ventana emergente sea modal
+    ventana_ejey.transient(raiz)
+    ventana_ejey.grab_set()
+    raiz.wait_window(ventana_ejey)
+    
 def on_double_click(event):
     """
     Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y) 
@@ -863,10 +977,6 @@ def on_double_click(event):
 # Conectar evento de doble clic
 canvas.mpl_connect('button_press_event', on_double_click)
 
-# Guardar límites originales para reestablecer al tamaño original
-origx_lim = x_limits.copy()
-origy_lim = y_limits.copy()
-
 def update_x_limits(master):
     """
     Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.
@@ -883,6 +993,16 @@ def update_x_limits(master):
     """
     global ventana_lim_x
 
+    # Obtener las columnas seleccionadas
+    columna_x_seleccionada = columna_x.get()
+        
+    # Obtener los datos de la columna seleccionada
+    datos_x = data[columna_x_seleccionada]
+    
+    # Valores predeterminados 
+    x_min_datos = datos_x.min()
+    x_max_datos = datos_x.max()
+
     # Crear nueva ventana
     ventana_lim_x = Toplevel(master)
     ventana_lim_x.title("Límites Eje X")
@@ -891,16 +1011,26 @@ def update_x_limits(master):
     # Etiquetas y campos de entrada para x_min y x_max
     Label(ventana_lim_x, text="Ingrese x_min:").pack(pady=5)
     x_min_entry = Entry(ventana_lim_x)
-    x_min_entry.insert(0, str(x_limits[0]))  # Valor de x_min
+    x_min_entry.insert(0, str(x_min_datos))  # Valor de x_min
     x_min_entry.pack()
 
     Label(ventana_lim_x, text="Ingrese x_max:").pack(pady=5)
     x_max_entry = Entry(ventana_lim_x)
-    x_max_entry.insert(0, str(x_limits[1]))  # Valor de x_max
+    x_max_entry.insert(0, str(x_max_datos))  # Valor de x_max
     x_max_entry.pack()
 
     # Botón para actualizar los límites de X
     Button(ventana_lim_x, text="Actualizar Límites", command=lambda: set_x_limits(x_min_entry, x_max_entry)).pack(pady=10)
+
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_lim_x.update_idletasks()
+
+    centrar_ventana(raiz, ventana_lim_x)
+
+    # Hacer que la ventana emergente sea modal
+    ventana_lim_x.transient(raiz)
+    ventana_lim_x.grab_set()
+    raiz.wait_window(ventana_lim_x)
 
 def set_x_limits(x_min_entry, x_max_entry):
     """
@@ -924,18 +1054,32 @@ def set_x_limits(x_min_entry, x_max_entry):
     global x_limits, origx_lim
 
     try:
-        # Obtener y validar valores ingresados
-        x_min = float(x_min_entry.get())
-        x_max = float(x_max_entry.get())
+        # Obtener las columnas seleccionadas
+        columna_x_seleccionada = columna_x.get()
+        
+        # Obtener los datos de la columna seleccionada
+        datos_x = data[columna_x_seleccionada]
+
+        # Valores predeterminados 
+        x_min_datos = datos_x.min()
+        x_max_datos = datos_x.max()
+        
+        # Validar y asignar los límites ingresados por el usuario
+        x_min = float(x_min_entry.get()) if x_min_entry.get() else x_min_datos
+        x_max = float(x_max_entry.get()) if x_max_entry.get() else x_max_datos
         if x_min < x_max:
-            x_limits = [x_min, x_max]
-            origx_lim = x_limits.copy()
-            print(f"Límites del eje X actualizados: {x_limits}")
+            x_limits = [x_min, x_max]  # Límite actual se actualiza
+            if origx_lim is None:  # Solo actualiza los límites originales si no se han definido
+                origx_lim = [x_min_datos, x_max_datos]
+            else:
+                origx_lim = [x_min, x_max]
+            print(f"Límites del eje X actualizados: {origy_lim}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
+            ventana_lim_x.destroy() # Cerrar la ventana emergente
         else:
-            print("El valor de x_min debe ser menor que x_max.")
+            messagebox.showerror("Error","El valor de x_min debe ser menor que x_max.")
     except ValueError:
-        print("Por favor, ingrese valores numéricos válidos.")
+        messagebox.showerror("Error","Por favor, ingrese valores numéricos válidos.")
 
 def update_y_limits(master):
     """
@@ -953,6 +1097,17 @@ def update_y_limits(master):
     """
     global ventana_lim_y
 
+    # Obtener las columnas seleccionadas
+    columna_y_seleccionada = columna_y.get()
+        
+    # Obtener los datos de la columna seleccionada
+    datos_y = data[columna_y_seleccionada]
+    
+    # Valores predeterminados 
+    y_min_datos = datos_y.min()
+    y_max_datos = datos_y.max()
+
+
     # Crear nueva ventana
     ventana_lim_y = Toplevel(master)
     ventana_lim_y.title("Límites Eje Y")
@@ -961,16 +1116,26 @@ def update_y_limits(master):
     # Etiquetas y campos de entrada para x_min y x_max
     Label(ventana_lim_y, text="Ingrese y_min:").pack(pady=5)
     y_min_entry = Entry(ventana_lim_y)
-    y_min_entry.insert(0, str(y_limits[0]))  # Valor de y_min
+    y_min_entry.insert(0, str(y_min_datos))  # Valor de y_min
     y_min_entry.pack()
 
     Label(ventana_lim_y, text="Ingrese y_max:").pack(pady=5)
     y_max_entry = Entry(ventana_lim_y)
-    y_max_entry.insert(0, str(y_limits[1]))  # Valor de y_max
+    y_max_entry.insert(0, str(y_max_datos))  # Valor de y_max
     y_max_entry.pack()
 
     # Botón para actualizar los límites de X
     Button(ventana_lim_y, text="Actualizar Límites", command=lambda: set_y_limits(y_min_entry, y_max_entry)).pack(pady=10)
+
+    # Actualizar para obtener las dimensiones de la ventana emergente
+    ventana_lim_y.update_idletasks()
+
+    centrar_ventana(raiz, ventana_lim_y)
+
+    # Hacer que la ventana emergente sea modal
+    ventana_lim_y.transient(raiz)
+    ventana_lim_y.grab_set()
+    raiz.wait_window(ventana_lim_y)
 
 def set_y_limits(y_min_entry, y_max_entry):
     """
@@ -995,18 +1160,33 @@ def set_y_limits(y_min_entry, y_max_entry):
     global y_limits, origy_lim
 
     try:
-        # Obtener y validar valores ingresados
-        y_min = float(y_min_entry.get())
-        y_max = float(y_max_entry.get())
+        # Obtener las columnas seleccionadas
+        columna_y_seleccionada = columna_y.get()
+        
+        # Obtener los datos de la columna seleccionada
+        datos_y = data[columna_y_seleccionada]
+
+        # Valores predeterminados 
+        y_min_datos = datos_y.min()
+        y_max_datos = datos_y.max()
+        
+        # Validar y asignar los límites ingresados por el usuario
+        y_min = float(y_min_entry.get()) if y_min_entry.get() else y_min_datos
+        y_max = float(y_max_entry.get()) if y_max_entry.get() else y_max_datos
+        
         if y_min < y_max:
-            y_limits = [y_min, y_max]
-            origy_lim = y_limits.copy()
-            print(f"Límites del eje Y actualizados: {y_limits}")
+            y_limits = [y_min, y_max]  # Límite actual se actualiza
+            if origy_lim is None:  # Solo actualiza los límites originales si no se han definido
+                origy_lim = [y_min_datos, y_max_datos]
+            else:
+                origy_lim = [y_min, y_max]
+            print(f"Límites del eje Y actualizados: {origy_lim}")
             graficar_datos()  # Redibuja la gráfica con los nuevos límites
+            ventana_lim_y.destroy() # Cerrar la ventana emergente
         else:
-            print("El valor de y_min debe ser menor que y_max.")
+            messagebox.showerror("Error","El valor de y_min debe ser menor que y_max.")
     except ValueError:
-        print("Por favor, ingrese valores numéricos válidos.")
+        messagebox.showerror("Error","Por favor, ingrese valores numéricos válidos.")
 
 def zoom(event=None,reset=False):
     """
@@ -1037,7 +1217,7 @@ def zoom(event=None,reset=False):
     None
         La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.
     """
-    global x_limits, y_limits # Variables globales, límites de 'x' y 'y'
+    global x_limits, y_limits, origx_lim, origy_lim # Variables globales, límites de 'x' y 'y'
     if reset:
         # Restablecer límites originales
         x_limits = origx_lim.copy()
@@ -1064,9 +1244,11 @@ def zoom(event=None,reset=False):
         x_zoom_percentage = int((x_zoom_level / 10) * 100)
         y_zoom_percentage = int((y_zoom_level / 10) * 100)
         zoom_label.config(text=f"Zoom X: {x_zoom_percentage}% | Zoom Y: {y_zoom_percentage}%")
-
-    # Redibujar la gráfica con los nuevos límites
-    graficar_datos() # Modificar respecto a los módulos por agregar
+    
+    # Actualizar los límites de la gráfica
+    ax.set_xlim(x_limits)
+    ax.set_ylim(y_limits)
+    canvas.draw()
 
 # Funciones para manejar el desplazamiento con el mouse sobre la gráfica
 def on_press(event):
@@ -1150,7 +1332,7 @@ def on_motion(event):
 
     
     """
-    global x_limits, y_limits, start_x, start_y
+    global x_limits, y_limits, start_x, start_y, origx_lim, origy_lim
     if is_dragging and event.inaxes: # Verificación de interacción True and True
         
         # Calculo de diferencia entre el clic inicial y la posición actual del cursor
@@ -1161,8 +1343,14 @@ def on_motion(event):
         x_limits = [x + dx for x in x_limits]
         y_limits = [y + dy for y in y_limits]
 
-        # Redibujar la gráfica con los nuevos límites
-        graficar_datos()
+        # Sincronizar con los límites originales
+        origx_lim = x_limits.copy()
+        origy_lim = y_limits.copy()
+
+        # Actualizar la gráfica dinámicamente
+        ax.set_xlim(x_limits)
+        ax.set_ylim(y_limits)
+        canvas.draw()
 
 # Conectar eventos del ratón
 fig.canvas.mpl_connect('button_press_event', on_press)
@@ -1189,6 +1377,17 @@ y_scale.grid(column=1, row=0, pady=5)
 zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
 zoom_label.grid(column=0, row=5)
 
+def cerrar_ventana():
+    """Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl"""
+    archivo_tmp = "tmp_graph.pkl"
+    if os.path.exists(archivo_tmp):
+        os.remove(archivo_tmp)
+    raiz.quit()  # Esto cierra el mainloop de Tkinter
+
+# Añadir un manejador de evento para cerrar la ventana
+raiz.protocol("WM_DELETE_WINDOW", cerrar_ventana)
+
 # Ejecutar la aplicación
 if __name__ == "__main__":
+    cargar_datos()
     raiz.mainloop()
