@@ -1,0 +1,17 @@
+.left-column {
+    float: left;
+    width: 48%;  /* Establece el ancho de la primera columna */
+    margin-right: 4%;  /* Espacio entre las dos columnas */
+    margin-bottom: 0;  /* Reduce el margen inferior */
+}
+
+.right-column {
+    float: left;
+    width: 48%;  /* Establece el ancho de la segunda columna */
+    margin-bottom: 0;  /* Reduce el margen inferior */
+}
+
+/* Añade un clearfix para evitar que los elementos flotantes afecten al resto del contenido */
+.toctree-wrapper {
+    overflow: hidden;
+}

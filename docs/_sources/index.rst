@@ -7,7 +7,18 @@ Nace como un software diseñado de forma amigable para su público dirigido, el 
 
 .. toctree::
    :maxdepth: 1
-   :caption: Contenidos:
+   :caption: Manual de usuario
+   :class: left-column
+
+   app_user
+   data_operations_user
+   regression_analysis_user
+   graficador_user
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Módulos (código)
+   :class: right-column
 
    app
    data_operations
