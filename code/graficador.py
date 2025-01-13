@@ -79,7 +79,7 @@ def limpiar_grafica():
     bg_color : str
         Color de fondo de la gráfica.
     """
-    global y_limits, x_limits, origx_lim, origy_lim, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
+    global y_limits, x_limits, origx_lim, origy_lim, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color, regresiones
 
     titulo_grafica = StringVar(value="Título de la Gráfica")
     title_fuente = "DejaVu Sans"
@@ -102,6 +102,8 @@ def limpiar_grafica():
     point_size = 5  
 
     zoom(reset=True)
+
+    regresiones.clear()  # Vaciar la lista de regresiones
 
     ax.clear() 
     x_limits = None
@@ -440,7 +442,7 @@ def graficar_datos():
 
     canvas.draw()  # Actualizar la gráfica
 
-    canvas.mpl_connect('button_press_event', on_double_click)
+    # canvas.mpl_connect('button_press_event', on_double_click)
     
     # Crear botón "+" para edición de límites eje X
     x_plus_button = Button(raiz, text="+", command=lambda: update_x_limits(raiz))
