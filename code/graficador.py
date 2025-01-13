@@ -403,11 +403,16 @@ def graficar_datos():
     datos_x = data[x_col]
     datos_y = data[y_col]
 
+    # Restablecer límites originales si es la primera vez que se grafican
     if origx_lim is None or origy_lim is None:
         origx_lim = [datos_x.min(), datos_x.max()]
         origy_lim = [datos_y.min(), datos_y.max()]
         x_limits = origx_lim.copy()
         y_limits = origy_lim.copy()
+
+    # Restablecer límites automáticamente según los datos actuales
+    x_limits = [datos_x.min(), datos_x.max()]
+    y_limits = [datos_y.min(), datos_y.max()]
 
     # Actualizar títulos de los ejes con los nombres de las columnas seleccionadas
     ejex_titulo.set(x_col)
