@@ -12,6 +12,7 @@ raiz = Tk()
 raiz.geometry("735x800")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
+regresiones = []  # Lista para almacenar los datos de regresiones
 
 def centrar_ventana(ventana_principal, ventana_emergente):
     raiz.update_idletasks()
@@ -383,7 +384,7 @@ def graficar_datos():
     x_col = columna_x.get()
     y_col = columna_y.get()
 
-    global origx_lim, origy_lim, x_limits, y_limits
+    global origx_lim, origy_lim, x_limits, y_limits, regresiones
 
     if x_col not in data.columns or y_col not in data.columns:
         messagebox.showerror("Error", "Una o ambas columnas seleccionadas no son válidas.")
@@ -405,12 +406,10 @@ def graficar_datos():
     # Actualizar títulos de los ejes con los nombres de las columnas seleccionadas
     ejex_titulo.set(x_col)
     ejey_titulo.set(y_col)
-    
     ax.clear()
 
     x = data[x_col]  # Usar la columna seleccionada para X
     y = data[y_col]  # Usar la columna seleccionada para Y
-    ax.clear()  # Limpiar la gráfica anterior
     line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Datos")
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
@@ -419,6 +418,14 @@ def graficar_datos():
     ax.set_ylabel(ejey_titulo.get(), fontname=ejey_shape, fontsize=ejey_size)  # Actualizar título eje Y
     ax.grid(show_grid)
     ax.set_facecolor(bg_color)
+
+    # Se grafican las regresiones realizadas anteriormente
+    if 'regresiones' in globals() and regresiones:
+        for reg in regresiones:
+            ax.plot(reg['x_vals'], reg['y_vals'], label=reg['label'], color=reg['color'])
+    
+    ax.legend()
+
     canvas.draw()  # Actualizar la gráfica
 
     canvas.mpl_connect('button_press_event', on_double_click)
@@ -431,8 +438,9 @@ def graficar_datos():
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
 
+
 def graficar_regresion(tipo):
-    global x_col, y_col
+    global regresiones
     
     x_col = columna_x.get()
     y_col = columna_y.get()
@@ -452,6 +460,13 @@ def graficar_regresion(tipo):
     elif tipo == 'interpolacion':
         x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
 
+    # Guardar los datos de la regresión
+    regresiones.append({
+        'x_vals': x_vals,
+        'y_vals': y_vals,
+        'label': ecuacion,
+        'color': 'red'  # Puedes personalizar el color
+    })
     # Graficar la regresión
     ax.plot(x_vals, y_vals, label=ecuacion, color='red')
     ax.scatter(x_vals, y_vals, color='red', label='Datos')  # Puntos de la regresión
