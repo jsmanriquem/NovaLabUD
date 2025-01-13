@@ -15,8 +15,8 @@ class LaboratorySoftware:
     Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
     Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
     del software, incluyendo la carga de datos, visualización, procesamiento y análisis.
-    
-    Attributes:
+
+    Atributos:
         root (tk.Tk): Ventana principal de la aplicación.
         main_frame (ttk.PanedWindow): Panel principal dividido que contiene la tabla de datos y resultados.
         data_frame (ttk.LabelFrame): Marco para la tabla de datos.
@@ -24,22 +24,50 @@ class LaboratorySoftware:
         data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
         data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
         no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.
+        regression_canvas (tk.Canvas): Canvas donde se muestran las gráficas generadas por las regresiones y análisis.
+        regression (RegressionAnalysis): Instancia encargada de realizar los análisis estadísticos como regresión lineal y polinómica.
+
+    Requiere:
+        - `VariableSelectionDialog`: Diálogo para la selección de variables en los análisis de regresión.
+        - `DataOperationsWithUI`: Clase encargada de las operaciones de carga, procesamiento y exportación de datos.
     """
     
     def __init__(self) -> None:
         """
         Inicializa la aplicación del Software de Laboratorio.
 
-        Este método configura la ventana principal de la aplicación, establece las dimensiones
-        basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz gráfica
-        (como los paneles y menús), y configura las pestañas para mostrar los contenidos de los experimentos.
+        Este método configura la interfaz gráfica de usuario utilizando `tkinter`. Establece las dimensiones de la ventana principal
+        según el tamaño de la pantalla del usuario, organiza los paneles principales, las pestañas para visualización de datos y teoría,
+        y configura los menús para manejar acciones como importar, exportar y realizar análisis de regresión.
 
-        - Configura la ventana con un tamaño proporcional a la pantalla del usuario.
-        - Establece un diseño de ventana con un panel horizontal que contiene dos áreas: 
-            1. Un panel para mostrar los datos cargados.
-            2. Un panel para mostrar la teoría con pestañas.
-        - Inicializa y organiza los componentes para cargar y mostrar datos en la tabla, así como para mostrar la teoría.
-        - Configura los menús y las interacciones de la interfaz gráfica.
+        Detalles:
+        --------
+        - La ventana principal (`self.root`) se ajusta dinámicamente al 80% del ancho y alto de la pantalla y se centra.
+        - Se utiliza un `PanedWindow` horizontal (`self.main_frame`) para dividir la interfaz en dos secciones:
+            1. **Panel izquierdo** (`self.data_frame`): Contiene un `Notebook` con pestañas para una tabla de datos y una sección de regresión.
+            2. **Panel derecho** (`self.frame_teoria`): Un área de ancho fijo para mostrar documentos PDF relacionados con la teoría.
+        - Se inicializan métodos y componentes adicionales para mejorar la interacción con la interfaz:
+            - `self.create_data_table(self.tab_datos)`: Configura la tabla de datos dentro de la pestaña "Tabla".
+            - `self.regression_canvas`: Un `Frame` que contendrá las gráficas de regresión, embebido en la pestaña "Regresión".
+            - `self.notebook`: Contiene las pestañas de teoría para "Caída Libre" y "Ley de Hooke", con carga diferida del PDF correspondiente.
+        - Los módulos `DataOperationsWithUI` y `RegressionAnalysis` se inicializan para manejar las operaciones de datos y análisis de regresión.
+        - Un mensaje de texto inicial (`self.no_data_label`) informa al usuario sobre la necesidad de cargar datos.
+
+        Eventos Configurados:
+        ---------------------
+        - `<Configure>`: Ajusta la posición del separador (`sash`) del `PanedWindow` para mantener el ancho fijo del panel de teoría.
+        - `<<NotebookTabChanged>>`: Llama a `self.on_tab_change` para cargar el PDF correspondiente al cambiar de pestaña en la teoría.
+        - `WM_DELETE_WINDOW`: Asocia el evento de cierre de la ventana con `self.on_close` para realizar limpieza antes de cerrar.
+
+        Menú:
+        -----
+        - Configurado mediante `self.setup_menus()`, incluye opciones para importar datos, exportar, procesar, y realizar regresiones.
+
+        Notas:
+        ------
+        - La estructura y los componentes de la interfaz gráfica están diseñados para ofrecer una navegación intuitiva y eficaz entre
+        la visualización de datos y teoría.
+        - La inicialización establece las bases para la interacción entre los módulos de manipulación de datos y gráficos personalizados.
         """
         self.root = tk.Tk()
         self.root.title("Software de Laboratorio")
@@ -132,36 +160,54 @@ class LaboratorySoftware:
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
 
     def on_close(self):
+        """
+        Maneja el evento de cierre de la aplicación.
+
+        Este método realiza las tareas de limpieza necesarias antes de finalizar la ejecución del programa.
+        - Detiene el bucle de eventos de la interfaz gráfica llamando a `self.root.quit()`.
+        - Destruye la ventana principal con `self.root.destroy()`, liberando los recursos asociados.
+
+        Notas:
+        ------
+        - Se recomienda usar este método para asegurarse de que los procesos abiertos se cierren correctamente
+        y evitar errores de cierre incorrecto o bloqueos en la terminal.
+        - Este método está vinculado al protocolo `WM_DELETE_WINDOW`, lo que permite manejar el evento de cierre de
+        la ventana con un comportamiento personalizado.
+        """
         # Aquí puedes realizar cualquier acción de limpieza antes de cerrar
         self.root.quit()  # Termina el bucle de eventos de Tkinter
         self.root.destroy()  # Cierra la ventana
 
     def load_pdf(self, tab, pdf_path):
         """
-        Carga un archivo PDF y lo muestra en un tab especificado en la interfaz gráfica.
+        Carga un archivo PDF y lo visualiza dentro de una pestaña específica en la interfaz gráfica.
 
         Args:
-            tab (tk.Widget): El contenedor donde se mostrará el contenido del PDF.
-            pdf_path (str): La ruta al archivo PDF que se desea cargar.
+            tab (tk.Widget): Contenedor en el que se mostrará el contenido del PDF.
+            pdf_path (str): Ruta del archivo PDF que se desea visualizar.
 
-        Detalles:
-            - Limpia el contenido existente del `tab` antes de cargar el nuevo PDF.
-            - Calcula la escala del PDF basada en el ancho disponible del frame dentro del `tab`.
-            - Renderiza cada página del PDF como una imagen y la agrega a un Canvas con barra de desplazamiento.
+        Descripción:
+            - Elimina cualquier contenido existente dentro del contenedor antes de cargar el nuevo PDF.
+            - Utiliza la librería `fitz` (PyMuPDF) para cargar y procesar el PDF.
+            - Escala cada página del PDF basándose en el ancho del contenedor para lograr una visualización adaptada.
+            - Renderiza cada página como una imagen y la coloca dentro de un Canvas con barra de desplazamiento.
+
+        Detalles Técnicos:
+            - Las imágenes renderizadas se generan utilizando `get_pixmap` de `fitz` para aplicar un factor de escala adecuado.
+            - Se utiliza un Canvas dentro de un Frame para permitir desplazamiento vertical, proporcionando una experiencia fluida.
+            - Cada imagen de página es almacenada como referencia en el atributo `image` de los widgets para evitar la recolección de basura.
 
         Ejemplo:
             ```python
-            # Supongamos que `tab` es un ttk.Frame y `pdf_path` es una ruta válida.
-            my_app.load_pdf(tab, "documento.pdf")
+            app.load_pdf(tab_frame, "manual_usuario.pdf")
             ```
 
         Notas:
-            - Se utiliza el módulo `fitz` de PyMuPDF para cargar y procesar el PDF.
-            - La visualización del PDF es responsiva y se adapta al ancho disponible del contenedor.
-            - Cada página se renderiza como una imagen y se agrega a un Canvas dentro de un Frame desplazable.
+            - Es necesario tener instalados los paquetes `PyMuPDF` (fitz) y `Pillow` (PIL).
+            - Si el archivo PDF contiene muchas páginas, la carga puede tomar algo de tiempo dependiendo del sistema.
 
         Requiere:
-            - PyMuPDF (fitz)
+            - fitz (PyMuPDF)
             - PIL (Pillow)
         """
         # Limpiar el contenido del tab antes de cargar el nuevo PDF
@@ -217,31 +263,33 @@ class LaboratorySoftware:
 
     def on_tab_change(self, event):
         """
-        Maneja el evento de cambio de pestaña en el notebook y carga el PDF correspondiente.
+        Gestiona el evento de cambio de pestaña en el cuaderno de teoría y carga el PDF correspondiente.
 
         Args:
-            event (tk.Event): El evento generado al cambiar de pestaña.
+            event (tk.Event): El evento generado al cambiar de pestaña en el widget `ttk.Notebook`.
 
-        Detalles:
-            - Identifica la pestaña seleccionada por su etiqueta de texto.
-            - Llama al método `load_pdf` para cargar el archivo PDF asociado a la pestaña seleccionada.
+        Descripción:
+            - Este método detecta la pestaña activa en el `Notebook` y carga el archivo PDF asociado a la pestaña seleccionada.
+            - Utiliza el método `load_pdf` para renderizar el contenido del PDF dentro de cada pestaña específica.
+        
+        Mapeo de pestañas a archivos PDF:
+            - "Caída libre" → `caida_libre.pdf`
+            - "Ley de Hooke" → `ley_de_hooke.pdf`
 
-        Pestañas y PDFs asociados:
-            - "Caída libre": Carga el archivo `caida_libre.pdf`.
-            - "Ley de Hooke": Carga el archivo `ley_de_hooke.pdf`.
-
-        Ejemplo:
+        Ejemplo de uso:
             ```python
-            notebook.bind("<<NotebookTabChanged>>", app.on_tab_change)
+            # Vincula el evento de cambio de pestaña al método
+            self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_change)
             ```
 
         Notas:
-            - Se asume que `self.notebook` es un widget `ttk.Notebook` y que 
-            las pestañas están configuradas correctamente con los nombres indicados.
-            - Los archivos PDF deben estar disponibles en las rutas especificadas.
+            - Se asume que las pestañas tienen etiquetas de texto coincidentes con los nombres definidos.
+            - Los archivos PDF deben estar accesibles en las rutas especificadas.
+            - El método `load_pdf` debe estar implementado en la misma clase.
 
         Requiere:
-            - El método `load_pdf` debe estar definido en la misma clase.
+            - PyMuPDF (fitz)
+            - PIL (Pillow)
         """
         selected_tab = self.notebook.tab(self.notebook.select(), "text")
         
@@ -252,30 +300,37 @@ class LaboratorySoftware:
 
     def create_data_table(self, parent=None):
         """
-        Crea y configura una tabla (`Treeview`) para mostrar datos con scrollbars vertical y horizontal.
+        Crea y configura una tabla de tipo `Treeview` dentro de un contenedor, con soporte para barras de desplazamiento vertical y horizontal.
 
-        Este método inicializa un `Treeview` dentro de un contenedor (`Frame`), agrega barras de desplazamiento
-        para navegación vertical y horizontal, y aplica estilos básicos a la tabla para mejorar su apariencia.
+        Este método inicializa un widget `Treeview` para mostrar datos en formato tabular, con barras de desplazamiento
+        asociadas al desplazamiento tanto horizontal como vertical. También aplica estilos básicos a la tabla para mejorar
+        la visualización, como el ajuste de la altura de las filas y el formato de los encabezados.
 
-        Detalles:
-            - La tabla se coloca dentro de un `Frame` en el contenedor proporcionado.
-            - Las barras de desplazamiento se asocian con el desplazamiento horizontal y vertical del `Treeview`.
-            - Se aplica un estilo personalizado para ajustar la altura de las filas y el formato de los encabezados.
+        Args:
+            parent (tk.Widget, opcional): El contenedor en el que se colocará la tabla. Si no se proporciona, se usa el contenedor predeterminado.
+        
+        Descripción:
+            - Crea un `Frame` dentro del contenedor proporcionado para albergar la tabla.
+            - Configura barras de desplazamiento tanto verticales como horizontales que permiten navegar por la tabla.
+            - Aplica un estilo básico para mejorar la apariencia de la tabla y los encabezados.
+            - El tamaño de la tabla se ajusta dinámicamente al tamaño del contenedor.
 
         Notas:
-            - Este método no incluye la carga de datos en la tabla, solo configura su estructura.
-            - El `Treeview` se ajusta automáticamente al tamaño del contenedor.
+            - Este método solo configura la estructura de la tabla. Los datos deben ser insertados posteriormente con el método `insert`.
+            - El tamaño de la tabla se adapta automáticamente al contenedor donde se coloca.
 
-        Requiere:
-            - `parent`: Un contenedor existente en la interfaz donde se colocará la tabla.
-        
         Ejemplo:
             ```python
+            # Crear la tabla dentro de un contenedor específico
             app.create_data_table(tab_datos)
-            # Cargar datos en la tabla después de su creación:
+            
+            # Insertar datos en la tabla
             for row in data:
                 app.data_table.insert('', 'end', values=row)
             ```
+
+        Requiere:
+            - Ninguna librería adicional para la creación de la tabla y los controles de desplazamiento.
         """
         if parent is None:
             parent = self.data_frame  # Usar el panel por defecto si no se pasa uno
@@ -308,31 +363,37 @@ class LaboratorySoftware:
 
     def update_data_display(self, data: pd.DataFrame):
         """
-        Actualiza la tabla (`Treeview`) con nuevos datos proporcionados en un DataFrame.
+        Actualiza la tabla de tipo `Treeview` con los nuevos datos proporcionados en un DataFrame.
+
+        Este método limpia el contenido actual de la tabla y la actualiza con los datos del DataFrame proporcionado.
+        Si el DataFrame es `None` o está vacío, se muestra un mensaje indicando la ausencia de datos.
 
         Args:
             data (pd.DataFrame): Un DataFrame con los datos a mostrar. 
-                - Si el DataFrame es `None` o está vacío, se muestra un mensaje indicando la ausencia de datos.
+                - Si el DataFrame es `None` o está vacío, se muestra un mensaje de "No hay datos disponibles".
 
         Detalles:
-            - Limpia el contenido actual de la tabla antes de insertar nuevos datos.
-            - Configura dinámicamente las columnas de la tabla basándose en los nombres de las columnas del DataFrame.
-            - Inserta las filas del DataFrame en la tabla, formateando los valores como cadenas.
+            - Se limpia el contenido actual de la tabla antes de insertar nuevos datos.
+            - Se configuran dinámicamente las columnas de la tabla basándose en los nombres de las columnas del DataFrame.
+            - Se insertan las filas del DataFrame en la tabla, formateando los valores como cadenas.
+            - Si no hay datos disponibles, se muestra un label con el mensaje correspondiente.
 
         Notas:
-            - Si no hay datos disponibles, se muestra un label (`self.no_data_label`) indicando "No hay datos disponibles".
             - El ancho inicial de las columnas se establece en 100 unidades, pero puede ser ajustado por el usuario.
+            - Se utiliza `self.no_data_label` para mostrar un mensaje de ausencia de datos cuando sea necesario.
 
         Ejemplo:
             ```python
-            # Actualizar la tabla con un nuevo DataFrame
+            # Crear un DataFrame
             df = pd.DataFrame({'Columna1': [1, 2, 3], 'Columna2': ['A', 'B', 'C']})
+            
+            # Actualizar la tabla con el DataFrame
             app.update_data_display(df)
             ```
 
         Requiere:
-            - `self.data_table`: Un widget `Treeview` previamente inicializado para mostrar datos.
-            - `self.no_data_label`: Un label para mostrar el mensaje de ausencia de datos.
+            - `self.data_table`: Un widget `Treeview` previamente inicializado para mostrar los datos.
+            - `self.no_data_label`: Un label para mostrar el mensaje de "No hay datos disponibles".
         """
         # Limpiar tabla existente
         self.data_table.delete(*self.data_table.get_children())
@@ -360,6 +421,24 @@ class LaboratorySoftware:
             self.no_data_label.pack(pady=20)
 
     def setup_menus(self):
+        """
+        Configura la barra de menús de la interfaz gráfica de la aplicación.
+
+        Este método crea un menú con las siguientes opciones:
+        - **Archivo**: Para importar, exportar y salir de la aplicación.
+        - **Edición**: Para procesar datos, como eliminar nulos, eliminar duplicados, normalizar datos, y rellenar valores nulos con la media.
+        - **Regresiones**: Submenú dentro de Edición para realizar regresión lineal, polinómica e interpolación de Lagrange.
+        - **Ver**: Para abrir el componente de graficación de la aplicación.
+        - **Acerca de**: Para acceder a la documentación y mostrar información sobre los autores.
+
+        Ejemplo de uso:
+            ```python
+            app.setup_menus()  # Configura la barra de menús en la ventana principal
+            ```
+
+        Requiere:
+            - Métodos asociados a las opciones de menú como `self.data_ops.load_file`, `self.data_ops.export_results`, etc.
+        """
         menubar = tk.Menu(self.root)
 
         # Menú Archivo
@@ -410,12 +489,44 @@ class LaboratorySoftware:
         self.root.config(menu=menubar)
 
     def show_autores(self):
-        """Muestra los autores del software."""
+        """
+        Muestra una ventana de información con los nombres de los autores del software.
+
+        Este método usa un cuadro de mensaje (`messagebox`) para mostrar los nombres de los autores cuando se selecciona la opción
+        "Autores" en el menú "Acerca de" de la aplicación.
+
+        Ejemplo de uso:
+            ```python
+            app.show_autores()  # Muestra la información de los autores
+            ```
+
+        Requiere:
+            - `messagebox.showinfo` de la librería `tkinter` para mostrar la ventana emergente con los autores.
+        """
         autores = "Andrés Gómez\nJorge Garzón\nJulián Aros\nLaura Oliveros\nLaura Triana\nSebastian Manrique"
         messagebox.showinfo("Autores", autores)
 
     def open_graficador(self):
-        """Método para ejecutar graficador.py en una nueva ventana y exportar a tmp_graph.pkl."""
+        """
+        Abre una nueva ventana ejecutando `graficador.py` y exporta los datos actuales a un archivo temporal `tmp_graph.pkl`.
+
+        Este método guarda los datos del DataFrame cargado en la aplicación en un archivo `tmp_graph.pkl` y luego ejecuta 
+        el script `graficador.py` en un proceso independiente. Si no hay datos disponibles, muestra un mensaje de error.
+
+        Retorna:
+            bool: `True` si se ejecuta correctamente, `False` si ocurre algún error.
+
+        Ejemplo de uso:
+            ```python
+            app.open_graficador()  # Ejecuta graficador.py y exporta los datos
+            ```
+
+        Requiere:
+            - `pickle` para guardar el DataFrame en un archivo.
+            - `subprocess.Popen` para ejecutar `graficador.py` en un proceso independiente.
+            - `sys` para obtener la ruta del ejecutable de Python.
+            - `messagebox.showerror` para mostrar mensajes de error.
+        """
         try:
             # Exportar a tmp_graph.pkl
             if self.data_ops.data is None:
@@ -451,28 +562,111 @@ class LaboratorySoftware:
             app.setup_menus()
             app.run()
             ```
+
+        Requiere:
+            - `self.root`: El widget raíz de la ventana de Tkinter.
         """
         self.root.mainloop()
 
     def perform_linear_regression(self):
+        """
+        Realiza una regresión lineal sobre los datos cargados.
+
+        Este método verifica si hay datos disponibles en `self.data_ops.data` y, en caso afirmativo,
+        llama al método `linear_regression` del objeto `self.regression` para realizar la regresión lineal.
+
+        Detalles:
+            - Si no hay datos cargados, muestra una advertencia.
+            - La regresión lineal se realiza utilizando los datos actuales.
+
+        Ejemplo:
+            ```python
+            app.perform_linear_regression()
+            ```
+
+        Requiere:
+            - `self.data_ops.data`: Los datos que deben ser procesados.
+            - `self.regression.linear_regression`: El método que ejecuta la regresión lineal.
+        """
         if self.data_ops.data is None:
             messagebox.showwarning("Advertencia", "No hay datos cargados")
             return
         self.regression.linear_regression()
 
     def perform_polynomial_regression(self):
+        """
+        Realiza una regresión polinómica sobre los datos cargados.
+
+        Este método verifica si hay datos disponibles en `self.data_ops.data` y, en caso afirmativo,
+        llama al método `polynomial_regression` del objeto `self.regression` para realizar la regresión polinómica.
+
+        Detalles:
+            - Si no hay datos cargados, muestra una advertencia.
+            - La regresión polinómica se realiza utilizando los datos actuales.
+
+        Ejemplo:
+            ```python
+            app.perform_polynomial_regression()
+            ```
+
+        Requiere:
+            - `self.data_ops.data`: Los datos que deben ser procesados.
+            - `self.regression.polynomial_regression`: El método que ejecuta la regresión polinómica.
+        """
         if self.data_ops.data is None:
             messagebox.showwarning("Advertencia", "No hay datos cargados")
             return
         self.regression.polynomial_regression()
 
     def perform_lagrange_interpolation(self):
+        """
+        Realiza una interpolación de Lagrange sobre los datos cargados.
+
+        Este método verifica si hay datos disponibles en `self.data_ops.data` y, en caso afirmativo,
+        llama al método `interpolation` del objeto `self.regression` para realizar la interpolación de Lagrange.
+
+        Detalles:
+            - Si no hay datos cargados, muestra una advertencia.
+            - La interpolación de Lagrange se realiza utilizando los datos actuales.
+
+        Ejemplo:
+            ```python
+            app.perform_lagrange_interpolation()
+            ```
+
+        Requiere:
+            - `self.data_ops.data`: Los datos que deben ser procesados.
+            - `self.regression.interpolation`: El método que ejecuta la interpolación de Lagrange.
+        """
         if self.data_ops.data is None:
             messagebox.showwarning("Advertencia", "No hay datos cargados")
             return
         self.regression.interpolation()
 
     def linear_regression(self):
+        """
+        Realiza una regresión lineal sobre los datos seleccionados por el usuario.
+
+        Este método muestra un cuadro de diálogo para que el usuario seleccione las variables para la regresión
+        (una independiente `var_x` y una dependiente `var_y`). Luego, realiza la regresión lineal utilizando el
+        método `linear_regression` de la clase `RegressionAnalysis` y muestra la gráfica resultante.
+
+        Detalles:
+            - Verifica que los datos estén disponibles utilizando el método `check_data()`.
+            - Permite al usuario seleccionar las variables para la regresión.
+            - Muestra la gráfica de la regresión en un `Canvas` de la interfaz.
+
+        Ejemplo:
+            ```python
+            app.linear_regression()
+            ```
+
+        Requiere:
+            - `self.check_data()`: Verifica que los datos estén disponibles.
+            - `VariableSelectionDialog`: Un cuadro de diálogo para seleccionar las variables.
+            - `self.regression.linear_regression`: Realiza la regresión lineal.
+            - `self.show_plot_in_canvas`: Muestra la gráfica generada en el `Canvas`.
+        """
         if not self.check_data():
             return
 
@@ -494,6 +688,29 @@ class LaboratorySoftware:
                 messagebox.showerror("Error", f"Error en la regresión: {str(e)}")
 
     def polynomial_regression(self):
+        """
+        Realiza una regresión polinómica sobre los datos seleccionados por el usuario.
+
+        Este método muestra un cuadro de diálogo para que el usuario seleccione las variables para la regresión
+        (una independiente `var_x` y una dependiente `var_y`). Luego, realiza la regresión polinómica utilizando el
+        método `polynomial_regression` de la clase `RegressionAnalysis` y muestra la gráfica resultante.
+
+        Detalles:
+            - Verifica que los datos estén disponibles utilizando el método `check_data()`.
+            - Permite al usuario seleccionar las variables para la regresión.
+            - Muestra la gráfica de la regresión polinómica en un `Canvas` de la interfaz.
+
+        Ejemplo:
+            ```python
+            app.polynomial_regression()
+            ```
+
+        Requiere:
+            - `self.check_data()`: Verifica que los datos estén disponibles.
+            - `VariableSelectionDialog`: Un cuadro de diálogo para seleccionar las variables.
+            - `self.regression.polynomial_regression`: Realiza la regresión polinómica.
+            - `self.show_plot_in_canvas`: Muestra la gráfica generada en el `Canvas`.
+        """
         if not self.check_data():
             return
 
@@ -515,6 +732,29 @@ class LaboratorySoftware:
                 messagebox.showerror("Error", f"Error en la regresión polinómica: {str(e)}")
 
     def interpolation(self):
+        """
+        Realiza una interpolación de Lagrange sobre los datos seleccionados por el usuario.
+
+        Este método muestra un cuadro de diálogo para que el usuario seleccione las variables para la interpolación
+        (una independiente `var_x` y una dependiente `var_y`). Luego, realiza la interpolación utilizando el método
+        `interpolation` de la clase `RegressionAnalysis` y muestra la gráfica resultante.
+
+        Detalles:
+            - Verifica que los datos estén disponibles utilizando el método `check_data()`.
+            - Permite al usuario seleccionar las variables para la interpolación.
+            - Muestra la gráfica de la interpolación en un `Canvas` de la interfaz.
+
+        Ejemplo:
+            ```python
+            app.interpolation()
+            ```
+
+        Requiere:
+            - `self.check_data()`: Verifica que los datos estén disponibles.
+            - `VariableSelectionDialog`: Un cuadro de diálogo para seleccionar las variables.
+            - `self.regression.interpolation`: Realiza la interpolación de Lagrange.
+            - `self.show_plot_in_canvas`: Muestra la gráfica generada en el `Canvas`.
+        """
         if not self.check_data():
             return
 
@@ -536,14 +776,53 @@ class LaboratorySoftware:
                 messagebox.showerror("Error", f"Error en la interpolación: {str(e)}")
 
     def check_data(self):
+        """
+        Verifica si hay datos cargados en la aplicación antes de realizar cualquier análisis.
+
+        Este método revisa si el atributo `self.data_ops.data` contiene datos. Si no es así, muestra una advertencia
+        al usuario indicando que no hay datos cargados, y retorna `False`. Si hay datos, retorna `True`.
+
+        Detalles:
+            - Es útil para asegurarse de que haya datos antes de ejecutar análisis como regresiones o interpolaciones.
+
+        Ejemplo:
+            ```python
+            if app.check_data():
+                app.linear_regression()
+            ```
+
+        Requiere:
+            - `self.data_ops.data`: Un atributo que debe contener los datos cargados en la aplicación.
+        """
         if self.data_ops.data is None:
             messagebox.showwarning("Advertencia", 
                                 "No hay datos cargados para realizar el análisis")
             return False
         return True
-    
+
     def show_plot_in_canvas(self, fig):
-        """Muestra la gráfica en el Canvas de la pestaña de Regresión."""
+        """
+        Muestra la gráfica en el Canvas de la pestaña de Regresión.
+
+        Este método limpia cualquier gráfico previo que se haya mostrado en el Canvas y luego
+        dibuja el nuevo gráfico generado. La gráfica se crea a partir de un objeto `fig` (Figura de Matplotlib)
+        y se muestra en el canvas asociado a la pestaña de Regresión.
+
+        Detalles:
+            - El método primero limpia cualquier gráfico previamente mostrado en el Canvas.
+            - Luego, utiliza `FigureCanvasTkAgg` de Matplotlib para convertir la figura en un widget de Tkinter.
+            - Finalmente, se empaqueta el widget del Canvas en el frame para que sea visible.
+
+        Ejemplo:
+            ```python
+            fig = some_matplotlib_figure  # Figura generada por un análisis
+            app.show_plot_in_canvas(fig)  # Mostrar la figura en el canvas
+            ```
+
+        Requiere:
+            - `self.regression_canvas`: Un `Frame` de Tkinter donde se mostrará la gráfica.
+            - `fig`: Un objeto `matplotlib.figure.Figure` que contiene el gráfico a mostrar.
+        """
         # Limpiar cualquier gráfico anterior en la pestaña
         for widget in self.regression_canvas.winfo_children():
             widget.destroy()
@@ -554,7 +833,27 @@ class LaboratorySoftware:
         canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)  # Empacar el widget canvas en el frame
 
 class VariableSelectionDialog:
+    """
+    Clase para crear un cuadro de diálogo modal que permite al usuario seleccionar dos variables (X e Y)
+    de un conjunto de columnas disponibles. El usuario puede seleccionar las variables a través de menús
+    desplegables y luego confirmar su selección con un botón de "Aceptar".
+
+    Attributes:
+        dialog (tk.Toplevel): Ventana emergente del cuadro de diálogo para la selección de variables.
+        result (tuple): Tupla que almacena la selección de las variables X e Y, o None si no se ha realizado
+                        ninguna selección.
+        var_x (ttk.Combobox): Menú desplegable para seleccionar la variable X.
+        var_y (ttk.Combobox): Menú desplegable para seleccionar la variable Y.
+    """
+
     def __init__(self, parent, columns):
+        """
+        Inicializa el cuadro de diálogo con menús desplegables para seleccionar las variables X e Y.
+
+        Args:
+            parent (tk.Tk): La ventana principal o widget padre que invoca el diálogo.
+            columns (list): Lista de columnas disponibles para seleccionar las variables.
+        """
         self.dialog = tk.Toplevel(parent)
         self.dialog.title("Selección de Variables")
         self.result = None
@@ -571,8 +870,14 @@ class VariableSelectionDialog:
                   command=self.on_accept).grid(row=2, column=0, columnspan=2, pady=10)
         
         self.dialog.wait_window()
-    
+
     def on_accept(self):
+        """
+        Método que se llama cuando el usuario hace clic en el botón de "Aceptar".
+        
+        Si ambas variables X e Y son seleccionadas, almacena las selecciones en el atributo `result` 
+        y cierra el diálogo.
+        """
         if self.var_x.get() and self.var_y.get():
             self.result = (self.var_x.get(), self.var_y.get())
             self.dialog.destroy()
@@ -894,7 +1199,6 @@ class DataOperationsWithUI(DataOperations):
 
         # Retorna la opción seleccionada (o None si se cierra sin confirmar)
         return selected_option.get() if selected_option.get() else None
-
 
 if __name__ == "__main__":
     app = LaboratorySoftware()
