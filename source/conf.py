@@ -9,10 +9,10 @@ import sphinx_book_theme
 sys.path.insert(0, os.path.abspath('../code'))  # Agrega el directorio 'code' al path
 
 # Nombre del proyecto
-project = 'Proyecto final'
+project = 'NovaLabUD'
 
 # Copyright
-copyright = '2024, Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique'
+copyright = '2025, Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique'
 
 # Autor del proyecto
 author = 'Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique'
@@ -45,10 +45,11 @@ html_static_path = ['assets']
 
 # Configuración adicional para el tema 'sphinx_book_theme'
 html_theme_options = {
-    'repository_url': 'https://github.com/usuario/repositorio',
+    'repository_url': 'https://github.com/jsmanriquem/NovaLabUD',
     'use_repository_button': True,
     'home_page_in_toc': True,
     'use_download_button': False,
+    'prev_next_buttons_location': None,
 }
 
 # Configuración para mostrar código fuente automáticamente
@@ -97,8 +98,8 @@ autodoc_default_options = {
 pygments_style = 'sphinx'
 
 # Configuración para el logo y favicon
-html_logo = 'assets/logo_provisional1.svg'
-html_favicon = 'assets/logo_provisional1.ico'
+html_logo = 'assets/NovaLabUD.webp'
+html_favicon = 'assets/NovaLabUD_icon.ico'
 
 # Configuración del archivo .nojekyll para GitHub Pages
 html_extra_path = ['.nojekyll']
