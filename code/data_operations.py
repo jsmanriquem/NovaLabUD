@@ -6,8 +6,6 @@ from sklearn.model_selection import train_test_split
 from tkinter import filedialog, messagebox
 from datetime import datetime
 
-
-
 class DataOperations:
     """
     Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
@@ -408,9 +406,6 @@ class DataOperations:
 
         # Mostrar el número total de filas afectadas
         messagebox.showinfo("Éxito", f"Se afectaron {affected_rows} valores nulos en total.")
-
-
-
 
     def export_results(self):
         """
