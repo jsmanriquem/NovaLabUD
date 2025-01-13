@@ -271,13 +271,6 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.root"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.root</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.main_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.main_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.results_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.results_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_table</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_ops"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_ops</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.no_data_label"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.no_data_label</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.__init__"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.on_close"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.on_close()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.load_pdf"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.load_pdf()</span></code></a></li>
@@ -299,6 +292,10 @@
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.dialog"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.dialog</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.result"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.result</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.var_x"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.var_x</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.var_y"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.var_y</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.__init__"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.on_accept"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.on_accept()</span></code></a></li>
 </ul>
@@ -337,103 +334,76 @@
 <p>Clase principal del Software de Laboratorio para análisis y procesamiento de datos.
 Esta clase implementa la interfaz gráfica principal y coordina todas las funcionalidades
 del software, incluyendo la carga de datos, visualización, procesamiento y análisis.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.root">
-<span class="sig-name descname"><span class="pre">root</span></span><a class="headerlink" href="#app.LaboratorySoftware.root" title="Link to this definition">#</a></dt>
-<dd><p>Ventana principal de la aplicación.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>tk.Tk</p>
+<dl class="simple">
+<dt>Atributos:</dt><dd><p>root (tk.Tk): Ventana principal de la aplicación.
+main_frame (ttk.PanedWindow): Panel principal dividido que contiene la tabla de datos y resultados.
+data_frame (ttk.LabelFrame): Marco para la tabla de datos.
+results_frame (ttk.LabelFrame): Marco para mostrar resultados y gráficas.
+data_table (ttk.Treeview): Tabla para visualizar los datos cargados.
+data_ops (DataOperationsWithUI): Instancia para operaciones de datos con UI.
+no_data_label (ttk.Label): Etiqueta mostrada cuando no hay datos cargados.
+regression_canvas (tk.Canvas): Canvas donde se muestran las gráficas generadas por las regresiones y análisis.
+regression (RegressionAnalysis): Instancia encargada de realizar los análisis estadísticos como regresión lineal y polinómica.</p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>VariableSelectionDialog</cite>: Diálogo para la selección de variables en los análisis de regresión.</p></li>
+<li><p><cite>DataOperationsWithUI</cite>: Clase encargada de las operaciones de carga, procesamiento y exportación de datos.</p></li>
+</ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.main_frame">
-<span class="sig-name descname"><span class="pre">main_frame</span></span><a class="headerlink" href="#app.LaboratorySoftware.main_frame" title="Link to this definition">#</a></dt>
-<dd><p>Panel principal dividido que contiene la tabla de datos y resultados.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.PanedWindow</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.data_frame">
-<span class="sig-name descname"><span class="pre">data_frame</span></span><a class="headerlink" href="#app.LaboratorySoftware.data_frame" title="Link to this definition">#</a></dt>
-<dd><p>Marco para la tabla de datos.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.LabelFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.results_frame">
-<span class="sig-name descname"><span class="pre">results_frame</span></span><a class="headerlink" href="#app.LaboratorySoftware.results_frame" title="Link to this definition">#</a></dt>
-<dd><p>Marco para mostrar resultados y gráficas.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.LabelFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.data_table">
-<span class="sig-name descname"><span class="pre">data_table</span></span><a class="headerlink" href="#app.LaboratorySoftware.data_table" title="Link to this definition">#</a></dt>
-<dd><p>Tabla para visualizar los datos cargados.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.Treeview</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.data_ops">
-<span class="sig-name descname"><span class="pre">data_ops</span></span><a class="headerlink" href="#app.LaboratorySoftware.data_ops" title="Link to this definition">#</a></dt>
-<dd><p>Instancia para operaciones de datos con UI.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#app.DataOperationsWithUI" title="app.DataOperationsWithUI">DataOperationsWithUI</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="app.LaboratorySoftware.no_data_label">
-<span class="sig-name descname"><span class="pre">no_data_label</span></span><a class="headerlink" href="#app.LaboratorySoftware.no_data_label" title="Link to this definition">#</a></dt>
-<dd><p>Etiqueta mostrada cuando no hay datos cargados.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>ttk.Label</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.__init__" title="Link to this definition">#</a></dt>
 <dd><p>Inicializa la aplicación del Software de Laboratorio.</p>
-<p>Este método configura la ventana principal de la aplicación, establece las dimensiones
-basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz gráfica
-(como los paneles y menús), y configura las pestañas para mostrar los contenidos de los experimentos.</p>
+<p>Este método configura la interfaz gráfica de usuario utilizando <cite>tkinter</cite>. Establece las dimensiones de la ventana principal
+según el tamaño de la pantalla del usuario, organiza los paneles principales, las pestañas para visualización de datos y teoría,
+y configura los menús para manejar acciones como importar, exportar y realizar análisis de regresión.</p>
+<section id="detalles">
+<h2>Detalles:<a class="headerlink" href="#detalles" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Configura la ventana con un tamaño proporcional a la pantalla del usuario.</p></li>
+<li><p>La ventana principal (<cite>self.root</cite>) se ajusta dinámicamente al 80% del ancho y alto de la pantalla y se centra.</p></li>
 <li><dl class="simple">
-<dt>Establece un diseño de ventana con un panel horizontal que contiene dos áreas:</dt><dd><ol class="arabic simple">
-<li><p>Un panel para mostrar los datos cargados.</p></li>
-<li><p>Un panel para mostrar la teoría con pestañas.</p></li>
+<dt>Se utiliza un <cite>PanedWindow</cite> horizontal (<cite>self.main_frame</cite>) para dividir la interfaz en dos secciones:</dt><dd><ol class="arabic simple">
+<li><p><strong>Panel izquierdo</strong> (<cite>self.data_frame</cite>): Contiene un <cite>Notebook</cite> con pestañas para una tabla de datos y una sección de regresión.</p></li>
+<li><p><strong>Panel derecho</strong> (<cite>self.frame_teoria</cite>): Un área de ancho fijo para mostrar documentos PDF relacionados con la teoría.</p></li>
 </ol>
 </dd>
 </dl>
 </li>
-<li><p>Inicializa y organiza los componentes para cargar y mostrar datos en la tabla, así como para mostrar la teoría.</p></li>
-<li><p>Configura los menús y las interacciones de la interfaz gráfica.</p></li>
+<li><dl class="simple">
+<dt>Se inicializan métodos y componentes adicionales para mejorar la interacción con la interfaz:</dt><dd><ul>
+<li><p><cite>self.create_data_table(self.tab_datos)</cite>: Configura la tabla de datos dentro de la pestaña «Tabla».</p></li>
+<li><p><cite>self.regression_canvas</cite>: Un <cite>Frame</cite> que contendrá las gráficas de regresión, embebido en la pestaña «Regresión».</p></li>
+<li><p><cite>self.notebook</cite>: Contiene las pestañas de teoría para «Caída Libre» y «Ley de Hooke», con carga diferida del PDF correspondiente.</p></li>
 </ul>
+</dd>
+</dl>
+</li>
+<li><p>Los módulos <cite>DataOperationsWithUI</cite> y <cite>RegressionAnalysis</cite> se inicializan para manejar las operaciones de datos y análisis de regresión.</p></li>
+<li><p>Un mensaje de texto inicial (<cite>self.no_data_label</cite>) informa al usuario sobre la necesidad de cargar datos.</p></li>
+</ul>
+</section>
+<section id="eventos-configurados">
+<h2>Eventos Configurados:<a class="headerlink" href="#eventos-configurados" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><cite>&lt;Configure&gt;</cite>: Ajusta la posición del separador (<cite>sash</cite>) del <cite>PanedWindow</cite> para mantener el ancho fijo del panel de teoría.</p></li>
+<li><p><cite>&lt;&lt;NotebookTabChanged&gt;&gt;</cite>: Llama a <cite>self.on_tab_change</cite> para cargar el PDF correspondiente al cambiar de pestaña en la teoría.</p></li>
+<li><p><cite>WM_DELETE_WINDOW</cite>: Asocia el evento de cierre de la ventana con <cite>self.on_close</cite> para realizar limpieza antes de cerrar.</p></li>
+</ul>
+</section>
+<section id="menu">
+<h2>Menú:<a class="headerlink" href="#menu" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Configurado mediante <cite>self.setup_menus()</cite>, incluye opciones para importar datos, exportar, procesar, y realizar regresiones.</p></li>
+</ul>
+</section>
+<section id="notas">
+<h2>Notas:<a class="headerlink" href="#notas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>La estructura y los componentes de la interfaz gráfica están diseñados para ofrecer una navegación intuitiva y eficaz entre</p></li>
+</ul>
+<p>la visualización de datos y teoría.
+- La inicialización establece las bases para la interacción entre los módulos de manipulación de datos y gráficos personalizados.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
@@ -527,6 +497,7 @@ basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz 
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">protocol</span><span class="p">(</span><span class="s2">&quot;WM_DELETE_WINDOW&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_close</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <dl class="field-list simple">
 <dt class="field-odd">Tipo del valor devuelto<span class="colon">:</span></dt>
 <dd class="field-odd"><p>None</p>
@@ -537,46 +508,65 @@ basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.on_close">
 <span class="sig-name descname"><span class="pre">on_close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.on_close" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Maneja el evento de cierre de la aplicación.</p>
+<p>Este método realiza las tareas de limpieza necesarias antes de finalizar la ejecución del programa.
+- Detiene el bucle de eventos de la interfaz gráfica llamando a <cite>self.root.quit()</cite>.
+- Destruye la ventana principal con <cite>self.root.destroy()</cite>, liberando los recursos asociados.</p>
+<section id="id1">
+<h2>Notas:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Se recomienda usar este método para asegurarse de que los procesos abiertos se cierren correctamente</p></li>
+</ul>
+<p>y evitar errores de cierre incorrecto o bloqueos en la terminal.
+- Este método está vinculado al protocolo <cite>WM_DELETE_WINDOW</cite>, lo que permite manejar el evento de cierre de
+la ventana con un comportamiento personalizado.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="c1"># Aquí puedes realizar cualquier acción de limpieza antes de cerrar</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>  <span class="c1"># Termina el bucle de eventos de Tkinter</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>  <span class="c1"># Cierra la ventana</span>
 </pre></div>
 </div>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.load_pdf">
 <span class="sig-name descname"><span class="pre">load_pdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdf_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.load_pdf" title="Link to this definition">#</a></dt>
-<dd><p>Carga un archivo PDF y lo muestra en un tab especificado en la interfaz gráfica.</p>
+<dd><p>Carga un archivo PDF y lo visualiza dentro de una pestaña específica en la interfaz gráfica.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>tab</strong> (<em>tk.Widget</em>) – El contenedor donde se mostrará el contenido del PDF.</p></li>
-<li><p><strong>pdf_path</strong> (<em>str</em>) – La ruta al archivo PDF que se desea cargar.</p></li>
+<li><p><strong>tab</strong> (<em>tk.Widget</em>) – Contenedor en el que se mostrará el contenido del PDF.</p></li>
+<li><p><strong>pdf_path</strong> (<em>str</em>) – Ruta del archivo PDF que se desea visualizar.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="simple">
-<dt>Detalles:</dt><dd><ul class="simple">
-<li><p>Limpia el contenido existente del <cite>tab</cite> antes de cargar el nuevo PDF.</p></li>
-<li><p>Calcula la escala del PDF basada en el ancho disponible del frame dentro del <cite>tab</cite>.</p></li>
-<li><p>Renderiza cada página del PDF como una imagen y la agrega a un Canvas con barra de desplazamiento.</p></li>
+<dt>Descripción:</dt><dd><ul class="simple">
+<li><p>Elimina cualquier contenido existente dentro del contenedor antes de cargar el nuevo PDF.</p></li>
+<li><p>Utiliza la librería <cite>fitz</cite> (PyMuPDF) para cargar y procesar el PDF.</p></li>
+<li><p>Escala cada página del PDF basándose en el ancho del contenedor para lograr una visualización adaptada.</p></li>
+<li><p>Renderiza cada página como una imagen y la coloca dentro de un Canvas con barra de desplazamiento.</p></li>
+</ul>
+</dd>
+<dt>Detalles Técnicos:</dt><dd><ul class="simple">
+<li><p>Las imágenes renderizadas se generan utilizando <cite>get_pixmap</cite> de <cite>fitz</cite> para aplicar un factor de escala adecuado.</p></li>
+<li><p>Se utiliza un Canvas dentro de un Frame para permitir desplazamiento vertical, proporcionando una experiencia fluida.</p></li>
+<li><p>Cada imagen de página es almacenada como referencia en el atributo <cite>image</cite> de los widgets para evitar la recolección de basura.</p></li>
 </ul>
 </dd>
 <dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
-<span class="pre">#</span> <span class="pre">Supongamos</span> <span class="pre">que</span> <span class="pre">`tab`</span> <span class="pre">es</span> <span class="pre">un</span> <span class="pre">ttk.Frame</span> <span class="pre">y</span> <span class="pre">`pdf_path`</span> <span class="pre">es</span> <span class="pre">una</span> <span class="pre">ruta</span> <span class="pre">válida.</span>
-<span class="pre">my_app.load_pdf(tab,</span> <span class="pre">&quot;documento.pdf&quot;)</span>
+<span class="pre">app.load_pdf(tab_frame,</span> <span class="pre">&quot;manual_usuario.pdf&quot;)</span>
 <span class="pre">`</span></code></p>
 </dd>
 <dt>Notas:</dt><dd><ul class="simple">
-<li><p>Se utiliza el módulo <cite>fitz</cite> de PyMuPDF para cargar y procesar el PDF.</p></li>
-<li><p>La visualización del PDF es responsiva y se adapta al ancho disponible del contenedor.</p></li>
-<li><p>Cada página se renderiza como una imagen y se agrega a un Canvas dentro de un Frame desplazable.</p></li>
+<li><p>Es necesario tener instalados los paquetes <cite>PyMuPDF</cite> (fitz) y <cite>Pillow</cite> (PIL).</p></li>
+<li><p>Si el archivo PDF contiene muchas páginas, la carga puede tomar algo de tiempo dependiendo del sistema.</p></li>
 </ul>
 </dd>
 <dt>Requiere:</dt><dd><ul class="simple">
-<li><p>PyMuPDF (fitz)</p></li>
+<li><p>fitz (PyMuPDF)</p></li>
 <li><p>PIL (Pillow)</p></li>
 </ul>
 </dd>
@@ -640,35 +630,37 @@ basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.on_tab_change">
 <span class="sig-name descname"><span class="pre">on_tab_change</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.on_tab_change" title="Link to this definition">#</a></dt>
-<dd><p>Maneja el evento de cambio de pestaña en el notebook y carga el PDF correspondiente.</p>
+<dd><p>Gestiona el evento de cambio de pestaña en el cuaderno de teoría y carga el PDF correspondiente.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>event</strong> (<em>tk.Event</em>) – El evento generado al cambiar de pestaña.</p>
+<dd class="field-odd"><p><strong>event</strong> (<em>tk.Event</em>) – El evento generado al cambiar de pestaña en el widget <cite>ttk.Notebook</cite>.</p>
 </dd>
 </dl>
-<dl>
-<dt>Detalles:</dt><dd><ul class="simple">
-<li><p>Identifica la pestaña seleccionada por su etiqueta de texto.</p></li>
-<li><p>Llama al método <cite>load_pdf</cite> para cargar el archivo PDF asociado a la pestaña seleccionada.</p></li>
+<dl class="simple">
+<dt>Descripción:</dt><dd><ul class="simple">
+<li><p>Este método detecta la pestaña activa en el <cite>Notebook</cite> y carga el archivo PDF asociado a la pestaña seleccionada.</p></li>
+<li><p>Utiliza el método <cite>load_pdf</cite> para renderizar el contenido del PDF dentro de cada pestaña específica.</p></li>
 </ul>
 </dd>
-<dt>Pestañas y PDFs asociados:</dt><dd><ul class="simple">
-<li><p>«Caída libre»: Carga el archivo <cite>caida_libre.pdf</cite>.</p></li>
-<li><p>«Ley de Hooke»: Carga el archivo <cite>ley_de_hooke.pdf</cite>.</p></li>
+<dt>Mapeo de pestañas a archivos PDF:</dt><dd><ul class="simple">
+<li><p>«Caída libre» → <cite>caida_libre.pdf</cite></p></li>
+<li><p>«Ley de Hooke» → <cite>ley_de_hooke.pdf</cite></p></li>
 </ul>
 </dd>
-<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
-<span class="pre">notebook.bind(&quot;&lt;&lt;NotebookTabChanged&gt;&gt;&quot;,</span> <span class="pre">app.on_tab_change)</span>
+<dt>Ejemplo de uso:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">#</span> <span class="pre">Vincula</span> <span class="pre">el</span> <span class="pre">evento</span> <span class="pre">de</span> <span class="pre">cambio</span> <span class="pre">de</span> <span class="pre">pestaña</span> <span class="pre">al</span> <span class="pre">método</span>
+<span class="pre">self.notebook.bind(&quot;&lt;&lt;NotebookTabChanged&gt;&gt;&quot;,</span> <span class="pre">self.on_tab_change)</span>
 <span class="pre">`</span></code></p>
 </dd>
 <dt>Notas:</dt><dd><ul class="simple">
-<li><p>Se asume que <cite>self.notebook</cite> es un widget <cite>ttk.Notebook</cite> y que</p></li>
+<li><p>Se asume que las pestañas tienen etiquetas de texto coincidentes con los nombres definidos.</p></li>
+<li><p>Los archivos PDF deben estar accesibles en las rutas especificadas.</p></li>
+<li><p>El método <cite>load_pdf</cite> debe estar implementado en la misma clase.</p></li>
 </ul>
-<p>las pestañas están configuradas correctamente con los nombres indicados.
-- Los archivos PDF deben estar disponibles en las rutas especificadas.</p>
 </dd>
 <dt>Requiere:</dt><dd><ul class="simple">
-<li><p>El método <cite>load_pdf</cite> debe estar definido en la misma clase.</p></li>
+<li><p>PyMuPDF (fitz)</p></li>
+<li><p>PIL (Pillow)</p></li>
 </ul>
 </dd>
 </dl>
@@ -687,33 +679,41 @@ basadas en el tamaño de la pantalla, inicializa los componentes de la interfaz 
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.create_data_table">
 <span class="sig-name descname"><span class="pre">create_data_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.create_data_table" title="Link to this definition">#</a></dt>
-<dd><p>Crea y configura una tabla (<cite>Treeview</cite>) para mostrar datos con scrollbars vertical y horizontal.</p>
-<p>Este método inicializa un <cite>Treeview</cite> dentro de un contenedor (<cite>Frame</cite>), agrega barras de desplazamiento
-para navegación vertical y horizontal, y aplica estilos básicos a la tabla para mejorar su apariencia.</p>
+<dd><p>Crea y configura una tabla de tipo <cite>Treeview</cite> dentro de un contenedor, con soporte para barras de desplazamiento vertical y horizontal.</p>
+<p>Este método inicializa un widget <cite>Treeview</cite> para mostrar datos en formato tabular, con barras de desplazamiento
+asociadas al desplazamiento tanto horizontal como vertical. También aplica estilos básicos a la tabla para mejorar
+la visualización, como el ajuste de la altura de las filas y el formato de los encabezados.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>parent</strong> (<em>tk.Widget</em><em>, </em><em>opcional</em>) – El contenedor en el que se colocará la tabla. Si no se proporciona, se usa el contenedor predeterminado.</p>
+</dd>
+</dl>
 <dl>
-<dt>Detalles:</dt><dd><ul class="simple">
-<li><p>La tabla se coloca dentro de un <cite>Frame</cite> en el contenedor proporcionado.</p></li>
-<li><p>Las barras de desplazamiento se asocian con el desplazamiento horizontal y vertical del <cite>Treeview</cite>.</p></li>
-<li><p>Se aplica un estilo personalizado para ajustar la altura de las filas y el formato de los encabezados.</p></li>
+<dt>Descripción:</dt><dd><ul class="simple">
+<li><p>Crea un <cite>Frame</cite> dentro del contenedor proporcionado para albergar la tabla.</p></li>
+<li><p>Configura barras de desplazamiento tanto verticales como horizontales que permiten navegar por la tabla.</p></li>
+<li><p>Aplica un estilo básico para mejorar la apariencia de la tabla y los encabezados.</p></li>
+<li><p>El tamaño de la tabla se ajusta dinámicamente al tamaño del contenedor.</p></li>
 </ul>
 </dd>
 <dt>Notas:</dt><dd><ul class="simple">
-<li><p>Este método no incluye la carga de datos en la tabla, solo configura su estructura.</p></li>
-<li><p>El <cite>Treeview</cite> se ajusta automáticamente al tamaño del contenedor.</p></li>
+<li><p>Este método solo configura la estructura de la tabla. Los datos deben ser insertados posteriormente con el método <cite>insert</cite>.</p></li>
+<li><p>El tamaño de la tabla se adapta automáticamente al contenedor donde se coloca.</p></li>
 </ul>
 </dd>
-<dt>Requiere:</dt><dd><ul class="simple">
-<li><p><cite>parent</cite>: Un contenedor existente en la interfaz donde se colocará la tabla.</p></li>
-</ul>
-</dd>
-<dt>Ejemplo:</dt><dd><p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>python
-app.create_data_table(tab_datos)
-# Cargar datos en la tabla después de su creación:
+<dt>Ejemplo:</dt><dd><p><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a>python
+# Crear la tabla dentro de un contenedor específico
+app.create_data_table(tab_datos)</p>
+<p># Insertar datos en la tabla
 for row in data:</p>
 <blockquote>
 <div><p>app.data_table.insert(“”, “end”, values=row)</p>
 </div></blockquote>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<p><a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p>Ninguna librería adicional para la creación de la tabla y los controles de desplazamiento.</p></li>
+</ul>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_data_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -753,34 +753,38 @@ for row in data:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.update_data_display">
 <span class="sig-name descname"><span class="pre">update_data_display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.update_data_display" title="Link to this definition">#</a></dt>
-<dd><p>Actualiza la tabla (<cite>Treeview</cite>) con nuevos datos proporcionados en un DataFrame.</p>
+<dd><p>Actualiza la tabla de tipo <cite>Treeview</cite> con los nuevos datos proporcionados en un DataFrame.</p>
+<p>Este método limpia el contenido actual de la tabla y la actualiza con los datos del DataFrame proporcionado.
+Si el DataFrame es <cite>None</cite> o está vacío, se muestra un mensaje indicando la ausencia de datos.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>data</strong> (<em>pd.DataFrame</em>) – Un DataFrame con los datos a mostrar.
-- Si el DataFrame es <cite>None</cite> o está vacío, se muestra un mensaje indicando la ausencia de datos.</p>
+- Si el DataFrame es <cite>None</cite> o está vacío, se muestra un mensaje de «No hay datos disponibles».</p>
 </dd>
 </dl>
-<dl class="simple">
+<dl>
 <dt>Detalles:</dt><dd><ul class="simple">
-<li><p>Limpia el contenido actual de la tabla antes de insertar nuevos datos.</p></li>
-<li><p>Configura dinámicamente las columnas de la tabla basándose en los nombres de las columnas del DataFrame.</p></li>
-<li><p>Inserta las filas del DataFrame en la tabla, formateando los valores como cadenas.</p></li>
+<li><p>Se limpia el contenido actual de la tabla antes de insertar nuevos datos.</p></li>
+<li><p>Se configuran dinámicamente las columnas de la tabla basándose en los nombres de las columnas del DataFrame.</p></li>
+<li><p>Se insertan las filas del DataFrame en la tabla, formateando los valores como cadenas.</p></li>
+<li><p>Si no hay datos disponibles, se muestra un label con el mensaje correspondiente.</p></li>
 </ul>
 </dd>
 <dt>Notas:</dt><dd><ul class="simple">
-<li><p>Si no hay datos disponibles, se muestra un label (<cite>self.no_data_label</cite>) indicando «No hay datos disponibles».</p></li>
 <li><p>El ancho inicial de las columnas se establece en 100 unidades, pero puede ser ajustado por el usuario.</p></li>
+<li><p>Se utiliza <cite>self.no_data_label</cite> para mostrar un mensaje de ausencia de datos cuando sea necesario.</p></li>
 </ul>
 </dd>
-<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
-<span class="pre">#</span> <span class="pre">Actualizar</span> <span class="pre">la</span> <span class="pre">tabla</span> <span class="pre">con</span> <span class="pre">un</span> <span class="pre">nuevo</span> <span class="pre">DataFrame</span>
-<span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.DataFrame({'Columna1':</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3],</span> <span class="pre">'Columna2':</span> <span class="pre">['A',</span> <span class="pre">'B',</span> <span class="pre">'C']})</span>
-<span class="pre">app.update_data_display(df)</span>
-<span class="pre">`</span></code></p>
+<dt>Ejemplo:</dt><dd><p><a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a>python
+# Crear un DataFrame
+df = pd.DataFrame({“Columna1”: [1, 2, 3], “Columna2”: [“A”, “B”, “C”]})</p>
+<p># Actualizar la tabla con el DataFrame
+app.update_data_display(df)
+<a href="#id14"><span class="problematic" id="id15">``</span></a><a href="#id16"><span class="problematic" id="id17">`</span></a></p>
 </dd>
 <dt>Requiere:</dt><dd><ul class="simple">
-<li><p><cite>self.data_table</cite>: Un widget <cite>Treeview</cite> previamente inicializado para mostrar datos.</p></li>
-<li><p><cite>self.no_data_label</cite>: Un label para mostrar el mensaje de ausencia de datos.</p></li>
+<li><p><cite>self.data_table</cite>: Un widget <cite>Treeview</cite> previamente inicializado para mostrar los datos.</p></li>
+<li><p><cite>self.no_data_label</cite>: Un label para mostrar el mensaje de «No hay datos disponibles».</p></li>
 </ul>
 </dd>
 </dl>
@@ -817,7 +821,25 @@ for row in data:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.setup_menus">
 <span class="sig-name descname"><span class="pre">setup_menus</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.setup_menus" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Configura la barra de menús de la interfaz gráfica de la aplicación.</p>
+<p>Este método crea un menú con las siguientes opciones:
+- <strong>Archivo</strong>: Para importar, exportar y salir de la aplicación.
+- <strong>Edición</strong>: Para procesar datos, como eliminar nulos, eliminar duplicados, normalizar datos, y rellenar valores nulos con la media.
+- <strong>Regresiones</strong>: Submenú dentro de Edición para realizar regresión lineal, polinómica e interpolación de Lagrange.
+- <strong>Ver</strong>: Para abrir el componente de graficación de la aplicación.
+- <strong>Acerca de</strong>: Para acceder a la documentación y mostrar información sobre los autores.</p>
+<dl class="simple">
+<dt>Ejemplo de uso:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.setup_menus()</span>&#160; <span class="pre">#</span> <span class="pre">Configura</span> <span class="pre">la</span> <span class="pre">barra</span> <span class="pre">de</span> <span class="pre">menús</span> <span class="pre">en</span> <span class="pre">la</span> <span class="pre">ventana</span> <span class="pre">principal</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p>Métodos asociados a las opciones de menú como <cite>self.data_ops.load_file</cite>, <cite>self.data_ops.export_results</cite>, etc.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">setup_menus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="n">menubar</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
 
     <span class="c1"># Menú Archivo</span>
@@ -873,7 +895,19 @@ for row in data:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.show_autores">
 <span class="sig-name descname"><span class="pre">show_autores</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_autores" title="Link to this definition">#</a></dt>
-<dd><p>Muestra los autores del software.</p>
+<dd><p>Muestra una ventana de información con los nombres de los autores del software.</p>
+<p>Este método usa un cuadro de mensaje (<cite>messagebox</cite>) para mostrar los nombres de los autores cuando se selecciona la opción
+«Autores» en el menú «Acerca de» de la aplicación.</p>
+<dl class="simple">
+<dt>Ejemplo de uso:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.show_autores()</span>&#160; <span class="pre">#</span> <span class="pre">Muestra</span> <span class="pre">la</span> <span class="pre">información</span> <span class="pre">de</span> <span class="pre">los</span> <span class="pre">autores</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>messagebox.showinfo</cite> de la librería <cite>tkinter</cite> para mostrar la ventana emergente con los autores.</p></li>
+</ul>
+</dd>
+</dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_autores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="n">autores</span> <span class="o">=</span> <span class="s2">&quot;Andrés Gómez</span><span class="se">\n</span><span class="s2">Jorge Garzón</span><span class="se">\n</span><span class="s2">Julián Aros</span><span class="se">\n</span><span class="s2">Laura Oliveros</span><span class="se">\n</span><span class="s2">Laura Triana</span><span class="se">\n</span><span class="s2">Sebastian Manrique&quot;</span>
@@ -885,7 +919,24 @@ for row in data:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.open_graficador">
 <span class="sig-name descname"><span class="pre">open_graficador</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.open_graficador" title="Link to this definition">#</a></dt>
-<dd><p>Método para ejecutar graficador.py en una nueva ventana y exportar a tmp_graph.pkl.</p>
+<dd><p>Abre una nueva ventana ejecutando <cite>graficador.py</cite> y exporta los datos actuales a un archivo temporal <cite>tmp_graph.pkl</cite>.</p>
+<p>Este método guarda los datos del DataFrame cargado en la aplicación en un archivo <cite>tmp_graph.pkl</cite> y luego ejecuta
+el script <cite>graficador.py</cite> en un proceso independiente. Si no hay datos disponibles, muestra un mensaje de error.</p>
+<dl class="simple">
+<dt>Retorna:</dt><dd><p>bool: <cite>True</cite> si se ejecuta correctamente, <cite>False</cite> si ocurre algún error.</p>
+</dd>
+<dt>Ejemplo de uso:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.open_graficador()</span>&#160; <span class="pre">#</span> <span class="pre">Ejecuta</span> <span class="pre">graficador.py</span> <span class="pre">y</span> <span class="pre">exporta</span> <span class="pre">los</span> <span class="pre">datos</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>pickle</cite> para guardar el DataFrame en un archivo.</p></li>
+<li><p><cite>subprocess.Popen</cite> para ejecutar <cite>graficador.py</cite> en un proceso independiente.</p></li>
+<li><p><cite>sys</cite> para obtener la ruta del ejecutable de Python.</p></li>
+<li><p><cite>messagebox.showerror</cite> para mostrar mensajes de error.</p></li>
+</ul>
+</dd>
+</dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">open_graficador</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
     <span class="k">try</span><span class="p">:</span>
@@ -927,6 +978,10 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <span class="pre">app.run()</span>
 <span class="pre">`</span></code></p>
 </dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.root</cite>: El widget raíz de la ventana de Tkinter.</p></li>
+</ul>
+</dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
@@ -943,7 +998,27 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.perform_linear_regression">
 <span class="sig-name descname"><span class="pre">perform_linear_regression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.perform_linear_regression" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Realiza una regresión lineal sobre los datos cargados.</p>
+<p>Este método verifica si hay datos disponibles en <cite>self.data_ops.data</cite> y, en caso afirmativo,
+llama al método <cite>linear_regression</cite> del objeto <cite>self.regression</cite> para realizar la regresión lineal.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Si no hay datos cargados, muestra una advertencia.</p></li>
+<li><p>La regresión lineal se realiza utilizando los datos actuales.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.perform_linear_regression()</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.data_ops.data</cite>: Los datos que deben ser procesados.</p></li>
+<li><p><cite>self.regression.linear_regression</cite>: El método que ejecuta la regresión lineal.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos cargados&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -955,7 +1030,27 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.perform_polynomial_regression">
 <span class="sig-name descname"><span class="pre">perform_polynomial_regression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.perform_polynomial_regression" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Realiza una regresión polinómica sobre los datos cargados.</p>
+<p>Este método verifica si hay datos disponibles en <cite>self.data_ops.data</cite> y, en caso afirmativo,
+llama al método <cite>polynomial_regression</cite> del objeto <cite>self.regression</cite> para realizar la regresión polinómica.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Si no hay datos cargados, muestra una advertencia.</p></li>
+<li><p>La regresión polinómica se realiza utilizando los datos actuales.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.perform_polynomial_regression()</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.data_ops.data</cite>: Los datos que deben ser procesados.</p></li>
+<li><p><cite>self.regression.polynomial_regression</cite>: El método que ejecuta la regresión polinómica.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos cargados&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -967,7 +1062,27 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.perform_lagrange_interpolation">
 <span class="sig-name descname"><span class="pre">perform_lagrange_interpolation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.perform_lagrange_interpolation" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_lagrange_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Realiza una interpolación de Lagrange sobre los datos cargados.</p>
+<p>Este método verifica si hay datos disponibles en <cite>self.data_ops.data</cite> y, en caso afirmativo,
+llama al método <cite>interpolation</cite> del objeto <cite>self.regression</cite> para realizar la interpolación de Lagrange.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Si no hay datos cargados, muestra una advertencia.</p></li>
+<li><p>La interpolación de Lagrange se realiza utilizando los datos actuales.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.perform_lagrange_interpolation()</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.data_ops.data</cite>: Los datos que deben ser procesados.</p></li>
+<li><p><cite>self.regression.interpolation</cite>: El método que ejecuta la interpolación de Lagrange.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">perform_lagrange_interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos cargados&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -979,7 +1094,31 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.linear_regression">
 <span class="sig-name descname"><span class="pre">linear_regression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.linear_regression" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Realiza una regresión lineal sobre los datos seleccionados por el usuario.</p>
+<p>Este método muestra un cuadro de diálogo para que el usuario seleccione las variables para la regresión
+(una independiente <cite>var_x</cite> y una dependiente <cite>var_y</cite>). Luego, realiza la regresión lineal utilizando el
+método <cite>linear_regression</cite> de la clase <cite>RegressionAnalysis</cite> y muestra la gráfica resultante.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Verifica que los datos estén disponibles utilizando el método <cite>check_data()</cite>.</p></li>
+<li><p>Permite al usuario seleccionar las variables para la regresión.</p></li>
+<li><p>Muestra la gráfica de la regresión en un <cite>Canvas</cite> de la interfaz.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.linear_regression()</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.check_data()</cite>: Verifica que los datos estén disponibles.</p></li>
+<li><p><cite>VariableSelectionDialog</cite>: Un cuadro de diálogo para seleccionar las variables.</p></li>
+<li><p><cite>self.regression.linear_regression</cite>: Realiza la regresión lineal.</p></li>
+<li><p><cite>self.show_plot_in_canvas</cite>: Muestra la gráfica generada en el <cite>Canvas</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_data</span><span class="p">():</span>
         <span class="k">return</span>
 
@@ -1006,7 +1145,31 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.polynomial_regression">
 <span class="sig-name descname"><span class="pre">polynomial_regression</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.polynomial_regression" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Realiza una regresión polinómica sobre los datos seleccionados por el usuario.</p>
+<p>Este método muestra un cuadro de diálogo para que el usuario seleccione las variables para la regresión
+(una independiente <cite>var_x</cite> y una dependiente <cite>var_y</cite>). Luego, realiza la regresión polinómica utilizando el
+método <cite>polynomial_regression</cite> de la clase <cite>RegressionAnalysis</cite> y muestra la gráfica resultante.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Verifica que los datos estén disponibles utilizando el método <cite>check_data()</cite>.</p></li>
+<li><p>Permite al usuario seleccionar las variables para la regresión.</p></li>
+<li><p>Muestra la gráfica de la regresión polinómica en un <cite>Canvas</cite> de la interfaz.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.polynomial_regression()</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.check_data()</cite>: Verifica que los datos estén disponibles.</p></li>
+<li><p><cite>VariableSelectionDialog</cite>: Un cuadro de diálogo para seleccionar las variables.</p></li>
+<li><p><cite>self.regression.polynomial_regression</cite>: Realiza la regresión polinómica.</p></li>
+<li><p><cite>self.show_plot_in_canvas</cite>: Muestra la gráfica generada en el <cite>Canvas</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_regression</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_data</span><span class="p">():</span>
         <span class="k">return</span>
 
@@ -1033,7 +1196,31 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.interpolation">
 <span class="sig-name descname"><span class="pre">interpolation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.interpolation" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Realiza una interpolación de Lagrange sobre los datos seleccionados por el usuario.</p>
+<p>Este método muestra un cuadro de diálogo para que el usuario seleccione las variables para la interpolación
+(una independiente <cite>var_x</cite> y una dependiente <cite>var_y</cite>). Luego, realiza la interpolación utilizando el método
+<cite>interpolation</cite> de la clase <cite>RegressionAnalysis</cite> y muestra la gráfica resultante.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Verifica que los datos estén disponibles utilizando el método <cite>check_data()</cite>.</p></li>
+<li><p>Permite al usuario seleccionar las variables para la interpolación.</p></li>
+<li><p>Muestra la gráfica de la interpolación en un <cite>Canvas</cite> de la interfaz.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">app.interpolation()</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.check_data()</cite>: Verifica que los datos estén disponibles.</p></li>
+<li><p><cite>VariableSelectionDialog</cite>: Un cuadro de diálogo para seleccionar las variables.</p></li>
+<li><p><cite>self.regression.interpolation</cite>: Realiza la interpolación de Lagrange.</p></li>
+<li><p><cite>self.show_plot_in_canvas</cite>: Muestra la gráfica generada en el <cite>Canvas</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">interpolation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_data</span><span class="p">():</span>
         <span class="k">return</span>
 
@@ -1060,7 +1247,28 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.LaboratorySoftware.check_data">
 <span class="sig-name descname"><span class="pre">check_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.check_data" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Verifica si hay datos cargados en la aplicación antes de realizar cualquier análisis.</p>
+<p>Este método revisa si el atributo <cite>self.data_ops.data</cite> contiene datos. Si no es así, muestra una advertencia
+al usuario indicando que no hay datos cargados, y retorna <cite>False</cite>. Si hay datos, retorna <cite>True</cite>.</p>
+<dl>
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>Es útil para asegurarse de que haya datos antes de ejecutar análisis como regresiones o interpolaciones.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a>python
+if app.check_data():</p>
+<blockquote>
+<div><p>app.linear_regression()</p>
+</div></blockquote>
+<p><a href="#id22"><span class="problematic" id="id23">``</span></a><a href="#id24"><span class="problematic" id="id25">`</span></a></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.data_ops.data</cite>: Un atributo que debe contener los datos cargados en la aplicación.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> 
                             <span class="s2">&quot;No hay datos cargados para realizar el análisis&quot;</span><span class="p">)</span>
@@ -1074,6 +1282,27 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dt class="sig sig-object py" id="app.LaboratorySoftware.show_plot_in_canvas">
 <span class="sig-name descname"><span class="pre">show_plot_in_canvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.LaboratorySoftware.show_plot_in_canvas" title="Link to this definition">#</a></dt>
 <dd><p>Muestra la gráfica en el Canvas de la pestaña de Regresión.</p>
+<p>Este método limpia cualquier gráfico previo que se haya mostrado en el Canvas y luego
+dibuja el nuevo gráfico generado. La gráfica se crea a partir de un objeto <cite>fig</cite> (Figura de Matplotlib)
+y se muestra en el canvas asociado a la pestaña de Regresión.</p>
+<dl class="simple">
+<dt>Detalles:</dt><dd><ul class="simple">
+<li><p>El método primero limpia cualquier gráfico previamente mostrado en el Canvas.</p></li>
+<li><p>Luego, utiliza <cite>FigureCanvasTkAgg</cite> de Matplotlib para convertir la figura en un widget de Tkinter.</p></li>
+<li><p>Finalmente, se empaqueta el widget del Canvas en el frame para que sea visible.</p></li>
+</ul>
+</dd>
+<dt>Ejemplo:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">`python</span>
+<span class="pre">fig</span> <span class="pre">=</span> <span class="pre">some_matplotlib_figure</span>&#160; <span class="pre">#</span> <span class="pre">Figura</span> <span class="pre">generada</span> <span class="pre">por</span> <span class="pre">un</span> <span class="pre">análisis</span>
+<span class="pre">app.show_plot_in_canvas(fig)</span>&#160; <span class="pre">#</span> <span class="pre">Mostrar</span> <span class="pre">la</span> <span class="pre">figura</span> <span class="pre">en</span> <span class="pre">el</span> <span class="pre">canvas</span>
+<span class="pre">`</span></code></p>
+</dd>
+<dt>Requiere:</dt><dd><ul class="simple">
+<li><p><cite>self.regression_canvas</cite>: Un <cite>Frame</cite> de Tkinter donde se mostrará la gráfica.</p></li>
+<li><p><cite>fig</cite>: Un objeto <cite>matplotlib.figure.Figure</cite> que contiene el gráfico a mostrar.</p></li>
+</ul>
+</dd>
+</dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_plot_in_canvas</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig</span><span class="p">):</span>
 
     <span class="c1"># Limpiar cualquier gráfico anterior en la pestaña</span>
@@ -1094,10 +1323,68 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dt class="sig sig-object py" id="app.VariableSelectionDialog">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">VariableSelectionDialog</span></span><a class="headerlink" href="#app.VariableSelectionDialog" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Clase para crear un cuadro de diálogo modal que permite al usuario seleccionar dos variables (X e Y)
+de un conjunto de columnas disponibles. El usuario puede seleccionar las variables a través de menús
+desplegables y luego confirmar su selección con un botón de «Aceptar».</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.VariableSelectionDialog.dialog">
+<span class="sig-name descname"><span class="pre">dialog</span></span><a class="headerlink" href="#app.VariableSelectionDialog.dialog" title="Link to this definition">#</a></dt>
+<dd><p>Ventana emergente del cuadro de diálogo para la selección de variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tk.Toplevel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.VariableSelectionDialog.result">
+<span class="sig-name descname"><span class="pre">result</span></span><a class="headerlink" href="#app.VariableSelectionDialog.result" title="Link to this definition">#</a></dt>
+<dd><p>Tupla que almacena la selección de las variables X e Y, o None si no se ha realizado
+ninguna selección.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.VariableSelectionDialog.var_x">
+<span class="sig-name descname"><span class="pre">var_x</span></span><a class="headerlink" href="#app.VariableSelectionDialog.var_x" title="Link to this definition">#</a></dt>
+<dd><p>Menú desplegable para seleccionar la variable X.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ttk.Combobox</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.VariableSelectionDialog.var_y">
+<span class="sig-name descname"><span class="pre">var_y</span></span><a class="headerlink" href="#app.VariableSelectionDialog.var_y" title="Link to this definition">#</a></dt>
+<dd><p>Menú desplegable para seleccionar la variable Y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ttk.Combobox</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="app.VariableSelectionDialog.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.VariableSelectionDialog.__init__" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+<dd><p>Inicializa el cuadro de diálogo con menús desplegables para seleccionar las variables X e Y.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parent</strong> (<em>tk.Tk</em>) – La ventana principal o widget padre que invoca el diálogo.</p></li>
+<li><p><strong>columns</strong> (<em>list</em>) – Lista de columnas disponibles para seleccionar las variables.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+
     <span class="bp">self</span><span class="o">.</span><span class="n">dialog</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dialog</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Selección de Variables&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1121,7 +1408,11 @@ de la aplicación hasta que el usuario la cierre manualmente.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="app.VariableSelectionDialog.on_accept">
 <span class="sig-name descname"><span class="pre">on_accept</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.VariableSelectionDialog.on_accept" title="Link to this definition">#</a></dt>
-<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<dd><p>Método que se llama cuando el usuario hace clic en el botón de «Aceptar».</p>
+<p>Si ambas variables X e Y son seleccionadas, almacena las selecciones en el atributo <cite>result</cite>
+y cierra el diálogo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_accept</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_x</span><span class="o">.</span><span class="n">get</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_y</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">var_x</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">var_y</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dialog</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
@@ -1579,13 +1870,6 @@ adicional definida por el usuario a través de <cite>ui_callback</cite>.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.root"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.root</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.main_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.main_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.results_frame"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.results_frame</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_table"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_table</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.data_ops"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.data_ops</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.no_data_label"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.no_data_label</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.__init__"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.on_close"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.on_close()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.LaboratorySoftware.load_pdf"><code class="docutils literal notranslate"><span class="pre">LaboratorySoftware.load_pdf()</span></code></a></li>
@@ -1607,6 +1891,10 @@ adicional definida por el usuario a través de <cite>ui_callback</cite>.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.dialog"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.dialog</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.result"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.result</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.var_x"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.var_x</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.var_y"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.var_y</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.__init__"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#app.VariableSelectionDialog.on_accept"><code class="docutils literal notranslate"><span class="pre">VariableSelectionDialog.on_accept()</span></code></a></li>
 </ul>
