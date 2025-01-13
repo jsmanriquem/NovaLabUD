@@ -12,7 +12,7 @@ raiz = Tk()
 raiz.geometry("735x800")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
-regresiones = []  # Lista para almacenar los datos de regresiones
+regresiones = []  # Lista para almacenar los de regresión
 
 def centrar_ventana(ventana_principal, ventana_emergente):
     raiz.update_idletasks()
@@ -422,7 +422,15 @@ def graficar_datos():
     # Se grafican las regresiones realizadas anteriormente
     if 'regresiones' in globals() and regresiones:
         for reg in regresiones:
-            ax.plot(reg['x_vals'], reg['y_vals'], label=reg['label'], color=reg['color'])
+            ax.plot(
+                reg['x_vals'], reg['y_vals'],
+                label=reg['label'],
+                color=reg.get('color', 'blue'),
+                linewidth=reg.get('line_width', 1.0),
+                marker=reg.get('marker_type', 'o'),
+                markersize=reg.get('point_size', 5),
+                markerfacecolor=reg.get('marker_color', 'blue')
+            )
     
     ax.legend()
 
