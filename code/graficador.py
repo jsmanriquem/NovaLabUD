@@ -193,7 +193,11 @@ barraMenu.add_cascade(label="Regresiones", menu=regresionMenu)
 
 # Menú Personalización
 personalizarMenu = Menu(barraMenu, tearoff=0)
-personalizarMenu.add_command(label="Editar Gráfica 1", command=lambda: grafica_ventana(raiz))
+personalizarMenu.add_command(label="Editar gráfica", command=lambda: grafica_ventana(raiz))
+# Opciones para personalizar las líneas de regresión
+personalizarMenu.add_command(label="Editar Regresión Lineal", command=lambda: grafica_ventana_regresion(raiz, 'Lineal'))
+personalizarMenu.add_command(label="Editar Regresión Polinomial", command=lambda: grafica_ventana_regresion(raiz, 'Polinomial'))
+personalizarMenu.add_command(label="Editar Regresión por Interpolación", command=lambda: grafica_ventana_regresion(raiz, 'Interpolación de Lagrange'))
 barraMenu.add_cascade(label="Personalizar", menu=personalizarMenu)
 
 # Menú Ayuda (abre un enlace en el navegador)
@@ -446,41 +450,6 @@ def graficar_datos():
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
 
-
-def graficar_regresion(tipo):
-    global regresiones
-    
-    x_col = columna_x.get()
-    y_col = columna_y.get()
-
-    if x_col is None or y_col is None:
-        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
-        return
-
-    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
-    reg_analysis = RegressionAnalysis(data)
-
-    if tipo == 'lineal':
-        # Llamar a la función linear_regression con return_metrics=False
-        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
-    elif tipo == 'polinomial':
-        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
-    elif tipo == 'interpolacion':
-        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
-
-    # Guardar los datos de la regresión
-    regresiones.append({
-        'x_vals': x_vals,
-        'y_vals': y_vals,
-        'label': ecuacion,
-        'color': 'red'  # Puedes personalizar el color
-    })
-    # Graficar la regresión
-    ax.plot(x_vals, y_vals, label=ecuacion, color='red')
-    ax.scatter(x_vals, y_vals, color='red', label='Datos')  # Puntos de la regresión
-    ax.legend()
-    canvas.draw()
-
 def update_graph_property(property_type=None, new_value=None):
     """
     Dependiendo de `property_type`, la función ajusta el valor de la propiedad correspondiente
@@ -623,6 +592,147 @@ def grafica_ventana(master):
     # Hacer que la ventana emergente sea modal
     personalizacion_ventana.transient(raiz)
     personalizacion_ventana.grab_release()
+
+def graficar_regresion(tipo):
+    global regresiones
+    
+    x_col = columna_x.get()
+    y_col = columna_y.get()
+
+    if x_col is None or y_col is None:
+        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
+        return
+
+    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
+    reg_analysis = RegressionAnalysis(data)
+
+    if tipo == 'lineal':
+        # Llamar a la función linear_regression con return_metrics=False
+        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'polinomial':
+        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'interpolacion':
+        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
+
+    # Guardar los datos de la regresión
+    regresiones.append({
+    'x_vals': x_vals,
+    'y_vals': y_vals,
+    'label': f"Regresión {tipo.capitalize()}",  
+    'color': 'red',  
+    'line_width': 1.0,
+    'marker_type': 'o',
+    'marker_color': 'red',
+    'point_size': 5
+    })
+
+def update_regresion_property(regresion, property_type, new_value=None):
+    """
+    Actualiza las propiedades visuales de una línea de regresión y actualiza la gráfica.
+
+    Parametros
+    ----------
+    regresion : dict
+        Diccionario que contiene los datos y propiedades visuales de la regresión.
+    property_type : str
+        Tipo de propiedad a modificar ('line_color', 'line_width', 'marker_type', 'marker_color', 'point_size').
+    new_value : any, opcional
+        Nuevo valor para la propiedad especificada. Si no se proporciona, se abre un cuadro de diálogo
+        para seleccionar el color.
+    """
+    if property_type == 'line_color':
+        regresion['color'] = colorchooser.askcolor()[1]
+    elif property_type == 'line_width':
+        regresion['line_width'] = new_value
+    elif property_type == 'marker_type':
+        regresion['marker_type'] = new_value
+    elif property_type == 'marker_color':
+        regresion['marker_color'] = colorchooser.askcolor()[1]
+    elif property_type == 'point_size':
+        regresion['point_size'] = new_value
+
+    # Redibujar la gráfica
+    graficar_datos()
+
+def grafica_ventana_regresion(master, tipo):
+    """
+    Crea una ventana emergente para personalizar visualmente las líneas de regresión.
+    Esta ventana permite cambiar propiedades como color, grosor de línea y tipo de marcador
+    para la línea de regresión seleccionada.
+
+    Parametros
+    ----------
+    master : tkinter.Tk
+        Ventana principal de la aplicación.
+    tipo_regresion : str
+        Tipo de regresión que se está personalizando ('lineal', 'polinomial', 'interpolacion').
+
+    Variables globales
+    ------------------
+    regresiones : list
+        Lista que contiene las regresiones realizadas, con sus datos y propiedades visuales.
+    """
+    global personalizacion_ventana
+
+    if personalizacion_ventana is not None and personalizacion_ventana.winfo_exists():
+        personalizacion_ventana.lift()
+        return  
+
+    personalizacion_ventana = Toplevel(master)
+    personalizacion_ventana.title(f"Personalización de Regresión {tipo.capitalize()}")
+    personalizacion_ventana.geometry("400x400")
+
+
+    regresion = next(
+        (reg for reg in regresiones if tipo.strip().lower() in reg['label'].strip().lower()), 
+    None
+    )
+
+    if regresion is None:
+        messagebox.showerror("Error", f"No se encontró una regresión del tipo {tipo}.")
+        personalizacion_ventana.destroy()
+        return
+        
+
+    # Botón para cambiar el color de la línea
+    Button(personalizacion_ventana, text="Color de Línea", 
+           command=lambda: update_regresion_property(regresion, 'line_color')).pack(pady=10)
+
+    # Slider para cambiar el grosor de la línea
+    Label(personalizacion_ventana, text="Grosor de Línea:").pack(pady=5)
+    line_width_slider = Scale(personalizacion_ventana, from_=0.5, to=10, resolution=0.1, orient=HORIZONTAL, 
+                              command=lambda value: update_regresion_property(regresion, 'line_width', float(value)))
+    line_width_slider.set(regresion.get('line_width', 1.0))
+    line_width_slider.pack(pady=5)
+
+    # Combobox para cambiar el tipo de marcador
+    Label(personalizacion_ventana, text="Tipo de Marcador:").pack(pady=5)
+    marker_options = ['o', 'x', '^', 's', '*']  
+    marker_var = StringVar(value=regresion.get('marker_type', 'o'))
+    marker_menu = ttk.Combobox(personalizacion_ventana, textvariable=marker_var, values=marker_options)
+    marker_menu.pack(pady=5)
+    marker_menu.bind("<<ComboboxSelected>>", 
+                     lambda event: update_regresion_property(regresion, 'marker_type', marker_var.get()))
+
+    # Botón para cambiar el color del marcador
+    Button(personalizacion_ventana, text="Color del Marcador", 
+           command=lambda: update_regresion_property(regresion, 'marker_color')).pack(pady=10)
+
+    # Slider para cambiar el tamaño del marcador
+    Label(personalizacion_ventana, text="Tamaño del Marcador:").pack(pady=5)
+    point_size_slider = Scale(personalizacion_ventana, from_=1, to=20, resolution=1, orient=HORIZONTAL, 
+                              command=lambda value: update_regresion_property(regresion, 'point_size', float(value)))
+    point_size_slider.set(regresion.get('point_size', 5))
+    point_size_slider.pack(pady=5)
+
+    # Centrar la ventana
+    personalizacion_ventana.update_idletasks()
+    centrar_ventana(raiz, personalizacion_ventana)
+
+    # Hacer que la ventana emergente sea modal
+    personalizacion_ventana.transient(raiz)
+    personalizacion_ventana.grab_release()
+
 
 def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
     """
