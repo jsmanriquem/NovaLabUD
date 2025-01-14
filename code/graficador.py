@@ -176,16 +176,6 @@ def limpio_si():
 barraMenu = Menu(raiz)
 raiz.config(menu=barraMenu)
 
-# Menú Exportar
-exportarMenu = Menu(barraMenu, tearoff=0)
-exportarMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
-exportarMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
-exportarMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
-barraMenu.add_cascade(label="Exportar", menu=exportarMenu)
-
-# Opción Limpiar
-barraMenu.add_command(label="Limpiar", command=confirmar_limpiar_grafica)
-
 # Menú Regresiones
 regresionMenu = Menu(barraMenu, tearoff=0)
 regresionMenu.add_command(label="R. Lineal", command=lambda: graficar_regresion('lineal'))
@@ -201,6 +191,16 @@ personalizarMenu.add_command(label="Editar Regresión Lineal", command=lambda: g
 personalizarMenu.add_command(label="Editar Regresión Polinomial", command=lambda: grafica_ventana_regresion(raiz, 'Polinomial'))
 personalizarMenu.add_command(label="Editar Regresión por Interpolación", command=lambda: grafica_ventana_regresion(raiz, 'Interpolación de Lagrange'))
 barraMenu.add_cascade(label="Personalizar", menu=personalizarMenu)
+
+# Menú Exportar
+exportarMenu = Menu(barraMenu, tearoff=0)
+exportarMenu.add_command(label="PDF", command=lambda: guardar_grafica('pdf'))
+exportarMenu.add_command(label="JPG", command=lambda: guardar_grafica('jpg'))
+exportarMenu.add_command(label="PNG", command=lambda: guardar_grafica('png'))
+barraMenu.add_cascade(label="Exportar", menu=exportarMenu)
+
+# Opción Limpiar
+barraMenu.add_command(label="Limpiar", command=confirmar_limpiar_grafica)
 
 # Menú Ayuda (abre un enlace en el navegador)
 barraMenu.add_command(label="Ayuda", command=lambda: webbrowser.open("http://tulink.com"))
@@ -330,6 +330,7 @@ def actualizar_columnas():
         graficar_button.grid(column=3, row=0, columnspan=2, pady=10)
     else:
         messagebox.showerror("Error", "No se encontraron columnas para graficar.")
+    limpiar_grafica()
 
 def guardar_grafica(formato): 
     """
