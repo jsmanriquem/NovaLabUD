@@ -28,7 +28,7 @@ La estructura del repositorio es la siguiente:
 Para instalar y ejecutar el proyecto, sigue estos pasos:
 
 1. Clona el repositorio
-2. Crea un entorno virtual (opcional, pero recomendado)
+2. Crea un entorno virtual
 3. Instala las dependencias necesarias
 4. Ejecuta el programa principal
 
