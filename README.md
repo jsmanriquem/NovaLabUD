@@ -11,8 +11,18 @@
 
 
 
-### Mención ESpecial, Maestro Andrés Vasco
+### Mención Especial, Maestro Andrés Vasco
 
+## Funcionalidades de la Aplicación:
+
+## Procesamiento de Datos:
+
+## Ajuste de Modelos:
+
+## Graficadora
+
+## Finalidad de la app:
+ESta aplicación busca ofrecer una herramienta a los estudiantes de física d elos primeros semestres para importar los datos de laboratorio y obtener facilmnte los ajustes y su vizualización. Tambien se incluye pestañas con la teoría correspondiente a los fenomenos físicos analizados.
 
 
 ## Descripción del Proyecto
@@ -37,6 +47,8 @@ La estructura del repositorio es la siguiente:
 ### Librerías para Análisis y Visualización
 - **matplotlib**: Se usa para generar gráficos interactivos de los resultados de las simulaciones, tales como la velocidad, la distancia y el tiempo en experimentos de caída libre.
 - **scipy**: Utiliza herramientas como `interp1d` para realizar interpolación de los datos obtenidos en las simulaciones.
+
+
 
 ## Instalación
 
