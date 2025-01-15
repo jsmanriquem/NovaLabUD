@@ -55,9 +55,16 @@ La estructura del repositorio es la siguiente:
 Para instalar y ejecutar el proyecto, sigue estos pasos:
 
 1. Clona el repositorio
-2. Crea un entorno virtual
-3. Instala las dependencias necesarias
-4. Ejecuta el programa principal
+   {git clone repositorio}
+3. Crea un entorno virtual
+   python -m venv env
+5. Instala las dependencias necesarias
+6. pip install -r requiriments.txt
+7. como correr la app
+8. python APP.PY
+
+9. LUEGO DE ABRIR la aplicación se puede consuktar el manuial de usuario para navegar mas facilmente
+10. 
 
 
 
