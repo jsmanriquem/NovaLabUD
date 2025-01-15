@@ -1,10 +1,25 @@
-# Proyecto de Software en Python
+# Proyecto NovaLabUD
+
+## Desarrolladores
+
+- Laura Viviana Oliveros
+- Julián Armando Áros
+- Andrés Fernando Gómez
+- Laura Carolina Triana
+- Juan Sebastian Manrique
+- Jorge David Garzón 
+
+
+
+### Mención ESpecial, Maestro Andrés Vasco
+
+
 
 ## Descripción del Proyecto
 
-Este proyecto ha sido desarrollado en Python utilizando el paradigma de **Programación Orientada a Objetos (POO)**, lo que facilita la gestión, reutilización y mantenimiento del código. El objetivo del proyecto es realizar simulaciones de experimentos físicos, como la caída libre, con la capacidad de generar gráficos e informes detallados sobre el comportamiento de los objetos bajo diversas condiciones.
+NovaLa es un proyecto que ha sido desarrollado en Python utilizando el paradigma de **Programación Orientada a Objetos (POO)**, lo que facilita la gestión, reutilización y mantenimiento del código. El objetivo del proyecto es realizar simulaciones de experimentos físicos, como la caída libre, con la capacidad de generar gráficos e informes detallados sobre el comportamiento de los objetos bajo diversas condiciones.
 
-A lo largo de este proyecto, se utilizan librerías de Python como **pandas**, **numpy** y **matplotlib** para el manejo de datos y la visualización gráfica, y **scipy** para la interpolación y otros análisis matemáticos. El código está diseñado para ser fácilmente extensible y configurable, permitiendo a los usuarios modificar parámetros de los experimentos.
+A lo largo de este proyecto, se utilizan librerías de Python como **pandas**, **numpy** y **matplotlib** para el manejo de datos y la visualización gráfica, y **scipy** para la interpolación y otros análisis matemáticos. El código está diseñado para ser fácilmente extensible y configurable, permitiendo a los usuarios modificar parámetros de los experimentos. Está diseñado para ser fácil de usar, ofreciendo una experiencia intuitiva para trabajar con datos científicos en diversas áreas.
 
 ## Estructura del Proyecto
 
