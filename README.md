@@ -32,28 +32,7 @@ Para instalar y ejecutar el proyecto, sigue estos pasos:
 3. Instala las dependencias necesarias
 4. Ejecuta el programa principal
 
-# Detalles del Código
 
-## `simulation.py`
-
-Contiene la clase `CaidaLibre`, que simula el comportamiento de un objeto en caída libre. La clase se encarga de calcular el tiempo, la distancia recorrida y la velocidad del objeto en función del tiempo.
-
-### Ejemplo de código dentro de `simulation.py`:
-
-```python
-import numpy as np
-
-class CaidaLibre:
-    def __init__(self, altura_inicial, gravedad, tiempo_total):
-        self.altura_inicial = altura_inicial
-        self.gravedad = gravedad
-        self.tiempo_total = tiempo_total
-
-    def realizar_simulacion(self):
-        tiempo = np.linspace(0, self.tiempo_total, num=100)
-        distancia = self.altura_inicial - (0.5 * self.gravedad * tiempo**2)
-        velocidad = -self.gravedad * tiempo
-        return {"tiempo": tiempo, "distancia": distancia, "velocidad": velocidad}
 
 ### Contribuciones
 
