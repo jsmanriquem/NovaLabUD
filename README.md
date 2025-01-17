@@ -13,7 +13,8 @@ A lo largo de este proyecto, se utilizan librerías de Python como pandas, numpy
 - [@Juan Sebastian Manrique](https://www.github.com/octokatherine)
 - [@georgfis](https://www.github.com/georgfis)
 
-### Mención Especial, Maestro Andrés Vasco
+
+### Mención Especial, Profesor Andrés Vasco
 
 ## Funcionalidades de la aplicación:
 
