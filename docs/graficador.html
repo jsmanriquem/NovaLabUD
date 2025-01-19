@@ -284,10 +284,11 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_line_click"><code class="docutils literal notranslate"><span class="pre">on_line_click()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_regresion_property"><code class="docutils literal notranslate"><span class="pre">update_regresion_property()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_regresion"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_regresion()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
@@ -321,19 +322,7 @@
 <dl class="py function" id="module-graficador">
 <dt class="sig sig-object py" id="graficador.centrar_ventana">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">centrar_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ventana_principal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ventana_emergente</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.centrar_ventana" title="Link to this definition">#</a></dt>
-<dd><p>Centra una ventana emergente dentro de la ventana principal.</p>
-<p>Esta función ajusta la geometría de la ventana emergente para que aparezca centrada con respecto a la
-ventana principal, tomando en cuenta las dimensiones y la posición de ambas ventanas en la pantalla.</p>
-<p>Parámetros:
-ventana_principal (tk.Tk): La ventana principal (normalmente la ventana raíz de la aplicación).
-ventana_emergente (tk.Toplevel): La ventana emergente que se desea centrar.</p>
-<p>Retorna:
-None: La función modifica directamente la geometría de la ventana emergente.</p>
-<p>Uso:
-Esta función es útil cuando se necesita que una ventana secundaria o emergente aparezca
-en el centro de la ventana principal en aplicaciones basadas en Tkinter.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">centrar_ventana</span><span class="p">(</span><span class="n">ventana_principal</span><span class="p">,</span> <span class="n">ventana_emergente</span><span class="p">):</span>
-
+<dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">centrar_ventana</span><span class="p">(</span><span class="n">ventana_principal</span><span class="p">,</span> <span class="n">ventana_emergente</span><span class="p">):</span>
     <span class="n">raiz</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>
 
     <span class="c1"># Obtener dimensiones y posición de la ventana principal</span>
@@ -416,7 +405,7 @@ y otros parámetros gráficos.</p>
 permitiendo una visualización limpia y estándar antes de realizar nuevas representaciones gráficas.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">limpiar_grafica</span><span class="p">():</span>
 
-    <span class="k">global</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">origx_lim</span><span class="p">,</span> <span class="n">origy_lim</span><span class="p">,</span> <span class="n">marker_color</span><span class="p">,</span> <span class="n">marker_type</span><span class="p">,</span> <span class="n">show_grid</span><span class="p">,</span> <span class="n">point_size</span><span class="p">,</span> <span class="n">titulo_grafica</span><span class="p">,</span> <span class="n">title_fuente</span><span class="p">,</span> <span class="n">title_size</span><span class="p">,</span> <span class="n">ejex_shape</span><span class="p">,</span> <span class="n">ejex_size</span><span class="p">,</span> <span class="n">ejex_titulo</span><span class="p">,</span> <span class="n">ejey_shape</span><span class="p">,</span> <span class="n">ejey_size</span><span class="p">,</span> <span class="n">ejey_titulo</span><span class="p">,</span> <span class="n">line_color</span><span class="p">,</span> <span class="n">line_width</span><span class="p">,</span> <span class="n">bg_color</span>
+    <span class="k">global</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">origx_lim</span><span class="p">,</span> <span class="n">origy_lim</span><span class="p">,</span> <span class="n">marker_color</span><span class="p">,</span> <span class="n">marker_type</span><span class="p">,</span> <span class="n">show_grid</span><span class="p">,</span> <span class="n">point_size</span><span class="p">,</span> <span class="n">titulo_grafica</span><span class="p">,</span> <span class="n">title_fuente</span><span class="p">,</span> <span class="n">title_size</span><span class="p">,</span> <span class="n">ejex_shape</span><span class="p">,</span> <span class="n">ejex_size</span><span class="p">,</span> <span class="n">ejex_titulo</span><span class="p">,</span> <span class="n">ejey_shape</span><span class="p">,</span> <span class="n">ejey_size</span><span class="p">,</span> <span class="n">ejey_titulo</span><span class="p">,</span> <span class="n">line_color</span><span class="p">,</span> <span class="n">line_width</span><span class="p">,</span> <span class="n">bg_color</span><span class="p">,</span> <span class="n">regresiones</span>
 
     <span class="n">titulo_grafica</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">&quot;Título de la Gráfica&quot;</span><span class="p">)</span>
     <span class="n">title_fuente</span> <span class="o">=</span> <span class="s2">&quot;DejaVu Sans&quot;</span>
@@ -439,6 +428,8 @@ permitiendo una visualización limpia y estándar antes de realizar nuevas repre
     <span class="n">point_size</span> <span class="o">=</span> <span class="mi">5</span>  
 
     <span class="n">zoom</span><span class="p">(</span><span class="n">reset</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">regresiones</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># Vaciar la lista de regresiones</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> 
     <span class="n">x_limits</span> <span class="o">=</span> <span class="kc">None</span>
@@ -556,28 +547,10 @@ con otras partes de la aplicación hasta que se cierre la ventana de confirmaci�
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.cargar_datos">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.cargar_datos" title="Link to this definition">#</a></dt>
-<dd><p>Carga los datos desde un archivo temporal llamado “tmp_graph.pkl” al iniciar la aplicación.</p>
-<p>Esta función verifica si el archivo “tmp_graph.pkl” existe en el sistema. Si el archivo está presente,
-intenta cargarlo en la variable global <cite>data</cite>. Si el archivo está vacío, muestra un mensaje de error.
-Si el archivo no existe, muestra una advertencia. En caso de error al cargar los datos, se muestra
-un mensaje de error con el detalle de la excepción.</p>
-<section id="id7">
-<h2>Variables globales:<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>Contiene los datos cargados desde el archivo “tmp_graph.pkl”. Se utiliza en toda la aplicación para
-operar con los datos de la gráfica.</p>
-</dd>
-</dl>
-</section>
-<section id="id8">
-<h2>Retorna:<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-<p>None: La función no retorna ningún valor. Solo carga los datos desde el archivo temporal o muestra mensajes
-de advertencia o error según corresponda.</p>
-</section>
-<section id="id9">
-<h2>Uso:<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
-<p>Esta función es útil para cargar datos previos al inicio de la aplicación, permitiendo continuar con la
-sesión anterior sin necesidad de reintroducir los datos manualmente.</p>
+<dd><p>Carga los datos desde un archivo temporal llamado “tmp_graph.pkl” al iniciar la aplicación.
+Si el archivo existe, los datos se cargan en la variable global <cite>data</cite>. Si no existe,
+muestra un mensaje de advertencia.</p>
+<p>Almacena los datos en la variable global <cite>data</cite> para ser utilizados en toda la aplicación.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cargar_datos</span><span class="p">():</span>
 
     <span class="k">global</span> <span class="n">data</span>
@@ -598,7 +571,6 @@ sesión anterior sin necesidad de reintroducir los datos manualmente.</p>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&quot;Advertencia&quot;</span><span class="p">,</span> <span class="s2">&quot;No se encontró el archivo &#39;tmp_graph.pkl&#39;.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 <dl class="py function">
@@ -611,8 +583,8 @@ la variable global <cite>data</cite>. Luego, actualiza o crea los ComboBox para 
 seleccionar las columnas para los ejes “X” e “Y”. Además, coloca un botón que permite iniciar
 la graficación de los datos seleccionados. Si no hay columnas disponibles, se muestra un mensaje
 de error indicando que no se pueden graficar los datos.</p>
-<section id="id10">
-<h2>Variables globales:<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>Variables globales:<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>columna_x_combo<span class="classifier">ttk.Combobox</span></dt><dd><p>Widget de tipo Combobox para la selección de la columna en el eje X.</p>
 </dd>
@@ -624,12 +596,12 @@ de error indicando que no se pueden graficar los datos.</p>
 </dd>
 </dl>
 </section>
-<section id="id11">
-<h2>Retorna:<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<section id="id8">
+<h2>Retorna:<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <p>None: La función no retorna ningún valor. Solo actualiza los widgets de la interfaz gráfica.</p>
 </section>
-<section id="id12">
-<h2>Uso:<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h2>Uso:<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <p>Esta función es útil para permitir al usuario seleccionar las columnas que desea graficar
 y controlar el inicio de la graficación desde la interfaz.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">actualizar_columnas</span><span class="p">():</span>
@@ -681,19 +653,19 @@ y un nombre de archivo, la gráfica se guarda en ese archivo.</p>
 </dd>
 </dl>
 </section>
-<section id="id13">
-<h2>Variables globales<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h2>Variables globales<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>fig<span class="classifier">matplotlib.figure.Figure</span></dt><dd><p>La figura de matplotlib que contiene la gráfica que se va a guardar.</p>
 </dd>
 </dl>
 </section>
-<section id="id14">
-<h2>Retorna<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h2>Retorna<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>None: La función no retorna ningún valor. Solo guarda la gráfica en el archivo especificado.</p>
 </section>
-<section id="id15">
-<h2>Uso<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
+<section id="id12">
+<h2>Uso<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
 <p>Esta función es útil para guardar una copia de la gráfica generada en la aplicación en el formato deseado
 por el usuario.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">guardar_grafica</span><span class="p">(</span><span class="n">formato</span><span class="p">):</span> 
@@ -720,8 +692,8 @@ los títulos y límites de los ejes según las selecciones del usuario.</p>
 Verifica que las columnas seleccionadas sean válidas y numéricas, luego crea una nueva gráfica
 con los datos correspondientes, ajustando los límites de los ejes y el formato de la gráfica
 según las configuraciones de la interfaz.</p>
-<section id="id16">
-<h2>Variables globales<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h2>Variables globales<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ax<span class="classifier">matplotlib.axes.Axes</span></dt><dd><p>El objeto de los ejes en los que se dibuja la gráfica.</p>
 </dd>
@@ -743,8 +715,8 @@ según las configuraciones de la interfaz.</p>
 </dd>
 </dl>
 </section>
-<section id="id17">
-<h2>Retorna<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<section id="id14">
+<h2>Retorna<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>None</dt><dd><p>No retorna ningún valor. Solo actualiza la gráfica en el canvas y los elementos de la interfaz.</p>
 </dd>
@@ -754,8 +726,8 @@ según las configuraciones de la interfaz.</p>
 <h2>Errores<a class="headerlink" href="#errores" title="Link to this heading">#</a></h2>
 <p>Muestra un mensaje de error si las columnas seleccionadas no son válidas o no son numéricas.</p>
 </section>
-<section id="id18">
-<h2>Uso<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<section id="id15">
+<h2>Uso<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
 <p>Esta función se utiliza para graficar los datos seleccionados por el usuario desde el archivo cargado
 y ajustar los títulos y límites de los ejes en la gráfica.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">graficar_datos</span><span class="p">():</span>
@@ -777,11 +749,16 @@ y ajustar los títulos y límites de los ejes en la gráfica.</p>
     <span class="n">datos_x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">x_col</span><span class="p">]</span>
     <span class="n">datos_y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>
 
+    <span class="c1"># Restablecer límites originales si es la primera vez que se grafican</span>
     <span class="k">if</span> <span class="n">origx_lim</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">origy_lim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">origx_lim</span> <span class="o">=</span> <span class="p">[</span><span class="n">datos_x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">datos_x</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
         <span class="n">origy_lim</span> <span class="o">=</span> <span class="p">[</span><span class="n">datos_y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">datos_y</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
         <span class="n">x_limits</span> <span class="o">=</span> <span class="n">origx_lim</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">y_limits</span> <span class="o">=</span> <span class="n">origy_lim</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># Restablecer límites automáticamente según los datos actuales</span>
+    <span class="n">x_limits</span> <span class="o">=</span> <span class="p">[</span><span class="n">datos_x</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">datos_x</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+    <span class="n">y_limits</span> <span class="o">=</span> <span class="p">[</span><span class="n">datos_y</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">datos_y</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
 
     <span class="c1"># Actualizar títulos de los ejes con los nombres de las columnas seleccionadas</span>
     <span class="n">ejex_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">x_col</span><span class="p">)</span>
@@ -791,8 +768,7 @@ y ajustar los títulos y límites de los ejes en la gráfica.</p>
 
     <span class="n">x</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">x_col</span><span class="p">]</span>  <span class="c1"># Usar la columna seleccionada para X</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">y_col</span><span class="p">]</span>  <span class="c1"># Usar la columna seleccionada para Y</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>  <span class="c1"># Limpiar la gráfica anterior</span>
-    <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker_type</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">point_size</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">marker_color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">line_width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Seno&quot;</span><span class="p">)</span>
+    <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">line_color</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="n">marker_type</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">point_size</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">marker_color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">line_width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Datos&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x_limits</span><span class="p">)</span>  <span class="c1"># Límites del eje X</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y_limits</span><span class="p">)</span>  <span class="c1"># Límites del eje Y</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titulo_grafica</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">fontname</span><span class="o">=</span><span class="n">title_fuente</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_size</span><span class="p">)</span>  <span class="c1"># Actualizar título</span>
@@ -800,10 +776,25 @@ y ajustar los títulos y límites de los ejes en la gráfica.</p>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ejey_titulo</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">fontname</span><span class="o">=</span><span class="n">ejey_shape</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">ejey_size</span><span class="p">)</span>  <span class="c1"># Actualizar título eje Y</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">show_grid</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">bg_color</span><span class="p">)</span>
+
+    <span class="c1"># Se grafican las regresiones realizadas anteriormente</span>
+    <span class="k">if</span> <span class="s1">&#39;regresiones&#39;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()</span> <span class="ow">and</span> <span class="n">regresiones</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">reg</span> <span class="ow">in</span> <span class="n">regresiones</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                <span class="n">reg</span><span class="p">[</span><span class="s1">&#39;x_vals&#39;</span><span class="p">],</span> <span class="n">reg</span><span class="p">[</span><span class="s1">&#39;y_vals&#39;</span><span class="p">],</span>
+                <span class="n">label</span><span class="o">=</span><span class="n">reg</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">),</span>
+                <span class="n">linewidth</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;line_width&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+                <span class="n">marker</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;marker_type&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">),</span>
+                <span class="n">markersize</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;point_size&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+                <span class="n">markerfacecolor</span><span class="o">=</span><span class="n">reg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;marker_color&#39;</span><span class="p">,</span> <span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
     <span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>  <span class="c1"># Actualizar la gráfica</span>
 
-    <span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;button_press_event&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">on_line_click</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
-    <span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;button_press_event&#39;</span><span class="p">,</span> <span class="n">on_double_click</span><span class="p">)</span>
+    <span class="c1"># canvas.mpl_connect(&#39;button_press_event&#39;, on_double_click)</span>
 
     <span class="c1"># Crear botón &quot;+&quot; para edición de límites eje X</span>
     <span class="n">x_plus_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">raiz</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">update_x_limits</span><span class="p">(</span><span class="n">raiz</span><span class="p">))</span>
@@ -818,86 +809,13 @@ y ajustar los títulos y límites de los ejes en la gráfica.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.graficar_regresion">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.graficar_regresion" title="Link to this definition">#</a></dt>
-<dd><p>Realiza y grafica la regresión de los datos seleccionados en la interfaz de usuario,
-según el tipo de regresión solicitado. La regresión puede ser lineal, polinómica
-o de interpolación. Los resultados se grafican en el mismo canvas de Matplotlib
-con los datos originales y la regresión ajustada.</p>
-<section id="id19">
-<h2>Parámetros<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>tipo<span class="classifier">str</span></dt><dd><p>El tipo de regresión a realizar. Puede ser uno de los siguientes:
-- “lineal”: Para realizar una regresión lineal.
-- “polinomial”: Para realizar una regresión polinómica.
-- “interpolacion”: Para realizar una regresión de interpolación.</p>
-</dd>
-</dl>
-</section>
-<section id="id20">
-<h2>Variables globales<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt>x_col<span class="classifier">str</span></dt><dd><p>El nombre de la columna seleccionada para el eje X.</p>
-</dd>
-<dt>y_col<span class="classifier">str</span></dt><dd><p>El nombre de la columna seleccionada para el eje Y.</p>
-</dd>
-<dt>data<span class="classifier">pandas.DataFrame</span></dt><dd><p>El DataFrame que contiene los datos cargados para la regresión.</p>
-</dd>
-<dt>ax<span class="classifier">matplotlib.axes.Axes</span></dt><dd><p>El objeto de los ejes en los que se dibujan los datos y la regresión.</p>
-</dd>
-<dt>canvas<span class="classifier">FigureCanvasTkAgg</span></dt><dd><p>El widget de Matplotlib que renderiza la gráfica en la interfaz gráfica de usuario.</p>
-</dd>
-</dl>
-</section>
-<section id="id21">
-<h2>Errores<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
-<p>Muestra un mensaje de error si no se han seleccionado columnas válidas para la regresión
-o si no hay datos cargados.</p>
-</section>
-<section id="id22">
-<h2>Uso<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
-<p>Esta función realiza la regresión solicitada y la muestra en la interfaz gráfica,
-utilizando los datos de las columnas seleccionadas por el usuario.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">graficar_regresion</span><span class="p">(</span><span class="n">tipo</span><span class="p">):</span>
-
-    <span class="k">global</span> <span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span>
-
-    <span class="n">x_col</span> <span class="o">=</span> <span class="n">columna_x</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-    <span class="n">y_col</span> <span class="o">=</span> <span class="n">columna_y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-
-    <span class="k">if</span> <span class="n">x_col</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos cargados para realizar la regresión.&quot;</span><span class="p">)</span>
-        <span class="k">return</span>
-
-    <span class="c1"># Crear la instancia de RegressionAnalysis pasando el DataFrame directamente</span>
-    <span class="n">reg_analysis</span> <span class="o">=</span> <span class="n">RegressionAnalysis</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;lineal&#39;</span><span class="p">:</span>
-        <span class="c1"># Llamar a la función linear_regression con return_metrics=False</span>
-        <span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">ecuacion</span> <span class="o">=</span> <span class="n">reg_analysis</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;polinomial&#39;</span><span class="p">:</span>
-        <span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">ecuacion</span> <span class="o">=</span> <span class="n">reg_analysis</span><span class="o">.</span><span class="n">polynomial_regression</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;interpolacion&#39;</span><span class="p">:</span>
-        <span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">ecuacion</span> <span class="o">=</span> <span class="n">reg_analysis</span><span class="o">.</span><span class="n">interpolation</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="c1"># Graficar la regresión</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ecuacion</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Datos&#39;</span><span class="p">)</span>  <span class="c1"># Puntos de la regresión</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="graficador.update_graph_property">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_graph_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_graph_property" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza las propiedades visuales de la gráfica según el tipo de propiedad y el nuevo valor proporcionado.
 La función ajusta el estilo de la línea, el marcador, el color de fondo, el tamaño de los puntos,
 y la visibilidad de la cuadrícula, y actualiza la gráfica para reflejar los cambios.</p>
-<section id="id23">
-<h2>Parámetros<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
+<section id="id16">
+<h2>Parámetros<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>property_type<span class="classifier">str, opcional</span></dt><dd><p>El tipo de propiedad que se desea actualizar. Puede ser uno de los siguientes:
 - “line_width”: El grosor de la línea de la gráfica.
@@ -915,8 +833,8 @@ y la visibilidad de la cuadrícula, y actualiza la gráfica para reflejar los ca
 </dd>
 </dl>
 </section>
-<section id="id24">
-<h2>Variables globales<a class="headerlink" href="#id24" title="Link to this heading">#</a></h2>
+<section id="id17">
+<h2>Variables globales<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>line_width<span class="classifier">float</span></dt><dd><p>Grosor de la línea de la gráfica.</p>
 </dd>
@@ -939,12 +857,6 @@ y la visibilidad de la cuadrícula, y actualiza la gráfica para reflejar los ca
 <dt>line<span class="classifier">matplotlib.lines.Line2D</span></dt><dd><p>Línea de la gráfica que permite asociar eventos de clic.</p>
 </dd>
 </dl>
-</section>
-<section id="id25">
-<h2>Uso<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
-<p>Esta función permite modificar las propiedades visuales de la gráfica a través de la interfaz gráfica
-y actualizar la visualización en tiempo real. Los cambios incluyen la edición de los colores, el tamaño de los
-puntos, el grosor de las líneas, y la visibilidad de la cuadrícula.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_graph_property</span><span class="p">(</span><span class="n">property_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">line_width</span><span class="p">,</span> <span class="n">marker_type</span><span class="p">,</span> <span class="n">line_color</span><span class="p">,</span> <span class="n">marker_color</span><span class="p">,</span> <span class="n">bg_color</span><span class="p">,</span> <span class="n">point_size</span><span class="p">,</span> <span class="n">show_grid</span>
@@ -967,7 +879,6 @@ puntos, el grosor de las líneas, y la visibilidad de la cuadrícula.</p>
         <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">show_grid</span><span class="p">)</span>
 
     <span class="n">graficar_datos</span><span class="p">()</span>  
-    <span class="n">canvas</span><span class="o">.</span><span class="n">mpl_connect</span><span class="p">(</span><span class="s1">&#39;button_press_event&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">on_line_click</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
 </pre></div>
 </div>
 </section>
@@ -979,15 +890,15 @@ puntos, el grosor de las líneas, y la visibilidad de la cuadrícula.</p>
 <dd><p>Crea una ventana emergente para la personalización visual de la gráfica, permitiendo
 al usuario ajustar parámetros como el color de fondo, grosor de la línea, tipo de
 marcador, color y tamaño de puntos, y mostrar o ocultar la cuadrícula.</p>
-<section id="id26">
-<h2>Parámetros<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
+<section id="id18">
+<h2>Parámetros<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>master<span class="classifier">Tkinter.Tk</span></dt><dd><p>Ventana principal de la aplicación.</p>
 </dd>
 </dl>
 </section>
-<section id="id27">
-<h2>Variables globales<a class="headerlink" href="#id27" title="Link to this heading">#</a></h2>
+<section id="id19">
+<h2>Variables globales<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>personalizacion_ventana<span class="classifier">Tkinter.Toplevel</span></dt><dd><p>Referencia a la ventana emergente de personalización, para evitar crear
 múltiples instancias y poder acceder a sus elementos.</p>
@@ -1001,21 +912,6 @@ múltiples instancias y poder acceder a sus elementos.</p>
 <dt>point_size<span class="classifier">float</span></dt><dd><p>Tamaño actual de los puntos en la gráfica.</p>
 </dd>
 </dl>
-</section>
-<section id="descripcion">
-<h2>Descripción<a class="headerlink" href="#descripcion" title="Link to this heading">#</a></h2>
-<p>Esta función crea una ventana emergente (Toplevel) que permite a los usuarios
-personalizar varios aspectos visuales de una gráfica, incluyendo el color de fondo,
-el color y grosor de la línea, el tipo y color de los marcadores, el tamaño de los puntos
-y la visibilidad de la cuadrícula. Además, la ventana emergente se configura como modal,
-lo que significa que el usuario debe interactuar con ella antes de poder regresar a la
-ventana principal de la aplicación.</p>
-<p>La interfaz gráfica permite:
-- Cambiar el color de fondo de la gráfica.
-- Mostrar u ocultar la cuadrícula.
-- Modificar el color de la línea y su grosor.
-- Seleccionar el tipo de marcador para los puntos de la gráfica.
-- Cambiar el color y tamaño de los puntos.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">personalizacion_ventana</span>
@@ -1082,46 +978,203 @@ ventana principal de la aplicación.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.on_line_click">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_line_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_line_click" title="Link to this definition">#</a></dt>
-<dd><p>Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar
-las propiedades de la gráfica.</p>
-<section id="id28">
-<h2>Parámetros<a class="headerlink" href="#id28" title="Link to this heading">#</a></h2>
+<dt class="sig sig-object py" id="graficador.graficar_regresion">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.graficar_regresion" title="Link to this definition">#</a></dt>
+<dd><p>Grafica la regresión especificada según el tipo proporcionado para los datos cargados en la aplicación.</p>
+<section id="id20">
+<h2>Parámetros:<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene información sobre el clic, incluyendo las coordenadas y el
-botón del mouse que fue presionado.</p>
-</dd>
-<dt>line<span class="classifier">matplotlib.lines.Line2D</span></dt><dd><p>Objeto de línea en la gráfica, desde el cual se extraen los datos de los puntos
-para comparar con la posición del clic.</p>
+<dt>tipo<span class="classifier">str</span></dt><dd><p>El tipo de regresión a realizar. Puede ser “lineal”, “polinomial” o “interpolacion”.</p>
 </dd>
 </dl>
 </section>
-<section id="id29">
-<h2>Variables globales<a class="headerlink" href="#id29" title="Link to this heading">#</a></h2>
+<section id="funcionalidad">
+<h2>Funcionalidad:<a class="headerlink" href="#funcionalidad" title="Link to this heading">#</a></h2>
+<p>Esta función toma los nombres de las columnas <cite>x</cite> e <cite>y</cite> seleccionadas para realizar la regresión.
+Si no se han cargado datos, muestra un mensaje de error utilizando <cite>messagebox.showerror</cite>.
+Luego, crea una instancia de la clase <cite>RegressionAnalysis</cite> usando el conjunto de datos cargados (<cite>data</cite>).</p>
+<p>Dependiendo del valor del argumento <cite>tipo</cite>, llama a la función correspondiente para calcular la regresión:
+- <cite>linear_regression</cite> para regresión lineal.
+- <cite>polynomial_regression</cite> para regresión polinómica.
+- <cite>interpolation</cite> para realizar una interpolación.</p>
+<p>Los métodos de regresión devuelven los valores <cite>x_vals</cite>, <cite>y_vals</cite> y la ecuación de la línea ajustada.
+Los resultados de la regresión se guardan en una lista global <cite>regresiones</cite> con las siguientes propiedades:
+- <cite>x_vals</cite> y <cite>y_vals</cite> son los puntos calculados para la gráfica.
+- <cite>label</cite> etiqueta la línea de regresión con el tipo correspondiente.
+- <cite>color</cite>, <cite>line_width</cite>, <cite>marker_type</cite>, <cite>marker_color</cite>, y <cite>point_size</cite> definen la apariencia de la línea y los puntos.</p>
+<p>La función no retorna ningún valor explícito.</p>
+</section>
+<section id="notas">
+<h2>Notas:<a class="headerlink" href="#notas" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>La variable global <cite>data</cite> debe estar cargada antes de llamar a esta función.</p></li>
+<li><p>La variable global <cite>regresiones</cite> es utilizada para almacenar múltiples regresiones.</p></li>
+<li><p>Se espera que <cite>RegressionAnalysis</cite> sea una clase que implemente los métodos <cite>linear_regression</cite>, <cite>polynomial_regression</cite> e <cite>interpolation</cite>.</p></li>
+</ul>
+</section>
+<section id="excepciones">
+<h2>Excepciones:<a class="headerlink" href="#excepciones" title="Link to this heading">#</a></h2>
+<p>Muestra un mensaje de error si no hay datos cargados para las columnas <cite>x</cite> e <cite>y</cite>.</p>
+</section>
+<section id="ejemplo-de-uso">
+<h2>Ejemplo de uso:<a class="headerlink" href="#ejemplo-de-uso" title="Link to this heading">#</a></h2>
+<p>graficar_regresion(“lineal”)  # Realiza y grafica una regresión lineal</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">graficar_regresion</span><span class="p">(</span><span class="n">tipo</span><span class="p">):</span>
+
+    <span class="k">global</span> <span class="n">regresiones</span>
+
+    <span class="n">x_col</span> <span class="o">=</span> <span class="n">columna_x</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">y_col</span> <span class="o">=</span> <span class="n">columna_y</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">x_col</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">y_col</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;No hay datos cargados para realizar la regresión.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Crear la instancia de RegressionAnalysis pasando el DataFrame directamente</span>
+    <span class="n">reg_analysis</span> <span class="o">=</span> <span class="n">RegressionAnalysis</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;lineal&#39;</span><span class="p">:</span>
+        <span class="c1"># Llamar a la función linear_regression con return_metrics=False</span>
+        <span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">ecuacion</span> <span class="o">=</span> <span class="n">reg_analysis</span><span class="o">.</span><span class="n">linear_regression</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;polinomial&#39;</span><span class="p">:</span>
+        <span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">ecuacion</span> <span class="o">=</span> <span class="n">reg_analysis</span><span class="o">.</span><span class="n">polynomial_regression</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">tipo</span> <span class="o">==</span> <span class="s1">&#39;interpolacion&#39;</span><span class="p">:</span>
+        <span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">,</span> <span class="n">ecuacion</span> <span class="o">=</span> <span class="n">reg_analysis</span><span class="o">.</span><span class="n">interpolation</span><span class="p">(</span><span class="n">x_col</span><span class="p">,</span> <span class="n">y_col</span><span class="p">,</span> <span class="n">ax1</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">return_metrics</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Guardar los datos de la regresión</span>
+    <span class="n">regresiones</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+    <span class="s1">&#39;x_vals&#39;</span><span class="p">:</span> <span class="n">x_vals</span><span class="p">,</span>
+    <span class="s1">&#39;y_vals&#39;</span><span class="p">:</span> <span class="n">y_vals</span><span class="p">,</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Regresión </span><span class="si">{</span><span class="n">tipo</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>  
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>  
+    <span class="s1">&#39;line_width&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s1">&#39;marker_type&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;marker_color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;point_size&#39;</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.update_regresion_property">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_regresion_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regresion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_regresion_property" title="Link to this definition">#</a></dt>
+<dd><p>Actualiza las propiedades visuales de una línea de regresión y actualiza la gráfica.</p>
+<section id="id21">
+<h2>Parametros<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>raiz<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación.</p>
+<dt>regresion<span class="classifier">dict</span></dt><dd><p>Diccionario que contiene los datos y propiedades visuales de la regresión.</p>
+</dd>
+<dt>property_type<span class="classifier">str</span></dt><dd><p>Tipo de propiedad a modificar (“line_color”, “line_width”, “marker_type”, “marker_color”, “point_size”).</p>
+</dd>
+<dt>new_value<span class="classifier">any, opcional</span></dt><dd><p>Nuevo valor para la propiedad especificada. Si no se proporciona, se abre un cuadro de diálogo
+para seleccionar el color.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_regresion_property</span><span class="p">(</span><span class="n">regresion</span><span class="p">,</span> <span class="n">property_type</span><span class="p">,</span> <span class="n">new_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">property_type</span> <span class="o">==</span> <span class="s1">&#39;line_color&#39;</span><span class="p">:</span>
+        <span class="n">regresion</span><span class="p">[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">colorchooser</span><span class="o">.</span><span class="n">askcolor</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">property_type</span> <span class="o">==</span> <span class="s1">&#39;line_width&#39;</span><span class="p">:</span>
+        <span class="n">regresion</span><span class="p">[</span><span class="s1">&#39;line_width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+    <span class="k">elif</span> <span class="n">property_type</span> <span class="o">==</span> <span class="s1">&#39;marker_type&#39;</span><span class="p">:</span>
+        <span class="n">regresion</span><span class="p">[</span><span class="s1">&#39;marker_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+    <span class="k">elif</span> <span class="n">property_type</span> <span class="o">==</span> <span class="s1">&#39;marker_color&#39;</span><span class="p">:</span>
+        <span class="n">regresion</span><span class="p">[</span><span class="s1">&#39;marker_color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">colorchooser</span><span class="o">.</span><span class="n">askcolor</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">property_type</span> <span class="o">==</span> <span class="s1">&#39;point_size&#39;</span><span class="p">:</span>
+        <span class="n">regresion</span><span class="p">[</span><span class="s1">&#39;point_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
+
+    <span class="c1"># Redibujar la gráfica</span>
+    <span class="n">graficar_datos</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="graficador.grafica_ventana_regresion">
+<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_regresion" title="Link to this definition">#</a></dt>
+<dd><p>Crea una ventana emergente para personalizar visualmente las líneas de regresión.
+Esta ventana permite cambiar propiedades como color, grosor de línea y tipo de marcador
+para la línea de regresión seleccionada.</p>
+<section id="id22">
+<h2>Parametros<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>Ventana principal de la aplicación.</p>
+</dd>
+<dt>tipo_regresion<span class="classifier">str</span></dt><dd><p>Tipo de regresión que se está personalizando (“lineal”, “polinomial”, “interpolacion”).</p>
 </dd>
 </dl>
 </section>
-<section id="id30">
-<h2>Descripción<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
-<p>Esta función detecta un clic con el botón izquierdo del mouse en un gráfico. Si el clic ocurre cerca de uno de los puntos
-de la línea, la función abre una ventana emergente (<cite>grafica_ventana</cite>) que permite personalizar las propiedades visuales de
-la gráfica. La comparación entre el clic y los puntos de la línea se realiza en función de la cercanía de las coordenadas
-(<cite>xdata</cite> y <cite>ydata</cite>) del punto al clic realizado, dentro de un umbral de 0.1 unidades.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_line_click</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+<section id="id23">
+<h2>Variables globales<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>regresiones<span class="classifier">list</span></dt><dd><p>Lista que contiene las regresiones realizadas, con sus datos y propiedades visuales.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_regresion</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">tipo</span><span class="p">):</span>
 
-    <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">button</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>  <span class="c1"># Botón izquierdo del mouse</span>
-        <span class="c1"># Se obtienen las coordenadas de los puntos de la línea</span>
-        <span class="n">xdata</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get_xdata</span><span class="p">()</span>
-        <span class="n">ydata</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get_ydata</span><span class="p">()</span>
+    <span class="k">global</span> <span class="n">personalizacion_ventana</span>
 
-        <span class="c1"># Comprobar si el clic fue cerca de la línea</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">xdata</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">xdata</span> <span class="o">-</span> <span class="n">xdata</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">ydata</span> <span class="o">-</span> <span class="n">ydata</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">0.1</span><span class="p">:</span>
-                <span class="n">grafica_ventana</span><span class="p">(</span><span class="n">raiz</span><span class="p">)</span> 
-                <span class="k">break</span>
+    <span class="k">if</span> <span class="n">personalizacion_ventana</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
+        <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">lift</span><span class="p">()</span>
+        <span class="k">return</span>  
+
+    <span class="n">personalizacion_ventana</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+    <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Personalización de Regresión </span><span class="si">{</span><span class="n">tipo</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;400x400&quot;</span><span class="p">)</span>
+
+
+    <span class="n">regresion</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">reg</span> <span class="k">for</span> <span class="n">reg</span> <span class="ow">in</span> <span class="n">regresiones</span> <span class="k">if</span> <span class="n">tipo</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">reg</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()),</span> 
+    <span class="kc">None</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">regresion</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;No se encontró una regresión del tipo </span><span class="si">{</span><span class="n">tipo</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">destroy</span><span class="p">()</span>
+        <span class="k">return</span>
+
+
+    <span class="c1"># Botón para cambiar el color de la línea</span>
+    <span class="n">Button</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Color de Línea&quot;</span><span class="p">,</span> 
+           <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">update_regresion_property</span><span class="p">(</span><span class="n">regresion</span><span class="p">,</span> <span class="s1">&#39;line_color&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Slider para cambiar el grosor de la línea</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Grosor de Línea:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">line_width_slider</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">HORIZONTAL</span><span class="p">,</span> 
+                              <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">update_regresion_property</span><span class="p">(</span><span class="n">regresion</span><span class="p">,</span> <span class="s1">&#39;line_width&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span>
+    <span class="n">line_width_slider</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">regresion</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;line_width&#39;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+    <span class="n">line_width_slider</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># Combobox para cambiar el tipo de marcador</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Tipo de Marcador:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">marker_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">]</span>  
+    <span class="n">marker_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">regresion</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;marker_type&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">))</span>
+    <span class="n">marker_menu</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">marker_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">marker_options</span><span class="p">)</span>
+    <span class="n">marker_menu</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">marker_menu</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span><span class="p">,</span> 
+                     <span class="k">lambda</span> <span class="n">event</span><span class="p">:</span> <span class="n">update_regresion_property</span><span class="p">(</span><span class="n">regresion</span><span class="p">,</span> <span class="s1">&#39;marker_type&#39;</span><span class="p">,</span> <span class="n">marker_var</span><span class="o">.</span><span class="n">get</span><span class="p">()))</span>
+
+    <span class="c1"># Botón para cambiar el color del marcador</span>
+    <span class="n">Button</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Color del Marcador&quot;</span><span class="p">,</span> 
+           <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">update_regresion_property</span><span class="p">(</span><span class="n">regresion</span><span class="p">,</span> <span class="s1">&#39;marker_color&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Slider para cambiar el tamaño del marcador</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Tamaño del Marcador:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">point_size_slider</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">(</span><span class="n">personalizacion_ventana</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="n">HORIZONTAL</span><span class="p">,</span> 
+                              <span class="n">command</span><span class="o">=</span><span class="k">lambda</span> <span class="n">value</span><span class="p">:</span> <span class="n">update_regresion_property</span><span class="p">(</span><span class="n">regresion</span><span class="p">,</span> <span class="s1">&#39;point_size&#39;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)))</span>
+    <span class="n">point_size_slider</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">regresion</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;point_size&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">point_size_slider</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="c1"># Centrar la ventana</span>
+    <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>
+    <span class="n">centrar_ventana</span><span class="p">(</span><span class="n">raiz</span><span class="p">,</span> <span class="n">personalizacion_ventana</span><span class="p">)</span>
+
+    <span class="c1"># Hacer que la ventana emergente sea modal</span>
+    <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">transient</span><span class="p">(</span><span class="n">raiz</span><span class="p">)</span>
+    <span class="n">personalizacion_ventana</span><span class="o">.</span><span class="n">grab_release</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -1132,8 +1185,8 @@ la gráfica. La comparación entre el clic y los puntos de la línea se realiza 
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_title_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo_grafica_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_title_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios en el título de la gráfica, incluyendo el texto, tamaño de fuente
 y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
-<section id="id31">
-<h2>Parámetros<a class="headerlink" href="#id31" title="Link to this heading">#</a></h2>
+<section id="id24">
+<h2>Parámetros<a class="headerlink" href="#id24" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>title_size_var<span class="classifier">tkinter.IntVar</span></dt><dd><p>Variable del tamaño de la fuente del título de la gráfica.</p>
 </dd>
@@ -1143,8 +1196,8 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 </dd>
 </dl>
 </section>
-<section id="id32">
-<h2>Variables globales<a class="headerlink" href="#id32" title="Link to this heading">#</a></h2>
+<section id="id25">
+<h2>Variables globales<a class="headerlink" href="#id25" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>title_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título de la gráfica.</p>
 </dd>
@@ -1153,12 +1206,6 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 <dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto para el título de la gráfica, que almacena el valor actual y el nuevo título.</p>
 </dd>
 </dl>
-</section>
-<section id="id33">
-<h2>Descripción<a class="headerlink" href="#id33" title="Link to this heading">#</a></h2>
-<p>Esta función obtiene los valores seleccionados por el usuario para el tamaño de la fuente, el estilo de la fuente y el texto
-del título de la gráfica. Luego, actualiza el título de la gráfica con esos valores, ajustando el tamaño, estilo y texto del
-título. Después de aplicar los cambios, redibuja la gráfica para reflejar las modificaciones.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_title_changes</span><span class="p">(</span><span class="n">title_size_var</span><span class="p">,</span> <span class="n">title_fuente_var</span><span class="p">,</span> <span class="n">titulo_grafica_entry</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">title_size</span><span class="p">,</span> <span class="n">title_fuente</span><span class="p">,</span> <span class="n">titulo_grafica</span>
@@ -1181,30 +1228,21 @@ título. Después de aplicar los cambios, redibuja la gráfica para reflejar las
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_title" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente que permite al usuario personalizar el título de la gráfica,
 incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
-<section id="id34">
-<h2>Parámetros<a class="headerlink" href="#id34" title="Link to this heading">#</a></h2>
+<section id="id26">
+<h2>Parámetros<a class="headerlink" href="#id26" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>Ventana principal de la aplicación que sirve como la ventana raíz de la aplicación.</p>
+<dt>master :</dt><dd><p>Ventana principal de la aplicación.</p>
 </dd>
 </dl>
 </section>
-<section id="id35">
-<h2>Variables globales<a class="headerlink" href="#id35" title="Link to this heading">#</a></h2>
+<section id="id27">
+<h2>Variables globales<a class="headerlink" href="#id27" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>personal_ventana_title<span class="classifier">tkinter.Toplevel</span></dt><dd><p>Ventana emergente de personalización del título de la gráfica.</p>
 </dd>
-<dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto que contiene el título actual de la gráfica.</p>
+<dt>titulo_grafica<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable del título actual de la gráfica.</p>
 </dd>
 </dl>
-</section>
-<section id="id36">
-<h2>Descripción<a class="headerlink" href="#id36" title="Link to this heading">#</a></h2>
-<p>Esta función crea una ventana emergente donde el usuario puede modificar el título de la
-gráfica. Permite al usuario ingresar un nuevo título, seleccionar el tamaño y la fuente
-de la letra. Al hacer clic en el botón de «Aplicar Cambios», se actualizan los parámetros
-del título de la gráfica.</p>
-<p>Si la ventana de personalización ya está abierta, la función la lleva al frente para evitar
-crear múltiples instancias de la misma ventana.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_title</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">personal_ventana_title</span>
@@ -1266,8 +1304,8 @@ crear múltiples instancias de la misma ventana.</p>
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_xaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejex_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_xaxis_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente
 y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
-<section id="id37">
-<h2>Parámetros<a class="headerlink" href="#id37" title="Link to this heading">#</a></h2>
+<section id="id28">
+<h2>Parámetros<a class="headerlink" href="#id28" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ejex_size_var<span class="classifier">tkinter.IntVar</span></dt><dd><p>Variable vinculada al tamaño de la fuente del título del eje X.</p>
 </dd>
@@ -1277,8 +1315,8 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 </dd>
 </dl>
 </section>
-<section id="id38">
-<h2>Variables globales<a class="headerlink" href="#id38" title="Link to this heading">#</a></h2>
+<section id="id29">
+<h2>Variables globales<a class="headerlink" href="#id29" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ejex_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente del título del eje X.</p>
 </dd>
@@ -1287,18 +1325,6 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 <dt>ejex_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto para el título del eje X, que almacena el valor actual y el nuevo título.</p>
 </dd>
 </dl>
-</section>
-<section id="id39">
-<h2>Descripción<a class="headerlink" href="#id39" title="Link to this heading">#</a></h2>
-<p>Esta función aplica los cambios realizados por el usuario en el título del eje X de la gráfica,
-actualizando tanto el texto como el tamaño y el estilo de la fuente. Los valores se extraen de
-las variables vinculadas a los componentes de la interfaz gráfica. Una vez aplicados los cambios,
-la gráfica se redibuja para reflejar las modificaciones.</p>
-</section>
-<section id="nota">
-<h2>Nota<a class="headerlink" href="#nota" title="Link to this heading">#</a></h2>
-<p>Si el usuario cambia el tamaño o la fuente, el título del eje X se actualizará dinámicamente en
-la gráfica con los nuevos parámetros de texto, tamaño y fuente.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_xaxis_changes</span><span class="p">(</span><span class="n">ejex_size_var</span><span class="p">,</span> <span class="n">ejex_fuente_var</span><span class="p">,</span> <span class="n">ejex_titulo_entry</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">ejex_size</span><span class="p">,</span> <span class="n">ejex_shape</span><span class="p">,</span> <span class="n">ejex_titulo</span>
@@ -1322,15 +1348,15 @@ la gráfica con los nuevos parámetros de texto, tamaño y fuente.</p>
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejex" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente que permite al usuario personalizar el título del eje X de la gráfica.
 El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la fuente del eje X.</p>
-<section id="id40">
-<h2>Parámetros<a class="headerlink" href="#id40" title="Link to this heading">#</a></h2>
+<section id="id30">
+<h2>Parámetros<a class="headerlink" href="#id30" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal desde la que se abrirá la ventana emergente de personalización.</p>
+<dt>master :</dt><dd><p>La ventana principal desde la que se abrirá la ventana emergente de personalización.</p>
 </dd>
 </dl>
 </section>
-<section id="id41">
-<h2>Variables globales<a class="headerlink" href="#id41" title="Link to this heading">#</a></h2>
+<section id="id31">
+<h2>Variables globales<a class="headerlink" href="#id31" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ventana_ejex<span class="classifier">tkinter.Toplevel</span></dt><dd><p>Ventana emergente de personalización del eje X.</p>
 </dd>
@@ -1341,16 +1367,6 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 <dt>ejex_shape<span class="classifier">str</span></dt><dd><p>Estilo de la fuente utilizada para el título del eje X.</p>
 </dd>
 </dl>
-</section>
-<section id="id42">
-<h2>Descripción<a class="headerlink" href="#id42" title="Link to this heading">#</a></h2>
-<p>Esta función abre una ventana emergente que permite al usuario personalizar el título del eje X de
-la gráfica. Los cambios incluyen el texto del título, el tamaño de la fuente y el estilo de la fuente.
-Los valores predeterminados se toman de las variables globales, y se permite al usuario elegir entre
-diferentes opciones de tamaño y fuente mediante campos de entrada y menús desplegables (Combobox).</p>
-<p>Una vez que el usuario aplica los cambios, se actualiza el título del eje X de la gráfica y se redibuja.
-La ventana emergente también es modal, lo que significa que no se puede interactuar con otras ventanas
-de la aplicación mientras esté abierta.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_ejex</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">ventana_ejex</span>
@@ -1411,8 +1427,8 @@ de la aplicación mientras esté abierta.</p>
 <dt class="sig sig-object py" id="graficador.apply_yaxis_changes">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_yaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejey_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_yaxis_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.</p>
-<section id="id43">
-<h2>Parámetros<a class="headerlink" href="#id43" title="Link to this heading">#</a></h2>
+<section id="id32">
+<h2>Parámetros<a class="headerlink" href="#id32" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ejey_size_var<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable del tamaño de la fuente para el título del eje Y.</p>
 </dd>
@@ -1422,8 +1438,8 @@ de la aplicación mientras esté abierta.</p>
 </dd>
 </dl>
 </section>
-<section id="id44">
-<h2>Variables globales<a class="headerlink" href="#id44" title="Link to this heading">#</a></h2>
+<section id="id33">
+<h2>Variables globales<a class="headerlink" href="#id33" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ejey_size<span class="classifier">int</span></dt><dd><p>Tamaño de la fuente para el título del eje Y.</p>
 </dd>
@@ -1432,23 +1448,15 @@ de la aplicación mientras esté abierta.</p>
 <dt>ejey_titulo<span class="classifier">tkinter.StringVar</span></dt><dd><p>Variable de texto que contiene el título del eje Y.</p>
 </dd>
 </dl>
-</section>
-<section id="id45">
-<h2>Descripción<a class="headerlink" href="#id45" title="Link to this heading">#</a></h2>
-<p>Esta función se encarga de actualizar el título del eje Y en una gráfica, de acuerdo con las preferencias
-del usuario. Permite cambiar el texto del título, el tamaño de la fuente y el tipo de fuente.</p>
-<p>Los valores de entrada incluyen un campo de texto para el nuevo título, un selector para el tamaño de la
-fuente y un selector para la fuente. Tras aplicar los cambios, la gráfica se redibuja para reflejar las
-modificaciones.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">apply_yaxis_changes</span><span class="p">(</span><span class="n">ejey_size_var</span><span class="p">,</span> <span class="n">ejey_fuente_var</span><span class="p">,</span> <span class="n">ejey_titulo_entry</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">ejey_size</span><span class="p">,</span> <span class="n">ejey_shape</span><span class="p">,</span> <span class="n">ejey_titulo</span>
-    <span class="n">ejey_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ejey_titulo_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>  <span class="c1"># Obtener el nuevo título del eje Y    </span>
+    <span class="n">ejey_titulo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">ejey_titulo_entry</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>  <span class="c1"># Obtener el nuevo título del eje X    </span>
     <span class="c1"># Obtener valores seleccionados</span>
     <span class="n">ejey_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ejey_size_var</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
     <span class="n">ejey_shape</span> <span class="o">=</span> <span class="n">ejey_fuente_var</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
-    <span class="c1"># Actualizar el título del eje Y de la gráfica</span>
+    <span class="c1"># Actualizar el título del eje X de la gráfica</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ejey_titulo</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">ejey_size</span><span class="p">,</span> <span class="n">fontname</span><span class="o">=</span><span class="n">ejey_shape</span><span class="p">)</span>
 
     <span class="c1"># Redibujar la gráfica</span>
@@ -1463,15 +1471,15 @@ modificaciones.</p>
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejey" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente para personalizar el título del eje Y de la gráfica,
 permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.</p>
-<section id="id46">
-<h2>Parámetros<a class="headerlink" href="#id46" title="Link to this heading">#</a></h2>
+<section id="id34">
+<h2>Parámetros<a class="headerlink" href="#id34" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>Ventana principal de la aplicación.</p>
 </dd>
 </dl>
 </section>
-<section id="id47">
-<h2>Variables globales<a class="headerlink" href="#id47" title="Link to this heading">#</a></h2>
+<section id="id35">
+<h2>Variables globales<a class="headerlink" href="#id35" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ventana_ejey<span class="classifier">tkinter.Toplevel</span></dt><dd><p>La ventana emergente de personalización del eje Y.</p>
 </dd>
@@ -1482,17 +1490,6 @@ permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
 <dt>ejey_shape<span class="classifier">str</span></dt><dd><p>Tipo de fuente para el título del eje Y.</p>
 </dd>
 </dl>
-</section>
-<section id="id48">
-<h2>Descripción<a class="headerlink" href="#id48" title="Link to this heading">#</a></h2>
-<p>Esta función crea una ventana emergente para que el usuario pueda personalizar el título del eje Y
-en la gráfica. El usuario puede modificar el texto, el tamaño de la fuente y el tipo de fuente.</p>
-<p>La ventana emergente contiene:
-- Un campo de entrada para el texto del título.
-- Un Combobox para seleccionar el tamaño de la fuente.
-- Un Combobox para seleccionar el tipo de fuente.</p>
-<p>Los cambios realizados se aplican a la gráfica actual cuando el usuario presiona el botón «Aplicar Cambios».</p>
-<p>La ventana emergente es modal, lo que significa que se bloquea la ventana principal hasta que se cierre.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_ejey</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">ventana_ejey</span>
@@ -1554,29 +1551,19 @@ en la gráfica. El usuario puede modificar el texto, el tamaño de la fuente y e
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_double_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_double_click" title="Link to this definition">#</a></dt>
 <dd><p>Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y)
 y abre la ventana de edición correspondiente para personalizar el título del eje o gráfico.</p>
-<section id="id49">
-<h2>Parámetros<a class="headerlink" href="#id49" title="Link to this heading">#</a></h2>
+<section id="id36">
+<h2>Parámetros<a class="headerlink" href="#id36" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>El evento de clic que contiene la información sobre la posición del clic y si es un doble clic.</p>
 </dd>
 </dl>
 </section>
-<section id="id50">
-<h2>Variables globales<a class="headerlink" href="#id50" title="Link to this heading">#</a></h2>
+<section id="id37">
+<h2>Variables globales<a class="headerlink" href="#id37" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>raiz<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación.</p>
 </dd>
 </dl>
-</section>
-<section id="id51">
-<h2>Descripción<a class="headerlink" href="#id51" title="Link to this heading">#</a></h2>
-<p>Esta función se ejecuta cuando el usuario hace un doble clic en los títulos de la gráfica. Detecta
-si el doble clic ocurrió en el título principal de la gráfica, el título del eje X o el título del eje Y.
-Dependiendo del área en la que ocurrió el doble clic, se abre una ventana emergente para que el usuario
-pueda personalizar el título de la gráfica o de uno de los ejes.</p>
-<p>Si el doble clic ocurre en el título principal de la gráfica, se abrirá la ventana para personalizar
-el título de la gráfica. Si el doble clic ocurre en el título del eje X o Y, se abrirán las ventanas
-correspondientes para modificar el título de esos ejes.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_double_click</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
 
     <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">dblclick</span><span class="p">:</span>
@@ -1606,29 +1593,19 @@ correspondientes para modificar el título de esos ejes.</p>
 <dt class="sig sig-object py" id="graficador.update_x_limits">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_x_limits" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.</p>
-<section id="id52">
-<h2>Parámetros<a class="headerlink" href="#id52" title="Link to this heading">#</a></h2>
+<section id="id38">
+<h2>Parámetros<a class="headerlink" href="#id38" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación.</p>
 </dd>
 </dl>
 </section>
-<section id="id53">
-<h2>Variables globales<a class="headerlink" href="#id53" title="Link to this heading">#</a></h2>
+<section id="id39">
+<h2>Variables globales<a class="headerlink" href="#id39" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ventana_lim_x<span class="classifier">tkinter.Toplevel</span></dt><dd><p>La ventana emergente creada para la actualización de los límites del eje X.</p>
 </dd>
 </dl>
-</section>
-<section id="id54">
-<h2>Descripción<a class="headerlink" href="#id54" title="Link to this heading">#</a></h2>
-<p>Esta función abre una ventana emergente donde el usuario puede actualizar los límites del eje X de la gráfica.
-Los valores predeterminados de los límites son el valor mínimo y máximo de los datos de la columna seleccionada
-para el eje X. La ventana contiene campos de entrada donde el usuario puede modificar estos valores.</p>
-<p>Después de que el usuario ingrese los nuevos valores de los límites (x_min y x_max), se actualizarán los
-límites del eje X de la gráfica.</p>
-<p>La ventana emergente es modal, lo que significa que el usuario debe interactuar con ella antes de regresar a
-la ventana principal de la aplicación.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_x_limits</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">ventana_lim_x</span>
@@ -1680,32 +1657,23 @@ la ventana principal de la aplicación.</p>
 <dt class="sig sig-object py" id="graficador.set_x_limits">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_x_limits" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente.</p>
-<section id="id55">
-<h2>Parámetros<a class="headerlink" href="#id55" title="Link to this heading">#</a></h2>
+<section id="id40">
+<h2>Parámetros<a class="headerlink" href="#id40" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>x_min_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del valor para el límite inferior del eje X (x_min).</p>
+<dt>x_min_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada dl valor para el límite inferior del eje X (x_min).</p>
 </dd>
 <dt>x_max_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del valor para el límite superior del eje X (x_max).</p>
 </dd>
 </dl>
 </section>
-<section id="id56">
-<h2>Variables globales<a class="headerlink" href="#id56" title="Link to this heading">#</a></h2>
+<section id="id41">
+<h2>Variables globales<a class="headerlink" href="#id41" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que almacena los límites actuales del eje X [x_min, x_max].</p>
 </dd>
 <dt>origx_lim<span class="classifier">list</span></dt><dd><p>Copia de los límites originales del eje X, utilizada para restaurar los valores iniciales si es necesario.</p>
 </dd>
 </dl>
-</section>
-<section id="id57">
-<h2>Descripción<a class="headerlink" href="#id57" title="Link to this heading">#</a></h2>
-<p>Esta función obtiene los valores de los límites del eje X proporcionados por el usuario en la ventana emergente,
-valida que el valor de <cite>x_min</cite> sea menor que <cite>x_max</cite> y actualiza los límites del eje X de la gráfica. Si los valores
-ingresados son válidos, también se actualizan los límites originales para poder restaurarlos si es necesario.
-Si los valores ingresados no son válidos, se muestra un mensaje de error.</p>
-<p>La gráfica se redibuja con los nuevos límites una vez que se ha realizado la actualización. Si todo es correcto,
-la ventana emergente se cierra.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_x_limits</span><span class="p">(</span><span class="n">x_min_entry</span><span class="p">,</span> <span class="n">x_max_entry</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">origx_lim</span>
@@ -1746,29 +1714,19 @@ la ventana emergente se cierra.</p>
 <dt class="sig sig-object py" id="graficador.update_y_limits">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_y_limits" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente para actualizar los límites del eje Y.</p>
-<section id="id58">
-<h2>Parámetros<a class="headerlink" href="#id58" title="Link to this heading">#</a></h2>
+<section id="id42">
+<h2>Parámetros<a class="headerlink" href="#id42" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>master<span class="classifier">tkinter.Tk</span></dt><dd><p>La ventana principal de la aplicación. Es el contenedor sobre el que se crea la ventana emergente.</p>
 </dd>
 </dl>
 </section>
-<section id="id59">
-<h2>Variables globales<a class="headerlink" href="#id59" title="Link to this heading">#</a></h2>
+<section id="id43">
+<h2>Variables globales<a class="headerlink" href="#id43" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>ventana_lim_y<span class="classifier">tkinter.Toplevel</span></dt><dd><p>Ventana emergente que permite al usuario ingresar los límites del eje Y.</p>
 </dd>
 </dl>
-</section>
-<section id="id60">
-<h2>Descripción<a class="headerlink" href="#id60" title="Link to this heading">#</a></h2>
-<p>Esta función muestra una ventana emergente que permite al usuario ingresar los límites para el eje Y de la gráfica.
-Los valores predeterminados de <cite>y_min</cite> y <cite>y_max</cite> se obtienen de los datos de la columna seleccionada. El usuario
-puede ingresar nuevos valores para estos límites.</p>
-<p>Al presionar el botón de «Actualizar Límites», los nuevos valores se validan y se actualizan en los límites del eje Y.
-Si los valores son válidos, la ventana emergente se cierra y la gráfica se redibuja con los nuevos límites.
-Si los valores no son válidos, se mostrará un mensaje de error.</p>
-<p>La ventana emergente también se centra y se asegura de que sea modal (bloqueando la interacción con la ventana principal).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_y_limits</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">ventana_lim_y</span>
@@ -1783,12 +1741,13 @@ Si los valores no son válidos, se mostrará un mensaje de error.</p>
     <span class="n">y_min_datos</span> <span class="o">=</span> <span class="n">datos_y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
     <span class="n">y_max_datos</span> <span class="o">=</span> <span class="n">datos_y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
+
     <span class="c1"># Crear nueva ventana</span>
     <span class="n">ventana_lim_y</span> <span class="o">=</span> <span class="n">Toplevel</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
     <span class="n">ventana_lim_y</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Límites Eje Y&quot;</span><span class="p">)</span>
     <span class="n">ventana_lim_y</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;300x250&quot;</span><span class="p">)</span>
 
-    <span class="c1"># Etiquetas y campos de entrada para y_min y y_max</span>
+    <span class="c1"># Etiquetas y campos de entrada para x_min y x_max</span>
     <span class="n">Label</span><span class="p">(</span><span class="n">ventana_lim_y</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Ingrese y_min:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">y_min_entry</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">ventana_lim_y</span><span class="p">)</span>
     <span class="n">y_min_entry</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_min_datos</span><span class="p">))</span>  <span class="c1"># Valor de y_min</span>
@@ -1799,7 +1758,7 @@ Si los valores no son válidos, se mostrará un mensaje de error.</p>
     <span class="n">y_max_entry</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">y_max_datos</span><span class="p">))</span>  <span class="c1"># Valor de y_max</span>
     <span class="n">y_max_entry</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
-    <span class="c1"># Botón para actualizar los límites de Y</span>
+    <span class="c1"># Botón para actualizar los límites de X</span>
     <span class="n">Button</span><span class="p">(</span><span class="n">ventana_lim_y</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Actualizar Límites&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">set_y_limits</span><span class="p">(</span><span class="n">y_min_entry</span><span class="p">,</span> <span class="n">y_max_entry</span><span class="p">))</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
     <span class="c1"># Actualizar para obtener las dimensiones de la ventana emergente</span>
@@ -1820,8 +1779,8 @@ Si los valores no son válidos, se mostrará un mensaje de error.</p>
 <dt class="sig sig-object py" id="graficador.set_y_limits">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_y_limits" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente.</p>
-<section id="id61">
-<h2>Parámetros<a class="headerlink" href="#id61" title="Link to this heading">#</a></h2>
+<section id="id44">
+<h2>Parámetros<a class="headerlink" href="#id44" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>y_min_entry<span class="classifier">tkinter.Entry</span></dt><dd><p>Campo de entrada del valor mínimo para el eje Y.</p>
 </dd>
@@ -1829,23 +1788,14 @@ Si los valores no son válidos, se mostrará un mensaje de error.</p>
 </dd>
 </dl>
 </section>
-<section id="id62">
-<h2>Variables globales<a class="headerlink" href="#id62" title="Link to this heading">#</a></h2>
+<section id="id45">
+<h2>Variables globales<a class="headerlink" href="#id45" title="Link to this heading">#</a></h2>
 <dl class="simple">
 <dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que almacena los valores actuales de los límites del eje Y [y_min, y_max].</p>
 </dd>
 <dt>origy_lim<span class="classifier">list</span></dt><dd><p>Copia de los límites originales del eje Y, utilizada para restaurar los valores si es necesario.</p>
 </dd>
 </dl>
-</section>
-<section id="id63">
-<h2>Descripción<a class="headerlink" href="#id63" title="Link to this heading">#</a></h2>
-<p>Esta función toma los valores ingresados por el usuario para los límites inferior (y_min) y superior (y_max)
-del eje Y en la ventana emergente correspondiente. Los valores se validan para asegurar que <cite>y_min</cite> sea
-menor que <cite>y_max</cite>. Si los valores son válidos, la función actualiza los límites del eje Y y redibuja la gráfica
-con los nuevos límites. Si no se ingresan valores, se usan los valores predeterminados basados en los datos
-de la columna seleccionada.</p>
-<p>En caso de que los valores no sean válidos o no se ingresen valores numéricos, se mostrará un mensaje de error.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_y_limits</span><span class="p">(</span><span class="n">y_min_entry</span><span class="p">,</span> <span class="n">y_max_entry</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">origy_lim</span>
@@ -1886,62 +1836,40 @@ de la columna seleccionada.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.zoom">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.zoom" title="Link to this definition">#</a></dt>
-<dd><p>Ajusta el nivel de zoom de la gráfica redibujando los ejes a partir de nuevos límites
-determinados por el valor de las barras deslizantes para los ejes X e Y. El nivel de
-zoom está controlado por el valor de la barra deslizante [scale] y la gráfica se redibuja
-en función de los límites ajustados. También se muestra el porcentaje de zoom en la interfaz
-de usuario a través de [zoom_label]. Si [reset] es True, se restablecen los límites originales
-de la gráfica.</p>
-<section id="id64">
-<h2>Parámetros<a class="headerlink" href="#id64" title="Link to this heading">#</a></h2>
+<dd><p>Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que
+se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es
+controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en
+función de los límites ajustados. También se actualiza el porcentaje de zoom mostrado en pantalla
+[zoom_label]. Si se desea volver al tamaño original de la gráfica este se reestablecera cuando
+[reset] sea True.</p>
+<section id="id46">
+<h2>Parámetros<a class="headerlink" href="#id46" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>event<span class="classifier">tkinter.Event, opcional</span></dt><dd><p>Evento que dispara la acción de zoom (no utilizado en esta implementación, pero presente
-para mantener compatibilidad con otros posibles eventos).</p>
+<dt>event<span class="classifier">tkinter.Event, optional</span></dt><dd><p>Evento que dispara la acción de zoom.</p>
 </dd>
-<dt>reset<span class="classifier">bool, opcional</span></dt><dd><p>Si se establece en True, restablece los límites de la gráfica a sus valores originales
-definidos al inicio.</p>
+<dt>reset<span class="classifier">bool, optional</span></dt><dd><p>Si True, restablece los límites originales de la gráfica.</p>
 </dd>
 </dl>
 </section>
-<section id="id65">
-<h2>Variables globales<a class="headerlink" href="#id65" title="Link to this heading">#</a></h2>
+<section id="id47">
+<h2>Variables globales<a class="headerlink" href="#id47" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje X en la forma [xmin, xmax].</p>
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “x” en la forma [xmin, xmax].</p>
 </dd>
-<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje Y en la forma [ymin, ymax].</p>
-</dd>
-<dt>origx_lim<span class="classifier">list</span></dt><dd><p>Copia de los límites originales del eje X, usada para restablecer los límites si es necesario.</p>
-</dd>
-<dt>origy_lim<span class="classifier">list</span></dt><dd><p>Copia de los límites originales del eje Y, usada para restablecer los límites si es necesario.</p>
-</dd>
-<dt>zoom_label<span class="classifier">tkinter.Label</span></dt><dd><p>Etiqueta que muestra el porcentaje de zoom actual en la interfaz.</p>
-</dd>
-<dt>x_scale<span class="classifier">tkinter.Scale</span></dt><dd><p>Barra deslizante que controla el nivel de zoom en el eje X.</p>
-</dd>
-<dt>y_scale<span class="classifier">tkinter.Scale</span></dt><dd><p>Barra deslizante que controla el nivel de zoom en el eje Y.</p>
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “y” en la forma [ymin, ymax].</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><em>None</em> – La función no devuelve ningún valor. Actualiza la gráfica y la interfaz de usuario
-para reflejar los nuevos límites de zoom.</p></li>
-<li><p><em>Descripción</em></p></li>
-<li><p><em>———–</em></p></li>
-<li><p><em>La función toma los valores actuales de las barras deslizantes para los ejes X e Y y</em></p></li>
-<li><p><em>ajusta los límites de la gráfica en función de esos valores. Si [reset] es True, la función</em></p></li>
-<li><p><em>restablece los límites de la gráfica a los valores originales, y actualiza el porcentaje de</em></p></li>
-<li><p><em>zoom a 100%. Si no se resetea, los valores de las barras deslizantes determinan un factor</em></p></li>
-<li><p><em>de zoom para cada eje, y los límites de la gráfica se ajustan en consecuencia.</em></p></li>
-<li><p><em>La función también actualiza las etiquetas de porcentaje de zoom para ambos ejes, mostrando</em></p></li>
-<li><p><em>el nivel de zoom actual en porcentaje en la interfaz.</em></p></li>
-</ul>
+<dd class="field-odd"><p>La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zoom</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">zoom</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">reset</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 
-    <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">origx_lim</span><span class="p">,</span> <span class="n">origy_lim</span>  <span class="c1"># Variables globales, límites de &#39;x&#39; y &#39;y&#39;</span>
-
+    <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">origx_lim</span><span class="p">,</span> <span class="n">origy_lim</span> <span class="c1"># Variables globales, límites de &#39;x&#39; y &#39;y&#39;</span>
     <span class="k">if</span> <span class="n">reset</span><span class="p">:</span>
         <span class="c1"># Restablecer límites originales</span>
         <span class="n">x_limits</span> <span class="o">=</span> <span class="n">origx_lim</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -1954,13 +1882,11 @@ para reflejar los nuevos límites de zoom.</p></li>
         <span class="n">x_zoom_level</span> <span class="o">=</span> <span class="n">x_scale</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
         <span class="n">y_zoom_level</span> <span class="o">=</span> <span class="n">y_scale</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
 
-        <span class="c1"># Calcular el punto medio y el factor de zoom para el eje X</span>
         <span class="n">x_mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">origx_lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">origx_lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Punto medio &#39;x&#39;</span>
         <span class="n">x_zoom_factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">x_zoom_level</span>
         <span class="n">x_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">origx_lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">origx_lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">x_zoom_factor</span>
         <span class="n">x_limits</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_mid</span> <span class="o">-</span> <span class="n">x_range</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">x_mid</span> <span class="o">+</span> <span class="n">x_range</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
 
-        <span class="c1"># Calcular el punto medio y el factor de zoom para el eje Y</span>
         <span class="n">y_mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">origy_lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">origy_lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>  <span class="c1"># Punto medio &#39;y&#39;</span>
         <span class="n">y_zoom_factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">y_zoom_level</span>
         <span class="n">y_range</span> <span class="o">=</span> <span class="p">(</span><span class="n">origy_lim</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">origy_lim</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">y_zoom_factor</span>
@@ -1983,45 +1909,33 @@ para reflejar los nuevos límites de zoom.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_press">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_press" title="Link to this definition">#</a></dt>
-<dd><p>Evento que se activa cuando el usuario realiza un clic dentro de los límites de la gráfica
-en un gráfico de matplotlib. Inicializa un proceso de arrastre si el clic se realiza dentro
-de los límites definidos para la gráfica. La función almacena las coordenadas del clic para
-utilizarse en un movimiento posterior.</p>
-<section id="id66">
-<h2>Parámetros<a class="headerlink" href="#id66" title="Link to this heading">#</a></h2>
+<dd><p>Evento que permite inicializar un evento con un clic siempre y cuando este se haya
+realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición
+para matplotlib.</p>
+<section id="id48">
+<h2>Parámetros<a class="headerlink" href="#id48" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>El evento generado por un clic del ratón en la gráfica. Contiene las coordenadas [x, y]
-del clic dentro de la gráfica y otra información relevante como el tipo de evento (botón presionado).</p>
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene la información del clic del mouse dentro de los límites de la
+gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 </dd>
 </dl>
 </section>
-<section id="id67">
-<h2>Variables globales<a class="headerlink" href="#id67" title="Link to this heading">#</a></h2>
+<section id="id49">
+<h2>Variables globales<a class="headerlink" href="#id49" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>is_dragging<span class="classifier">bool</span></dt><dd><p>Variable booleana que se establece en True cuando el usuario está arrastrando el ratón.
-Indica que la acción de arrastre ha comenzado.</p>
+<dt>is_dragging<span class="classifier">bool</span></dt><dd><p>Indicador que se establece en True cuando el usuario está arrastrando el mouse.</p>
 </dd>
-<dt>start_x<span class="classifier">float</span></dt><dd><p>Coordenada X en la que el usuario hizo clic en la gráfica. Utilizada como referencia para
-el inicio del arrastre.</p>
+<dt>start_x<span class="classifier">float</span></dt><dd><p>Coordenada “x” donde se inició el clic en la gráfica.</p>
 </dd>
-<dt>start_y<span class="classifier">float</span></dt><dd><p>Coordenada Y en la que el usuario hizo clic en la gráfica. Utilizada como referencia para
-el inicio del arrastre.</p>
+<dt>start_y<span class="classifier">float</span></dt><dd><p>Coordenada “y” donde se inició el clic en la gráfica.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><em>None</em> – La función no devuelve ningún valor. Actualiza los valores de las variables globales <cite>is_dragging</cite>,
-<cite>start_x</cite> y <cite>start_y</cite> para iniciar el proceso de arrastre.</p></li>
-<li><p><em>Descripción</em></p></li>
-<li><p><em>———–</em></p></li>
-<li><p>La función <cite>on_press</cite> se activa cuando el usuario hace clic dentro de los límites de la gráfica</p></li>
-<li><p>(definidos por <cite>event.inaxes</cite>). Si el clic se realiza dentro de estos límites, la función almacena</p></li>
-<li><p>las coordenadas iniciales del clic en <cite>start_x</cite> y <cite>start_y</cite>, y establece la variable <cite>is_dragging</cite> en</p></li>
-<li><p><cite>True</cite> para indicar que el usuario ha iniciado un proceso de arrastre.</p></li>
-<li><p><em>Esta función es parte de un sistema de interacción con la gráfica que permite el movimiento (arrastre)</em></p></li>
-<li><p><em>de la gráfica o elementos dentro de ella.</em></p></li>
-</ul>
+<dd class="field-odd"><p>La función no retorna ningún valor, simplemente actualiza datos.</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_press</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
@@ -2038,46 +1952,36 @@ el inicio del arrastre.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_release">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_release" title="Link to this definition">#</a></dt>
-<dd><p>Evento que se activa cuando el usuario suelta el botón del ratón, finalizando así el
-proceso de arrastre o interacción iniciado con un clic (definido en <cite>on_press</cite>). Esta
-función se asegura de que la acción de arrastre solo se complete si el usuario realmente
-ha desplazado el ratón mientras mantiene presionado el botón. Al soltar el clic, se
-termina la interacción.</p>
-<section id="id68">
-<h2>Parámetros<a class="headerlink" href="#id68" title="Link to this heading">#</a></h2>
+<dd><p>Evento que permite finalizar la función anterior de interacción del usuario y la
+gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y
+cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.</p>
+<section id="id50">
+<h2>Parámetros<a class="headerlink" href="#id50" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>El evento generado al soltar el botón del ratón. Contiene información relevante
-sobre la posición del ratón en el momento en que se suelta, aunque en este caso
-no se utilizan las coordenadas [x, y] de <cite>event</cite>.</p>
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene la información del clic del mouse dentro de los límites de la
+gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 </dd>
 </dl>
 </section>
-<section id="id69">
-<h2>Variables globales<a class="headerlink" href="#id69" title="Link to this heading">#</a></h2>
+<section id="id51">
+<h2>Variables globales<a class="headerlink" href="#id51" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>is_dragging<span class="classifier">bool</span></dt><dd><p>Variable booleana que se establece en <cite>False</cite> cuando el usuario suelta el botón
-del ratón, indicando que la interacción o el proceso de arrastre ha finalizado.</p>
+<dt>is_dragging<span class="classifier">bool</span></dt><dd><p>Indicador que se establece en False cuando el usuario suelta el botón del mouse,
+lo que indica que la interacción/arrastre ha finalizado.</p>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><em>None</em> – La función no devuelve ningún valor. Solo actualiza el estado de la variable
-global <cite>is_dragging</cite> a <cite>False</cite>, lo que indica que el usuario ha dejado de arrastrar.</p></li>
-<li><p><em>Descripción</em></p></li>
-<li><p><em>———–</em></p></li>
-<li><p><em>Esta función es parte de un sistema de interacción en una gráfica, donde el usuario</em></p></li>
-<li><p><em>puede arrastrar elementos de la gráfica utilizando el ratón. Al soltar el botón del</em></p></li>
-<li><p>ratón, se finaliza la acción de arrastre. La función modifica la variable <cite>is_dragging</cite></p></li>
-<li><p><em>para que otros eventos o funciones puedan saber si el usuario está interactuando con</em></p></li>
-<li><p><em>la gráfica o no.</em></p></li>
-</ul>
+<dd class="field-odd"><p>La función no retorna ningún valor, simplemente actualiza datos.</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_release</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">is_dragging</span>
-    <span class="n">is_dragging</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># Finalizar el evento de interacción al soltar el clic.</span>
+    <span class="n">is_dragging</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># Finalizar el evento de interacción al soltar el clic.</span>
 </pre></div>
 </div>
 </section>
@@ -2086,77 +1990,58 @@ global <cite>is_dragging</cite> a <cite>False</cite>, lo que indica que el usuar
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.on_motion">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_motion" title="Link to this definition">#</a></dt>
-<dd><p>Evento que se activa cuando el usuario mueve el ratón mientras mantiene presionado
-el botón del mouse. Esta función permite desplazar la vista de la gráfica, ajustando
-los límites de los ejes según el desplazamiento del cursor. El arrastre se realiza
-solo si la variable <cite>is_dragging</cite> está activa, lo que indica que el usuario está
-interactuando con la gráfica.</p>
-<section id="id70">
-<h2>Parámetros<a class="headerlink" href="#id70" title="Link to this heading">#</a></h2>
+<dd><p>Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el
+mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.</p>
+<section id="id52">
+<h2>Parámetros<a class="headerlink" href="#id52" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>El evento generado por el movimiento del ratón mientras el botón del ratón está
-presionado. Contiene información sobre la posición actual del cursor en la gráfica
-a través de las coordenadas [x, y] almacenadas en <cite>event.xdata</cite> y <cite>event.ydata</cite>.</p>
+<dt>event<span class="classifier">matplotlib.backend_bases.MouseEvent</span></dt><dd><p>Evento que contiene la información del clic del mouse dentro de los límites de la
+gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 </dd>
 </dl>
 </section>
-<section id="id71">
-<h2>Variables globales<a class="headerlink" href="#id71" title="Link to this heading">#</a></h2>
+<section id="id53">
+<h2>Variables globales<a class="headerlink" href="#id53" title="Link to this heading">#</a></h2>
 <dl class="simple">
-<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “x”, representados como [xmin, xmax].</p>
+<dt>x_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “x” en la forma [xmin, xmax].</p>
 </dd>
-<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “y”, representados como [ymin, ymax].</p>
+<dt>y_limits<span class="classifier">list</span></dt><dd><p>Lista que contiene los límites actuales del eje “y” en la forma [ymin, ymax].</p>
 </dd>
-<dt>start_x<span class="classifier">float</span></dt><dd><p>Coordenada “x” donde se inició el clic en la gráfica, utilizada como referencia
-para calcular el desplazamiento horizontal.</p>
+<dt>start_x<span class="classifier">float</span></dt><dd><p>Coordenada “x” donde se inició el clic en la gráfica.</p>
 </dd>
-<dt>start_y<span class="classifier">float</span></dt><dd><p>Coordenada “y” donde se inició el clic en la gráfica, utilizada como referencia
-para calcular el desplazamiento vertical.</p>
-</dd>
-<dt>origx_lim<span class="classifier">list</span></dt><dd><p>Lista que almacena los límites originales del eje “x”, utilizada para reiniciar
-los límites si es necesario.</p>
-</dd>
-<dt>origy_lim<span class="classifier">list</span></dt><dd><p>Lista que almacena los límites originales del eje “y”, utilizada para reiniciar
-los límites si es necesario.</p>
+<dt>start_y<span class="classifier">float</span></dt><dd><p>Coordenada “y” donde se inició el clic en la gráfica.</p>
 </dd>
 </dl>
-<dl class="field-list simple">
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><em>None</em> – La función no retorna ningún valor. Simplemente actualiza los límites de los ejes
-según el desplazamiento del ratón y redibuja la gráfica.</p></li>
-<li><p><em>Descripción</em></p></li>
-<li><p><em>———–</em></p></li>
-<li><p><em>Esta función permite la interacción dinámica con la gráfica, desplazando los ejes</em></p></li>
-<li><p><em>conforme el usuario arrastra el ratón. El movimiento del ratón actualiza los límites</em></p></li>
-<li><p><em>de los ejes “x” y “y” para mover la vista de la gráfica, y esos nuevos límites se</em></p></li>
-<li><p><em>reflejan inmediatamente en la visualización.</em></p></li>
-<li><p><em>Nota</em></p></li>
-<li><p><em>—–</em></p></li>
-<li><p>Este evento solo se activa si la variable global <cite>is_dragging</cite> es <cite>True</cite>, lo que</p></li>
-<li><p><em>indica que el usuario ya ha iniciado el proceso de arrastre al presionar el botón</em></p></li>
-<li><p>del ratón en la gráfica (evento gestionado por la función <cite>on_press</cite>).</p></li>
-</ul>
-</dd>
-</dl>
+</section>
+<section id="nota">
+<h2>Nota:<a class="headerlink" href="#nota" title="Link to this heading">#</a></h2>
+<p>Este evento solo se activa si la variable global <cite>is_dragging</cite> es <cite>True</cite>, lo que
+indica que el usuario ya ha iniciado el proceso de arrastre al presionar el botón
+del ratón en la gráfica (evento gestionado por la función <cite>on_press</cite>).</p>
+</section>
+<section id="id54">
+<h2>Nota:<a class="headerlink" href="#id54" title="Link to this heading">#</a></h2>
+<p>Este evento solo se activa si la variable global <cite>is_dragging</cite> es <cite>True</cite>, lo que
+indica que el usuario ya ha iniciado el proceso de arrastre al presionar el botón
+del ratón en la gráfica (evento gestionado por la función <cite>on_press</cite>).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_motion</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
 
     <span class="k">global</span> <span class="n">x_limits</span><span class="p">,</span> <span class="n">y_limits</span><span class="p">,</span> <span class="n">start_x</span><span class="p">,</span> <span class="n">start_y</span><span class="p">,</span> <span class="n">origx_lim</span><span class="p">,</span> <span class="n">origy_lim</span>
-    <span class="k">if</span> <span class="n">is_dragging</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span><span class="p">:</span>  <span class="c1"># Verificación de interacción y dentro de los ejes</span>
+    <span class="k">if</span> <span class="n">is_dragging</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">inaxes</span><span class="p">:</span> <span class="c1"># Verificación de interacción True and True</span>
 
-        <span class="c1"># Calcular la diferencia entre la posición inicial del clic y la posición actual del cursor</span>
+        <span class="c1"># Calculo de diferencia entre el clic inicial y la posición actual del cursor</span>
         <span class="n">dx</span> <span class="o">=</span> <span class="n">start_x</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">xdata</span>
         <span class="n">dy</span> <span class="o">=</span> <span class="n">start_y</span> <span class="o">-</span> <span class="n">event</span><span class="o">.</span><span class="n">ydata</span>
 
-        <span class="c1"># Redefinir los límites de los ejes en función del desplazamiento</span>
+        <span class="c1"># Redefinir los límites de acuerdo al desplazamiento</span>
         <span class="n">x_limits</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">dx</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_limits</span><span class="p">]</span>
         <span class="n">y_limits</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span> <span class="o">+</span> <span class="n">dy</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">y_limits</span><span class="p">]</span>
 
-        <span class="c1"># Actualizar los límites originales para futuras referencias</span>
+        <span class="c1"># Sincronizar con los límites originales</span>
         <span class="n">origx_lim</span> <span class="o">=</span> <span class="n">x_limits</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">origy_lim</span> <span class="o">=</span> <span class="n">y_limits</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 
-        <span class="c1"># Redibujar la gráfica con los nuevos límites</span>
+        <span class="c1"># Actualizar la gráfica dinámicamente</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x_limits</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y_limits</span><span class="p">)</span>
         <span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
@@ -2168,41 +2053,15 @@ según el desplazamiento del ratón y redibuja la gráfica.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="graficador.cerrar_ventana">
 <span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cerrar_ventana</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.cerrar_ventana" title="Link to this definition">#</a></dt>
-<dd><p>Función que se ejecuta al cerrar la ventana de la aplicación. Su objetivo principal
-es eliminar el archivo temporal “tmp_graph.pkl” si existe y finalizar el bucle
-principal de la aplicación Tkinter.</p>
-<p>Este procedimiento garantiza que el archivo temporal creado durante la ejecución
-del programa se elimine para evitar la acumulación innecesaria de archivos y liberar
-recursos del sistema.</p>
-<section id="pasos-que-realiza">
-<h2>Pasos que realiza:<a class="headerlink" href="#pasos-que-realiza" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Verifica si el archivo temporal “tmp_graph.pkl” existe en el sistema.</p></li>
-<li><p>Si el archivo existe, lo elimina.</p></li>
-<li><p>Finaliza el bucle principal de la interfaz gráfica de usuario de Tkinter.</p></li>
-</ol>
-</section>
-<section id="id72">
-<h2>Variables globales<a class="headerlink" href="#id72" title="Link to this heading">#</a></h2>
-<p>Ninguna.</p>
-<dl class="field-list simple">
-<dt class="field-odd">returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>La función no retorna ningún valor, simplemente realiza las acciones necesarias
-para limpiar y cerrar la ventana.</p>
-</dd>
-<dt class="field-even">rtype<span class="colon">:</span></dt>
-<dd class="field-even"><p>None</p>
-</dd>
-</dl>
+<dd><p>Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cerrar_ventana</span><span class="p">():</span>
 
     <span class="n">archivo_tmp</span> <span class="o">=</span> <span class="s2">&quot;tmp_graph.pkl&quot;</span>
     <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">)</span>  <span class="c1"># Eliminar el archivo temporal si existe</span>
-    <span class="n">raiz</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>  <span class="c1"># Cerrar el bucle principal de Tkinter</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">)</span>
+    <span class="n">raiz</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>  <span class="c1"># Esto cierra el mainloop de Tkinter</span>
 </pre></div>
 </div>
-</section>
 </dd></dl>
 
 </section>
@@ -2252,10 +2111,11 @@ para limpiar y cerrar la ventana.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_line_click"><code class="docutils literal notranslate"><span class="pre">on_line_click()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_regresion_property"><code class="docutils literal notranslate"><span class="pre">update_regresion_property()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_regresion"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_regresion()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
