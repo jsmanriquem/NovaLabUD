@@ -12,25 +12,9 @@ raiz = Tk()
 raiz.geometry("735x800")  # Tamaño de la pantalla
 raiz.config(bg="gray")  # Color de fondo
 raiz.wm_title('Gráfica de datos')  # Título de la gráfica
+regresiones = []  # Lista para almacenar los de regresión
 
 def centrar_ventana(ventana_principal, ventana_emergente):
-    """
-    Centra una ventana emergente dentro de la ventana principal.
-
-    Esta función ajusta la geometría de la ventana emergente para que aparezca centrada con respecto a la 
-    ventana principal, tomando en cuenta las dimensiones y la posición de ambas ventanas en la pantalla.
-
-    Parámetros:
-    ventana_principal (tk.Tk): La ventana principal (normalmente la ventana raíz de la aplicación).
-    ventana_emergente (tk.Toplevel): La ventana emergente que se desea centrar.
-
-    Retorna:
-    None: La función modifica directamente la geometría de la ventana emergente.
-    
-    Uso:
-    Esta función es útil cuando se necesita que una ventana secundaria o emergente aparezca
-    en el centro de la ventana principal en aplicaciones basadas en Tkinter.
-    """
     raiz.update_idletasks()
 
     # Obtener dimensiones y posición de la ventana principal
@@ -109,7 +93,7 @@ def limpiar_grafica():
     Esta función es útil para restablecer los parámetros de la gráfica a sus valores predeterminados,
     permitiendo una visualización limpia y estándar antes de realizar nuevas representaciones gráficas.
     """
-    global y_limits, x_limits, origx_lim, origy_lim, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color
+    global y_limits, x_limits, origx_lim, origy_lim, marker_color, marker_type, show_grid, point_size, titulo_grafica, title_fuente, title_size, ejex_shape, ejex_size, ejex_titulo, ejey_shape, ejey_size, ejey_titulo, line_color, line_width, bg_color, regresiones
 
     titulo_grafica = StringVar(value="Título de la Gráfica")
     title_fuente = "DejaVu Sans"
@@ -132,6 +116,8 @@ def limpiar_grafica():
     point_size = 5  
 
     zoom(reset=True)
+
+    regresiones.clear()  # Vaciar la lista de regresiones
 
     ax.clear() 
     x_limits = None
@@ -253,6 +239,15 @@ regresionMenu.add_command(label="R. Polinomial", command=lambda: graficar_regres
 regresionMenu.add_command(label="Interpolación", command=lambda: graficar_regresion('interpolacion'))
 barraMenu.add_cascade(label="Regresiones", menu=regresionMenu)
 
+# Menú Personalización
+personalizarMenu = Menu(barraMenu, tearoff=0)
+personalizarMenu.add_command(label="Editar gráfica", command=lambda: grafica_ventana(raiz))
+# Opciones para personalizar las líneas de regresión
+personalizarMenu.add_command(label="Editar Regresión Lineal", command=lambda: grafica_ventana_regresion(raiz, 'Lineal'))
+personalizarMenu.add_command(label="Editar Regresión Polinomial", command=lambda: grafica_ventana_regresion(raiz, 'Polinomial'))
+personalizarMenu.add_command(label="Editar Regresión por Interpolación", command=lambda: grafica_ventana_regresion(raiz, 'Interpolación de Lagrange'))
+barraMenu.add_cascade(label="Personalizar", menu=personalizarMenu)
+
 # Menú Ayuda (abre un enlace en el navegador)
 barraMenu.add_command(label="Ayuda", command=lambda: webbrowser.open("http://tulink.com"))
 
@@ -324,27 +319,10 @@ data = pd.DataFrame()  # Inicializar como DataFrame vacío
 def cargar_datos():
     """
     Carga los datos desde un archivo temporal llamado 'tmp_graph.pkl' al iniciar la aplicación.
+    Si el archivo existe, los datos se cargan en la variable global `data`. Si no existe,
+    muestra un mensaje de advertencia.
 
-    Esta función verifica si el archivo 'tmp_graph.pkl' existe en el sistema. Si el archivo está presente, 
-    intenta cargarlo en la variable global `data`. Si el archivo está vacío, muestra un mensaje de error. 
-    Si el archivo no existe, muestra una advertencia. En caso de error al cargar los datos, se muestra 
-    un mensaje de error con el detalle de la excepción.
-
-    Variables globales:
-    ------------------
-    data : pandas.DataFrame
-        Contiene los datos cargados desde el archivo 'tmp_graph.pkl'. Se utiliza en toda la aplicación para 
-        operar con los datos de la gráfica.
-
-    Retorna:
-    --------
-    None: La función no retorna ningún valor. Solo carga los datos desde el archivo temporal o muestra mensajes 
-    de advertencia o error según corresponda.
-
-    Uso:
-    ----
-    Esta función es útil para cargar datos previos al inicio de la aplicación, permitiendo continuar con la 
-    sesión anterior sin necesidad de reintroducir los datos manualmente.
+    Almacena los datos en la variable global `data` para ser utilizados en toda la aplicación.
     """
     global data
 
@@ -526,11 +504,16 @@ def graficar_datos():
     datos_x = data[x_col]
     datos_y = data[y_col]
 
+    # Restablecer límites originales si es la primera vez que se grafican
     if origx_lim is None or origy_lim is None:
         origx_lim = [datos_x.min(), datos_x.max()]
         origy_lim = [datos_y.min(), datos_y.max()]
         x_limits = origx_lim.copy()
         y_limits = origy_lim.copy()
+
+    # Restablecer límites automáticamente según los datos actuales
+    x_limits = [datos_x.min(), datos_x.max()]
+    y_limits = [datos_y.min(), datos_y.max()]
 
     # Actualizar títulos de los ejes con los nombres de las columnas seleccionadas
     ejex_titulo.set(x_col)
@@ -540,8 +523,7 @@ def graficar_datos():
 
     x = data[x_col]  # Usar la columna seleccionada para X
     y = data[y_col]  # Usar la columna seleccionada para Y
-    ax.clear()  # Limpiar la gráfica anterior
-    line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Seno")
+    line, = ax.plot(x, y, color=line_color, marker=marker_type, markersize=point_size, markerfacecolor=marker_color, linewidth=line_width, label="Datos")
     ax.set_xlim(x_limits)  # Límites del eje X
     ax.set_ylim(y_limits)  # Límites del eje Y
     ax.set_title(titulo_grafica.get(), fontname=title_fuente, fontsize=title_size)  # Actualizar título
@@ -549,10 +531,25 @@ def graficar_datos():
     ax.set_ylabel(ejey_titulo.get(), fontname=ejey_shape, fontsize=ejey_size)  # Actualizar título eje Y
     ax.grid(show_grid)
     ax.set_facecolor(bg_color)
+
+    # Se grafican las regresiones realizadas anteriormente
+    if 'regresiones' in globals() and regresiones:
+        for reg in regresiones:
+            ax.plot(
+                reg['x_vals'], reg['y_vals'],
+                label=reg['label'],
+                color=reg.get('color', 'blue'),
+                linewidth=reg.get('line_width', 1.0),
+                marker=reg.get('marker_type', 'o'),
+                markersize=reg.get('point_size', 5),
+                markerfacecolor=reg.get('marker_color', 'blue')
+            )
+    
+    ax.legend()
+
     canvas.draw()  # Actualizar la gráfica
 
-    canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
-    canvas.mpl_connect('button_press_event', on_double_click)
+    # canvas.mpl_connect('button_press_event', on_double_click)
     
     # Crear botón "+" para edición de límites eje X
     x_plus_button = Button(raiz, text="+", command=lambda: update_x_limits(raiz))
@@ -561,70 +558,6 @@ def graficar_datos():
     # Crear botón "+" para edición de límites eje Y
     y_plus_button = Button(raiz, text="+", command=lambda: update_y_limits(raiz))
     y_plus_button.place(x=canvas.get_tk_widget().winfo_width() - 60, y=canvas.get_tk_widget().winfo_height() / 2 - 185)
-
-def graficar_regresion(tipo):
-    """
-    Realiza y grafica la regresión de los datos seleccionados en la interfaz de usuario, 
-    según el tipo de regresión solicitado. La regresión puede ser lineal, polinómica 
-    o de interpolación. Los resultados se grafican en el mismo canvas de Matplotlib 
-    con los datos originales y la regresión ajustada.
-
-    Parámetros
-    ----------
-    tipo : str
-        El tipo de regresión a realizar. Puede ser uno de los siguientes:
-        - 'lineal': Para realizar una regresión lineal.
-        - 'polinomial': Para realizar una regresión polinómica.
-        - 'interpolacion': Para realizar una regresión de interpolación.
-
-    Variables globales
-    ------------------
-    x_col : str
-        El nombre de la columna seleccionada para el eje X.
-    y_col : str
-        El nombre de la columna seleccionada para el eje Y.
-    data : pandas.DataFrame
-        El DataFrame que contiene los datos cargados para la regresión.
-    ax : matplotlib.axes.Axes
-        El objeto de los ejes en los que se dibujan los datos y la regresión.
-    canvas : FigureCanvasTkAgg
-        El widget de Matplotlib que renderiza la gráfica en la interfaz gráfica de usuario.
-
-    Errores
-    -------
-    Muestra un mensaje de error si no se han seleccionado columnas válidas para la regresión
-    o si no hay datos cargados.
-
-    Uso
-    ---
-    Esta función realiza la regresión solicitada y la muestra en la interfaz gráfica, 
-    utilizando los datos de las columnas seleccionadas por el usuario.
-    """
-    global x_col, y_col
-    
-    x_col = columna_x.get()
-    y_col = columna_y.get()
-
-    if x_col is None or y_col is None:
-        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
-        return
-
-    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
-    reg_analysis = RegressionAnalysis(data)
-
-    if tipo == 'lineal':
-        # Llamar a la función linear_regression con return_metrics=False
-        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
-    elif tipo == 'polinomial':
-        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
-    elif tipo == 'interpolacion':
-        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
-
-    # Graficar la regresión
-    ax.plot(x_vals, y_vals, label=ecuacion, color='red')
-    ax.scatter(x_vals, y_vals, color='blue', label='Datos')  # Puntos de la regresión
-    ax.legend()
-    canvas.draw()
 
 def update_graph_property(property_type=None, new_value=None):
     """
@@ -672,12 +605,6 @@ def update_graph_property(property_type=None, new_value=None):
         Canvas que contiene la gráfica y permite la actualización de eventos.
     line : matplotlib.lines.Line2D
         Línea de la gráfica que permite asociar eventos de clic.
-
-    Uso
-    ---
-    Esta función permite modificar las propiedades visuales de la gráfica a través de la interfaz gráfica 
-    y actualizar la visualización en tiempo real. Los cambios incluyen la edición de los colores, el tamaño de los 
-    puntos, el grosor de las líneas, y la visibilidad de la cuadrícula.
     """
     global line_width, marker_type, line_color, marker_color, bg_color, point_size, show_grid
 
@@ -699,7 +626,6 @@ def update_graph_property(property_type=None, new_value=None):
         ax.grid(show_grid)
 
     graficar_datos()  
-    canvas.mpl_connect('button_press_event', lambda event: on_line_click(event, line))
 
 def grafica_ventana(master):
     """
@@ -725,22 +651,6 @@ def grafica_ventana(master):
         Tipo de marcador utilizado en la gráfica.
     point_size : float
         Tamaño actual de los puntos en la gráfica.
-
-    Descripción
-    -----------
-    Esta función crea una ventana emergente (Toplevel) que permite a los usuarios 
-    personalizar varios aspectos visuales de una gráfica, incluyendo el color de fondo, 
-    el color y grosor de la línea, el tipo y color de los marcadores, el tamaño de los puntos 
-    y la visibilidad de la cuadrícula. Además, la ventana emergente se configura como modal, 
-    lo que significa que el usuario debe interactuar con ella antes de poder regresar a la 
-    ventana principal de la aplicación.
-
-    La interfaz gráfica permite:
-    - Cambiar el color de fondo de la gráfica.
-    - Mostrar u ocultar la cuadrícula.
-    - Modificar el color de la línea y su grosor.
-    - Seleccionar el tipo de marcador para los puntos de la gráfica.
-    - Cambiar el color y tamaño de los puntos.
     """
     global personalizacion_ventana
 
@@ -801,42 +711,187 @@ def grafica_ventana(master):
     personalizacion_ventana.transient(raiz)
     personalizacion_ventana.grab_release()
 
-def on_line_click(event, line):
+def graficar_regresion(tipo):
     """
-    Detecta un clic en la línea de la gráfica y, si ocurre cerca de un punto específico, abre una ventana para personalizar 
-    las propiedades de la gráfica.
+    Grafica la regresión especificada según el tipo proporcionado para los datos cargados en la aplicación.
 
-    Parámetros
+    Parámetros:
     ----------
-    event : matplotlib.backend_bases.MouseEvent
-        Evento que contiene información sobre el clic, incluyendo las coordenadas y el 
-        botón del mouse que fue presionado.
-    line : matplotlib.lines.Line2D
-        Objeto de línea en la gráfica, desde el cual se extraen los datos de los puntos 
-        para comparar con la posición del clic.
+    tipo : str
+        El tipo de regresión a realizar. Puede ser 'lineal', 'polinomial' o 'interpolacion'.
+
+    Funcionalidad:
+    --------------
+    Esta función toma los nombres de las columnas `x` e `y` seleccionadas para realizar la regresión.
+    Si no se han cargado datos, muestra un mensaje de error utilizando `messagebox.showerror`.
+    Luego, crea una instancia de la clase `RegressionAnalysis` usando el conjunto de datos cargados (`data`).
+    
+    Dependiendo del valor del argumento `tipo`, llama a la función correspondiente para calcular la regresión:
+    - `linear_regression` para regresión lineal.
+    - `polynomial_regression` para regresión polinómica.
+    - `interpolation` para realizar una interpolación.
+
+    Los métodos de regresión devuelven los valores `x_vals`, `y_vals` y la ecuación de la línea ajustada.
+    Los resultados de la regresión se guardan en una lista global `regresiones` con las siguientes propiedades:
+    - `x_vals` y `y_vals` son los puntos calculados para la gráfica.
+    - `label` etiqueta la línea de regresión con el tipo correspondiente.
+    - `color`, `line_width`, `marker_type`, `marker_color`, y `point_size` definen la apariencia de la línea y los puntos.
+
+    La función no retorna ningún valor explícito.
+
+    Notas:
+    ------
+    - La variable global `data` debe estar cargada antes de llamar a esta función.
+    - La variable global `regresiones` es utilizada para almacenar múltiples regresiones.
+    - Se espera que `RegressionAnalysis` sea una clase que implemente los métodos `linear_regression`, `polynomial_regression` e `interpolation`.
+    
+    Excepciones:
+    ------------
+    Muestra un mensaje de error si no hay datos cargados para las columnas `x` e `y`.
+
+    Ejemplo de uso:
+    ---------------
+    graficar_regresion('lineal')  # Realiza y grafica una regresión lineal
+    """
+    global regresiones
+    
+    x_col = columna_x.get()
+    y_col = columna_y.get()
+
+    if x_col is None or y_col is None:
+        messagebox.showerror("Error", "No hay datos cargados para realizar la regresión.")
+        return
+
+    # Crear la instancia de RegressionAnalysis pasando el DataFrame directamente
+    reg_analysis = RegressionAnalysis(data)
+
+    if tipo == 'lineal':
+        # Llamar a la función linear_regression con return_metrics=False
+        x_vals, y_vals, ecuacion = reg_analysis.linear_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'polinomial':
+        x_vals, y_vals, ecuacion = reg_analysis.polynomial_regression(x_col, y_col, ax1=ax, return_metrics=False)
+    elif tipo == 'interpolacion':
+        x_vals, y_vals, ecuacion = reg_analysis.interpolation(x_col, y_col, ax1=ax, return_metrics=False)
+
+    # Guardar los datos de la regresión
+    regresiones.append({
+    'x_vals': x_vals,
+    'y_vals': y_vals,
+    'label': f"Regresión {tipo.capitalize()}",  
+    'color': 'red',  
+    'line_width': 1.0,
+    'marker_type': 'o',
+    'marker_color': 'red',
+    'point_size': 5
+    })
+
+def update_regresion_property(regresion, property_type, new_value=None):
+    """
+    Actualiza las propiedades visuales de una línea de regresión y actualiza la gráfica.
+
+    Parametros
+    ----------
+    regresion : dict
+        Diccionario que contiene los datos y propiedades visuales de la regresión.
+    property_type : str
+        Tipo de propiedad a modificar ('line_color', 'line_width', 'marker_type', 'marker_color', 'point_size').
+    new_value : any, opcional
+        Nuevo valor para la propiedad especificada. Si no se proporciona, se abre un cuadro de diálogo
+        para seleccionar el color.
+    """
+    if property_type == 'line_color':
+        regresion['color'] = colorchooser.askcolor()[1]
+    elif property_type == 'line_width':
+        regresion['line_width'] = new_value
+    elif property_type == 'marker_type':
+        regresion['marker_type'] = new_value
+    elif property_type == 'marker_color':
+        regresion['marker_color'] = colorchooser.askcolor()[1]
+    elif property_type == 'point_size':
+        regresion['point_size'] = new_value
+
+    # Redibujar la gráfica
+    graficar_datos()
+
+def grafica_ventana_regresion(master, tipo):
+    """
+    Crea una ventana emergente para personalizar visualmente las líneas de regresión.
+    Esta ventana permite cambiar propiedades como color, grosor de línea y tipo de marcador
+    para la línea de regresión seleccionada.
+
+    Parametros
+    ----------
+    master : tkinter.Tk
+        Ventana principal de la aplicación.
+    tipo_regresion : str
+        Tipo de regresión que se está personalizando ('lineal', 'polinomial', 'interpolacion').
 
     Variables globales
     ------------------
-    raiz : tkinter.Tk
-        La ventana principal de la aplicación.
-
-    Descripción
-    -----------
-    Esta función detecta un clic con el botón izquierdo del mouse en un gráfico. Si el clic ocurre cerca de uno de los puntos 
-    de la línea, la función abre una ventana emergente (`grafica_ventana`) que permite personalizar las propiedades visuales de 
-    la gráfica. La comparación entre el clic y los puntos de la línea se realiza en función de la cercanía de las coordenadas 
-    (`xdata` y `ydata`) del punto al clic realizado, dentro de un umbral de 0.1 unidades.
+    regresiones : list
+        Lista que contiene las regresiones realizadas, con sus datos y propiedades visuales.
     """
-    if event.inaxes and event.button == 1:  # Botón izquierdo del mouse
-        # Se obtienen las coordenadas de los puntos de la línea
-        xdata = line.get_xdata()
-        ydata = line.get_ydata()
+    global personalizacion_ventana
+
+    if personalizacion_ventana is not None and personalizacion_ventana.winfo_exists():
+        personalizacion_ventana.lift()
+        return  
+
+    personalizacion_ventana = Toplevel(master)
+    personalizacion_ventana.title(f"Personalización de Regresión {tipo.capitalize()}")
+    personalizacion_ventana.geometry("400x400")
+
+
+    regresion = next(
+        (reg for reg in regresiones if tipo.strip().lower() in reg['label'].strip().lower()), 
+    None
+    )
+
+    if regresion is None:
+        messagebox.showerror("Error", f"No se encontró una regresión del tipo {tipo}.")
+        personalizacion_ventana.destroy()
+        return
         
-        # Comprobar si el clic fue cerca de la línea
-        for i in range(len(xdata)):
-            if abs(event.xdata - xdata[i]) < 0.1 and abs(event.ydata - ydata[i]) < 0.1:
-                grafica_ventana(raiz) 
-                break
+
+    # Botón para cambiar el color de la línea
+    Button(personalizacion_ventana, text="Color de Línea", 
+           command=lambda: update_regresion_property(regresion, 'line_color')).pack(pady=10)
+
+    # Slider para cambiar el grosor de la línea
+    Label(personalizacion_ventana, text="Grosor de Línea:").pack(pady=5)
+    line_width_slider = Scale(personalizacion_ventana, from_=0.5, to=10, resolution=0.1, orient=HORIZONTAL, 
+                              command=lambda value: update_regresion_property(regresion, 'line_width', float(value)))
+    line_width_slider.set(regresion.get('line_width', 1.0))
+    line_width_slider.pack(pady=5)
+
+    # Combobox para cambiar el tipo de marcador
+    Label(personalizacion_ventana, text="Tipo de Marcador:").pack(pady=5)
+    marker_options = ['o', 'x', '^', 's', '*']  
+    marker_var = StringVar(value=regresion.get('marker_type', 'o'))
+    marker_menu = ttk.Combobox(personalizacion_ventana, textvariable=marker_var, values=marker_options)
+    marker_menu.pack(pady=5)
+    marker_menu.bind("<<ComboboxSelected>>", 
+                     lambda event: update_regresion_property(regresion, 'marker_type', marker_var.get()))
+
+    # Botón para cambiar el color del marcador
+    Button(personalizacion_ventana, text="Color del Marcador", 
+           command=lambda: update_regresion_property(regresion, 'marker_color')).pack(pady=10)
+
+    # Slider para cambiar el tamaño del marcador
+    Label(personalizacion_ventana, text="Tamaño del Marcador:").pack(pady=5)
+    point_size_slider = Scale(personalizacion_ventana, from_=1, to=20, resolution=1, orient=HORIZONTAL, 
+                              command=lambda value: update_regresion_property(regresion, 'point_size', float(value)))
+    point_size_slider.set(regresion.get('point_size', 5))
+    point_size_slider.pack(pady=5)
+
+    # Centrar la ventana
+    personalizacion_ventana.update_idletasks()
+    centrar_ventana(raiz, personalizacion_ventana)
+
+    # Hacer que la ventana emergente sea modal
+    personalizacion_ventana.transient(raiz)
+    personalizacion_ventana.grab_release()
+
 
 def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
     """
@@ -860,12 +915,6 @@ def apply_title_changes(title_size_var, title_fuente_var, titulo_grafica_entry):
         Estilo de la fuente utilizado para el título de la gráfica.
     titulo_grafica : tkinter.StringVar
         Variable de texto para el título de la gráfica, que almacena el valor actual y el nuevo título.
-
-    Descripción
-    -----------
-    Esta función obtiene los valores seleccionados por el usuario para el tamaño de la fuente, el estilo de la fuente y el texto 
-    del título de la gráfica. Luego, actualiza el título de la gráfica con esos valores, ajustando el tamaño, estilo y texto del 
-    título. Después de aplicar los cambios, redibuja la gráfica para reflejar las modificaciones.
     """
     global title_size, title_fuente, titulo_grafica
     titulo_grafica.set(titulo_grafica_entry.get()) 
@@ -885,25 +934,15 @@ def grafica_ventana_title(master):
 
     Parámetros
     ----------
-    master : tkinter.Tk
-        Ventana principal de la aplicación que sirve como la ventana raíz de la aplicación.
-
+    master : 
+        Ventana principal de la aplicación.
+    
     Variables globales
     ------------------
     personal_ventana_title : tkinter.Toplevel
         Ventana emergente de personalización del título de la gráfica.
     titulo_grafica : tkinter.StringVar
-        Variable de texto que contiene el título actual de la gráfica.
-
-    Descripción
-    -----------
-    Esta función crea una ventana emergente donde el usuario puede modificar el título de la 
-    gráfica. Permite al usuario ingresar un nuevo título, seleccionar el tamaño y la fuente 
-    de la letra. Al hacer clic en el botón de "Aplicar Cambios", se actualizan los parámetros 
-    del título de la gráfica.
-
-    Si la ventana de personalización ya está abierta, la función la lleva al frente para evitar 
-    crear múltiples instancias de la misma ventana.
+        Variable del título actual de la gráfica.
     """
     global personal_ventana_title
     
@@ -977,18 +1016,6 @@ def apply_xaxis_changes(ejex_size_var, ejex_fuente_var, ejex_titulo_entry):
         Estilo de la fuente utilizado para el título del eje X.
     ejex_titulo : tkinter.StringVar
         Variable de texto para el título del eje X, que almacena el valor actual y el nuevo título.
-
-    Descripción
-    -----------
-    Esta función aplica los cambios realizados por el usuario en el título del eje X de la gráfica, 
-    actualizando tanto el texto como el tamaño y el estilo de la fuente. Los valores se extraen de 
-    las variables vinculadas a los componentes de la interfaz gráfica. Una vez aplicados los cambios, 
-    la gráfica se redibuja para reflejar las modificaciones.
-
-    Nota
-    ----
-    Si el usuario cambia el tamaño o la fuente, el título del eje X se actualizará dinámicamente en 
-    la gráfica con los nuevos parámetros de texto, tamaño y fuente.
     """
     global ejex_size, ejex_shape, ejex_titulo
     ejex_titulo.set(ejex_titulo_entry.get())  # Obtener el nuevo título del eje X    
@@ -1009,7 +1036,7 @@ def grafica_ventana_ejex(master):
 
     Parámetros
     ----------
-    master : tkinter.Tk
+    master : 
         La ventana principal desde la que se abrirá la ventana emergente de personalización.
 
     Variables globales
@@ -1022,17 +1049,6 @@ def grafica_ventana_ejex(master):
         Tamaño de la fuente del título del eje X.
     ejex_shape : str
         Estilo de la fuente utilizada para el título del eje X.
-
-    Descripción
-    -----------
-    Esta función abre una ventana emergente que permite al usuario personalizar el título del eje X de 
-    la gráfica. Los cambios incluyen el texto del título, el tamaño de la fuente y el estilo de la fuente.
-    Los valores predeterminados se toman de las variables globales, y se permite al usuario elegir entre 
-    diferentes opciones de tamaño y fuente mediante campos de entrada y menús desplegables (Combobox).
-
-    Una vez que el usuario aplica los cambios, se actualiza el título del eje X de la gráfica y se redibuja.
-    La ventana emergente también es modal, lo que significa que no se puede interactuar con otras ventanas 
-    de la aplicación mientras esté abierta.
     """
     global ventana_ejex
     
@@ -1105,23 +1121,14 @@ def apply_yaxis_changes(ejey_size_var, ejey_fuente_var, ejey_titulo_entry):
         Tipo de fuente para el título del eje Y.
     ejey_titulo : tkinter.StringVar
         Variable de texto que contiene el título del eje Y.
-
-    Descripción
-    -----------
-    Esta función se encarga de actualizar el título del eje Y en una gráfica, de acuerdo con las preferencias
-    del usuario. Permite cambiar el texto del título, el tamaño de la fuente y el tipo de fuente.
-
-    Los valores de entrada incluyen un campo de texto para el nuevo título, un selector para el tamaño de la 
-    fuente y un selector para la fuente. Tras aplicar los cambios, la gráfica se redibuja para reflejar las 
-    modificaciones.
     """
     global ejey_size, ejey_shape, ejey_titulo
-    ejey_titulo.set(ejey_titulo_entry.get())  # Obtener el nuevo título del eje Y    
+    ejey_titulo.set(ejey_titulo_entry.get())  # Obtener el nuevo título del eje X    
     # Obtener valores seleccionados
     ejey_size = int(ejey_size_var.get())
     ejey_shape = ejey_fuente_var.get()
     
-    # Actualizar el título del eje Y de la gráfica
+    # Actualizar el título del eje X de la gráfica
     ax.set_ylabel(ejey_titulo.get(), fontsize=ejey_size, fontname=ejey_shape)
     
     # Redibujar la gráfica
@@ -1147,20 +1154,6 @@ def grafica_ventana_ejey(master):
         Tamaño de la fuente para el título del eje Y.
     ejey_shape : str
         Tipo de fuente para el título del eje Y.
-
-    Descripción
-    -----------
-    Esta función crea una ventana emergente para que el usuario pueda personalizar el título del eje Y
-    en la gráfica. El usuario puede modificar el texto, el tamaño de la fuente y el tipo de fuente.
-
-    La ventana emergente contiene:
-    - Un campo de entrada para el texto del título.
-    - Un Combobox para seleccionar el tamaño de la fuente.
-    - Un Combobox para seleccionar el tipo de fuente.
-
-    Los cambios realizados se aplican a la gráfica actual cuando el usuario presiona el botón "Aplicar Cambios".
-
-    La ventana emergente es modal, lo que significa que se bloquea la ventana principal hasta que se cierre.
     """
     global ventana_ejey
     
@@ -1211,7 +1204,7 @@ def grafica_ventana_ejey(master):
     ventana_ejey.transient(raiz)
     ventana_ejey.grab_set()
     raiz.wait_window(ventana_ejey)
-
+    
 def on_double_click(event):
     """
     Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y) 
@@ -1226,17 +1219,6 @@ def on_double_click(event):
     ------------------
     raiz : tkinter.Tk
         La ventana principal de la aplicación.
-
-    Descripción
-    -----------
-    Esta función se ejecuta cuando el usuario hace un doble clic en los títulos de la gráfica. Detecta 
-    si el doble clic ocurrió en el título principal de la gráfica, el título del eje X o el título del eje Y. 
-    Dependiendo del área en la que ocurrió el doble clic, se abre una ventana emergente para que el usuario 
-    pueda personalizar el título de la gráfica o de uno de los ejes.
-
-    Si el doble clic ocurre en el título principal de la gráfica, se abrirá la ventana para personalizar 
-    el título de la gráfica. Si el doble clic ocurre en el título del eje X o Y, se abrirán las ventanas 
-    correspondientes para modificar el título de esos ejes.
     """
     if event.dblclick:
         # Coordenadas del clic en la ventana gráfica
@@ -1273,18 +1255,6 @@ def update_x_limits(master):
     ------------------
     ventana_lim_x : tkinter.Toplevel
         La ventana emergente creada para la actualización de los límites del eje X.
-    
-    Descripción
-    -----------
-    Esta función abre una ventana emergente donde el usuario puede actualizar los límites del eje X de la gráfica. 
-    Los valores predeterminados de los límites son el valor mínimo y máximo de los datos de la columna seleccionada 
-    para el eje X. La ventana contiene campos de entrada donde el usuario puede modificar estos valores. 
-
-    Después de que el usuario ingrese los nuevos valores de los límites (x_min y x_max), se actualizarán los 
-    límites del eje X de la gráfica.
-
-    La ventana emergente es modal, lo que significa que el usuario debe interactuar con ella antes de regresar a 
-    la ventana principal de la aplicación.
     """
     global ventana_lim_x
 
@@ -1334,7 +1304,7 @@ def set_x_limits(x_min_entry, x_max_entry):
     Parámetros
     ----------
     x_min_entry : tkinter.Entry
-        Campo de entrada del valor para el límite inferior del eje X (x_min).
+        Campo de entrada dl valor para el límite inferior del eje X (x_min).
 
     x_max_entry : tkinter.Entry
         Campo de entrada del valor para el límite superior del eje X (x_max).
@@ -1343,19 +1313,8 @@ def set_x_limits(x_min_entry, x_max_entry):
     ------------------
     x_limits : list
         Lista que almacena los límites actuales del eje X [x_min, x_max].
-
     origx_lim : list
         Copia de los límites originales del eje X, utilizada para restaurar los valores iniciales si es necesario.
-
-    Descripción
-    -----------
-    Esta función obtiene los valores de los límites del eje X proporcionados por el usuario en la ventana emergente, 
-    valida que el valor de `x_min` sea menor que `x_max` y actualiza los límites del eje X de la gráfica. Si los valores 
-    ingresados son válidos, también se actualizan los límites originales para poder restaurarlos si es necesario. 
-    Si los valores ingresados no son válidos, se muestra un mensaje de error. 
-
-    La gráfica se redibuja con los nuevos límites una vez que se ha realizado la actualización. Si todo es correcto, 
-    la ventana emergente se cierra.
     """
     global x_limits, origx_lim
 
@@ -1400,18 +1359,6 @@ def update_y_limits(master):
     ------------------
     ventana_lim_y : tkinter.Toplevel
         Ventana emergente que permite al usuario ingresar los límites del eje Y.
-
-    Descripción
-    -----------
-    Esta función muestra una ventana emergente que permite al usuario ingresar los límites para el eje Y de la gráfica. 
-    Los valores predeterminados de `y_min` y `y_max` se obtienen de los datos de la columna seleccionada. El usuario 
-    puede ingresar nuevos valores para estos límites. 
-
-    Al presionar el botón de "Actualizar Límites", los nuevos valores se validan y se actualizan en los límites del eje Y. 
-    Si los valores son válidos, la ventana emergente se cierra y la gráfica se redibuja con los nuevos límites. 
-    Si los valores no son válidos, se mostrará un mensaje de error.
-
-    La ventana emergente también se centra y se asegura de que sea modal (bloqueando la interacción con la ventana principal).
     """
     global ventana_lim_y
 
@@ -1425,12 +1372,13 @@ def update_y_limits(master):
     y_min_datos = datos_y.min()
     y_max_datos = datos_y.max()
 
+
     # Crear nueva ventana
     ventana_lim_y = Toplevel(master)
     ventana_lim_y.title("Límites Eje Y")
     ventana_lim_y.geometry("300x250")
 
-    # Etiquetas y campos de entrada para y_min y y_max
+    # Etiquetas y campos de entrada para x_min y x_max
     Label(ventana_lim_y, text="Ingrese y_min:").pack(pady=5)
     y_min_entry = Entry(ventana_lim_y)
     y_min_entry.insert(0, str(y_min_datos))  # Valor de y_min
@@ -1441,7 +1389,7 @@ def update_y_limits(master):
     y_max_entry.insert(0, str(y_max_datos))  # Valor de y_max
     y_max_entry.pack()
 
-    # Botón para actualizar los límites de Y
+    # Botón para actualizar los límites de X
     Button(ventana_lim_y, text="Actualizar Límites", command=lambda: set_y_limits(y_min_entry, y_max_entry)).pack(pady=10)
 
     # Actualizar para obtener las dimensiones de la ventana emergente
@@ -1473,16 +1421,6 @@ def set_y_limits(y_min_entry, y_max_entry):
 
     origy_lim : list
         Copia de los límites originales del eje Y, utilizada para restaurar los valores si es necesario.
-
-    Descripción
-    -----------
-    Esta función toma los valores ingresados por el usuario para los límites inferior (y_min) y superior (y_max) 
-    del eje Y en la ventana emergente correspondiente. Los valores se validan para asegurar que `y_min` sea 
-    menor que `y_max`. Si los valores son válidos, la función actualiza los límites del eje Y y redibuja la gráfica 
-    con los nuevos límites. Si no se ingresan valores, se usan los valores predeterminados basados en los datos 
-    de la columna seleccionada.
-
-    En caso de que los valores no sean válidos o no se ingresen valores numéricos, se mostrará un mensaje de error.
     """
     global y_limits, origy_lim
 
@@ -1515,67 +1453,36 @@ def set_y_limits(y_min_entry, y_max_entry):
     except ValueError:
         messagebox.showerror("Error","Por favor, ingrese valores numéricos válidos.")
 
-def zoom(event=None, reset=False):
+def zoom(event=None,reset=False):
     """
-    Ajusta el nivel de zoom de la gráfica redibujando los ejes a partir de nuevos límites 
-    determinados por el valor de las barras deslizantes para los ejes X e Y. El nivel de 
-    zoom está controlado por el valor de la barra deslizante [scale] y la gráfica se redibuja 
-    en función de los límites ajustados. También se muestra el porcentaje de zoom en la interfaz 
-    de usuario a través de [zoom_label]. Si [reset] es True, se restablecen los límites originales 
-    de la gráfica.
+    Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que 
+    se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es 
+    controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en 
+    función de los límites ajustados. También se actualiza el porcentaje de zoom mostrado en pantalla
+    [zoom_label]. Si se desea volver al tamaño original de la gráfica este se reestablecera cuando 
+    [reset] sea True.
 
     Parámetros
     ----------
-    event : tkinter.Event, opcional
-        Evento que dispara la acción de zoom (no utilizado en esta implementación, pero presente 
-        para mantener compatibilidad con otros posibles eventos).
+    event : tkinter.Event, optional
+        Evento que dispara la acción de zoom.
 
-    reset : bool, opcional
-        Si se establece en True, restablece los límites de la gráfica a sus valores originales 
-        definidos al inicio.
-
+    reset : bool, optional
+        Si True, restablece los límites originales de la gráfica.
+    
     Variables globales
     ------------------
     x_limits : list
-        Lista que contiene los límites actuales del eje X en la forma [xmin, xmax].
-
+        Lista que contiene los límites actuales del eje 'x' en la forma [xmin, xmax].
     y_limits : list
-        Lista que contiene los límites actuales del eje Y en la forma [ymin, ymax].
-
-    origx_lim : list
-        Copia de los límites originales del eje X, usada para restablecer los límites si es necesario.
-
-    origy_lim : list
-        Copia de los límites originales del eje Y, usada para restablecer los límites si es necesario.
-
-    zoom_label : tkinter.Label
-        Etiqueta que muestra el porcentaje de zoom actual en la interfaz.
-
-    x_scale : tkinter.Scale
-        Barra deslizante que controla el nivel de zoom en el eje X.
-
-    y_scale : tkinter.Scale
-        Barra deslizante que controla el nivel de zoom en el eje Y.
+        Lista que contiene los límites actuales del eje 'y' en la forma [ymin, ymax].
 
     Returns
     -------
     None
-        La función no devuelve ningún valor. Actualiza la gráfica y la interfaz de usuario 
-        para reflejar los nuevos límites de zoom.
-    
-    Descripción
-    -----------
-    La función toma los valores actuales de las barras deslizantes para los ejes X e Y y 
-    ajusta los límites de la gráfica en función de esos valores. Si [reset] es True, la función 
-    restablece los límites de la gráfica a los valores originales, y actualiza el porcentaje de 
-    zoom a 100%. Si no se resetea, los valores de las barras deslizantes determinan un factor 
-    de zoom para cada eje, y los límites de la gráfica se ajustan en consecuencia.
-
-    La función también actualiza las etiquetas de porcentaje de zoom para ambos ejes, mostrando 
-    el nivel de zoom actual en porcentaje en la interfaz.
+        La función no retorna ningún valor, simplemente actualiza la gráfica y la interfaz de usuario.
     """
-    global x_limits, y_limits, origx_lim, origy_lim  # Variables globales, límites de 'x' y 'y'
-    
+    global x_limits, y_limits, origx_lim, origy_lim # Variables globales, límites de 'x' y 'y'
     if reset:
         # Restablecer límites originales
         x_limits = origx_lim.copy()
@@ -1588,13 +1495,11 @@ def zoom(event=None, reset=False):
         x_zoom_level = x_scale.get()
         y_zoom_level = y_scale.get()
         
-        # Calcular el punto medio y el factor de zoom para el eje X
         x_mid = (origx_lim[1] + origx_lim[0]) / 2  # Punto medio 'x'
         x_zoom_factor = 1 + x_zoom_level
         x_range = (origx_lim[1] - origx_lim[0]) / x_zoom_factor
         x_limits = [x_mid - x_range / 2, x_mid + x_range / 2]
         
-        # Calcular el punto medio y el factor de zoom para el eje Y
         y_mid = (origy_lim[1] + origy_lim[0]) / 2  # Punto medio 'y'
         y_zoom_factor = 1 + y_zoom_level
         y_range = (origy_lim[1] - origy_lim[0]) / y_zoom_factor
@@ -1613,46 +1518,29 @@ def zoom(event=None, reset=False):
 # Funciones para manejar el desplazamiento con el mouse sobre la gráfica
 def on_press(event):
     """
-    Evento que se activa cuando el usuario realiza un clic dentro de los límites de la gráfica 
-    en un gráfico de matplotlib. Inicializa un proceso de arrastre si el clic se realiza dentro 
-    de los límites definidos para la gráfica. La función almacena las coordenadas del clic para 
-    utilizarse en un movimiento posterior.
+    Evento que permite inicializar un evento con un clic siempre y cuando este se haya 
+    realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición
+    para matplotlib. 
 
     Parámetros
     ----------
     event : matplotlib.backend_bases.MouseEvent
-        El evento generado por un clic del ratón en la gráfica. Contiene las coordenadas [x, y] 
-        del clic dentro de la gráfica y otra información relevante como el tipo de evento (botón presionado).
+        Evento que contiene la información del clic del mouse dentro de los límites de la 
+        gráfica y almacenando las coordenadas [x,y] del clic realizado.
 
     Variables globales
     ------------------
     is_dragging : bool
-        Variable booleana que se establece en True cuando el usuario está arrastrando el ratón. 
-        Indica que la acción de arrastre ha comenzado.
-
+        Indicador que se establece en True cuando el usuario está arrastrando el mouse.
     start_x : float
-        Coordenada X en la que el usuario hizo clic en la gráfica. Utilizada como referencia para 
-        el inicio del arrastre.
-
+        Coordenada 'x' donde se inició el clic en la gráfica.
     start_y : float
-        Coordenada Y en la que el usuario hizo clic en la gráfica. Utilizada como referencia para 
-        el inicio del arrastre.
+        Coordenada 'y' donde se inició el clic en la gráfica.
 
     Returns
     -------
     None
-        La función no devuelve ningún valor. Actualiza los valores de las variables globales `is_dragging`, 
-        `start_x` y `start_y` para iniciar el proceso de arrastre.
-
-    Descripción
-    -----------
-    La función `on_press` se activa cuando el usuario hace clic dentro de los límites de la gráfica 
-    (definidos por `event.inaxes`). Si el clic se realiza dentro de estos límites, la función almacena 
-    las coordenadas iniciales del clic en `start_x` y `start_y`, y establece la variable `is_dragging` en 
-    `True` para indicar que el usuario ha iniciado un proceso de arrastre.
-
-    Esta función es parte de un sistema de interacción con la gráfica que permite el movimiento (arrastre) 
-    de la gráfica o elementos dentro de ella.
+        La función no retorna ningún valor, simplemente actualiza datos.
     """
     global is_dragging, start_x, start_y
     if event.inaxes:
@@ -1661,94 +1549,60 @@ def on_press(event):
 
 def on_release(event):
     """
-    Evento que se activa cuando el usuario suelta el botón del ratón, finalizando así el 
-    proceso de arrastre o interacción iniciado con un clic (definido en `on_press`). Esta 
-    función se asegura de que la acción de arrastre solo se complete si el usuario realmente 
-    ha desplazado el ratón mientras mantiene presionado el botón. Al soltar el clic, se 
-    termina la interacción.
+    Evento que permite finalizar la función anterior de interacción del usuario y la 
+    gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y 
+    cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.
 
     Parámetros
     ----------
     event : matplotlib.backend_bases.MouseEvent
-        El evento generado al soltar el botón del ratón. Contiene información relevante 
-        sobre la posición del ratón en el momento en que se suelta, aunque en este caso 
-        no se utilizan las coordenadas [x, y] de `event`.
+        Evento que contiene la información del clic del mouse dentro de los límites de la 
+        gráfica y almacenando las coordenadas [x,y] del clic realizado.
 
     Variables globales
     ------------------
     is_dragging : bool
-        Variable booleana que se establece en `False` cuando el usuario suelta el botón 
-        del ratón, indicando que la interacción o el proceso de arrastre ha finalizado.
+        Indicador que se establece en False cuando el usuario suelta el botón del mouse,
+        lo que indica que la interacción/arrastre ha finalizado.
 
     Returns
     -------
     None
-        La función no devuelve ningún valor. Solo actualiza el estado de la variable 
-        global `is_dragging` a `False`, lo que indica que el usuario ha dejado de arrastrar.
-
-    Descripción
-    -----------
-    Esta función es parte de un sistema de interacción en una gráfica, donde el usuario 
-    puede arrastrar elementos de la gráfica utilizando el ratón. Al soltar el botón del 
-    ratón, se finaliza la acción de arrastre. La función modifica la variable `is_dragging` 
-    para que otros eventos o funciones puedan saber si el usuario está interactuando con 
-    la gráfica o no.
+        La función no retorna ningún valor, simplemente actualiza datos.
     """
     global is_dragging
-    is_dragging = False  # Finalizar el evento de interacción al soltar el clic.
+    is_dragging = False # Finalizar el evento de interacción al soltar el clic.
 
 def on_motion(event):
     """
-    Evento que se activa cuando el usuario mueve el ratón mientras mantiene presionado 
-    el botón del mouse. Esta función permite desplazar la vista de la gráfica, ajustando 
-    los límites de los ejes según el desplazamiento del cursor. El arrastre se realiza 
-    solo si la variable `is_dragging` está activa, lo que indica que el usuario está 
-    interactuando con la gráfica.
+    Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el 
+    mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.
 
     Parámetros
     ----------
     event : matplotlib.backend_bases.MouseEvent
-        El evento generado por el movimiento del ratón mientras el botón del ratón está 
-        presionado. Contiene información sobre la posición actual del cursor en la gráfica 
-        a través de las coordenadas [x, y] almacenadas en `event.xdata` y `event.ydata`.
+        Evento que contiene la información del clic del mouse dentro de los límites de la 
+        gráfica y almacenando las coordenadas [x,y] del clic realizado.
 
     Variables globales
     ------------------
     x_limits : list
-        Lista que contiene los límites actuales del eje 'x', representados como [xmin, xmax].
-
+        Lista que contiene los límites actuales del eje 'x' en la forma [xmin, xmax].
     y_limits : list
-        Lista que contiene los límites actuales del eje 'y', representados como [ymin, ymax].
-
+        Lista que contiene los límites actuales del eje 'y' en la forma [ymin, ymax].
     start_x : float
-        Coordenada 'x' donde se inició el clic en la gráfica, utilizada como referencia 
-        para calcular el desplazamiento horizontal.
-
+        Coordenada 'x' donde se inició el clic en la gráfica.
     start_y : float
-        Coordenada 'y' donde se inició el clic en la gráfica, utilizada como referencia 
-        para calcular el desplazamiento vertical.
+        Coordenada 'y' donde se inició el clic en la gráfica.
 
-    origx_lim : list
-        Lista que almacena los límites originales del eje 'x', utilizada para reiniciar 
-        los límites si es necesario.
 
-    origy_lim : list
-        Lista que almacena los límites originales del eje 'y', utilizada para reiniciar 
-        los límites si es necesario.
 
-    Returns
-    -------
-    None
-        La función no retorna ningún valor. Simplemente actualiza los límites de los ejes 
-        según el desplazamiento del ratón y redibuja la gráfica.
-
-    Descripción
-    -----------
-    Esta función permite la interacción dinámica con la gráfica, desplazando los ejes 
-    conforme el usuario arrastra el ratón. El movimiento del ratón actualiza los límites 
-    de los ejes 'x' y 'y' para mover la vista de la gráfica, y esos nuevos límites se 
-    reflejan inmediatamente en la visualización.
-
+    Nota:
+    -----
+    Este evento solo se activa si la variable global `is_dragging` es `True`, lo que 
+    indica que el usuario ya ha iniciado el proceso de arrastre al presionar el botón 
+    del ratón en la gráfica (evento gestionado por la función `on_press`).
+    
     Nota:
     -----
     Este evento solo se activa si la variable global `is_dragging` es `True`, lo que 
@@ -1756,21 +1610,21 @@ def on_motion(event):
     del ratón en la gráfica (evento gestionado por la función `on_press`).
     """
     global x_limits, y_limits, start_x, start_y, origx_lim, origy_lim
-    if is_dragging and event.inaxes:  # Verificación de interacción y dentro de los ejes
+    if is_dragging and event.inaxes: # Verificación de interacción True and True
         
-        # Calcular la diferencia entre la posición inicial del clic y la posición actual del cursor
+        # Calculo de diferencia entre el clic inicial y la posición actual del cursor
         dx = start_x - event.xdata
         dy = start_y - event.ydata
         
-        # Redefinir los límites de los ejes en función del desplazamiento
+        # Redefinir los límites de acuerdo al desplazamiento
         x_limits = [x + dx for x in x_limits]
         y_limits = [y + dy for y in y_limits]
 
-        # Actualizar los límites originales para futuras referencias
+        # Sincronizar con los límites originales
         origx_lim = x_limits.copy()
         origy_lim = y_limits.copy()
 
-        # Redibujar la gráfica con los nuevos límites
+        # Actualizar la gráfica dinámicamente
         ax.set_xlim(x_limits)
         ax.set_ylim(y_limits)
         canvas.draw()
@@ -1801,35 +1655,11 @@ zoom_label = ttk.Label(frame, text="Zoom X: 0% | Zoom Y: 0%")
 zoom_label.grid(column=0, row=5)
 
 def cerrar_ventana():
-    """
-    Función que se ejecuta al cerrar la ventana de la aplicación. Su objetivo principal 
-    es eliminar el archivo temporal 'tmp_graph.pkl' si existe y finalizar el bucle 
-    principal de la aplicación Tkinter.
-
-    Este procedimiento garantiza que el archivo temporal creado durante la ejecución 
-    del programa se elimine para evitar la acumulación innecesaria de archivos y liberar 
-    recursos del sistema. 
-
-    Pasos que realiza:
-    ------------------
-    1. Verifica si el archivo temporal 'tmp_graph.pkl' existe en el sistema.
-    2. Si el archivo existe, lo elimina.
-    3. Finaliza el bucle principal de la interfaz gráfica de usuario de Tkinter.
-
-    Variables globales
-    ------------------
-    Ninguna.
-
-    Returns
-    -------
-    None
-        La función no retorna ningún valor, simplemente realiza las acciones necesarias 
-        para limpiar y cerrar la ventana.
-    """
+    """Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl"""
     archivo_tmp = "tmp_graph.pkl"
     if os.path.exists(archivo_tmp):
-        os.remove(archivo_tmp)  # Eliminar el archivo temporal si existe
-    raiz.quit()  # Cerrar el bucle principal de Tkinter
+        os.remove(archivo_tmp)
+    raiz.quit()  # Esto cierra el mainloop de Tkinter
 
 # Añadir un manejador de evento para cerrar la ventana
 raiz.protocol("WM_DELETE_WINDOW", cerrar_ventana)
