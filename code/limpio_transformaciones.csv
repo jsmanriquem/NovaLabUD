@@ -1,2 +1,0 @@
-operation,timestamp,details,rows_affected
-remove_null_values,2025-01-11 22:14:29,Eliminadas 13 filas con valores nulos,36
