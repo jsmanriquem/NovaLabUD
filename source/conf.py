@@ -7,6 +7,7 @@ import sphinx_book_theme
 
 # Ruta a la carpeta con el código a documentar
 sys.path.insert(0, os.path.abspath('../code'))  # Agrega el directorio 'code' al path
+sys.path.insert(0, os.path.abspath('../code/src'))  # Para acceder a los módulos en 'src'
 
 # Nombre del proyecto
 project = 'NovaLabUD'

@@ -5,15 +5,21 @@ Hola, esta es la documentación de la aplicación: ``NovaLab``. Esta es una apli
 
 Nace como un software diseñado de forma amigable para su público dirigido, el cual son estudiantes de primeros semestres del Programa Académico de Física de la Facultad de Ciencias Matemáticas y Naturales de la Universidad Distrital Francisco José de Caldas.
 
+Instalación
+------------
+
+
+
 .. toctree::
    :maxdepth: 1
    :caption: Manual de usuario
    :class: left-column
 
-   app_user
-   data_operations_user
-   regression_analysis_user
-   graficador_user
+   interfaz_novalab
+   procesamiento_datos
+   analisis_datos
+   graficador_manual
+   miscelaneos
 
 .. toctree::
    :maxdepth: 1
