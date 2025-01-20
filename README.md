@@ -79,7 +79,7 @@ Con ello, tendrás instalado el programa, sin embargo, para ejecutarlo debes act
 Luego, se deben instalar las dependencias, para ello usa el comando (se debe estar dentro de la carpeta NovaLabUD):
 
 ```bash
-  pip install -r requiriments.txt
+  pip install -r requirements.txt
 ```
 
 Finalmente, para ejecutar la aplicación se usa el comando:
