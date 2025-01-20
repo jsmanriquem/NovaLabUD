@@ -6,11 +6,11 @@ A lo largo de este proyecto, se utilizan librerías de Python como pandas, numpy
 
 ## Authors
 
-- [@Laura Viviana Oliveros](https://www.github.com/octokatherine)
-- [@Julián Armando Áros](https://www.github.com/octokatherine)
-- [@Andrés Fernando Gómez](https://www.github.com/octokatherine)
-- [@Laura Carolina Triana](https://www.github.com/octokatherine)
-- [@Juan Sebastian Manrique](https://www.github.com/octokatherine)
+- [@Laura Viviana Oliveros](https://www.github.com/OliverosLau)
+- [@Julián Armando Áros](https://www.github.com/Julianaros)
+- [@Andrés Fernando Gómez](https://www.github.com/fernandogomez0621)
+- [@Laura Carolina Triana](https://www.github.com/LTMeraki)
+- [@Juan Sebastian Manrique](https://www.github.com/jsmanriquem)
 - [@georgfis](https://www.github.com/georgfis)
 
 
