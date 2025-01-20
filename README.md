@@ -6,35 +6,33 @@ A lo largo de este proyecto, se utilizan librerías de Python como pandas, numpy
 
 ## Authors
 
-- [@Laura Viviana Oliveros](https://www.github.com/OliverosLau)
-- [@Julián Armando Áros](https://www.github.com/Julianaros)
-- [@Andrés Fernando Gómez](https://www.github.com/fernandogomez0621)
-- [@Laura Carolina Triana](https://www.github.com/LTMeraki)
-- [@Juan Sebastian Manrique](https://www.github.com/jsmanriquem)
-- [@georgfis](https://www.github.com/georgfis)
-
+- [Laura Viviana Oliveros](https://www.github.com/OliverosLau)
+- [Julián Armando Áros](https://www.github.com/Julianaros)
+- [Andrés Fernando Gómez](https://www.github.com/fernandogomez0621)
+- [Laura Carolina Triana](https://www.github.com/LTMeraki)
+- [Juan Sebastian Manrique](https://www.github.com/jsmanriquem)
+- [georgfis](https://www.github.com/georgfis)
 
 ### Mención Especial, Profesor Andrés Vasco
 
 ## Funcionalidades de la aplicación:
 
 ### Procesamiento de Datos:
+
 Nuestra aplicación está diseñada para simplificar y optimizar el manejo de datos. Ofrecemos herramientas integradas para:
 
 - Carga de datos: Compatible con diversos formatos (CSV, JSON, Excel, entre otros).
 - Preprocesamiento: Limpieza de datos, detección y tratamiento de valores nulos, normalización y escalado.
 - Análisis exploratorio: Imputación y transformación básica de los datos.
 
-
-
 ### Ajuste de Modelos:
+
 La app incluye funcionalidades avanzadas para entrenar y ajustar modelos de aprendizaje automático:
 
-- Selección de modelos: Acceso a algoritmos predefinidos como regresión lineal, polinómicas del grado deseado e interpolación y sus respectivas métricas. 
-
-
+- Selección de modelos: Acceso a algoritmos predefinidos como regresión lineal, polinómicas del grado deseado e interpolación y sus respectivas métricas.
 
 ### Graficadora:
+
 La visualización de datos y resultados es fundamental, y nuestra app incluye una herramienta de graficado robusta:
 
 - Gráficos predefinidos: Histogramas, gráficos de dispersión, diagramas de caja, entre otros.
@@ -42,96 +40,103 @@ La visualización de datos y resultados es fundamental, y nuestra app incluye un
 - Interactividad: Permite explorar los gráficos con zoom, selección de regiones y exportación en formatos como PNG o SVG.
 
 ## Finalidad de la app:
+
 Esta aplicación busca ofrecer una herramienta a los estudiantes de física de los primeros semestres, para importar los datos de laboratorio y obtener facilmente los ajustes y su vizualización. Tambien se incluye pestañas con la teoría correspondiente a los fenomenos físicos analizados.
 
-### Metodología de programación: POO  (Programación Orientada a Objetos)
+### Metodología de programación: POO (Programación Orientada a Objetos)
 
-###  Lenguaje de programación  utilizado: Python
+### Lenguaje de programación utilizado: Python
 
 ## Estructura del Proyecto
 
 La estructura del repositorio es la siguiente:
 
-
 ## Librerías Utilizadas
 
 ### Librerías para Manejo de Datos
+
 - **pandas**: Proporciona estructuras de datos y herramientas de análisis, esenciales para manejar la entrada de datos en experimentos y las simulaciones.
 - **numpy**: Utilizado para realizar operaciones matemáticas y manejar arreglos numéricos de manera eficiente.
 - **datetime**: Se usa para gestionar la temporalidad en las simulaciones y registrar las fechas de ejecución.
 - **pickle**: Se emplea para guardar y cargar configuraciones de simulaciones o resultados previos.
 
 ### Librerías para Análisis y Visualización
+
 - **matplotlib**: Se usa para generar gráficos interactivos de los resultados de las simulaciones, tales como la velocidad, la distancia y el tiempo en experimentos de caída libre.
 - **scipy**: Utiliza herramientas como `interp1d` para realizar interpolación de los datos obtenidos en las simulaciones.
 
 ## Instalación
 
-Clonación del repositorio
+Para la instalación del programa debes tener una versión 3.11.2 o superior (esto debido a que bajo esta versión fue programada la aplicación). Luego, ubícate en la dirección en donde quieras alojar el programa portable, copia y pega en tú terminal los siguientes comandos:
 
 ```bash
-  git clone repositorio
+git clone https://github.com/jsmanriquem/NovaLabUD.git
+python -m venv NovaLabUD
 ```
 
-Intrucción de crear el repositorio
+Con ello, tendrás instalado el programa, sin embargo, para ejecutarlo debes activar el entorno virtual, para ello recomendamos que revises la [documentación de venv](https://docs.python.org/3/library/venv.html#how-venvs-work) que dependiendo de tú sistema operativo cambiará la activación.
 
-```bash
-  python -m venv env
-```
-
-Instalar dependenciaas
+Luego, se deben instalar las dependencias, para ello usa el comando (se debe estar dentro de la carpeta NovaLabUD):
 
 ```bash
   pip install -r requiriments.txt
 ```
 
-Correr la aplicación
+Finalmente, para ejecutar la aplicación se usa el comando:
 
 ```bash
   python app.py
 ```
 
-Luego de abrir la aplicación se puede consultar el manual de usuario para navegar facilmente.
+Puedes encontrar el manual de usuario aquí [NovaLabUD Manual](https://jsmanriquem.github.io/NovaLabUD/).
 
 ## Módulos del Código
 
-### `data_operations.py`  
-Este módulo contiene las funciones necesarias para el manejo y procesamiento de datos:  
-- **Carga de datos**: Lectura de archivos en formatos como CSV, JSON, y Excel.  
-- **Limpieza de datos**: Tratamiento de valores nulos, duplicados y datos inconsistentes.  
-- **Transformaciones**: Normalización, escalado y codificación de datos categóricos.  
+### `data_operations.py`
 
-### `regression analysis.py`  
-Incluye algoritmos para ajuste de modelos de regresión:  
-- **Regresión Lineal**: Implementación y entrenamiento para análisis predictivo.  
-- **Regresión Polinómica**: Modelado para datos no lineales.  
-- **Evaluación de Modelos**: Cálculo de métricas como R², MAE, y RMSE.  
+Este módulo contiene las funciones necesarias para el manejo y procesamiento de datos:
 
-### `graficador.py`  
-Proporciona herramientas para visualizar datos y resultados de modelos:  
-- **Generación de gráficos**: Histogramas, gráficos de dispersión, y diagramas de caja.  
-- **Personalización**: Opciones para títulos, colores y estilos de gráficos.  
-- **Exportación**: Guarda gráficos en formatos como PNG y SVG.  
+- **Carga de datos**: Lectura de archivos en formatos como CSV, JSON, y Excel.
+- **Limpieza de datos**: Tratamiento de valores nulos, duplicados y datos inconsistentes.
+- **Transformaciones**: Normalización, escalado y codificación de datos categóricos.
 
-### `generador_dato.py`  
-Diseñado para la creación y simulación de datos:  
-- **Datos sintéticos**: Generación de conjuntos de datos personalizados para pruebas.  
-- **Parámetros personalizables**: Control sobre distribución, tamaño y ruido.  
-- **Utilidad en pruebas**: Ideal para validar modelos y algoritmos.  
+### `regression analysis.py`
 
-### `app.py`  
-Es el núcleo de la aplicación:  
-- **Integración de módulos**: Conexión entre los diferentes componentes de la app.  
-- **Interfaz de usuario**: Implementación de una UI interactiva para una experiencia amigable.  
-- **Flujo principal**: Coordina la ejecución de procesamiento, modelado y visualización.  
+Incluye algoritmos para ajuste de modelos de regresión:
 
+- **Regresión Lineal**: Implementación y entrenamiento para análisis predictivo.
+- **Regresión Polinómica**: Modelado para datos no lineales.
+- **Evaluación de Modelos**: Cálculo de métricas como R², MAE, y RMSE.
 
+### `graficador.py`
+
+Proporciona herramientas para visualizar datos y resultados de modelos:
+
+- **Generación de gráficos**: Histogramas, gráficos de dispersión, y diagramas de caja.
+- **Personalización**: Opciones para títulos, colores y estilos de gráficos.
+- **Exportación**: Guarda gráficos en formatos como PNG y SVG.
+
+### `generador_dato.py`
+
+Diseñado para la creación y simulación de datos:
+
+- **Datos sintéticos**: Generación de conjuntos de datos personalizados para pruebas.
+- **Parámetros personalizables**: Control sobre distribución, tamaño y ruido.
+- **Utilidad en pruebas**: Ideal para validar modelos y algoritmos.
+
+### `app.py`
+
+Es el núcleo de la aplicación:
+
+- **Integración de módulos**: Conexión entre los diferentes componentes de la app.
+- **Interfaz de usuario**: Implementación de una UI interactiva para una experiencia amigable.
+- **Flujo principal**: Coordina la ejecución de procesamiento, modelado y visualización.
 
 ### Contribuciones
 
-  Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
+Si deseas contribuir a este proyecto, por favor sigue los siguientes pasos:
 
- 1. Haz un fork del repositorio.
- 2. Crea una rama (git checkout -b nueva-funcionalidad).
- 3. Realiza tus cambios y confirma las modificaciones (git commit -am 'Añadir nueva funcionalidad').
- 4. Envía un pull request para que revisemos y fusionemos los cambios.
+1. Haz un fork del repositorio.
+2. Crea una rama (git checkout -b nueva-funcionalidad).
+3. Realiza tus cambios y confirma las modificaciones (git commit -am 'Añadir nueva funcionalidad').
+4. Envía un pull request para que revisemos y fusionemos los cambios.
