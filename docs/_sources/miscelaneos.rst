@@ -18,7 +18,7 @@ La interfaz presenta un estilo por pestañas, en donde se van a poder ver ambas 
    :alt: Interfaz para mostrar la teoría de *Caída libre*.
    :name: fig:misc01
 
-   Interfaz para mostrar la teoría de *Caída libre*.
+   Interfaz para mostrar la teoría de *Caída libre*
 
 .. figure:: Figures/miscelaneos/ley_hooke.png
    :width: 50%
@@ -26,7 +26,7 @@ La interfaz presenta un estilo por pestañas, en donde se van a poder ver ambas 
    :alt: Interfaz para mostrar la teoría de *Ley de Hooke*.
    :name: fig:misc02
 
-   Interfaz para mostrar la teoría de *Ley de Hooke*.
+   Interfaz para mostrar la teoría de *Ley de Hooke*
 
 Menú: *Acerca de*
 ------------------
@@ -40,10 +40,10 @@ Este menú (véase Figura :ref:`fig:misc2`) presenta dos opciones principales, *
    :alt: Interfaz del menú *Acerca de*.
    :name: fig:misc2
 
-   Interfaz del menú *Acerca de*.
+   Interfaz del menú *Acerca de*
 
 .. figure:: Figures/miscelaneos/autores.png
    :alt: Interfaz que presenta los autores de la aplicación.
    :name: fig:misc3
 
-   Interfaz que presenta los autores de la aplicación.
+   Interfaz que presenta los autores de la aplicación

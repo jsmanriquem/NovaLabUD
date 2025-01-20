@@ -256,7 +256,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -272,6 +274,23 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-del-entorno">Configuración del Entorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-del-sistema">Requisitos del Sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencias-necesarias">Dependencias Necesarias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-de-instalacion">Instrucciones de Instalación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-problemas-comunes">Solución de Problemas Comunes</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -285,6 +304,118 @@
 <h1>Documentación de <code class="docutils literal notranslate"><span class="pre">NovaLab</span></code><a class="headerlink" href="#documentacion-de-novalab" title="Link to this heading">#</a></h1>
 <p>Hola, esta es la documentación de la aplicación: <code class="docutils literal notranslate"><span class="pre">NovaLab</span></code>. Esta es una aplicación diseñada para procesar, analizar y visualizar datos de los experimentos de <em>“Caída libre”</em> y <em>“Ley de Hooke”</em>, que junto a ello, se muestra de forma amigable la teoría de los experimentos.</p>
 <p>Nace como un software diseñado de forma amigable para su público dirigido, el cual son estudiantes de primeros semestres del Programa Académico de Física de la Facultad de Ciencias Matemáticas y Naturales de la Universidad Distrital Francisco José de Caldas.</p>
+<section id="instalacion">
+<h2>Instalación<a class="headerlink" href="#instalacion" title="Link to this heading">#</a></h2>
+<section id="configuracion-del-entorno">
+<h3>Configuración del Entorno<a class="headerlink" href="#configuracion-del-entorno" title="Link to this heading">#</a></h3>
+<p>La configuración del entorno de desarrollo es un paso fundamental en cualquier proyecto de software, ya que garantiza que los desarrolladores cuenten con las herramientas, bibliotecas y configuraciones necesarias para trabajar de manera eficiente y organizada. Este proceso incluye la instalación de lenguajes de programación, la gestión de dependencias, la integración de bases de datos, el uso de herramientas de control de versiones como Git, y la configuración de entornos virtuales para aislar proyectos. Un entorno de desarrollo bien configurado no solo reduce errores y problemas técnicos, sino que también facilita la colaboración en equipo y asegura la reproducibilidad del proyecto en diferentes sistemas.</p>
+</section>
+<section id="requisitos-del-sistema">
+<h3>Requisitos del Sistema<a class="headerlink" href="#requisitos-del-sistema" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Sistema Operativo</strong>: Windows o Linux.</p></li>
+<li><p><strong>Python</strong>: Versión 3.8 o superior.</p></li>
+<li><p><strong>Espacio en Disco</strong>: Mínimo 500 MB disponibles.</p></li>
+<li><p><strong>Memoria RAM</strong>: Recomendado 4 GB o más.</p></li>
+</ul>
+</section>
+<section id="dependencias-necesarias">
+<h3>Dependencias Necesarias<a class="headerlink" href="#dependencias-necesarias" title="Link to this heading">#</a></h3>
+<p>El software utiliza varias librerías de Python que deben ser instaladas antes de ejecutar la aplicación. A continuación, se detallan las principales:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">contourpy==1.3.1</span></code>: Para la creación de contornos en gráficas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycler==0.12.1</span></code>: Para la gestión de estilos y colores en gráficas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fonttools==4.55.3</span></code>: Para manipulación de fuentes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">joblib==1.4.2</span></code>: Para la serialización eficiente de objetos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kiwisolver==1.4.8</span></code>: Para la resolución de sistemas de ecuaciones en gráficos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib==3.10.0</span></code>: Para la generación de gráficas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy==2.2.2</span></code>: Para cálculos matemáticos y operaciones con matrices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">packaging==24.2</span></code>: Para la gestión de versiones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pandas==2.2.3</span></code>: Para manipulación y análisis de datos.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pillow==11.1.0</span></code>: Para la manipulación de imágenes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PyMuPDF==1.25.2</span></code>: Para la visualización de documentos PDF.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pyparsing==3.2.1</span></code>: Para análisis de texto y sintaxis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python-dateutil==2.9.0.post0</span></code>: Para trabajar con fechas y horas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pytz==2024.2</span></code>: Para manejo de zonas horarias.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn==1.6.1</span></code>: Para regresión y análisis estadístico.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scipy==1.15.1</span></code>: Para interpolaciones y funciones matemáticas avanzadas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">six==1.17.0</span></code>: Para compatibilidad entre Python 2 y 3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">threadpoolctl==3.5.0</span></code>: Para la gestión de hilos en operaciones paralelas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tk==0.1.0</span></code>: Para la interfaz gráfica de usuario.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tzdata==2024.2</span></code>: Para gestión de zonas horarias.</p></li>
+</ul>
+</section>
+<section id="instrucciones-de-instalacion">
+<h3>Instrucciones de Instalación<a class="headerlink" href="#instrucciones-de-instalacion" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p><strong>Instalación de Python</strong>:
+- Descargue e instale Python desde su sitio oficial.
+- Durante la instalación, asegúrese de seleccionar la opción <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Python</span> <span class="pre">to</span> <span class="pre">PATH</span></code>.</p></li>
+<li><p><strong>Clonación del Repositorio y Creación de un Entorno Virtual (Opcional pero Recomendado)</strong>:
+- Clone el repositorio ejecutando el siguiente comando:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/jsmanriquem/NovaLabUD.git</span>
+<span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">NovaLabUD</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Active el entorno virtual:
+- En Windows: <code class="docutils literal notranslate"><span class="pre">NovaLabUD\Scripts\activate</span></code>
+- En macOS/Linux: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">NovaLabUD/bin/activate</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Instalación de Dependencias</strong>:
+- Instale las dependencias necesarias ejecutando:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Si el archivo <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> no está disponible, instale manualmente las librerías listadas en la sección de dependencias:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">contourpy==1.3.1</span> <span class="pre">cycler==0.12.1</span> <span class="pre">fonttools==4.55.3</span> <span class="pre">joblib==1.4.2</span> <span class="pre">kiwisolver==1.4.8</span> <span class="pre">matplotlib==3.10.0</span> <span class="pre">numpy==2.2.2</span> <span class="pre">packaging==24.2</span> <span class="pre">pandas==2.2.3</span> <span class="pre">pillow==11.1.0</span> <span class="pre">PyMuPDF==1.25.2</span> <span class="pre">pyparsing==3.2.1</span> <span class="pre">python-dateutil==2.9.0.post0</span> <span class="pre">pytz==2024.2</span> <span class="pre">scikit-learn==1.6.1</span> <span class="pre">scipy==1.15.1</span> <span class="pre">six==1.17.0</span> <span class="pre">threadpoolctl==3.5.0</span> <span class="pre">tk==0.1.0</span> <span class="pre">tzdata==2024.2</span>
+<span class="pre">`</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Ejecución del Software</strong>:
+- Navegue al directorio donde se encuentra el archivo <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.
+- Ejecute el archivo principal con:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">python</span> <span class="pre">app.py</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Pruebas de Funcionamiento</strong>:
+- Verifique que la aplicación se abra correctamente y que pueda cargar un archivo de datos.</p></li>
+</ol>
+</section>
+<section id="solucion-de-problemas-comunes">
+<h3>Solución de Problemas Comunes<a class="headerlink" href="#solucion-de-problemas-comunes" title="Link to this heading">#</a></h3>
+<ul>
+<li><p><strong>Error ``ModuleNotFoundError``</strong>:
+- Asegúrese de que las dependencias estén instaladas correctamente.
+- Ejecute nuevamente:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>Problemas de Visualización de PDF</strong>:
+- Verifique que <code class="docutils literal notranslate"><span class="pre">PyMuPDF</span></code> esté instalado y actualizado:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">pymupdf</span>
+<span class="pre">`</span></code></p>
+</div></blockquote>
+</li>
+<li><p><strong>No se Abre la Aplicación</strong>:
+- Asegúrese de estar ejecutando el archivo correcto (<code class="docutils literal notranslate"><span class="pre">app.py</span></code>).
+- Verifique que Python esté correctamente instalado y configurado en el PATH del sistema.</p></li>
+</ul>
 <div class="toctree-wrapper left-column compound">
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
 <ul>
@@ -303,6 +434,8 @@
 <li class="toctree-l1"><a class="reference internal" href="graficador.html">Módulo: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
 </ul>
 </div>
+</section>
+</section>
 </section>
 
 
@@ -331,6 +464,31 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion">Instalación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#configuracion-del-entorno">Configuración del Entorno</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requisitos-del-sistema">Requisitos del Sistema</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencias-necesarias">Dependencias Necesarias</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#instrucciones-de-instalacion">Instrucciones de Instalación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-problemas-comunes">Solución de Problemas Comunes</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
