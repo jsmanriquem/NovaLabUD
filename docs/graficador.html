@@ -1245,7 +1245,7 @@ incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_title</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
-    <span class="k">global</span> <span class="n">personal_ventana_title</span>
+    <span class="k">global</span> <span class="n">personal_ventana_title</span><span class="p">,</span> <span class="n">title_fuente</span>
 
     <span class="c1"># Verificar si la ventana ya está abierta</span>
     <span class="k">if</span> <span class="n">personal_ventana_title</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">personal_ventana_title</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
@@ -1273,13 +1273,14 @@ incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
     <span class="n">title_size_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="c1"># Selección de la fuente</span>
-    <span class="n">Label</span><span class="p">(</span><span class="n">personal_ventana_title</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fuente de la letra:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-    <span class="n">title_fuente_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Liberation Serif&#39;</span><span class="p">,</span> <span class="s1">&#39;DejaVu Serif&#39;</span><span class="p">]</span>  <span class="c1"># Fuentes disponibles (depende del usuario)</span>
-    <span class="n">title_fuente_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">title_fuente</span><span class="p">)</span>  <span class="c1"># Valor actual de la fuente</span>
-
-    <span class="c1"># Crear un Combobox para seleccionar la fuente</span>
-    <span class="n">title_fuente_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">personal_ventana_title</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">title_fuente_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">title_fuente_options</span><span class="p">)</span>
-    <span class="n">title_fuente_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">personal_ventana_title</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fuente de la letra:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">fuentes_disponibles</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">families</span><span class="p">())</span>
+    <span class="k">if</span> <span class="s2">&quot;title_fuente&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">title_fuente</span><span class="p">:</span>
+        <span class="n">title_fuente</span> <span class="o">=</span> <span class="n">fuentes_disponibles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">title_fuente_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">title_fuente</span><span class="p">)</span>
+    <span class="c1"># Usar Combobox para las fuentes</span>
+    <span class="n">fuente_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">personal_ventana_title</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">title_fuente_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">fuentes_disponibles</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
+    <span class="n">fuente_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="c1"># Botón para aplicar los cambios</span>
     <span class="n">Button</span><span class="p">(</span><span class="n">personal_ventana_title</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Aplicar Cambios&quot;</span><span class="p">,</span> 
@@ -1369,7 +1370,7 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_ejex</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
-    <span class="k">global</span> <span class="n">ventana_ejex</span>
+    <span class="k">global</span> <span class="n">ventana_ejex</span><span class="p">,</span> <span class="n">ejex_shape</span>
 
     <span class="c1"># Verificar si la ventana ya está abierta</span>
     <span class="k">if</span> <span class="n">ventana_ejex</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ventana_ejex</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
@@ -1397,13 +1398,15 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
     <span class="n">ejex_size_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="c1"># Selección de la fuente</span>
-    <span class="n">Label</span><span class="p">(</span><span class="n">ventana_ejex</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fuente de la letra:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-    <span class="n">ejex_fuente_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Liberation Serif&#39;</span><span class="p">,</span> <span class="s1">&#39;DejaVu Serif&#39;</span><span class="p">]</span>  <span class="c1"># Fuentes disponibles (depende del usuario)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">ventana_ejex</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fuente de la letra:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">fuentes_disponibles</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">families</span><span class="p">())</span>
+    <span class="k">if</span> <span class="s2">&quot;ejex_shape&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">title_fuente</span><span class="p">:</span>
+        <span class="n">ejex_shape</span> <span class="o">=</span> <span class="n">fuentes_disponibles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ejex_fuente_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">ejex_shape</span><span class="p">)</span>  <span class="c1"># Valor actual de la fuente</span>
 
-    <span class="c1"># Crear un Combobox para seleccionar la fuente</span>
-    <span class="n">ejex_fuente_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana_ejex</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">ejex_fuente_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">ejex_fuente_options</span><span class="p">)</span>
-    <span class="n">ejex_fuente_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Usar Combobox para las fuentes</span>
+    <span class="n">fuente_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana_ejex</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">ejex_fuente_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">fuentes_disponibles</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
+    <span class="n">fuente_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="c1"># Botón para aplicar los cambios</span>
     <span class="n">Button</span><span class="p">(</span><span class="n">ventana_ejex</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Aplicar Cambios&quot;</span><span class="p">,</span> 
@@ -1492,7 +1495,7 @@ permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
 </dl>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grafica_ventana_ejey</span><span class="p">(</span><span class="n">master</span><span class="p">):</span>
 
-    <span class="k">global</span> <span class="n">ventana_ejey</span>
+    <span class="k">global</span> <span class="n">ventana_ejey</span><span class="p">,</span> <span class="n">ejey_shape</span>
 
     <span class="c1"># Verificar si la ventana ya está abierta</span>
     <span class="k">if</span> <span class="n">ventana_ejey</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ventana_ejey</span><span class="o">.</span><span class="n">winfo_exists</span><span class="p">():</span>
@@ -1520,13 +1523,15 @@ permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
     <span class="n">ejey_size_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="c1"># Selección de la fuente</span>
-    <span class="n">Label</span><span class="p">(</span><span class="n">ventana_ejey</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fuente de la letra:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
-    <span class="n">ejey_fuente_options</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Liberation Serif&#39;</span><span class="p">,</span> <span class="s1">&#39;DejaVu Serif&#39;</span><span class="p">]</span>  <span class="c1"># Fuentes disponibles (depende del usuario)</span>
+    <span class="n">Label</span><span class="p">(</span><span class="n">ventana_ejey</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Fuente de la letra:&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">fuentes_disponibles</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">font</span><span class="o">.</span><span class="n">families</span><span class="p">())</span>
+    <span class="k">if</span> <span class="s2">&quot;ejey_shape&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">title_fuente</span><span class="p">:</span>
+        <span class="n">ejey_shape</span> <span class="o">=</span> <span class="n">fuentes_disponibles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">ejey_fuente_var</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">ejey_shape</span><span class="p">)</span>  <span class="c1"># Valor actual de la fuente</span>
 
-    <span class="c1"># Crear un Combobox para seleccionar la fuente</span>
-    <span class="n">ejey_fuente_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana_ejey</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">ejey_fuente_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">ejey_fuente_options</span><span class="p">)</span>
-    <span class="n">ejey_fuente_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># Usar Combobox para las fuentes</span>
+    <span class="n">fuente_combobox</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Combobox</span><span class="p">(</span><span class="n">ventana_ejey</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="n">ejey_fuente_var</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">fuentes_disponibles</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;readonly&quot;</span><span class="p">)</span>
+    <span class="n">fuente_combobox</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
     <span class="c1"># Botón para aplicar los cambios</span>
     <span class="n">Button</span><span class="p">(</span><span class="n">ventana_ejey</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&quot;Aplicar Cambios&quot;</span><span class="p">,</span> 
@@ -2056,9 +2061,14 @@ del ratón en la gráfica (evento gestionado por la función <cite>on_press</cit
 <dd><p>Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cerrar_ventana</span><span class="p">():</span>
 
-    <span class="n">archivo_tmp</span> <span class="o">=</span> <span class="s2">&quot;tmp_graph.pkl&quot;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">):</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">)</span>
+    <span class="n">respuesta</span> <span class="o">=</span> <span class="n">messagebox</span><span class="o">.</span><span class="n">askyesno</span><span class="p">(</span>
+        <span class="s2">&quot;Confirmación de cierre&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;¿Estás seguro de que quieres cerrar la aplicación?</span><span class="se">\n</span><span class="s2">Se eliminarán los cambios realizados.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">respuesta</span><span class="p">:</span>  <span class="c1"># Si el usuario confirma</span>
+        <span class="n">archivo_tmp</span> <span class="o">=</span> <span class="s2">&quot;tmp_graph.pkl&quot;</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">archivo_tmp</span><span class="p">)</span>
     <span class="n">raiz</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>  <span class="c1"># Esto cierra el mainloop de Tkinter</span>
 </pre></div>
 </div>
