@@ -7,8 +7,8 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import fitz  # PyMuPDF
 from PIL import Image, ImageTk  # Para manejar imágenes en Tkinter
 import io, sys, subprocess
-from data_operations import DataOperations
-from regression_analysis import RegressionAnalysis
+from src.data_operations import DataOperations
+from src.regression_analysis import RegressionAnalysis
 
 class LaboratorySoftware:
     """
@@ -142,7 +142,7 @@ class LaboratorySoftware:
         self.notebook.bind("<<NotebookTabChanged>>", self.on_tab_change)
 
         # Cargar el PDF de Caída Libre por defecto (si la primera pestaña es la activa)
-        self.load_pdf(self.tab_cai_libre, "caida_libre.pdf")
+        self.load_pdf(self.tab_cai_libre, "src/theory/caida_libre.pdf")
 
         # Inicializar módulos
         self.data_ops = DataOperationsWithUI(self)
@@ -294,9 +294,9 @@ class LaboratorySoftware:
         selected_tab = self.notebook.tab(self.notebook.select(), "text")
         
         if selected_tab == "Caída libre":
-            self.load_pdf(self.tab_cai_libre, "caida_libre.pdf")
+            self.load_pdf(self.tab_cai_libre, "src/theory/caida_libre.pdf")
         elif selected_tab == "Ley de Hooke":
-            self.load_pdf(self.tab_ley_hooke, "ley_de_hooke.pdf")
+            self.load_pdf(self.tab_ley_hooke, "src/theory/ley_de_hooke.pdf")
 
     def create_data_table(self, parent=None):
         """
@@ -538,7 +538,7 @@ class LaboratorySoftware:
                 pickle.dump(self.data_ops.data, f)
 
             # Ejecutar el archivo graficador.py como un proceso independiente
-            subprocess.Popen([sys.executable, 'graficador.py'])
+            subprocess.Popen([sys.executable, 'src/graficador.py'])
             return True
         except Exception as e:
             messagebox.showerror("Error", f"Error al ejecutar graficador.py o exportar los datos: {str(e)}")
