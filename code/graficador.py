@@ -1,5 +1,5 @@
 # Librerías necesarias para realizar un graficador
-from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox, colorchooser, simpledialog
+from tkinter import Tk, Frame, Button, Label, Menu, Toplevel, StringVar, ttk, Entry, filedialog, colorchooser, Scale, HORIZONTAL , IntVar, Checkbutton, messagebox, colorchooser, simpledialog, font, OptionMenu
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import pandas as pd
@@ -944,7 +944,7 @@ def grafica_ventana_title(master):
     titulo_grafica : tkinter.StringVar
         Variable del título actual de la gráfica.
     """
-    global personal_ventana_title
+    global personal_ventana_title, title_fuente
     
     # Verificar si la ventana ya está abierta
     if personal_ventana_title is not None and personal_ventana_title.winfo_exists():
@@ -972,13 +972,14 @@ def grafica_ventana_title(master):
     title_size_combobox.pack(pady=5)
     
     # Selección de la fuente
-    Label(personal_ventana_title, text="Fuente de la letra:").pack()
-    title_fuente_options = ['Liberation Serif', 'DejaVu Serif']  # Fuentes disponibles (depende del usuario)
-    title_fuente_var = StringVar(value=title_fuente)  # Valor actual de la fuente
-    
-    # Crear un Combobox para seleccionar la fuente
-    title_fuente_combobox = ttk.Combobox(personal_ventana_title, textvariable=title_fuente_var, values=title_fuente_options)
-    title_fuente_combobox.pack(pady=5)
+    Label(personal_ventana_title, text="Fuente de la letra:").pack(pady=5)
+    fuentes_disponibles = sorted(font.families())
+    if "title_fuente" not in globals() or not title_fuente:
+        title_fuente = fuentes_disponibles[0]
+    title_fuente_var = StringVar(value=title_fuente)
+    # Usar Combobox para las fuentes
+    fuente_combobox = ttk.Combobox(personal_ventana_title, textvariable=title_fuente_var, values=fuentes_disponibles, state="readonly")
+    fuente_combobox.pack(pady=5)
     
     # Botón para aplicar los cambios
     Button(personal_ventana_title, text="Aplicar Cambios", 
@@ -1050,7 +1051,7 @@ def grafica_ventana_ejex(master):
     ejex_shape : str
         Estilo de la fuente utilizada para el título del eje X.
     """
-    global ventana_ejex
+    global ventana_ejex, ejex_shape
     
     # Verificar si la ventana ya está abierta
     if ventana_ejex is not None and ventana_ejex.winfo_exists():
@@ -1078,13 +1079,15 @@ def grafica_ventana_ejex(master):
     ejex_size_combobox.pack(pady=5)
     
     # Selección de la fuente
-    Label(ventana_ejex, text="Fuente de la letra:").pack()
-    ejex_fuente_options = ['Liberation Serif', 'DejaVu Serif']  # Fuentes disponibles (depende del usuario)
+    Label(ventana_ejex, text="Fuente de la letra:").pack(pady=5)
+    fuentes_disponibles = sorted(font.families())
+    if "ejex_shape" not in globals() or not title_fuente:
+        ejex_shape = fuentes_disponibles[0]
     ejex_fuente_var = StringVar(value=ejex_shape)  # Valor actual de la fuente
     
-    # Crear un Combobox para seleccionar la fuente
-    ejex_fuente_combobox = ttk.Combobox(ventana_ejex, textvariable=ejex_fuente_var, values=ejex_fuente_options)
-    ejex_fuente_combobox.pack(pady=5)
+    # Usar Combobox para las fuentes
+    fuente_combobox = ttk.Combobox(ventana_ejex, textvariable=ejex_fuente_var, values=fuentes_disponibles, state="readonly")
+    fuente_combobox.pack(pady=5)
     
     # Botón para aplicar los cambios
     Button(ventana_ejex, text="Aplicar Cambios", 
@@ -1155,7 +1158,7 @@ def grafica_ventana_ejey(master):
     ejey_shape : str
         Tipo de fuente para el título del eje Y.
     """
-    global ventana_ejey
+    global ventana_ejey, ejey_shape
     
     # Verificar si la ventana ya está abierta
     if ventana_ejey is not None and ventana_ejey.winfo_exists():
@@ -1183,13 +1186,15 @@ def grafica_ventana_ejey(master):
     ejey_size_combobox.pack(pady=5)
     
     # Selección de la fuente
-    Label(ventana_ejey, text="Fuente de la letra:").pack()
-    ejey_fuente_options = ['Liberation Serif', 'DejaVu Serif']  # Fuentes disponibles (depende del usuario)
+    Label(ventana_ejey, text="Fuente de la letra:").pack(pady=5)
+    fuentes_disponibles = sorted(font.families())
+    if "ejey_shape" not in globals() or not title_fuente:
+        ejey_shape = fuentes_disponibles[0]
     ejey_fuente_var = StringVar(value=ejey_shape)  # Valor actual de la fuente
     
-    # Crear un Combobox para seleccionar la fuente
-    ejey_fuente_combobox = ttk.Combobox(ventana_ejey, textvariable=ejey_fuente_var, values=ejey_fuente_options)
-    ejey_fuente_combobox.pack(pady=5)
+    # Usar Combobox para las fuentes
+    fuente_combobox = ttk.Combobox(ventana_ejey, textvariable=ejey_fuente_var, values=fuentes_disponibles, state="readonly")
+    fuente_combobox.pack(pady=5)
     
     # Botón para aplicar los cambios
     Button(ventana_ejey, text="Aplicar Cambios", 
@@ -1656,9 +1661,14 @@ zoom_label.grid(column=0, row=5)
 
 def cerrar_ventana():
     """Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl"""
-    archivo_tmp = "tmp_graph.pkl"
-    if os.path.exists(archivo_tmp):
-        os.remove(archivo_tmp)
+    respuesta = messagebox.askyesno(
+        "Confirmación de cierre",
+        "¿Estás seguro de que quieres cerrar la aplicación?\nSe eliminarán los cambios realizados."
+    )
+    if respuesta:  # Si el usuario confirma
+        archivo_tmp = "tmp_graph.pkl"
+        if os.path.exists(archivo_tmp):
+            os.remove(archivo_tmp)
     raiz.quit()  # Esto cierra el mainloop de Tkinter
 
 # Añadir un manejador de evento para cerrar la ventana
