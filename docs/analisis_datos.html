@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Análisis de datos &#8212; documentación de NovaLabUD - 1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="assets/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="assets/custom.css?v=f6c255cb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="assets/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="assets/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="assets/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="assets/documentation_options.js?v=40e79d90"></script>
+    <script src="assets/doctools.js?v=9bcbadda"></script>
+    <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="assets/clipboard.min.js?v=a7894cd8"></script>
+    <script src="assets/copybutton.js?v=f281be69"></script>
+    <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="assets/translations.js?v=f85f4cfb"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'analisis_datos';</script>
+    <link rel="icon" href="assets/NovaLabUD_icon.ico"/>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Misceláneos" href="miscelaneos.html" />
+    <link rel="prev" title="Procesamiento de datos" href="procesamiento_datos.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="assets/NovaLabUD.webp" class="logo__image only-light" alt="documentación de NovaLabUD - 1.0 - Home"/>
+    <img src="assets/NovaLabUD.webp" class="logo__image only-dark pst-js-only" alt="documentación de NovaLabUD - 1.0 - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Documentación de NovaLab
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interfaz_novalab.html">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="procesamiento_datos.html">Procesamiento de datos</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_operations.html">Módulo: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_analysis.html">Módulo: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="graficador.html">Módulo: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jsmanriquem/NovaLabUD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Análisis de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-variables-independientes-y-dependientes">Selección de Variables Independientes y Dependientes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-analisis-y-ajustes-disponibles">Tipos de Análisis y Ajustes Disponibles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal">Regresión Lineal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-polinomica">Regresión Polinómica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion">Interpolación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-automatica-de-graficas">Generación Automática de Gráficas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-metricas-de-evaluacion-del-ajuste">Cálculo de Métricas de Evaluación del Ajuste</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-coeficiente-de-determinacion"><span class="math notranslate nohighlight">\(R^2\)</span> Coeficiente de Determinación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mae-error-absoluto-medio">MAE (Error Absoluto Medio)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-error-cuadratico-medio">MSE (Error Cuadrático Medio)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-error-estandar">SE (Error Estándar)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-resultados">Interpretación de los Resultados</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="analisis-de-datos">
+<span id="chapter-5"></span><h1>Análisis de datos<a class="headerlink" href="#analisis-de-datos" title="Link to this heading">#</a></h1>
+<p>El análisis de datos de <em>NovaLabUD</em> está orientado a la visualización de datos, la limpieza, transformación y la modelización estadística. Esta sección tiene como fin mostrar los análisis estadísticos y generar informes visuales usando el software. No es necesario tener conocimientos previos de programación, pero se recomienda familiaridad con conceptos básicos de estadística.</p>
+<section id="seleccion-de-variables-independientes-y-dependientes">
+<h2>Selección de Variables Independientes y Dependientes<a class="headerlink" href="#seleccion-de-variables-independientes-y-dependientes" title="Link to this heading">#</a></h2>
+<p>Después de haber cargado los datos en el programa, para realizar un análisis de regresión o interpolación, es necesario definir qué variables serán consideradas independientes (predictoras) y cuáles serán las dependientes (a predecir). Se selecciona la variable independiente que el usuario considere, influencia a otras variables en el conjunto de datos (<em>Variable X</em>), y la variable independiente (<em>Variable Y</em>) como se muestra en la figura <a class="reference internal" href="#fig-selecvar"><span class="std std-ref">Selección de variables.</span></a>. Esta ventana emergente aparece cada vez que se seleccione algunos de los ajustes de regresión o interpolación, estas opciones se despliegan al seleccionar el botón de <em>Edición</em> (ver figura <a class="reference internal" href="#fig-menuregresiones"><span class="std std-ref">Regresiones disponibles para el ajuste de datos.</span></a>).</p>
+<figure class="align-default" id="fig-selecvar">
+<img alt="Selección de variables." src="_images/selecvar.png" />
+<figcaption>
+<p><span class="caption-text">Selección de variables.</span><a class="headerlink" href="#fig-selecvar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>El software permite que el usuario digite el nombre de la columna en el campo correspondiente o en su defecto usar la lista desplegable que contiene todas las columnas del conjunto de datos, lo que facilitará la selección de las variables.</p>
+</section>
+<section id="tipos-de-analisis-y-ajustes-disponibles">
+<h2>Tipos de Análisis y Ajustes Disponibles<a class="headerlink" href="#tipos-de-analisis-y-ajustes-disponibles" title="Link to this heading">#</a></h2>
+<p>Una vez se hayan seleccionado las variables a utilizar, el siguiente paso es elegir el tipo de análisis que se desea realizar. <em>NovaLabUD</em> permite realizar tres tipos de análisis: regresión lineal, regresión polinómica e interpolación. Este menú desplegable se puede localizar seleccionando el botón <em>Edición</em> y posteriormente <em>Regresiones</em>.</p>
+<figure class="align-default" id="fig-menuregresiones">
+<img alt="Regresiones disponibles para el ajuste de datos." src="_images/regresiones00.png" />
+<figcaption>
+<p><span class="caption-text">Regresiones disponibles para el ajuste de datos.</span><a class="headerlink" href="#fig-menuregresiones" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="regresion-lineal">
+<h3>Regresión Lineal<a class="headerlink" href="#regresion-lineal" title="Link to this heading">#</a></h3>
+<p>La regresión lineal es una técnica utilizada para modelar la relación entre una variable dependiente y una o más variables independientes. El modelo asume que la relación entre las variables es lineal.</p>
+<ul class="simple">
+<li><p><strong>Cómo Funciona:</strong> El software ajustará una línea recta a los datos seleccionados, buscando minimizar el error cuadrático medio.</p></li>
+<li><p><strong>Selección:</strong> Seleccionar <em>Regresión Lineal</em> como el modelo deseado en el menú desplegable mostrado en la figura anterior.</p></li>
+</ul>
+</section>
+<section id="regresion-polinomica">
+<h3>Regresión Polinómica<a class="headerlink" href="#regresion-polinomica" title="Link to this heading">#</a></h3>
+<p>Si los datos muestran una relación no lineal, la regresión polinómica puede ser más adecuada. Este modelo ajusta una curva polinómica de grado <em>N</em> al conjunto de datos.</p>
+<ul class="simple">
+<li><p><strong>Cómo Funciona:</strong> El software ajustará un polinomio de grado 2, 3, o superior, según lo que el usuario seleccione (ver figura <a class="reference internal" href="#fig-regresiongrado"><span class="std std-ref">Selección grado del polinomio.</span></a>).</p></li>
+<li><p><strong>Selección:</strong> Se selecciona <em>Regresión Polinómica</em> y se especifica el grado del polinomio en la ventana emergente (por ejemplo, 2 para cuadrática, 3 para cúbica).</p></li>
+</ul>
+<figure class="align-default" id="fig-regresiongrado">
+<img alt="Selección grado del polinomio." src="_images/regresiones01.png" />
+<figcaption>
+<p><span class="caption-text">Selección grado del polinomio.</span><a class="headerlink" href="#fig-regresiongrado" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="interpolacion">
+<h3>Interpolación<a class="headerlink" href="#interpolacion" title="Link to this heading">#</a></h3>
+<p>La interpolación se utiliza para estimar valores dentro del rango de un conjunto de datos existente. Este ajuste es útil cuando se desea predecir valores en puntos específicos basados en los datos disponibles.</p>
+<ul class="simple">
+<li><p><strong>Cómo Funciona:</strong> El software ajustará el modelo de interpolación proporcionando predicciones en los puntos deseados. Al igual que en el modelo anterior aparecerá una ventana emergente solicitando el grado del polinomio para proceder con el ajuste.</p></li>
+<li><p><strong>Selección:</strong> Seleccionar <em>Interpolación</em> como el modelo deseado para ajustar los datos.</p></li>
+</ul>
+</section>
+</section>
+<section id="generacion-automatica-de-graficas">
+<h2>Generación Automática de Gráficas<a class="headerlink" href="#generacion-automatica-de-graficas" title="Link to this heading">#</a></h2>
+<p>Una vez que se haya completado el ajuste, <em>NovaLabUD</em> generará automáticamente una gráfica visualizando el modelo ajustado junto con los datos previamente tratados. Esto permitirá inspeccionar visualmente la calidad del ajuste.</p>
+<ol class="arabic simple">
+<li><p>La gráfica de dispersión mostrará los puntos de datos originales (variables dependientes vs. independientes).</p></li>
+<li><p>La curva de ajuste (ya sea recta en el caso de la regresión lineal, o curva en el caso de la regresión polinómica o interpolación) se dibujará sobre los puntos de datos.</p></li>
+</ol>
+<p>Esta gráfica automática se puede visualizar en el panel izquierdo de la ventana principal simplemente seleccionando la pestaña de <em>Regresiones</em>, tal como se muestra a continuación.</p>
+<figure class="align-default" id="fig-regresion-vista">
+<img alt="Visualización del modelo *Regresión Lineal*." src="_images/regresiones02.png" />
+<figcaption>
+<p><span class="caption-text">Visualización del modelo <em>Regresión Lineal</em>.</span><a class="headerlink" href="#fig-regresion-vista" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="calculo-de-metricas-de-evaluacion-del-ajuste">
+<h2>Cálculo de Métricas de Evaluación del Ajuste<a class="headerlink" href="#calculo-de-metricas-de-evaluacion-del-ajuste" title="Link to this heading">#</a></h2>
+<p>Después de seleccionar el tipo de análisis y ajustar el modelo, la aplicación calculará varias métricas que permitirán que el usuario evalúe la calidad del ajuste. Las métricas que <em>NovaLabUD</em> permite calcular son:</p>
+<section id="r-2-coeficiente-de-determinacion">
+<h3><span class="math notranslate nohighlight">\(R^2\)</span> Coeficiente de Determinación<a class="headerlink" href="#r-2-coeficiente-de-determinacion" title="Link to this heading">#</a></h3>
+<p>El <span class="math notranslate nohighlight">\(R^2\)</span> es una métrica que indica la proporción de la varianza de la variable dependiente que es explicada por las variables independientes en el modelo. Un valor de <span class="math notranslate nohighlight">\(R^2\)</span> cercano a 1 indica un buen ajuste del modelo a los datos.</p>
+</section>
+<section id="mae-error-absoluto-medio">
+<h3>MAE (Error Absoluto Medio)<a class="headerlink" href="#mae-error-absoluto-medio" title="Link to this heading">#</a></h3>
+<p>El MAE mide el error promedio entre los valores predichos por el modelo y los valores reales. Cuanto más bajo sea el MAE, mejor será el ajuste.</p>
+</section>
+<section id="mse-error-cuadratico-medio">
+<h3>MSE (Error Cuadrático Medio)<a class="headerlink" href="#mse-error-cuadratico-medio" title="Link to this heading">#</a></h3>
+<p>El MSE calcula el promedio de los errores al cuadrado entre las predicciones y los valores reales. Al igual que el MAE, un MSE más bajo indica un mejor ajuste.</p>
+</section>
+<section id="se-error-estandar">
+<h3>SE (Error Estándar)<a class="headerlink" href="#se-error-estandar" title="Link to this heading">#</a></h3>
+<p>El SE mide la precisión de las estimaciones del modelo, proporcionando una idea de la dispersión de los errores.</p>
+<p>Estas métricas se pueden visualizar debajo de la gráfica donde se muestran los datos y el modelo de ajuste. Además, se puede visualizar la ecuación del gráfico.</p>
+<figure class="align-default" id="fig-metricas">
+<img alt="Métricas de evaluación para un ajuste por *Regresión Lineal*." src="_images/regresiones03.png" />
+<figcaption>
+<p><span class="caption-text">Métricas de evaluación para un ajuste por <em>Regresión Lineal</em>.</span><a class="headerlink" href="#fig-metricas" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="interpretacion-de-los-resultados">
+<h2>Interpretación de los Resultados<a class="headerlink" href="#interpretacion-de-los-resultados" title="Link to this heading">#</a></h2>
+<p>Después de haber calculado las métricas de calidad y generada la gráfica, es fundamental interpretar adecuadamente los resultados:</p>
+<ul class="simple">
+<li><p>Si el valor de <span class="math notranslate nohighlight">\(R^2\)</span> es cercano a 1, esto sugiere que el modelo explica bien la variabilidad de los datos.</p></li>
+<li><p>Si el MAE y MSE son bajos, el modelo ha ajustado bien los datos y tiene un buen poder predictivo.</p></li>
+<li><p>La gráfica permite observar si el modelo es adecuado. Si los puntos de datos se agrupan cerca de la línea o curva ajustada, esto indica un buen ajuste.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="procesamiento_datos.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Procesamiento de datos</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="miscelaneos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Misceláneos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-variables-independientes-y-dependientes">Selección de Variables Independientes y Dependientes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-analisis-y-ajustes-disponibles">Tipos de Análisis y Ajustes Disponibles</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-lineal">Regresión Lineal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regresion-polinomica">Regresión Polinómica</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpolacion">Interpolación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generacion-automatica-de-graficas">Generación Automática de Gráficas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculo-de-metricas-de-evaluacion-del-ajuste">Cálculo de Métricas de Evaluación del Ajuste</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-2-coeficiente-de-determinacion"><span class="math notranslate nohighlight">\(R^2\)</span> Coeficiente de Determinación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mae-error-absoluto-medio">MAE (Error Absoluto Medio)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mse-error-cuadratico-medio">MSE (Error Cuadrático Medio)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#se-error-estandar">SE (Error Estándar)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretacion-de-los-resultados">Interpretación de los Resultados</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="assets/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="assets/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

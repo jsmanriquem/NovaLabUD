@@ -53,7 +53,7 @@
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
     <link rel="next" title="Módulo: data_operations.py" href="data_operations.html" />
-    <link rel="prev" title="Manual de usuario: graficador.py" href="graficador_user.html" />
+    <link rel="prev" title="Misceláneos" href="miscelaneos.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -159,10 +159,10 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="app_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_operations_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_analysis_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="graficador_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaz_novalab.html">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="procesamiento_datos.html">Procesamiento de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis_datos.html">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
 <ul class="current nav bd-sidenav">
@@ -486,7 +486,7 @@ y configura los menús para manejar acciones como importar, exportar y realizar 
     <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;&lt;&lt;NotebookTabChanged&gt;&gt;&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_tab_change</span><span class="p">)</span>
 
     <span class="c1"># Cargar el PDF de Caída Libre por defecto (si la primera pestaña es la activa)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="s2">&quot;caida_libre.pdf&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="s2">&quot;src/theory/caida_libre.pdf&quot;</span><span class="p">)</span>
 
     <span class="c1"># Inicializar módulos</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span> <span class="o">=</span> <span class="n">DataOperationsWithUI</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -676,9 +676,9 @@ la ventana con un comportamiento personalizado.</p>
     <span class="n">selected_tab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">tab</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">notebook</span><span class="o">.</span><span class="n">select</span><span class="p">(),</span> <span class="s2">&quot;text&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">selected_tab</span> <span class="o">==</span> <span class="s2">&quot;Caída libre&quot;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="s2">&quot;caida_libre.pdf&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_cai_libre</span><span class="p">,</span> <span class="s2">&quot;src/theory/caida_libre.pdf&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">selected_tab</span> <span class="o">==</span> <span class="s2">&quot;Ley de Hooke&quot;</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_ley_hooke</span><span class="p">,</span> <span class="s2">&quot;ley_de_hooke.pdf&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_pdf</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tab_ley_hooke</span><span class="p">,</span> <span class="s2">&quot;src/theory/ley_de_hooke.pdf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -957,7 +957,7 @@ el script <cite>graficador.py</cite> en un proceso independiente. Si no hay dato
             <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data_ops</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
 
         <span class="c1"># Ejecutar el archivo graficador.py como un proceso independiente</span>
-        <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">&#39;graficador.py&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">&#39;src/graficador.py&#39;</span><span class="p">])</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="n">messagebox</span><span class="o">.</span><span class="n">showerror</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Error al ejecutar graficador.py o exportar los datos: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1432,7 +1432,7 @@ y cierra el diálogo.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="app.DataOperationsWithUI">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.</span></span><span class="sig-name descname"><span class="pre">DataOperationsWithUI</span></span><a class="headerlink" href="#app.DataOperationsWithUI" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <a class="reference internal" href="data_operations.html#data_operations.DataOperations" title="data_operations.DataOperations"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataOperations</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="data_operations.html#src.data_operations.DataOperations" title="src.data_operations.DataOperations"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataOperations</span></code></a></p>
 <p>Extensión de DataOperations que integra callbacks para la interfaz de usuario.</p>
 <p>Esta clase extiende las operaciones de datos básicas para actualizar
 automáticamente la interfaz de usuario cuando se realizan operaciones.</p>
@@ -1842,12 +1842,12 @@ adicional definida por el usuario a través de <cite>ui_callback</cite>.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="graficador_user.html"
+       href="miscelaneos.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></p>
+        <p class="prev-next-title">Misceláneos</p>
       </div>
     </a>
     <a class="right-next"

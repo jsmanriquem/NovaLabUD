@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Procesamiento de datos &#8212; documentación de NovaLabUD - 1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="assets/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="assets/custom.css?v=f6c255cb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="assets/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="assets/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="assets/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="assets/documentation_options.js?v=40e79d90"></script>
+    <script src="assets/doctools.js?v=9bcbadda"></script>
+    <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="assets/clipboard.min.js?v=a7894cd8"></script>
+    <script src="assets/copybutton.js?v=f281be69"></script>
+    <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="assets/translations.js?v=f85f4cfb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'procesamiento_datos';</script>
+    <link rel="icon" href="assets/NovaLabUD_icon.ico"/>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+    <link rel="next" title="Análisis de datos" href="analisis_datos.html" />
+    <link rel="prev" title="Interfaz de NovaLabUD" href="interfaz_novalab.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="assets/NovaLabUD.webp" class="logo__image only-light" alt="documentación de NovaLabUD - 1.0 - Home"/>
+    <img src="assets/NovaLabUD.webp" class="logo__image only-dark pst-js-only" alt="documentación de NovaLabUD - 1.0 - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Documentación de NovaLab
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interfaz_novalab.html">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Procesamiento de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis_datos.html">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_operations.html">Módulo: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_analysis.html">Módulo: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="graficador.html">Módulo: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jsmanriquem/NovaLabUD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Procesamiento de datos</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-datos">Importación de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformaciones-de-datos">Transformaciones de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-valores-nulos">Eliminación de Valores Nulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-duplicados">Eliminación de Duplicados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion-de-datos">Normalización de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rellenado-de-valores-nulos">Rellenado de Valores Nulos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exportacion">Exportación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatos-de-exportacion">Formatos de Exportación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-exportacion">Proceso de Exportación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seguimiento-de-las-transformaciones">Seguimiento de las transformaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-de-uso">Recomendaciones de uso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-problemas">Solución de problemas</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="procesamiento-de-datos">
+<span id="chapter-4"></span><h1>Procesamiento de datos<a class="headerlink" href="#procesamiento-de-datos" title="Link to this heading">#</a></h1>
+<p>Este sistema permite realizar operaciones de carga, transformación y exportación de datos de manera sencilla y eficiente. El sistema mantiene un registro de todas las transformaciones realizadas y permite exportar tanto los datos procesados como el historial de los cambios realizados.</p>
+<section id="importacion-de-datos">
+<span id="sec-4-1"></span><h2>Importación de datos<a class="headerlink" href="#importacion-de-datos" title="Link to this heading">#</a></h2>
+<p>Para comenzar con el procesamiento de  datos es necesario importarlos desde el almacenamiento. La carga de datos sigue el siguiente proceso:</p>
+<ol class="arabic simple">
+<li><p>Inicie la aplicación <code class="docutils literal notranslate"><span class="pre">NovaLabUD</span></code>.</p></li>
+<li><p>Seleccione la opción: <em>Archivo</em> → <em>Importar</em> (véase <a class="reference internal" href="#fig-carga-datos1"><span class="std std-ref">Menú para importar los datos.</span></a>).</p></li>
+<li><p>Desde el explorador de la aplicación, navegue hasta la ubicación del archivo que el usuario desea importar.</p></li>
+</ol>
+<p>Los formatos de archivo que admite la aplicación son: <code class="docutils literal notranslate"><span class="pre">.csv</span></code> (Comma Separated Values), <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> (Excel) y <code class="docutils literal notranslate"><span class="pre">.txt</span></code> (texto).</p>
+<figure class="align-default" id="fig-carga-datos1">
+<img alt="Menú para importar los datos." src="_images/importar_datos.png" />
+<figcaption>
+<p><span class="caption-text">Menú para importar los datos.</span><a class="headerlink" href="#fig-carga-datos1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Luego de que los datos sean cargados, se podrán visualizar directamente en el panel izquierdo de la ventana principal (véase <a class="reference internal" href="#fig-carga-datos3"><span class="std std-ref">Datos cargados visualizados en el panel izquierdo de la ventana principal.</span></a>). Mientras los datos no sean cargados, la aplicación mostrará un mensaje en la parte inferior indicando la ausencia de estos (véase <a class="reference internal" href="#fig-carga-datos2"><span class="std std-ref">Mensaje de advertencia si no hay datos cargados.</span></a>).</p>
+<figure class="align-default" id="fig-carga-datos2">
+<img alt="Mensaje de advertencia si no hay datos cargados." src="_images/carga_datos2.png" />
+<figcaption>
+<p><span class="caption-text">Mensaje de advertencia si no hay datos cargados.</span><a class="headerlink" href="#fig-carga-datos2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>En el caso de que se intente realizar alguna modificación o se seleccione alguna opción de los menús desplegables, aparecerá una ventana emergente con un mensaje de error indicando que primero se deben importar los datos para poder realizar algún procedimiento.</p>
+<figure class="align-default" id="fig-carga-datos3">
+<img alt="Datos cargados visualizados en panel izquierdo de la ventana principal." src="_images/carga_datos3.png" />
+<figcaption>
+<p><span class="caption-text">Datos cargados visualizados en el panel izquierdo de la ventana principal.</span><a class="headerlink" href="#fig-carga-datos3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="transformaciones-de-datos">
+<span id="sec-4-2"></span><h2>Transformaciones de Datos<a class="headerlink" href="#transformaciones-de-datos" title="Link to this heading">#</a></h2>
+<p>La limpieza y transformación de datos son pasos fundamentales en el ciclo de preparación de datos, con el objetivo de mejorar su calidad y adaptarlos a requerimientos específicos del análisis o modelo. La limpieza de datos involucra la identificación y corrección de errores, como valores nulos, duplicados, inconsistencias o registros inválidos. La transformación de datos, por su parte, se refiere a modificar la estructura o formato de los datos para facilitar su análisis, como la conversión de tipos de datos, la creación de nuevas variables, o la normalización y escalado de los valores. Ambos procesos trabajan de la mano para garantizar que los datos sean precisos, completos y apropiados, permitiendo obtener resultados más confiables y significativos en cualquier tipo de análisis o modelado. Las transformaciones disponibles en <code class="docutils literal notranslate"><span class="pre">NovaLabUD</span></code> se muestran en el botón de <code class="docutils literal notranslate"><span class="pre">Edición</span></code>, véase figura <a class="reference internal" href="#fig-transformaciones"><span class="std std-ref">Transformaciones de datos disponibles en NovaLabUD.</span></a>.</p>
+<figure class="align-default" id="fig-transformaciones">
+<img alt="Transformaciones de datos disponibles en NovaLabUD." src="_images/Transformaciones.png" />
+<figcaption>
+<p><span class="caption-text">Transformaciones de datos disponibles en NovaLabUD.</span><a class="headerlink" href="#fig-transformaciones" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="eliminacion-de-valores-nulos">
+<h3>Eliminación de Valores Nulos<a class="headerlink" href="#eliminacion-de-valores-nulos" title="Link to this heading">#</a></h3>
+<p>La eliminación de valores nulos es una técnica común en el procesamiento de datos que busca mejorar la calidad y confiabilidad de los análisis. Los valores nulos representan datos faltantes o desconocidos que, si no se manejan adecuadamente, pueden distorsionar los resultados y afectar la precisión de los modelos predictivos. Existen varias estrategias para tratar estos valores, como eliminarlos directamente, reemplazarlos con la media, mediana o moda del conjunto de datos, o usar algoritmos más avanzados para estimarlos. La elección del enfoque depende del contexto y de la cantidad de información perdida, considerando siempre el equilibrio entre preservar la integridad del conjunto de datos y mantener su representatividad.</p>
+<p>El software en cuestión:</p>
+<ul class="simple">
+<li><p>Elimina todas las filas que contienen valores nulos.</p></li>
+<li><p>Muestra la cantidad de filas eliminadas.</p></li>
+<li><p>La operación es irreversible.</p></li>
+</ul>
+<p>Una vez se haya aplicado la transformación en pantalla se observa un mensaje que indica el estado de la operación realizada, tal como se muestra en la figura <a class="reference internal" href="#fig-nulo01"><span class="std std-ref">Verificación de eliminación de valores nulos.</span></a>.</p>
+<figure class="align-default" id="fig-nulo01">
+<img alt="Verificación de eliminación de valores nulos." src="_images/nulo01.png" />
+<figcaption>
+<p><span class="caption-text">Verificación de eliminación de valores nulos.</span><a class="headerlink" href="#fig-nulo01" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Así mismo, se mostrará automáticamente en pantalla el cambio realizado sobre el conjunto de datos.</p>
+</section>
+<section id="eliminacion-de-duplicados">
+<h3>Eliminación de Duplicados<a class="headerlink" href="#eliminacion-de-duplicados" title="Link to this heading">#</a></h3>
+<p>La eliminación de duplicados es un paso crucial en la limpieza de datos, que consiste en identificar y remover registros redundantes dentro de un conjunto de datos. Los duplicados pueden surgir debido a errores de entrada, integraciones de múltiples fuentes o procesos repetidos, y su presencia puede inflar los resultados o introducir sesgos en los análisis. Esta tarea asegura que cada observación sea única, mejorando la precisión y consistencia del análisis. Dependiendo del caso, se pueden eliminar registros completamente idénticos o aquellos que coincidan en ciertos campos clave. Es importante revisar cuidadosamente antes de eliminar duplicados, especialmente si contienen información relevante en campos no redundantes.</p>
+<p>El software lleva a cabo las siguientes funciones:</p>
+<ul class="simple">
+<li><p>Elimina filas duplicadas manteniendo la primera ocurrencia.</p></li>
+<li><p>Considera todas las columnas para determinar duplicados.</p></li>
+<li><p>Muestra la cantidad de filas eliminadas.</p></li>
+</ul>
+<p>En caso de que el conjunto de datos no tenga ningún valor duplicado, igualmente se mostrará en una ventana emergente el estado de la operación, como se ilustra en la figura <a class="reference internal" href="#fig-duplicado01"><span class="std std-ref">Verificación del estado para la eliminación de duplicados.</span></a> (Se muestran mensajes similares para los demás tipos de procesamiento de datos).</p>
+<figure class="align-default" id="fig-duplicado01">
+<img alt="Verificación del estado para la eliminación de duplicados." src="_images/duplicados01.png" />
+<figcaption>
+<p><span class="caption-text">Verificación del estado para la eliminación de duplicados.</span><a class="headerlink" href="#fig-duplicado01" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="normalizacion-de-datos">
+<h3>Normalización de Datos<a class="headerlink" href="#normalizacion-de-datos" title="Link to this heading">#</a></h3>
+<p>La normalización de datos es un proceso esencial en la preparación de datos que consiste en ajustar los valores de un conjunto para que se encuentren dentro de un rango común, como de 0 a 1 o de -1 a 1. Este paso resulta útil cuando los datos provienen de diferentes escalas, ya que asegura que todas las variables contribuyan de manera equitativa al análisis o a los modelos de aprendizaje automático. La normalización mejora la convergencia de los algoritmos, como los de regresión logística o redes neuronales, y reduce el impacto de las magnitudes absolutas en las métricas de similitud o distancia. Existen métodos como la normalización min-max o la estandarización, y la elección del enfoque depende del contexto y del tipo de análisis que se desea realizar.</p>
+<p>El programa cumple con normalizar todas las columnas numéricas al rango [0,1] teniendo en cuenta las siguientes consideraciones:</p>
+<ul class="simple">
+<li><p>Si todos los valores son iguales, se establecen en 0.</p></li>
+<li><p>Solo afecta a columnas con al menos un valor no nulo.</p></li>
+</ul>
+<p>Cabe aclarar que solo se normalizan las columnas que se seleccionen al momento de ejecutar la operación.</p>
+<figure class="align-default" id="fig-duplicado02">
+<img alt="Selección de las columnas que se buscan normalizar." src="_images/duplicados02.png" />
+<figcaption>
+<p><span class="caption-text">Selección de las columnas que se buscan normalizar.</span><a class="headerlink" href="#fig-duplicado02" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Como en los casos anteriores, se mostrará en pantalla una ventana que notifica el estado de la transformación. Del mismo modo, el cambio efectuado en el conjunto de datos se visualizará automáticamente en pantalla.</p>
+</section>
+<section id="rellenado-de-valores-nulos">
+<h3>Rellenado de Valores Nulos<a class="headerlink" href="#rellenado-de-valores-nulos" title="Link to this heading">#</a></h3>
+<p>El rellenado de valores nulos es una técnica utilizada en el procesamiento de datos para manejar la ausencia de información sin descartar los registros afectados. Este método consiste en reemplazar los valores faltantes con datos estimados, como la media, mediana o moda de la columna correspondiente, valores constantes o incluso predicciones generadas por modelos avanzados. El enfoque elegido depende del tipo de datos y de su distribución, ya que un relleno inadecuado podría introducir sesgos o afectar la interpretación de los resultados. Al completar los valores nulos de manera cuidadosa, se preserva la integridad del conjunto de datos, facilitando análisis más robustos y modelos predictivos más precisos.</p>
+<p>La funcionalidad de esta sección permite:</p>
+<ul class="simple">
+<li><p>Rellenar los valores nulos con la media de cada columna. <em>Nota:</em> Solo aplica a columnas numéricas.</p></li>
+<li><p>Mostrar la cantidad de valores rellenados.</p></li>
+</ul>
+<p>Al igual que en el tratamiento anterior el software solicita al usuario las columnas especificas a las cuales se deseo aplicar la operación, véase la figura <a class="reference internal" href="#fig-duplicado02"><span class="std std-ref">Selección de las columnas que se buscan normalizar.</span></a>. Además, se mostrará un mensaje con la operación realizada y los cambios se visualizarán en la ventana principal de manera automática.</p>
+<figure class="align-default" id="fig-media01">
+<img alt="Verificación del estado para el rellenado de datos nulos." src="_images/media01.png" />
+<figcaption>
+<p><span class="caption-text">Verificación del estado para el rellenado de datos nulos.</span><a class="headerlink" href="#fig-media01" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="exportacion">
+<span id="sec-4-3"></span><h2>Exportación<a class="headerlink" href="#exportacion" title="Link to this heading">#</a></h2>
+<p>La exportación de resultados es una etapa clave en el manejo de datos, que permite guardar la información procesada o los análisis realizados en un formato que facilite su uso posterior o su distribución. Los formatos más comunes incluyen csv, Excel, JSON y bases de datos, dependiendo de los requisitos del proyecto y las herramientas utilizadas. En la aplicación <em>NovaLabUD</em>, se manejan tres tipos de exportación sobre el conjunto de datos transformado, las cuales son: <em>csv</em>, <em>xlsx</em> y <em>txt</em>.</p>
+<p>Este proceso no solo asegura la portabilidad y reutilización de los datos, sino que también facilita la integración con otros sistemas o aplicaciones. Es importante implementar buenas prácticas durante la exportación, como incluir encabezados claros, asegurar la coherencia de los formatos y documentar el contenido exportado para garantizar su correcta interpretación y uso en el futuro.</p>
+<figure class="align-default" id="fig-exportar00">
+<img alt="Menú para exportar los datos transformados." src="_images/exportar001.png" />
+<figcaption>
+<p><span class="caption-text">Menú para exportar los datos transformados.</span><a class="headerlink" href="#fig-exportar00" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="formatos-de-exportacion">
+<h3>Formatos de Exportación<a class="headerlink" href="#formatos-de-exportacion" title="Link to this heading">#</a></h3>
+<p>Las características de cada uno de los formatos de exportación sobre el DataSet se presentan a continuación:</p>
+<ol class="arabic simple">
+<li><p>Excel (.xlsx)</p>
+<ul class="simple">
+<li><p>Crea un único archivo con múltiples hojas:</p>
+<ul>
+<li><p>«Datos Transformados»: Datos procesados</p></li>
+<li><p>«Datos Originales»: Datos sin procesar</p></li>
+<li><p>«Historial de Transformaciones»: Registro de cambios</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CSV (.csv) y TXT (.txt)</p>
+<ul class="simple">
+<li><p>Crea tres archivos separados:</p>
+<ul>
+<li><p>archivo.csv: Datos transformados</p></li>
+<li><p>archivoOriginal.csv: Datos originales</p></li>
+<li><p>archivoTransformaciones.csv: Historial de cambios</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="proceso-de-exportacion">
+<h3>Proceso de Exportación<a class="headerlink" href="#proceso-de-exportacion" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Seleccionar la opción de exportar resultados la cual se muestra en la figura <a class="reference internal" href="#fig-exportar00"><span class="std std-ref">Menú para exportar los datos transformados.</span></a>.</p></li>
+<li><p>Elegir la ubicación y formato de destino.</p>
+<figure class="align-default" id="fig-exportacion">
+<img alt="Proceso de exportación." src="_images/exportar01.png" />
+<figcaption>
+<p><span class="caption-text">Proceso de exportación.</span><a class="headerlink" href="#fig-exportacion" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>El sistema creará los archivos correspondientes.</p></li>
+<li><p>Se mostrará un mensaje de confirmación al terminar la exportación.</p></li>
+</ol>
+</section>
+</section>
+<section id="seguimiento-de-las-transformaciones">
+<h2>Seguimiento de las transformaciones<a class="headerlink" href="#seguimiento-de-las-transformaciones" title="Link to this heading">#</a></h2>
+<p>El sistema mantiene un registro detallado de todas las transformaciones realizadas, incluyendo:</p>
+<ul class="simple">
+<li><p>Tipo de operación.</p></li>
+<li><p>Fecha y hora de ejecución.</p></li>
+<li><p>Detalles específicos de la operación.</p></li>
+<li><p>Número de filas afectadas.</p></li>
+</ul>
+<p>El resumen de las transformaciones se visualiza en el archivo que hace alusión a las transformaciones dependiendo el tipo de exportación seleccionado, los cuales fueron tratados en la sección anterior.</p>
+</section>
+<section id="recomendaciones-de-uso">
+<h2>Recomendaciones de uso<a class="headerlink" href="#recomendaciones-de-uso" title="Link to this heading">#</a></h2>
+<p>Antes de comenzar:</p>
+<ol class="arabic simple">
+<li><p>Comprobar que los datos estén en un formato compatible con el software.</p></li>
+<li><p>Realizar una copia de seguridad de los datos originales.</p></li>
+</ol>
+<p>Durante el procesamiento:</p>
+<ol class="arabic simple">
+<li><p>Revisar los mensajes de confirmación después de cada operación.</p></li>
+<li><p>Verificar el número de filas afectadas y/o columnas afectadas.</p></li>
+</ol>
+<p>Al exportar:</p>
+<ol class="arabic simple">
+<li><p>Elegir el formato más adecuado dependiendo de las necesidades o preferencias del usuario.</p></li>
+<li><p>Examinar todos los archivos generados.</p></li>
+</ol>
+</section>
+<section id="solucion-de-problemas">
+<h2>Solución de problemas<a class="headerlink" href="#solucion-de-problemas" title="Link to this heading">#</a></h2>
+<p><strong>Problemas Comunes y Soluciones</strong></p>
+<ul class="simple">
+<li><p>No se puede cargar el archivo.</p>
+<ul>
+<li><p>Verificar que el archivo tenga la extensión correcta.</p></li>
+<li><p>Confirmar que el archivo no esté corrupto o dañado.</p></li>
+</ul>
+</li>
+<li><p>Error en las transformaciones.</p>
+<ul>
+<li><p>Los datos deben estar en el formato esperado.</p></li>
+<li><p>Comprobar que los datos se hayan cargado correctamente.</p></li>
+</ul>
+</li>
+<li><p>Error en la exportación.</p>
+<ul>
+<li><p>Revisar los permisos de escritura en la carpeta de destino.</p></li>
+<li><p>Comprobar que los archivos no estén en uso por otro programa.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="interfaz_novalab.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Interfaz de NovaLabUD</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="analisis_datos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Análisis de datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importacion-de-datos">Importación de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformaciones-de-datos">Transformaciones de Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-valores-nulos">Eliminación de Valores Nulos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eliminacion-de-duplicados">Eliminación de Duplicados</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#normalizacion-de-datos">Normalización de Datos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rellenado-de-valores-nulos">Rellenado de Valores Nulos</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exportacion">Exportación</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#formatos-de-exportacion">Formatos de Exportación</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proceso-de-exportacion">Proceso de Exportación</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seguimiento-de-las-transformaciones">Seguimiento de las transformaciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-de-uso">Recomendaciones de uso</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solucion-de-problemas">Solución de problemas</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="assets/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="assets/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

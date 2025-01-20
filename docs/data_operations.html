@@ -159,10 +159,10 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="app_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_operations_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_analysis_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="graficador_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaz_novalab.html">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="procesamiento_datos.html">Procesamiento de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis_datos.html">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
 <ul class="current nav bd-sidenav">
@@ -277,15 +277,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperations.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.fill_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_values()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperations.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.fill_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -302,9 +302,9 @@
   <section id="modulo-data-operations-py">
 <h1>Módulo: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code><a class="headerlink" href="#modulo-data-operations-py" title="Link to this heading">#</a></h1>
 <p>Este es el módulo que se encarga de hacer el procesamiento de los datos, para ello utiliza diferentes métodos como lo son: <strong>eliminación de datos nulos</strong>, <strong>eliminar datos duplicados</strong>, <strong>normalizar datos</strong> y <strong>rellenar datos nulos con la media</strong>.</p>
-<dl class="py class" id="module-data_operations">
-<dt class="sig sig-object py" id="data_operations.DataOperations">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="headerlink" href="#data_operations.DataOperations" title="Link to this definition">#</a></dt>
+<dl class="py class" id="module-src.data_operations">
+<dt class="sig sig-object py" id="src.data_operations.DataOperations">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.data_operations.</span></span><span class="sig-name descname"><span class="pre">DataOperations</span></span><a class="headerlink" href="#src.data_operations.DataOperations" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Clase para realizar operaciones de manipulación y procesamiento de datos con pandas.
 Esta clase proporciona funcionalidades para cargar, procesar y exportar datos, manteniendo
@@ -345,8 +345,8 @@ transformation_history (list): Lista de diccionarios con el historial de transfo
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.__init__" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.__init__" title="Link to this definition">#</a></dt>
 <dd><p>Inicializa la clase DataOperations con un DataFrame vacío y una lista para registrar transformaciones.
 Aquí no realiza ninguna operación en los datos iniciales, sino que almacena los datos originales
 para poder realizar transformaciones posteriores.</p>
@@ -365,8 +365,8 @@ para poder realizar transformaciones posteriores.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.load_file">
-<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.load_file" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.load_file">
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.load_file" title="Link to this definition">#</a></dt>
 <dd><p>Permite al usuario seleccionar y cargar un archivo de datos, desde un archivo CSV, TXT o Excel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -413,8 +413,8 @@ para poder realizar transformaciones posteriores.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.remove_null_values">
-<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.remove_null_values" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.remove_null_values">
+<span class="sig-name descname"><span class="pre">remove_null_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.remove_null_values" title="Link to this definition">#</a></dt>
 <dd><p>Elimina las filas que contienen valores nulos del DataFrame.</p>
 <p>La operación se realiza in-place y se registra en el historial de transformaciones.
 Muestra un mensaje con el número de filas eliminadas.</p>
@@ -441,8 +441,8 @@ Muestra un mensaje con el número de filas eliminadas.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.remove_duplicates">
-<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.remove_duplicates" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.remove_duplicates">
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.remove_duplicates" title="Link to this definition">#</a></dt>
 <dd><p>Elimina las filas duplicadas del DataFrame, manteniendo la primera ocurrencia.</p>
 <p>Este método:
 - Identifica y elimina filas completamente duplicadas
@@ -486,8 +486,8 @@ Muestra un mensaje con el número de filas eliminadas.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.normalize_data">
-<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selected_columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Min-Max</span> <span class="pre">Scaling'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.normalize_data" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.normalize_data">
+<span class="sig-name descname"><span class="pre">normalize_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">selected_columns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Min-Max</span> <span class="pre">Scaling'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.normalize_data" title="Link to this definition">#</a></dt>
 <dd><p>Normaliza las columnas seleccionadas en el conjunto de datos utilizando el método especificado.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parámetros<span class="colon">:</span></dt>
@@ -560,8 +560,8 @@ Muestra un mensaje con el número de filas eliminadas.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.fill_null_values">
-<span class="sig-name descname"><span class="pre">fill_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.fill_null_values" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.fill_null_values">
+<span class="sig-name descname"><span class="pre">fill_null_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mean'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">degree</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_neighbors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.fill_null_values" title="Link to this definition">#</a></dt>
 <dd><p>Llena valores nulos en columnas seleccionadas utilizando diferentes métodos de imputación.</p>
 <p>Este método permite rellenar valores faltantes en un DataFrame utilizando diversas técnicas,
 como imputación por media, interpolación lineal, interpolación polinómica, interpolación basada
@@ -728,8 +728,8 @@ df.fill_null_values(method=”knn”, columns=[“column1”, “column2”])</p
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.export_results">
-<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.export_results" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.export_results">
+<span class="sig-name descname"><span class="pre">export_results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.export_results" title="Link to this definition">#</a></dt>
 <dd><p>Exporta los datos procesados y el historial de transformaciones.</p>
 <p>Formatos soportados:
 - Excel (.xlsx): Crea múltiples hojas para datos transformados, originales e historial
@@ -818,8 +818,8 @@ y “_transformaciones” para los datos originales y el historial.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="data_operations.DataOperations.get_transformation_summary">
-<span class="sig-name descname"><span class="pre">get_transformation_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#data_operations.DataOperations.get_transformation_summary" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.data_operations.DataOperations.get_transformation_summary">
+<span class="sig-name descname"><span class="pre">get_transformation_summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.data_operations.DataOperations.get_transformation_summary" title="Link to this definition">#</a></dt>
 <dd><p>Genera un resumen textual de todas las transformaciones aplicadas.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Devuelve<span class="colon">:</span></dt>
@@ -907,15 +907,15 @@ y “_transformaciones” para los datos originales y el historial.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperations.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.fill_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_values()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations"><code class="docutils literal notranslate"><span class="pre">DataOperations</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.__init__"><code class="docutils literal notranslate"><span class="pre">DataOperations.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.load_file"><code class="docutils literal notranslate"><span class="pre">DataOperations.load_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.remove_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">DataOperations.remove_duplicates()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.normalize_data"><code class="docutils literal notranslate"><span class="pre">DataOperations.normalize_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.fill_null_values"><code class="docutils literal notranslate"><span class="pre">DataOperations.fill_null_values()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.export_results"><code class="docutils literal notranslate"><span class="pre">DataOperations.export_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#src.data_operations.DataOperations.get_transformation_summary"><code class="docutils literal notranslate"><span class="pre">DataOperations.get_transformation_summary()</span></code></a></li>
 </ul>
 </li>
 </ul>

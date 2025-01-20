@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Graficador &#8212; documentación de NovaLabUD - 1.0</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="assets/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="assets/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="assets/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="assets/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="assets/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="assets/custom.css?v=f6c255cb" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="assets/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="assets/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="assets/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="assets/documentation_options.js?v=40e79d90"></script>
+    <script src="assets/doctools.js?v=9bcbadda"></script>
+    <script src="assets/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="assets/clipboard.min.js?v=a7894cd8"></script>
+    <script src="assets/copybutton.js?v=f281be69"></script>
+    <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="assets/translations.js?v=f85f4cfb"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'graficador_ manual';</script>
+    <link rel="icon" href="assets/NovaLabUD_icon.ico"/>
+    <link rel="index" title="Índice" href="genindex.html" />
+    <link rel="search" title="Búsqueda" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="assets/NovaLabUD.webp" class="logo__image only-light" alt="documentación de NovaLabUD - 1.0 - Home"/>
+    <img src="assets/NovaLabUD.webp" class="logo__image only-dark pst-js-only" alt="documentación de NovaLabUD - 1.0 - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Documentación de NovaLab
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="interfaz_novalab.html">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="procesamiento_datos.html">Procesamiento de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis_datos.html">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="app.html">Módulo: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_operations.html">Módulo: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="regression_analysis.html">Módulo: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="graficador.html">Módulo: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/jsmanriquem/NovaLabUD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Graficador</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz">Interfaz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas-y-visualizacion-de-la-grafica">Selección de columnas y visualización de la gráfica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-limites-y-tamano">Selección de límites y tamaño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edicion-de-titulo-y-ejes">Edición de título y ejes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficacion-de-regresiones">Graficación de regresiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edicion-de-puntos">Edición de puntos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardar-grafica">Guardar gráfica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpiar-grafica">Limpiar gráfica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-de-uso">Recomendaciones de uso</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="graficador">
+<span id="chapter-6"></span><h1>Graficador<a class="headerlink" href="#graficador" title="Link to this heading">#</a></h1>
+<p>El graficador de <em>NovaLabUD</em> está diseñado para visualizar los datos subidos al software y previamente tratados siguiendo las secciones anteriores. Esta sección guiará al usuario en el uso de las funciones principales del graficador, desde la personalización de los datos hasta la exportación de los gráficos. Esta funcionalidad tiene como fin permitir que el usuario personalice a gusto las gráficas obtenidas y que estas puedan ser usadas en: informes de laboratorio, presentaciones, entre otras. Para acceder a esta funcionalidad seleccionar el botón <em>Ver</em> en el menú de la pantalla principal.</p>
+<figure class="align-default" id="fig-graficarmenu">
+<img alt="Selección del botón *Ver* para abrir el graficador." src="_images/graficarmenu.png" />
+<figcaption>
+<p><span class="caption-text">Selección del botón <em>Ver</em> para abrir el graficador.</span><a class="headerlink" href="#fig-graficarmenu" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="interfaz">
+<h2>Interfaz<a class="headerlink" href="#interfaz" title="Link to this heading">#</a></h2>
+<p>Al abrir el graficador, se observa que, además de tener la sección principal, cuenta con un menú que permitirá el manejo de archivos, personalización de la gráfica, entre otros. Este menú permitirá seleccionar alguna de sus funcionalidades: gráfica de regresiones, personalización de las gráficas, exportación del gráfico generado, limpieza y una sección de ayuda que permitirá al usuario ingresar a esta sección del manual en caso de ser necesario.</p>
+<figure class="align-default" id="fig-graficador">
+<img alt="Interfaz principal del graficador." src="_images/graficador00.png" />
+<figcaption>
+<p><span class="caption-text">Interfaz principal del graficador.</span><a class="headerlink" href="#fig-graficador" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="seleccion-de-columnas-y-visualizacion-de-la-grafica">
+<h2>Selección de columnas y visualización de la gráfica<a class="headerlink" href="#seleccion-de-columnas-y-visualizacion-de-la-grafica" title="Link to this heading">#</a></h2>
+<p>Por medio del manejo de archivos temporales se garantiza el uso de los datos a los cuales el usuario haya realizado las últimas modificaciones o transformaciones explicadas en capítulos anteriores. Se visualizan dos menús desplegables que permitirán seleccionar de un listado el par de columnas que se desea graficar, según los encabezados del archivo. Una vez elegidas las columnas deseadas, seleccionar el botón <em>Graficar</em> para generar el gráfico.</p>
+<figure class="align-default" id="fig-graf-columnas">
+<img alt="Selección de columnas." src="_images/graficador01.png" />
+<figcaption>
+<p><span class="caption-text">Selección de columnas.</span><a class="headerlink" href="#fig-graf-columnas" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>De este modo, se pueden visualizar los datos representados gráficamente.</p>
+<figure class="align-default" id="fig-figure-07">
+<img alt="Visualización de los datos graficados." src="_images/graficador02.png" />
+<figcaption>
+<p><span class="caption-text">Visualización de los datos graficados.</span><a class="headerlink" href="#fig-figure-07" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="seleccion-de-limites-y-tamano">
+<h2>Selección de límites y tamaño<a class="headerlink" href="#seleccion-de-limites-y-tamano" title="Link to this heading">#</a></h2>
+<p>La herramienta de zoom permite acercar o alejar la visualización del gráfico para analizar detalles específicos. Como se muestra en la Figura <a class="reference internal" href="#fig-zoom"><span class="std std-ref">Manipulación de zoom.</span></a>, el zoom se manipula utilizando barras deslizantes ubicadas en la parte inferior de la ventana. Estas barras permiten ajustar el nivel de acercamiento tanto del eje X como del eje Y de manera intuitiva. En la parte superior de este par de barras se puede visualizar una etiqueta de porcentajes indicando la amplitud del zoom:</p>
+<figure class="align-default" id="fig-zoom">
+<img alt="Manipulación de zoom." src="_images/graficador03.png" />
+<figcaption>
+<p><span class="caption-text">Manipulación de zoom.</span><a class="headerlink" href="#fig-zoom" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Por otro lado, es posible personalizar los rangos de los ejes X y Y mediante la configuración de valores mínimos y máximos, estos son ajustables presionando el botón de [+] ubicado en la parte inferior derecha de la interfaz para modificar el rango del eje X y presionando el botón de [+] ubicado en la parte superior derecha para modificar el rango del eje Y.</p>
+<figure class="align-default" id="fig-limy">
+<img alt="Selección de límites eje Y." src="_images/graficador04.png" />
+<figcaption>
+<p><span class="caption-text">Selección de límites eje Y.</span><a class="headerlink" href="#fig-limy" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Al presionar cualquiera de estos botones, se abrirá una ventana emergente con campos de texto donde podrás ingresar los valores mínimos y máximos de manera numérica. A continuación se muestra el ejemplo para el caso de los límites del eje y.</p>
+<figure class="align-default" id="fig-limy1">
+<img alt="Selección de límites para el eje Y." src="_images/graficador05.png" />
+<figcaption>
+<p><span class="caption-text">Selección de límites para el eje Y.</span><a class="headerlink" href="#fig-limy1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Para ambos casos la ventana emergente solicita que el usuario ingrese manualmente los nuevos límites de la gráfica. En dado caso que el valor ingresado no sea numérico o el valor del límite mínimo sea mayor al máximo y viceversa se mostrará un mensaje de error.</p>
+</section>
+<section id="edicion-de-titulo-y-ejes">
+<h2>Edición de título y ejes<a class="headerlink" href="#edicion-de-titulo-y-ejes" title="Link to this heading">#</a></h2>
+<p>El graficador ofrece opciones de personalización que permiten modificar los títulos de los ejes y el título del gráfico para adaptarlos según las necesidades del usuario. Para esto se debe hacer doble click sobre el título que se desea modificar y aparecerá una ventana emergente como la mostrada en la Figura <a class="reference internal" href="#fig-personaltitulo"><span class="std std-ref">Edición del título de la gráfica.</span></a>. En esta ventana, se puede escribir un nuevo título en el campo de texto, seleccionar el tamaño del texto utilizando un menú desplegable, y elegir una fuente entre las opciones disponibles para personalizar el estilo del título. Una vez configurados todos los parámetros, basta con hacer clic en el botón <em>Aplicar</em> para que los cambios se reflejen directamente en el gráfico.</p>
+<p><em>Si se desea quitar alguno de los títulos, se debe dejar el campo de texto vacío.</em></p>
+<figure class="align-default" id="fig-personaltitulo">
+<img alt="Edición del título de la gráfica." src="_images/graficador06.png" />
+<figcaption>
+<p><span class="caption-text">Edición del título de la gráfica.</span><a class="headerlink" href="#fig-personaltitulo" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="graficacion-de-regresiones">
+<h2>Graficación de regresiones<a class="headerlink" href="#graficacion-de-regresiones" title="Link to this heading">#</a></h2>
+<p>Ya que el graficador tiene como fin principal ofrecer al usuario una herramienta de personalización de gráficas, previamente en la ventana principal de la aplicación el usuario ya pudo identificar que modelo ajusta mejor el conjunto de datos. En esta sección simplemente basta con seleccionar el botón de <em>Regresiones</em> en la barra de menú y seleccionar del menú desplegable el modelo deseado.</p>
+<figure class="align-default" id="fig-graf-regresion">
+<img alt="Selección de *Regresión* para graficar el modelo de ajuste junto con los datos." src="_images/regresiones04.png" />
+<figcaption>
+<p><span class="caption-text">Selección de <em>Regresión</em> para graficar el modelo de ajuste junto con los datos.</span><a class="headerlink" href="#fig-graf-regresion" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Luego de ello se debe seleccionar el botón <em>Graficar</em> y el ajuste se graficará con los datos como se muestra en la siguiente imagen. También se puede visualizar una pequeña etiqueta en la parte superior derecha de la gráfica para distinguir entre los datos generados por el modelo y el conjunto de datos previamente tratados.</p>
+<figure class="align-default" id="id1">
+<img alt="Selección de *Regresión* para graficar junto con los datos." src="_images/regresion05.png" />
+<figcaption>
+<p><span class="caption-text">Selección de <em>Regresión</em> para graficar junto con los datos.</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="edicion-de-puntos">
+<h2>Edición de puntos<a class="headerlink" href="#edicion-de-puntos" title="Link to this heading">#</a></h2>
+<p>Las funcionalidades principales para editar los puntos de la gráfica están disponibles en una ventana de configuración que aparece al seleccionar el botón <em>Personalizar</em>.</p>
+<figure class="align-default" id="fig-personaldatos">
+<img alt="Personalización de datos y regresión." src="_images/personalizacion00.png" />
+<figcaption>
+<p><span class="caption-text">Personalización de datos y regresión.</span><a class="headerlink" href="#fig-personaldatos" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>De esa manera se despliega un menú el cual permite escoger entre la personalización de los datos y la personalización de la regresión seleccionada. En el caso de seleccionar <em>Editar gráfica</em> se abre una ventana emergente que ofrece diversas opciones, tales como activar la grilla, seleccionar un marcador diferente para los puntos, y ajustar los tamaños tanto de las líneas como de los puntos. Estos cambios se visualizan de manera automática en el gráfico.</p>
+<figure class="align-default" id="fig-ediciondatos">
+<img alt="Vista general edición de puntos para los datos." src="_images/graficador07.png" />
+<figcaption>
+<p><span class="caption-text">Vista general edición de puntos para los datos.</span><a class="headerlink" href="#fig-ediciondatos" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>En el caso de querer editar el gráfico generado por alguna de las regresiones, el software permitirá realizar las mismas ediciones exceptuando el color de fondo y la activación de la grilla.</p>
+<figure class="align-default" id="fig-edicioregresion">
+<img alt="Vista general edición de puntos para los métodos." src="_images/graficador08.png" />
+<figcaption>
+<p><span class="caption-text">Vista general edición de puntos para los métodos.</span><a class="headerlink" href="#fig-edicioregresion" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Además, el color de los puntos, línea o fondo puede ajustarse gracias a un selector de colores que permite elegir entre una amplia variedad de tonalidades.</p>
+<figure class="align-default" id="fig-selector">
+<img alt="Selector de colores para la personalización de los datos." src="_images/graficador09.png" />
+<figcaption>
+<p><span class="caption-text">Selector de colores para la personalización de los datos.</span><a class="headerlink" href="#fig-selector" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Cabe aclarar que la aplicación solo permite editar los puntos de la regresión siempre y cuando esta ya se encuentre graficada haciendo uso del botón <em>Regresiones</em>. En el caso en que el usuario pretenda editar una función la cual no se encuentra en la gráfica aparecerá un mensaje de error solicitando que primero se grafique el modelo de ajuste antes de editar.</p>
+</section>
+<section id="guardar-grafica">
+<h2>Guardar gráfica<a class="headerlink" href="#guardar-grafica" title="Link to this heading">#</a></h2>
+<p>También es posible guardar la gráfica personalizada en diferentes formatos de imagen. Al seleccionar la opción <em>Exportar</em> en el menú se puede seleccionar alguno de los formatos de exportación.</p>
+<figure class="align-default" id="fig-exportardatos">
+<img alt="Exportación de la gráfica en diferentes formatos." src="_images/exportar00.png" />
+<figcaption>
+<p><span class="caption-text">Exportación de la gráfica en diferentes formatos.</span><a class="headerlink" href="#fig-exportardatos" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Se despliega una ventana donde el usuario puede elegir el formato deseado entre PNG, JPG o PDF y especificar la ubicación y el nombre del archivo. Esto facilita la integración del gráfico generado personalizado en los informes de laboratorio o presentaciones dependiendo de las necesidades del usuario.</p>
+<figure class="align-default" id="fig-exporttar">
+<img alt="Guardar gráfica en formato PDF." src="_images/graficador10.png" />
+<figcaption>
+<p><span class="caption-text">Guardar gráfica en formato PDF.</span><a class="headerlink" href="#fig-exporttar" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="limpiar-grafica">
+<h2>Limpiar gráfica<a class="headerlink" href="#limpiar-grafica" title="Link to this heading">#</a></h2>
+<p>En el caso en que el usuario desee deshacer todas las ediciones del gráfico, incluyendo los títulos, se selecciona el botón <em>Limpiar</em>, que se encuentra al final del menú. Por cuestiones de seguridad, antes de limpiar la gráfica el software genera un mensaje de advertencia, el cual indica que después de limpiar el gráfico las ediciones realizadas no se guardarán.</p>
+<figure class="align-default" id="fig-figure-16">
+<img alt="Limpiar ediciones de la gráfica." src="_images/graficador11.png" />
+<figcaption>
+<p><span class="caption-text">Limpiar ediciones de la gráfica.</span><a class="headerlink" href="#fig-figure-16" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="recomendaciones-de-uso">
+<h2>Recomendaciones de uso<a class="headerlink" href="#recomendaciones-de-uso" title="Link to this heading">#</a></h2>
+<p>Antes de comenzar:</p>
+<ol class="arabic simple">
+<li><p>Tener conocimiento sobre cuál modelo se ajusta mejor a los datos.</p></li>
+<li><p>El par de columnas que se deseen graficar deben ser numéricas.</p></li>
+</ol>
+<p>Durante la edición:</p>
+<ol class="arabic simple">
+<li><p>Al graficar el modelo de ajuste, después de seleccionado, es necesario hacer clic sobre el botón <em>Graficador</em> para actualizar la gráfica.</p></li>
+<li><p>Para personalizar los puntos de la gráfica del modelo es necesario que este ya se encuentre previamente graficado.</p></li>
+</ol>
+<p>Al finalizar:</p>
+<ol class="arabic simple">
+<li><p>Se recomienda exportar la imagen en alguno de los formatos ofrecidos por la aplicación. En el caso de seleccionar <em>Limpiar</em> o al cerrar la ventana del graficador aparecerá un mensaje confirmando la acción, en el caso de seleccionar de manera positiva al mensaje los últimos cambios realizados no se guardarán. Esto debido a que NovaLabUD no maneja un control de versiones.</p></li>
+</ol>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interfaz">Interfaz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-columnas-y-visualizacion-de-la-grafica">Selección de columnas y visualización de la gráfica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seleccion-de-limites-y-tamano">Selección de límites y tamaño</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edicion-de-titulo-y-ejes">Edición de título y ejes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficacion-de-regresiones">Graficación de regresiones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edicion-de-puntos">Edición de puntos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#guardar-grafica">Guardar gráfica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpiar-grafica">Limpiar gráfica</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendaciones-de-uso">Recomendaciones de uso</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Andrés Gómez, Jorge Garzón, Julián Aros, Laura Oliveros, Laura Triana, Sebastian Manrique.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="assets/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="assets/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

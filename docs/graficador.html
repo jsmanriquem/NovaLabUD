@@ -158,10 +158,10 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="app_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_operations_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="regression_analysis_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="graficador_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaz_novalab.html">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="procesamiento_datos.html">Procesamiento de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis_datos.html">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
 <ul class="current nav bd-sidenav">
@@ -276,35 +276,35 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.centrar_ventana"><code class="docutils literal notranslate"><span class="pre">centrar_ventana()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">limpiar_grafica()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.confirmar_limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">confirmar_limpiar_grafica()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.limpio_si"><code class="docutils literal notranslate"><span class="pre">limpio_si()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.cargar_datos"><code class="docutils literal notranslate"><span class="pre">cargar_datos()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_regresion_property"><code class="docutils literal notranslate"><span class="pre">update_regresion_property()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_regresion"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_regresion()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_ejex"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejex()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_yaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_yaxis_changes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_ejey"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejey()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_double_click"><code class="docutils literal notranslate"><span class="pre">on_double_click()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_x_limits"><code class="docutils literal notranslate"><span class="pre">update_x_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.set_x_limits"><code class="docutils literal notranslate"><span class="pre">set_x_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_y_limits"><code class="docutils literal notranslate"><span class="pre">update_y_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.set_y_limits"><code class="docutils literal notranslate"><span class="pre">set_y_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.zoom"><code class="docutils literal notranslate"><span class="pre">zoom()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_press"><code class="docutils literal notranslate"><span class="pre">on_press()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_release"><code class="docutils literal notranslate"><span class="pre">on_release()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_motion"><code class="docutils literal notranslate"><span class="pre">on_motion()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.cerrar_ventana"><code class="docutils literal notranslate"><span class="pre">cerrar_ventana()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.centrar_ventana"><code class="docutils literal notranslate"><span class="pre">centrar_ventana()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">limpiar_grafica()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.confirmar_limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">confirmar_limpiar_grafica()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.limpio_si"><code class="docutils literal notranslate"><span class="pre">limpio_si()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.cargar_datos"><code class="docutils literal notranslate"><span class="pre">cargar_datos()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_regresion_property"><code class="docutils literal notranslate"><span class="pre">update_regresion_property()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_regresion"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_regresion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_ejex"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejex()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.apply_yaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_yaxis_changes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_ejey"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejey()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_double_click"><code class="docutils literal notranslate"><span class="pre">on_double_click()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_x_limits"><code class="docutils literal notranslate"><span class="pre">update_x_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.set_x_limits"><code class="docutils literal notranslate"><span class="pre">set_x_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_y_limits"><code class="docutils literal notranslate"><span class="pre">update_y_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.set_y_limits"><code class="docutils literal notranslate"><span class="pre">set_y_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.zoom"><code class="docutils literal notranslate"><span class="pre">zoom()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_press"><code class="docutils literal notranslate"><span class="pre">on_press()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_release"><code class="docutils literal notranslate"><span class="pre">on_release()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_motion"><code class="docutils literal notranslate"><span class="pre">on_motion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.cerrar_ventana"><code class="docutils literal notranslate"><span class="pre">cerrar_ventana()</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -319,9 +319,9 @@
   <section id="modulo-graficador-py">
 <h1>Módulo: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code><a class="headerlink" href="#modulo-graficador-py" title="Link to this heading">#</a></h1>
 <p>Este es el módulo que se encarga de hacer la visualización de los datos, es uno de los módulos más complejos y por tanto tiene demasiados métodos incluidos en él.</p>
-<dl class="py function" id="module-graficador">
-<dt class="sig sig-object py" id="graficador.centrar_ventana">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">centrar_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ventana_principal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ventana_emergente</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.centrar_ventana" title="Link to this definition">#</a></dt>
+<dl class="py function" id="module-src.graficador">
+<dt class="sig sig-object py" id="src.graficador.centrar_ventana">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">centrar_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ventana_principal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ventana_emergente</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.centrar_ventana" title="Link to this definition">#</a></dt>
 <dd><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">centrar_ventana</span><span class="p">(</span><span class="n">ventana_principal</span><span class="p">,</span> <span class="n">ventana_emergente</span><span class="p">):</span>
     <span class="n">raiz</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>
 
@@ -346,8 +346,8 @@
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.limpiar_grafica">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.limpiar_grafica" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.limpiar_grafica">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.limpiar_grafica" title="Link to this definition">#</a></dt>
 <dd><p>Limpia la gráfica actual y restablece sus parámetros a los valores predeterminados.</p>
 <p>Esta función restablece todas las configuraciones visuales de la gráfica, como el título,
 los colores, los estilos y los tamaños de los ejes. También se desactiva la cuadrícula si está
@@ -448,8 +448,8 @@ permitiendo una visualización limpia y estándar antes de realizar nuevas repre
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.confirmar_limpiar_grafica">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">confirmar_limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.confirmar_limpiar_grafica" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.confirmar_limpiar_grafica">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">confirmar_limpiar_grafica</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.confirmar_limpiar_grafica" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente de confirmación para limpiar la gráfica.</p>
 <p>Esta función crea una ventana emergente que pregunta al usuario si desea limpiar la gráfica actual.
 Ofrece dos opciones: «Sí, limpiar» y «No, Cancelar». Si el usuario elige «Sí, limpiar», se llama
@@ -502,8 +502,8 @@ acción que modifique la visualización de la gráfica.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.limpio_si">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">limpio_si</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.limpio_si" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.limpio_si">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">limpio_si</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.limpio_si" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente de confirmación indicando que la gráfica ha sido limpiada exitosamente.</p>
 <p>Esta función crea una ventana emergente que informa al usuario que la gráfica ha sido limpiada correctamente.
 Incluye un mensaje de éxito y un botón de «Aceptar» que cierra la ventana emergente cuando se presiona.</p>
@@ -545,8 +545,8 @@ con otras partes de la aplicación hasta que se cierre la ventana de confirmaci�
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.cargar_datos">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.cargar_datos" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.cargar_datos">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">cargar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.cargar_datos" title="Link to this definition">#</a></dt>
 <dd><p>Carga los datos desde un archivo temporal llamado “tmp_graph.pkl” al iniciar la aplicación.
 Si el archivo existe, los datos se cargan en la variable global <cite>data</cite>. Si no existe,
 muestra un mensaje de advertencia.</p>
@@ -574,8 +574,8 @@ muestra un mensaje de advertencia.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.actualizar_columnas">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">actualizar_columnas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.actualizar_columnas" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.actualizar_columnas">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">actualizar_columnas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.actualizar_columnas" title="Link to this definition">#</a></dt>
 <dd><p>Obtiene los nombres de las columnas del archivo de datos cargado y actualiza los elementos
 de la interfaz para permitir la selección de columnas para graficar.</p>
 <p>Esta función obtiene los nombres de las columnas del archivo de datos actualmente cargado en
@@ -638,8 +638,8 @@ y controlar el inicio de la graficación desde la interfaz.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.guardar_grafica">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">guardar_grafica</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formato</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.guardar_grafica" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.guardar_grafica">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">guardar_grafica</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formato</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.guardar_grafica" title="Link to this definition">#</a></dt>
 <dd><p>Muestra un cuadro de diálogo para seleccionar la ubicación y el nombre del archivo
 donde se guardará la gráfica actual, y la guarda en el formato especificado por el usuario.</p>
 <p>Esta función permite al usuario elegir dónde guardar la gráfica generada en la aplicación,
@@ -683,8 +683,8 @@ por el usuario.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.graficar_datos">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.graficar_datos" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.graficar_datos">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_datos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.graficar_datos" title="Link to this definition">#</a></dt>
 <dd><p>Dibuja o actualiza la gráfica de datos en el canvas de Matplotlib dentro de la interfaz gráfica.
 La función limpia la gráfica anterior, dibuja una nueva basada en los datos actuales y actualiza
 los títulos y límites de los ejes según las selecciones del usuario.</p>
@@ -809,8 +809,8 @@ y ajustar los títulos y límites de los ejes en la gráfica.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.update_graph_property">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_graph_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_graph_property" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.update_graph_property">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">update_graph_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.update_graph_property" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza las propiedades visuales de la gráfica según el tipo de propiedad y el nuevo valor proporcionado.
 La función ajusta el estilo de la línea, el marcador, el color de fondo, el tamaño de los puntos,
 y la visibilidad de la cuadrícula, y actualiza la gráfica para reflejar los cambios.</p>
@@ -885,8 +885,8 @@ y la visibilidad de la cuadrícula, y actualiza la gráfica para reflejar los ca
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.grafica_ventana">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.grafica_ventana">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.grafica_ventana" title="Link to this definition">#</a></dt>
 <dd><p>Crea una ventana emergente para la personalización visual de la gráfica, permitiendo
 al usuario ajustar parámetros como el color de fondo, grosor de la línea, tipo de
 marcador, color y tamaño de puntos, y mostrar o ocultar la cuadrícula.</p>
@@ -978,8 +978,8 @@ múltiples instancias y poder acceder a sus elementos.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.graficar_regresion">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.graficar_regresion" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.graficar_regresion">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">graficar_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.graficar_regresion" title="Link to this definition">#</a></dt>
 <dd><p>Grafica la regresión especificada según el tipo proporcionado para los datos cargados en la aplicación.</p>
 <section id="id20">
 <h2>Parámetros:<a class="headerlink" href="#id20" title="Link to this heading">#</a></h2>
@@ -1058,8 +1058,8 @@ Los resultados de la regresión se guardan en una lista global <cite>regresiones
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.update_regresion_property">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_regresion_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regresion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_regresion_property" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.update_regresion_property">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">update_regresion_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regresion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.update_regresion_property" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza las propiedades visuales de una línea de regresión y actualiza la gráfica.</p>
 <section id="id21">
 <h2>Parametros<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
@@ -1093,8 +1093,8 @@ para seleccionar el color.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.grafica_ventana_regresion">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_regresion" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.grafica_ventana_regresion">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_regresion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.grafica_ventana_regresion" title="Link to this definition">#</a></dt>
 <dd><p>Crea una ventana emergente para personalizar visualmente las líneas de regresión.
 Esta ventana permite cambiar propiedades como color, grosor de línea y tipo de marcador
 para la línea de regresión seleccionada.</p>
@@ -1181,8 +1181,8 @@ para la línea de regresión seleccionada.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.apply_title_changes">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_title_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo_grafica_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_title_changes" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.apply_title_changes">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">apply_title_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">title_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">titulo_grafica_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.apply_title_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios en el título de la gráfica, incluyendo el texto, tamaño de fuente
 y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 <section id="id24">
@@ -1224,8 +1224,8 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.grafica_ventana_title">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_title" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.grafica_ventana_title">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_title</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.grafica_ventana_title" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente que permite al usuario personalizar el título de la gráfica,
 incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
 <section id="id26">
@@ -1301,8 +1301,8 @@ incluyendo el texto, tamaño de la fuente y el estilo de la fuente.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.apply_xaxis_changes">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_xaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejex_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_xaxis_changes" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.apply_xaxis_changes">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">apply_xaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejex_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejex_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.apply_xaxis_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios en el título del eje X de la gráfica, incluyendo el texto, tamaño de fuente
 y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 <section id="id28">
@@ -1345,8 +1345,8 @@ y estilo de fuente, de acuerdo a los valores seleccionados por el usuario.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.grafica_ventana_ejex">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejex" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.grafica_ventana_ejex">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.grafica_ventana_ejex" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente que permite al usuario personalizar el título del eje X de la gráfica.
 El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la fuente del eje X.</p>
 <section id="id30">
@@ -1427,8 +1427,8 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.apply_yaxis_changes">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">apply_yaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejey_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.apply_yaxis_changes" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.apply_yaxis_changes">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">apply_yaxis_changes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ejey_size_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_fuente_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ejey_titulo_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.apply_yaxis_changes" title="Link to this definition">#</a></dt>
 <dd><p>Aplica los cambios de personalización al título del eje Y de la gráfica, como el tamaño y el tipo de fuente.</p>
 <section id="id32">
 <h2>Parámetros<a class="headerlink" href="#id32" title="Link to this heading">#</a></h2>
@@ -1470,8 +1470,8 @@ El usuario puede modificar el texto, el tamaño de la fuente y el estilo de la f
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.grafica_ventana_ejey">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.grafica_ventana_ejey" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.grafica_ventana_ejey">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">grafica_ventana_ejey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.grafica_ventana_ejey" title="Link to this definition">#</a></dt>
 <dd><p>Abre una ventana emergente para personalizar el título del eje Y de la gráfica,
 permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.</p>
 <section id="id34">
@@ -1552,8 +1552,8 @@ permitiendo modificar el texto, el tamaño de la fuente y la fuente de la letra.
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.on_double_click">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_double_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_double_click" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.on_double_click">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">on_double_click</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.on_double_click" title="Link to this definition">#</a></dt>
 <dd><p>Detecta un doble clic en los títulos de la gráfica (título principal, título del eje X o título del eje Y)
 y abre la ventana de edición correspondiente para personalizar el título del eje o gráfico.</p>
 <section id="id36">
@@ -1595,8 +1595,8 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.update_x_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_x_limits" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.update_x_limits">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">update_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.update_x_limits" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente para actualizar los límites del eje X de la gráfica.</p>
 <section id="id38">
 <h2>Parámetros<a class="headerlink" href="#id38" title="Link to this heading">#</a></h2>
@@ -1659,8 +1659,8 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.set_x_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_x_limits" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.set_x_limits">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">set_x_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.set_x_limits" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza los límites del eje X según los valores ingresados por el usuario en la ventana emergente.</p>
 <section id="id40">
 <h2>Parámetros<a class="headerlink" href="#id40" title="Link to this heading">#</a></h2>
@@ -1716,8 +1716,8 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.update_y_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">update_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.update_y_limits" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.update_y_limits">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">update_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">master</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.update_y_limits" title="Link to this definition">#</a></dt>
 <dd><p>Muestra una ventana emergente para actualizar los límites del eje Y.</p>
 <section id="id42">
 <h2>Parámetros<a class="headerlink" href="#id42" title="Link to this heading">#</a></h2>
@@ -1781,8 +1781,8 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.set_y_limits">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">set_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.set_y_limits" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.set_y_limits">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">set_y_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_min_entry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max_entry</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.set_y_limits" title="Link to this definition">#</a></dt>
 <dd><p>Actualiza los límites del eje Y según los valores ingresados por el usuario en la ventana emergente.</p>
 <section id="id44">
 <h2>Parámetros<a class="headerlink" href="#id44" title="Link to this heading">#</a></h2>
@@ -1839,8 +1839,8 @@ y abre la ventana de edición correspondiente para personalizar el título del e
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.zoom">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.zoom" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.zoom">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.zoom" title="Link to this definition">#</a></dt>
 <dd><p>Ajuste del nivel de zoom en la gráfica redibujando los ejes a partir de nuevos límites que
 se actualizarán dependiendo de la amplificación que de el usuario. El nivel de zoom es
 controlado por el valor de una barra deslizante [scale] y la gráfica es redibujada en
@@ -1912,8 +1912,8 @@ función de los límites ajustados. También se actualiza el porcentaje de zoom 
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.on_press">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_press" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.on_press">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">on_press</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.on_press" title="Link to this definition">#</a></dt>
 <dd><p>Evento que permite inicializar un evento con un clic siempre y cuando este se haya
 realizado dentro de la gráfica, es decir, definido dentro de los límites de la definición
 para matplotlib.</p>
@@ -1955,8 +1955,8 @@ gráfica y almacenando las coordenadas [x,y] del clic realizado.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.on_release">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_release" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.on_release">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">on_release</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.on_release" title="Link to this definition">#</a></dt>
 <dd><p>Evento que permite finalizar la función anterior de interacción del usuario y la
 gráfica a través del mouse. A demás, permite que la acción solo se realice siempre y
 cuando el usuario deslice mientras hace el clic, al soltar el clic se finaliza la acción.</p>
@@ -1993,8 +1993,8 @@ lo que indica que la interacción/arrastre ha finalizado.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.on_motion">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">on_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#graficador.on_motion" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.on_motion">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">on_motion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.on_motion" title="Link to this definition">#</a></dt>
 <dd><p>Evento que permite desplazar la gráfica mientras el usuario interactúa/arrastra el
 mouse, ajustando los límites de los ejes de acuerdo al desplazamiento del cursor.</p>
 <section id="id52">
@@ -2056,8 +2056,8 @@ del ratón en la gráfica (evento gestionado por la función <cite>on_press</cit
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="graficador.cerrar_ventana">
-<span class="sig-prename descclassname"><span class="pre">graficador.</span></span><span class="sig-name descname"><span class="pre">cerrar_ventana</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graficador.cerrar_ventana" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="src.graficador.cerrar_ventana">
+<span class="sig-prename descclassname"><span class="pre">src.graficador.</span></span><span class="sig-name descname"><span class="pre">cerrar_ventana</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.graficador.cerrar_ventana" title="Link to this definition">#</a></dt>
 <dd><p>Función que se llama al cerrar la ventana para borrar el archivo tmp_graph.pkl</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cerrar_ventana</span><span class="p">():</span>
 
@@ -2113,35 +2113,35 @@ del ratón en la gráfica (evento gestionado por la función <cite>on_press</cit
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.centrar_ventana"><code class="docutils literal notranslate"><span class="pre">centrar_ventana()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">limpiar_grafica()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.confirmar_limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">confirmar_limpiar_grafica()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.limpio_si"><code class="docutils literal notranslate"><span class="pre">limpio_si()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.cargar_datos"><code class="docutils literal notranslate"><span class="pre">cargar_datos()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_regresion_property"><code class="docutils literal notranslate"><span class="pre">update_regresion_property()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_regresion"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_regresion()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_ejex"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejex()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.apply_yaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_yaxis_changes()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.grafica_ventana_ejey"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejey()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_double_click"><code class="docutils literal notranslate"><span class="pre">on_double_click()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_x_limits"><code class="docutils literal notranslate"><span class="pre">update_x_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.set_x_limits"><code class="docutils literal notranslate"><span class="pre">set_x_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.update_y_limits"><code class="docutils literal notranslate"><span class="pre">update_y_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.set_y_limits"><code class="docutils literal notranslate"><span class="pre">set_y_limits()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.zoom"><code class="docutils literal notranslate"><span class="pre">zoom()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_press"><code class="docutils literal notranslate"><span class="pre">on_press()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_release"><code class="docutils literal notranslate"><span class="pre">on_release()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.on_motion"><code class="docutils literal notranslate"><span class="pre">on_motion()</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#graficador.cerrar_ventana"><code class="docutils literal notranslate"><span class="pre">cerrar_ventana()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.centrar_ventana"><code class="docutils literal notranslate"><span class="pre">centrar_ventana()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">limpiar_grafica()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.confirmar_limpiar_grafica"><code class="docutils literal notranslate"><span class="pre">confirmar_limpiar_grafica()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.limpio_si"><code class="docutils literal notranslate"><span class="pre">limpio_si()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.cargar_datos"><code class="docutils literal notranslate"><span class="pre">cargar_datos()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.actualizar_columnas"><code class="docutils literal notranslate"><span class="pre">actualizar_columnas()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.guardar_grafica"><code class="docutils literal notranslate"><span class="pre">guardar_grafica()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.graficar_datos"><code class="docutils literal notranslate"><span class="pre">graficar_datos()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_graph_property"><code class="docutils literal notranslate"><span class="pre">update_graph_property()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana"><code class="docutils literal notranslate"><span class="pre">grafica_ventana()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.graficar_regresion"><code class="docutils literal notranslate"><span class="pre">graficar_regresion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_regresion_property"><code class="docutils literal notranslate"><span class="pre">update_regresion_property()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_regresion"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_regresion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.apply_title_changes"><code class="docutils literal notranslate"><span class="pre">apply_title_changes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_title"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_title()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.apply_xaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_xaxis_changes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_ejex"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejex()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.apply_yaxis_changes"><code class="docutils literal notranslate"><span class="pre">apply_yaxis_changes()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.grafica_ventana_ejey"><code class="docutils literal notranslate"><span class="pre">grafica_ventana_ejey()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_double_click"><code class="docutils literal notranslate"><span class="pre">on_double_click()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_x_limits"><code class="docutils literal notranslate"><span class="pre">update_x_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.set_x_limits"><code class="docutils literal notranslate"><span class="pre">set_x_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.update_y_limits"><code class="docutils literal notranslate"><span class="pre">update_y_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.set_y_limits"><code class="docutils literal notranslate"><span class="pre">set_y_limits()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.zoom"><code class="docutils literal notranslate"><span class="pre">zoom()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_press"><code class="docutils literal notranslate"><span class="pre">on_press()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_release"><code class="docutils literal notranslate"><span class="pre">on_release()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.on_motion"><code class="docutils literal notranslate"><span class="pre">on_motion()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.graficador.cerrar_ventana"><code class="docutils literal notranslate"><span class="pre">cerrar_ventana()</span></code></a></li>
 </ul>
   </nav></div>
 

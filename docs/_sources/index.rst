@@ -10,10 +10,11 @@ Nace como un software diseñado de forma amigable para su público dirigido, el 
    :caption: Manual de usuario
    :class: left-column
 
-   app_user
-   data_operations_user
-   regression_analysis_user
-   graficador_user
+   interfaz_novalab
+   procesamiento_datos
+   analisis_datos
+   graficador_manual
+   miscelaneos
 
 .. toctree::
    :maxdepth: 1

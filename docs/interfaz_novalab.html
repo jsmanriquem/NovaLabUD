@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Manual de usuario: regression_analysis.py &#8212; documentación de NovaLabUD - 1.0</title>
+    <title>Interfaz de NovaLabUD &#8212; documentación de NovaLabUD - 1.0</title>
   
   
   
@@ -48,12 +48,12 @@
     <script src="assets/copybutton.js?v=f281be69"></script>
     <script src="assets/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="assets/translations.js?v=f85f4cfb"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'regression_analysis_user';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'interfaz_novalab';</script>
     <link rel="icon" href="assets/NovaLabUD_icon.ico"/>
     <link rel="index" title="Índice" href="genindex.html" />
     <link rel="search" title="Búsqueda" href="search.html" />
-    <link rel="next" title="Manual de usuario: graficador.py" href="graficador_user.html" />
-    <link rel="prev" title="Manual de usuario: data_operations.py" href="data_operations_user.html" />
+    <link rel="next" title="Procesamiento de datos" href="procesamiento_datos.html" />
+    <link rel="prev" title="Documentación de NovaLab" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="es"/>
   <meta name="docsearch:version" content="" />
@@ -159,10 +159,10 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Manual de usuario</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="app_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">app.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_operations_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="graficador_user.html">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Interfaz de NovaLabUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="procesamiento_datos.html">Procesamiento de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analisis_datos.html">Análisis de datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="miscelaneos.html">Misceláneos</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Módulos (código)</span></p>
 <ul class="nav bd-sidenav">
@@ -254,7 +254,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -265,11 +267,21 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Manual de usuario: regression_analysis.py</h1>
+    <h1>Interfaz de NovaLabUD</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ventana-principal-de-novalab">Ventana principal de NovaLab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menu-principal-de-la-aplicacion">Menú principal de la aplicación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#figura-de-la-ventana-principal-de-novalab">Figura de la ventana principal de NovaLab</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -279,8 +291,32 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="manual-de-usuario-regression-analysis-py">
-<h1>Manual de usuario: <code class="docutils literal notranslate"><span class="pre">regression_analysis.py</span></code><a class="headerlink" href="#manual-de-usuario-regression-analysis-py" title="Link to this heading">#</a></h1>
+  <section id="interfaz-de-novalabud">
+<h1>Interfaz de NovaLabUD<a class="headerlink" href="#interfaz-de-novalabud" title="Link to this heading">#</a></h1>
+<p>La aplicación <code class="docutils literal notranslate"><span class="pre">NovaLab</span></code> presenta una interfaz intuitiva, diseñada para facilitar la visualización y el análisis de datos experimentales, al tiempo que proporciona soporte teórico integrado para experimentos clave en física. Este manual detalla sus funcionalidades en diferentes capítulos, comenzando por una descripción general de su interfaz principal.</p>
+<section id="ventana-principal-de-novalab">
+<h2>Ventana principal de NovaLab<a class="headerlink" href="#ventana-principal-de-novalab" title="Link to this heading">#</a></h2>
+<p>La ventana principal se compone de dos marcos principales: el primero enfocado en la <em>visualización de los datos</em> mostrando los datos que el usuario haya importado en el software. Permite cargar archivos en formatos compatibles como <em>csv, xlsx</em> y <em>txt</em>, graficar las variables seleccionadas y realizar análisis básicos. Para más detalles sobre cómo importar datos y utilizarlos, consulte el Capítulo <a class="reference internal" href="procesamiento_datos.html#chapter-4"><span class="std std-ref">Procesamiento de datos</span></a>. El segundo panel muestra la teoría correspondiente al estudio particular de la Caída Libre y Ley de Hooke, los cuales son fundamentales para desarrollar el razonamiento físico y estudio de propiedades importantes en estudiantes de primeros semestres. Para explorar a fondo esta sección, remítase al Capítulo <a class="reference internal" href="miscelaneos.html#chapter-7"><span class="std std-ref">Misceláneos</span></a>. En la figura <a class="reference internal" href="#fig-interfaz1"><span class="std std-ref">Vista general de la interfaz de NovaLab.</span></a> se puede observar la ventana principal de la aplicación. Además, cuenta con un menú en la parte superior el cual consta de cuatro botones los cuales se describen brevemente en la siguiente sección.</p>
+</section>
+<section id="menu-principal-de-la-aplicacion">
+<h2>Menú principal de la aplicación<a class="headerlink" href="#menu-principal-de-la-aplicacion" title="Link to this heading">#</a></h2>
+<p>La aplicación, en su ventana principal, cuenta con un menú ubicado en la parte superior izquierda que, a su vez, posee cuatro botones con diferentes funcionalidades. Estas son:</p>
+<ul class="simple">
+<li><p><em>Archivo</em>: Este menú desplegable posee las opciones <em>Importar</em>, <em>Exportar</em> y <em>Salir</em>. Para conocer su funcionalidad diríjase a las secciones <a class="reference internal" href="procesamiento_datos.html#sec-4-1"><span class="std std-ref">Importación de datos</span></a>, y <a class="reference internal" href="procesamiento_datos.html#sec-4-3"><span class="std std-ref">Exportación</span></a>.</p></li>
+<li><p><em>Edición</em>: Este menú posee las opciones <em>Procesar datos</em> y <em>Regresiones</em>. Para conocer su funcionalidad diríjase a la Sección <a class="reference internal" href="procesamiento_datos.html#sec-4-2"><span class="std std-ref">Transformaciones de Datos</span></a> y al Capítulo <a class="reference internal" href="analisis_datos.html#chapter-5"><span class="std std-ref">Análisis de datos</span></a>.</p></li>
+<li><p><em>Ver</em>: Este botón permite la apertura como un proceso independiente del <em>graficador</em> de la aplicación. Para conocer su funcionalidad diríjase al Capítulo <a class="reference internal" href="graficador_%20manual.html#chapter-6"><span class="std std-ref">Graficador</span></a>.</p></li>
+<li><p><em>Acerca de</em>: Este menú posee las opciones <em>Documentación</em> y <em>Autores</em>. Para conocer su funcionalidad diríjase al Capítulo <a class="reference internal" href="miscelaneos.html#chapter-7"><span class="std std-ref">Misceláneos</span></a>.</p></li>
+</ul>
+</section>
+<section id="figura-de-la-ventana-principal-de-novalab">
+<h2>Figura de la ventana principal de NovaLab<a class="headerlink" href="#figura-de-la-ventana-principal-de-novalab" title="Link to this heading">#</a></h2>
+<figure class="align-default" id="fig-interfaz1">
+<img alt="Vista general de la interfaz de NovaLab." src="_images/Interfaz_general.png" />
+<figcaption>
+<p><span class="caption-text">Vista general de la interfaz de NovaLab.</span><a class="headerlink" href="#fig-interfaz1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
 </section>
 
 
@@ -295,20 +331,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="data_operations_user.html"
+       href="index.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">anterior</p>
-        <p class="prev-next-title">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">data_operations.py</span></code></p>
+        <p class="prev-next-title">Documentación de <code class="docutils literal notranslate"><span class="pre">NovaLab</span></code></p>
       </div>
     </a>
     <a class="right-next"
-       href="graficador_user.html"
+       href="procesamiento_datos.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">siguiente</p>
-        <p class="prev-next-title">Manual de usuario: <code class="docutils literal notranslate"><span class="pre">graficador.py</span></code></p>
+        <p class="prev-next-title">Procesamiento de datos</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -318,6 +354,24 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ventana-principal-de-novalab">Ventana principal de NovaLab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menu-principal-de-la-aplicacion">Menú principal de la aplicación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#figura-de-la-ventana-principal-de-novalab">Figura de la ventana principal de NovaLab</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
