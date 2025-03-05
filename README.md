@@ -1,6 +1,6 @@
 # Proyecto NovaLabUD
 
-NovaLa es un proyecto que ha sido desarrollado en Python utilizando el paradigma de Programación Orientada a Objetos (POO), lo que facilita la gestión, reutilización y mantenimiento del código. El objetivo del proyecto es realizar simulaciones de experimentos físicos, como la caída libre, con la capacidad de generar gráficos e informes detallados sobre el comportamiento de los objetos bajo diversas condiciones.
+NovaLab es un proyecto que ha sido desarrollado en Python utilizando el paradigma de Programación Orientada a Objetos (POO), lo que facilita la gestión, reutilización y mantenimiento del código. El objetivo del proyecto es realizar simulaciones de experimentos físicos, como la caída libre, con la capacidad de generar gráficos e informes detallados sobre el comportamiento de los objetos bajo diversas condiciones.
 
 A lo largo de este proyecto, se utilizan librerías de Python como pandas, numpy y matplotlib para el manejo de datos y la visualización gráfica, y scipy para la interpolación y otros análisis matemáticos. El código está diseñado para ser fácilmente extensible y configurable, permitiendo a los usuarios modificar parámetros de los experimentos. Está diseñado para ser fácil de usar, ofreciendo una experiencia intuitiva para trabajar con datos científicos en diversas áreas.
 
@@ -9,7 +9,7 @@ A lo largo de este proyecto, se utilizan librerías de Python como pandas, numpy
 - [Laura Viviana Oliveros](https://www.github.com/OliverosLau)
 - [Julián Armando Áros](https://www.github.com/Julianaros)
 - [Andrés Fernando Gómez](https://www.github.com/fernandogomez0621)
-- [Laura Carolina Triana](https://www.github.com/LTMeraki)
+- [Laura Carolina Triana](https://www.github.com/lctrianam)
 - [Juan Sebastian Manrique](https://www.github.com/jsmanriquem)
 - [georgfis](https://www.github.com/georgfis)
 
